@@ -18,10 +18,12 @@ namespace WebCene.UI
             InitializeComponent();
         }
 
-        private void btnUcitajHTML_Click(object sender, EventArgs e)
+        private void btnKrol_Click(object sender, EventArgs e)
         {
+            StartKrol startKrol = new StartKrol();
+            startKrol.ShowDialog();
 
-            ePonudaGetPrice();
+            //ePonudaGetPrice();
 
         }
 
@@ -37,7 +39,7 @@ namespace WebCene.UI
             HtmlWeb web = new HtmlWeb();
             var doc = web.Load(html);
             
-            // lista filtriranih podataka iz tabele
+            // lista parsovanih podataka iz tabele na web strani
             List<SM_DobijeniPodaci> DobijeniPodaci = new List<SM_DobijeniPodaci>();
 
             // svi <tr>
@@ -130,7 +132,16 @@ namespace WebCene.UI
 
         }
 
+        private void btnProizvodi_Click(object sender, EventArgs e)
+        {
+            Proizvodi proizvodi = new Proizvodi();
+            proizvodi.ShowDialog();
+        }
 
-
+        private void btnProdavci_Click(object sender, EventArgs e)
+        {
+            Prodavci prodavci = new Prodavci();
+            prodavci.ShowDialog();
+        }
     }
 }

@@ -56,11 +56,35 @@
     <Compile Include="MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Prodavci.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Prodavci.Designer.cs">
+      <DependentUpon>Prodavci.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
+    <Compile Include="Proizvodi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Proizvodi.Designer.cs">
+      <DependentUpon>Proizvodi.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SM_DobijeniPodaci.cs" />
+    <Compile Include="StartKrol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StartKrol.Designer.cs">
+      <DependentUpon>StartKrol.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Prodavci.resx">
+      <DependentUpon>Prodavci.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Proizvodi.resx">
+      <DependentUpon>Proizvodi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -71,6 +95,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="StartKrol.resx">
+      <DependentUpon>StartKrol.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
