@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace WebCene.UI
 {
-    public partial class Prodavci : Form
+    public partial class frmKrolovi : Form
     {
-        public Prodavci()
+        public frmKrolovi()
         {
             InitializeComponent();
+        }
+
+        private void btnOdustani_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

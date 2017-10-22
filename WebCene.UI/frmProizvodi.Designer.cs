@@ -1,6 +1,6 @@
 ﻿namespace WebCene.UI
 {
-    partial class Proizvodi
+    partial class frmProizvodi
     {
         /// <summary>
         /// Required designer variable.
@@ -45,11 +45,8 @@
             this.label8 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnSnimi = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.listProizvodi = new System.Windows.Forms.ListBox();
             this.txtId = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -66,7 +63,7 @@
             // 
             this.txtSifraArtikla.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtSifraArtikla.Location = new System.Drawing.Point(115, 31);
-            this.txtSifraArtikla.MaxLength = 10;
+            this.txtSifraArtikla.MaxLength = 8;
             this.txtSifraArtikla.Name = "txtSifraArtikla";
             this.txtSifraArtikla.Size = new System.Drawing.Size(100, 25);
             this.txtSifraArtikla.TabIndex = 1;
@@ -121,8 +118,9 @@
             this.txtShopmaniaURL.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtShopmaniaURL.Location = new System.Drawing.Point(115, 217);
             this.txtShopmaniaURL.MaxLength = 250;
+            this.txtShopmaniaURL.Multiline = true;
             this.txtShopmaniaURL.Name = "txtShopmaniaURL";
-            this.txtShopmaniaURL.Size = new System.Drawing.Size(437, 25);
+            this.txtShopmaniaURL.Size = new System.Drawing.Size(437, 62);
             this.txtShopmaniaURL.TabIndex = 7;
             // 
             // label2
@@ -206,39 +204,19 @@
             this.groupBox1.Controls.Add(this.txtKatProizvoda);
             this.groupBox1.Location = new System.Drawing.Point(16, 46);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(563, 257);
+            this.groupBox1.Size = new System.Drawing.Size(563, 297);
             this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Podaci o proizvodu";
             // 
             // btnSnimi
             // 
-            this.btnSnimi.Location = new System.Drawing.Point(752, 256);
+            this.btnSnimi.Location = new System.Drawing.Point(461, 364);
             this.btnSnimi.Name = "btnSnimi";
             this.btnSnimi.Size = new System.Drawing.Size(121, 37);
             this.btnSnimi.TabIndex = 15;
             this.btnSnimi.Text = "Snimi";
             this.btnSnimi.UseVisualStyleBackColor = true;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.listProizvodi);
-            this.groupBox2.Location = new System.Drawing.Point(16, 320);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(857, 305);
-            this.groupBox2.TabIndex = 16;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Lista proizvoda";
-            // 
-            // listProizvodi
-            // 
-            this.listProizvodi.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.listProizvodi.FormattingEnabled = true;
-            this.listProizvodi.ItemHeight = 17;
-            this.listProizvodi.Location = new System.Drawing.Point(34, 40);
-            this.listProizvodi.Name = "listProizvodi";
-            this.listProizvodi.Size = new System.Drawing.Size(547, 223);
-            this.listProizvodi.TabIndex = 0;
             // 
             // txtId
             // 
@@ -248,25 +226,24 @@
             this.txtId.TabIndex = 15;
             this.txtId.Visible = false;
             // 
-            // Proizvodi
+            // frmProizvodi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(928, 671);
+            this.ClientSize = new System.Drawing.Size(594, 413);
             this.Controls.Add(this.txtId);
             this.Controls.Add(this.btnSnimi);
-            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "Proizvodi";
+            this.Name = "frmProizvodi";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Proizvodi";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -291,8 +268,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnSnimi;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.ListBox listProizvodi;
         private System.Windows.Forms.TextBox txtId;
     }
 }

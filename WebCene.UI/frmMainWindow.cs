@@ -11,21 +11,14 @@ using HtmlAgilityPack;
 
 namespace WebCene.UI
 {
-    public partial class MainWindow : Form
+    public partial class frmMainWindow : Form
     {
-        public MainWindow()
+        public frmMainWindow()
         {
             InitializeComponent();
         }
 
-        private void btnKrol_Click(object sender, EventArgs e)
-        {
-            StartKrol startKrol = new StartKrol();
-            startKrol.ShowDialog();
-
-            //ePonudaGetPrice();
-
-        }
+      
 
 
         public void ePonudaGetPrice()
@@ -132,16 +125,42 @@ namespace WebCene.UI
 
         }
 
-        private void btnProizvodi_Click(object sender, EventArgs e)
+
+        private void noviProizvodToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Proizvodi proizvodi = new Proizvodi();
-            proizvodi.ShowDialog();
+            frmProizvodi proizvod = new frmProizvodi(null);
+            proizvod.ShowDialog();
         }
 
-        private void btnProdavci_Click(object sender, EventArgs e)
+        private void listaProizvodaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Prodavci prodavci = new Prodavci();
-            prodavci.ShowDialog();
+            frmProizvodiLista listaProizvoda = new frmProizvodiLista();
+            listaProizvoda.ShowDialog();
+
+        }
+
+        private void noviProdavacToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmProdavci prodavac = new frmProdavci();
+            prodavac.ShowDialog();
+        }
+
+        private void listaProdavacaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmProdavciLista listaProdavaca = new frmProdavciLista();
+            listaProdavaca.ShowDialog();
+        }
+
+        private void noviKrolToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmStartKrol novitKrol = new frmStartKrol();
+            novitKrol.ShowDialog();
+        }
+
+        private void prethodniKroloviToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmKrolovi dosadasnjiKrolovi = new frmKrolovi();
+            dosadasnjiKrolovi.ShowDialog();
         }
     }
 }

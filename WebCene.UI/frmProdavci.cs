@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace WebCene.UI
 {
-    public partial class Proizvodi : Form
+    public partial class frmProdavci : Form
     {
-        public Proizvodi()
+        public frmProdavci()
         {
             InitializeComponent();
         }

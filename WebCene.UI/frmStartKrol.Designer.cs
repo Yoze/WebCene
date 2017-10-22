@@ -1,6 +1,6 @@
 ﻿namespace WebCene.UI
 {
-    partial class StartKrol
+    partial class frmStartKrol
     {
         /// <summary>
         /// Required designer variable.
@@ -40,6 +40,8 @@
             this.progressKrol = new System.Windows.Forms.ProgressBar();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.btnStopKrol = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -48,9 +50,9 @@
             this.label1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(74, 20);
+            this.label1.Size = new System.Drawing.Size(73, 20);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Start krol";
+            this.label1.Text = "Novi krol";
             // 
             // dateTimeDatumKrola
             // 
@@ -89,9 +91,9 @@
             // 
             // btnStartKrol
             // 
-            this.btnStartKrol.Location = new System.Drawing.Point(672, 495);
+            this.btnStartKrol.Location = new System.Drawing.Point(663, 495);
             this.btnStartKrol.Name = "btnStartKrol";
-            this.btnStartKrol.Size = new System.Drawing.Size(110, 39);
+            this.btnStartKrol.Size = new System.Drawing.Size(121, 37);
             this.btnStartKrol.TabIndex = 7;
             this.btnStartKrol.Text = "Start";
             this.btnStartKrol.UseVisualStyleBackColor = true;
@@ -127,9 +129,9 @@
             // 
             // progressKrol
             // 
-            this.progressKrol.Location = new System.Drawing.Point(12, 519);
+            this.progressKrol.Location = new System.Drawing.Point(406, 85);
             this.progressKrol.Name = "progressKrol";
-            this.progressKrol.Size = new System.Drawing.Size(369, 15);
+            this.progressKrol.Size = new System.Drawing.Size(369, 25);
             this.progressKrol.TabIndex = 11;
             // 
             // label4
@@ -152,11 +154,32 @@
             this.label5.TabIndex = 13;
             this.label5.Text = "Odaberi prodavce (Ctrl za više)";
             // 
+            // btnStopKrol
+            // 
+            this.btnStopKrol.Location = new System.Drawing.Point(536, 495);
+            this.btnStopKrol.Name = "btnStopKrol";
+            this.btnStopKrol.Size = new System.Drawing.Size(121, 37);
+            this.btnStopKrol.TabIndex = 15;
+            this.btnStopKrol.Text = "Stop";
+            this.btnStopKrol.UseVisualStyleBackColor = true;
+            this.btnStopKrol.Click += new System.EventHandler(this.btnStopKrol_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(403, 65);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(87, 17);
+            this.label6.TabIndex = 16;
+            this.label6.Text = "Kompletirano";
+            // 
             // StartKrol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(794, 546);
+            this.ClientSize = new System.Drawing.Size(796, 544);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.btnStopKrol);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.progressKrol);
@@ -170,9 +193,11 @@
             this.Controls.Add(this.dateTimeDatumKrola);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "StartKrol";
             this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "StartKrol";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -193,5 +218,7 @@
         private System.Windows.Forms.ProgressBar progressKrol;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btnStopKrol;
+        private System.Windows.Forms.Label label6;
     }
 }
