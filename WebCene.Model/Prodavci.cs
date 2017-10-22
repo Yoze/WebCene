@@ -9,7 +9,7 @@ namespace WebCene.Model
     [Table("infoekon_Bane.Prodavci")]
     public partial class Prodavci
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        
         public Prodavci()
         {
             KrolStavke = new HashSet<KrolStavke>();
@@ -26,7 +26,7 @@ namespace WebCene.Model
         [StringLength(20)]
         public string SMId { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        
         public virtual ICollection<KrolStavke> KrolStavke { get; set; }
     }
 }

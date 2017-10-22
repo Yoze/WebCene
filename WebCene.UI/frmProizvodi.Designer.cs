@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.txtSifraArtikla = new System.Windows.Forms.TextBox();
             this.txtEAN = new System.Windows.Forms.TextBox();
@@ -46,7 +47,9 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnSnimi = new System.Windows.Forms.Button();
             this.txtId = new System.Windows.Forms.TextBox();
+            this.proizvodBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.proizvodBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -62,6 +65,7 @@
             // txtSifraArtikla
             // 
             this.txtSifraArtikla.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtSifraArtikla.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.proizvodBindingSource, "ElSifraProizvoda", true));
             this.txtSifraArtikla.Location = new System.Drawing.Point(115, 31);
             this.txtSifraArtikla.MaxLength = 8;
             this.txtSifraArtikla.Name = "txtSifraArtikla";
@@ -71,6 +75,7 @@
             // txtEAN
             // 
             this.txtEAN.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtEAN.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.proizvodBindingSource, "ElEAN", true));
             this.txtEAN.Location = new System.Drawing.Point(115, 62);
             this.txtEAN.MaxLength = 20;
             this.txtEAN.Name = "txtEAN";
@@ -80,6 +85,7 @@
             // txtNazivProizvoda
             // 
             this.txtNazivProizvoda.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtNazivProizvoda.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.proizvodBindingSource, "Naziv", true));
             this.txtNazivProizvoda.Location = new System.Drawing.Point(115, 93);
             this.txtNazivProizvoda.MaxLength = 40;
             this.txtNazivProizvoda.Name = "txtNazivProizvoda";
@@ -89,6 +95,7 @@
             // txtKatProizvoda
             // 
             this.txtKatProizvoda.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtKatProizvoda.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.proizvodBindingSource, "ElKat", true));
             this.txtKatProizvoda.Location = new System.Drawing.Point(115, 124);
             this.txtKatProizvoda.MaxLength = 20;
             this.txtKatProizvoda.Name = "txtKatProizvoda";
@@ -98,6 +105,7 @@
             // txtBrend
             // 
             this.txtBrend.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtBrend.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.proizvodBindingSource, "Brend", true));
             this.txtBrend.Location = new System.Drawing.Point(115, 155);
             this.txtBrend.MaxLength = 50;
             this.txtBrend.Name = "txtBrend";
@@ -107,6 +115,7 @@
             // txtDobavljac
             // 
             this.txtDobavljac.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtDobavljac.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.proizvodBindingSource, "Dobavljac", true));
             this.txtDobavljac.Location = new System.Drawing.Point(115, 186);
             this.txtDobavljac.MaxLength = 50;
             this.txtDobavljac.Name = "txtDobavljac";
@@ -116,6 +125,7 @@
             // txtShopmaniaURL
             // 
             this.txtShopmaniaURL.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtShopmaniaURL.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.proizvodBindingSource, "ShopmaniaURL", true));
             this.txtShopmaniaURL.Location = new System.Drawing.Point(115, 217);
             this.txtShopmaniaURL.MaxLength = 250;
             this.txtShopmaniaURL.Multiline = true;
@@ -217,6 +227,7 @@
             this.btnSnimi.TabIndex = 15;
             this.btnSnimi.Text = "Snimi";
             this.btnSnimi.UseVisualStyleBackColor = true;
+            this.btnSnimi.Click += new System.EventHandler(this.btnSnimi_Click);
             // 
             // txtId
             // 
@@ -225,6 +236,10 @@
             this.txtId.Size = new System.Drawing.Size(34, 25);
             this.txtId.TabIndex = 15;
             this.txtId.Visible = false;
+            // 
+            // proizvodBindingSource
+            // 
+            this.proizvodBindingSource.DataSource = typeof(WebCene.Model.Proizvod);
             // 
             // frmProizvodi
             // 
@@ -244,6 +259,7 @@
             this.Text = "Proizvodi";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.proizvodBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -269,5 +285,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnSnimi;
         private System.Windows.Forms.TextBox txtId;
+        private System.Windows.Forms.BindingSource proizvodBindingSource;
     }
 }

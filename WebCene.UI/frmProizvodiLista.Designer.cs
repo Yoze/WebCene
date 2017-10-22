@@ -31,14 +31,16 @@
             this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvListaProizvoda = new System.Windows.Forms.DataGridView();
-            this.btnNoviProizvod = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.contextEdit = new System.Windows.Forms.ToolStripMenuItem();
-            this.contextDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.contextDelete = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnNoviProizvod = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.proizvodBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaProizvoda)).BeginInit();
             this.contextMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.proizvodBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -66,6 +68,35 @@
             this.dgvListaProizvoda.Size = new System.Drawing.Size(967, 286);
             this.dgvListaProizvoda.TabIndex = 4;
             // 
+            // contextMenu
+            // 
+            this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.contextEdit,
+            this.toolStripSeparator1,
+            this.contextDelete});
+            this.contextMenu.Name = "contextMenu";
+            this.contextMenu.Size = new System.Drawing.Size(110, 54);
+            // 
+            // contextEdit
+            // 
+            this.contextEdit.Name = "contextEdit";
+            this.contextEdit.Size = new System.Drawing.Size(152, 22);
+            this.contextEdit.Text = "Izmeni";
+            this.contextEdit.Click += new System.EventHandler(this.contextEdit_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            // 
+            // contextDelete
+            // 
+            this.contextDelete.ForeColor = System.Drawing.Color.Red;
+            this.contextDelete.Name = "contextDelete";
+            this.contextDelete.Size = new System.Drawing.Size(152, 22);
+            this.contextDelete.Text = "Obriši";
+            this.contextDelete.Click += new System.EventHandler(this.contextDelete_Click);
+            // 
             // btnNoviProizvod
             // 
             this.btnNoviProizvod.Location = new System.Drawing.Point(25, 388);
@@ -86,33 +117,9 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // contextMenu
+            // proizvodBindingSource
             // 
-            this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.contextEdit,
-            this.toolStripSeparator1,
-            this.contextDelete});
-            this.contextMenu.Name = "contextMenu";
-            this.contextMenu.Size = new System.Drawing.Size(153, 76);
-            // 
-            // contextEdit
-            // 
-            this.contextEdit.Name = "contextEdit";
-            this.contextEdit.Size = new System.Drawing.Size(152, 22);
-            this.contextEdit.Text = "Izmeni";
-            this.contextEdit.Click += new System.EventHandler(this.contextEdit_Click);
-            // 
-            // contextDelete
-            // 
-            this.contextDelete.ForeColor = System.Drawing.Color.Red;
-            this.contextDelete.Name = "contextDelete";
-            this.contextDelete.Size = new System.Drawing.Size(109, 22);
-            this.contextDelete.Text = "Obriši";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(106, 6);
+            this.proizvodBindingSource.DataSource = typeof(WebCene.Model.Proizvod);
             // 
             // frmProizvodiLista
             // 
@@ -132,6 +139,7 @@
             this.Text = "Proizvodi";
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaProizvoda)).EndInit();
             this.contextMenu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.proizvodBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -147,5 +155,6 @@
         private System.Windows.Forms.ToolStripMenuItem contextEdit;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem contextDelete;
+        private System.Windows.Forms.BindingSource proizvodBindingSource;
     }
 }

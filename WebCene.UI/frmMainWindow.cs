@@ -130,6 +130,9 @@ namespace WebCene.UI
         {
             frmProizvodi proizvod = new frmProizvodi(null);
             proizvod.ShowDialog();
+
+            frmProizvodiLista listaProizvoda = new frmProizvodiLista();
+            listaProizvoda.ShowDialog();
         }
 
         private void listaProizvodaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -161,6 +164,16 @@ namespace WebCene.UI
         {
             frmKrolovi dosadasnjiKrolovi = new frmKrolovi();
             dosadasnjiKrolovi.ShowDialog();
+        }
+
+        private void izlazToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void frmMainWindow_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

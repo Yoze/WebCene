@@ -30,17 +30,17 @@
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.programToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.izlazToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.izlazToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.prooizvodToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.noviProizvodToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.listaProizvodaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.prodavacToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.noviProdavacToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.listaProdavacaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.krolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.noviKrolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.prethodniKroloviToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.noviProizvodToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.listaProizvodaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.noviProdavacToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.listaProdavacaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -66,16 +66,17 @@
             this.programToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
             this.programToolStripMenuItem.Text = "Program";
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            // 
             // izlazToolStripMenuItem
             // 
             this.izlazToolStripMenuItem.Name = "izlazToolStripMenuItem";
             this.izlazToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.izlazToolStripMenuItem.Text = "Izlaz";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.izlazToolStripMenuItem.Click += new System.EventHandler(this.izlazToolStripMenuItem_Click);
             // 
             // prooizvodToolStripMenuItem
             // 
@@ -85,38 +86,6 @@
             this.prooizvodToolStripMenuItem.Name = "prooizvodToolStripMenuItem";
             this.prooizvodToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
             this.prooizvodToolStripMenuItem.Text = "Proizvod";
-            // 
-            // prodavacToolStripMenuItem
-            // 
-            this.prodavacToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.noviProdavacToolStripMenuItem,
-            this.listaProdavacaToolStripMenuItem});
-            this.prodavacToolStripMenuItem.Name = "prodavacToolStripMenuItem";
-            this.prodavacToolStripMenuItem.Size = new System.Drawing.Size(68, 20);
-            this.prodavacToolStripMenuItem.Text = "Prodavac";
-            // 
-            // krolToolStripMenuItem
-            // 
-            this.krolToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.noviKrolToolStripMenuItem,
-            this.prethodniKroloviToolStripMenuItem});
-            this.krolToolStripMenuItem.Name = "krolToolStripMenuItem";
-            this.krolToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
-            this.krolToolStripMenuItem.Text = "Krol";
-            // 
-            // noviKrolToolStripMenuItem
-            // 
-            this.noviKrolToolStripMenuItem.Name = "noviKrolToolStripMenuItem";
-            this.noviKrolToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
-            this.noviKrolToolStripMenuItem.Text = "Novi krol";
-            this.noviKrolToolStripMenuItem.Click += new System.EventHandler(this.noviKrolToolStripMenuItem_Click);
-            // 
-            // prethodniKroloviToolStripMenuItem
-            // 
-            this.prethodniKroloviToolStripMenuItem.Name = "prethodniKroloviToolStripMenuItem";
-            this.prethodniKroloviToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
-            this.prethodniKroloviToolStripMenuItem.Text = "Dosadašnji krolovi";
-            this.prethodniKroloviToolStripMenuItem.Click += new System.EventHandler(this.prethodniKroloviToolStripMenuItem_Click);
             // 
             // noviProizvodToolStripMenuItem
             // 
@@ -132,6 +101,15 @@
             this.listaProizvodaToolStripMenuItem.Text = "Lista proizvoda";
             this.listaProizvodaToolStripMenuItem.Click += new System.EventHandler(this.listaProizvodaToolStripMenuItem_Click);
             // 
+            // prodavacToolStripMenuItem
+            // 
+            this.prodavacToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.noviProdavacToolStripMenuItem,
+            this.listaProdavacaToolStripMenuItem});
+            this.prodavacToolStripMenuItem.Name = "prodavacToolStripMenuItem";
+            this.prodavacToolStripMenuItem.Size = new System.Drawing.Size(68, 20);
+            this.prodavacToolStripMenuItem.Text = "Prodavac";
+            // 
             // noviProdavacToolStripMenuItem
             // 
             this.noviProdavacToolStripMenuItem.Name = "noviProdavacToolStripMenuItem";
@@ -146,7 +124,30 @@
             this.listaProdavacaToolStripMenuItem.Text = "Lista prodavaca";
             this.listaProdavacaToolStripMenuItem.Click += new System.EventHandler(this.listaProdavacaToolStripMenuItem_Click);
             // 
-            // MainWindow
+            // krolToolStripMenuItem
+            // 
+            this.krolToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.noviKrolToolStripMenuItem,
+            this.prethodniKroloviToolStripMenuItem});
+            this.krolToolStripMenuItem.Name = "krolToolStripMenuItem";
+            this.krolToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
+            this.krolToolStripMenuItem.Text = "Krol";
+            // 
+            // noviKrolToolStripMenuItem
+            // 
+            this.noviKrolToolStripMenuItem.Name = "noviKrolToolStripMenuItem";
+            this.noviKrolToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.noviKrolToolStripMenuItem.Text = "Novi krol";
+            this.noviKrolToolStripMenuItem.Click += new System.EventHandler(this.noviKrolToolStripMenuItem_Click);
+            // 
+            // prethodniKroloviToolStripMenuItem
+            // 
+            this.prethodniKroloviToolStripMenuItem.Name = "prethodniKroloviToolStripMenuItem";
+            this.prethodniKroloviToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.prethodniKroloviToolStripMenuItem.Text = "Dosadašnji krolovi";
+            this.prethodniKroloviToolStripMenuItem.Click += new System.EventHandler(this.prethodniKroloviToolStripMenuItem_Click);
+            // 
+            // frmMainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -155,9 +156,10 @@
             this.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.IsMdiContainer = true;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.Name = "MainWindow";
+            this.Name = "frmMainWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Web Crawler";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmMainWindow_FormClosed);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
