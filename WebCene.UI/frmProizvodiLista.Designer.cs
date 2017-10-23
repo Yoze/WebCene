@@ -36,7 +36,6 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.contextDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.btnNoviProizvod = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.proizvodBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaProizvoda)).BeginInit();
             this.contextMenu.SuspendLayout();
@@ -56,6 +55,7 @@
             // dgvListaProizvoda
             // 
             this.dgvListaProizvoda.AllowUserToAddRows = false;
+            this.dgvListaProizvoda.AllowUserToResizeRows = false;
             this.dgvListaProizvoda.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvListaProizvoda.ContextMenuStrip = this.contextMenu;
             this.dgvListaProizvoda.Location = new System.Drawing.Point(25, 67);
@@ -80,20 +80,20 @@
             // contextEdit
             // 
             this.contextEdit.Name = "contextEdit";
-            this.contextEdit.Size = new System.Drawing.Size(152, 22);
+            this.contextEdit.Size = new System.Drawing.Size(109, 22);
             this.contextEdit.Text = "Izmeni";
             this.contextEdit.Click += new System.EventHandler(this.contextEdit_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(106, 6);
             // 
             // contextDelete
             // 
             this.contextDelete.ForeColor = System.Drawing.Color.Red;
             this.contextDelete.Name = "contextDelete";
-            this.contextDelete.Size = new System.Drawing.Size(152, 22);
+            this.contextDelete.Size = new System.Drawing.Size(109, 22);
             this.contextDelete.Text = "Obriši";
             this.contextDelete.Click += new System.EventHandler(this.contextDelete_Click);
             // 
@@ -107,16 +107,6 @@
             this.btnNoviProizvod.UseVisualStyleBackColor = true;
             this.btnNoviProizvod.Click += new System.EventHandler(this.btnNoviProizvod_Click);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(257, 398);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // proizvodBindingSource
             // 
             this.proizvodBindingSource.DataSource = typeof(WebCene.Model.Proizvod);
@@ -126,7 +116,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1028, 453);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnNoviProizvod);
             this.Controls.Add(this.dgvListaProizvoda);
             this.Controls.Add(this.label1);
@@ -150,7 +139,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dgvListaProizvoda;
         private System.Windows.Forms.Button btnNoviProizvod;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ContextMenuStrip contextMenu;
         private System.Windows.Forms.ToolStripMenuItem contextEdit;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;

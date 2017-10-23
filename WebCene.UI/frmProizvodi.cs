@@ -82,6 +82,9 @@ namespace WebCene.UI
                     {
                         db.Proizvod.Add(odabraniProizvod);
                         db.SaveChanges();
+
+                        //frmProizvodiLista frmListaProizvoda = new frmProizvodiLista();
+                        
                         
                         MessageBox.Show("Proizvod je snimljen u bazu.", "Snimanje podataka");
                         Close();

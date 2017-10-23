@@ -28,10 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.btnNoviProdavac = new System.Windows.Forms.Button();
-            this.dgvListaProdavac = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvListaProdavac)).BeginInit();
+            this.dgvListaProdavaca = new System.Windows.Forms.DataGridView();
+            this.contextMenuProdavci = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.izmeniContextMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.obrisiContextMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvListaProdavaca)).BeginInit();
+            this.contextMenuProdavci.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -52,31 +58,68 @@
             this.btnNoviProdavac.TabIndex = 18;
             this.btnNoviProdavac.Text = "Novi prodavac";
             this.btnNoviProdavac.UseVisualStyleBackColor = true;
+            this.btnNoviProdavac.Click += new System.EventHandler(this.btnNoviProdavac_Click);
             // 
-            // dgvListaProdavac
+            // dgvListaProdavaca
             // 
-            this.dgvListaProdavac.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvListaProdavac.Location = new System.Drawing.Point(12, 54);
-            this.dgvListaProdavac.Name = "dgvListaProdavac";
-            this.dgvListaProdavac.Size = new System.Drawing.Size(634, 336);
-            this.dgvListaProdavac.TabIndex = 19;
+            this.dgvListaProdavaca.AllowUserToAddRows = false;
+            this.dgvListaProdavaca.AllowUserToResizeRows = false;
+            this.dgvListaProdavaca.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvListaProdavaca.ContextMenuStrip = this.contextMenuProdavci;
+            this.dgvListaProdavaca.Location = new System.Drawing.Point(12, 54);
+            this.dgvListaProdavaca.MultiSelect = false;
+            this.dgvListaProdavaca.Name = "dgvListaProdavaca";
+            this.dgvListaProdavaca.ReadOnly = true;
+            this.dgvListaProdavaca.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvListaProdavaca.Size = new System.Drawing.Size(634, 336);
+            this.dgvListaProdavaca.TabIndex = 19;
             // 
-            // ProdavciLista
+            // contextMenuProdavci
+            // 
+            this.contextMenuProdavci.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.izmeniContextMenu,
+            this.toolStripSeparator1,
+            this.obrisiContextMenu});
+            this.contextMenuProdavci.Name = "contextMenuProdavci";
+            this.contextMenuProdavci.Size = new System.Drawing.Size(110, 54);
+            // 
+            // izmeniContextMenu
+            // 
+            this.izmeniContextMenu.Name = "izmeniContextMenu";
+            this.izmeniContextMenu.Size = new System.Drawing.Size(152, 22);
+            this.izmeniContextMenu.Text = "Izmeni";
+            this.izmeniContextMenu.Click += new System.EventHandler(this.izmeniContextMenu_Click);
+            // 
+            // obrisiContextMenu
+            // 
+            this.obrisiContextMenu.ForeColor = System.Drawing.Color.Red;
+            this.obrisiContextMenu.Name = "obrisiContextMenu";
+            this.obrisiContextMenu.Size = new System.Drawing.Size(152, 22);
+            this.obrisiContextMenu.Text = "Obriši";
+            this.obrisiContextMenu.Click += new System.EventHandler(this.obrisiContextMenu_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            // 
+            // frmProdavciLista
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(659, 476);
-            this.Controls.Add(this.dgvListaProdavac);
+            this.Controls.Add(this.dgvListaProdavaca);
             this.Controls.Add(this.btnNoviProdavac);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "ProdavciLista";
+            this.Name = "frmProdavciLista";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Prodavci";
-            ((System.ComponentModel.ISupportInitialize)(this.dgvListaProdavac)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvListaProdavaca)).EndInit();
+            this.contextMenuProdavci.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -86,6 +129,10 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnNoviProdavac;
-        private System.Windows.Forms.DataGridView dgvListaProdavac;
+        private System.Windows.Forms.DataGridView dgvListaProdavaca;
+        private System.Windows.Forms.ContextMenuStrip contextMenuProdavci;
+        private System.Windows.Forms.ToolStripMenuItem izmeniContextMenu;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem obrisiContextMenu;
     }
 }

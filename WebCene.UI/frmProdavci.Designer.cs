@@ -121,6 +121,7 @@
             this.btnSnimi.TabIndex = 9;
             this.btnSnimi.Text = "Snimi";
             this.btnSnimi.UseVisualStyleBackColor = true;
+            this.btnSnimi.Click += new System.EventHandler(this.btnSnimi_Click);
             // 
             // groupBox1
             // 
@@ -137,7 +138,7 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Podaci";
             // 
-            // Prodavci
+            // frmProdavci
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -149,7 +150,7 @@
             this.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "Prodavci";
+            this.Name = "frmProdavci";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Prodavci";

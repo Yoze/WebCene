@@ -144,8 +144,11 @@ namespace WebCene.UI
 
         private void noviProdavacToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmProdavci prodavac = new frmProdavci();
+            frmProdavci prodavac = new frmProdavci(null);
             prodavac.ShowDialog();
+
+            frmProdavciLista listaProdavaca = new frmProdavciLista();
+            listaProdavaca.ShowDialog();
         }
 
         private void listaProdavacaToolStripMenuItem_Click(object sender, EventArgs e)

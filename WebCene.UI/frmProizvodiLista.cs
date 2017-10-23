@@ -36,14 +36,27 @@ namespace WebCene.UI
             frmProizvodi noviProizvod = new frmProizvodi(null);
             noviProizvod.ShowDialog();
 
+            UcitajListuProizvoda();
+            dgvListaProizvoda.Refresh();
+
         }
 
 
-        private void UcitajListuProizvoda()
+        public void UcitajListuProizvoda()
         {
             using (WebCeneModel db = new WebCeneModel())
             {
                 ListaProizvoda = db.Proizvod.ToList();
+
+                if (ListaProizvoda != null)
+                {
+                    // Binding list
+                    var bindingListaProizvodaView = new BindingList<Proizvod>(ListaProizvoda);
+                    dataGridBindingSource = new BindingSource(bindingListaProizvodaView, null);
+
+                    // Data source
+                    dgvListaProizvoda.DataSource = dataGridBindingSource;
+                }
             }
 
         }
@@ -51,45 +64,35 @@ namespace WebCene.UI
 
         public void PrikaziListuProizvoda()
         {
-            if (ListaProizvoda != null)
-            {
-                // Binding list
-                var bindingListaProizvodaView = new BindingList<Proizvod>(ListaProizvoda);
-                dataGridBindingSource = new BindingSource(bindingListaProizvodaView, null);
+            // DGV Props
+            dgvListaProizvoda.Columns["Id"].Visible = false;
 
-                // Data source
-                dgvListaProizvoda.DataSource = dataGridBindingSource;
-                //dgvListaProizvoda.DataSource = bindingListaProizvodaView;
+            dgvListaProizvoda.Columns["ElSifraProizvoda"].Visible = true;
+            dgvListaProizvoda.Columns["ElSifraProizvoda"].HeaderText = "Šifra";
 
-                // DGV Props
-                dgvListaProizvoda.Columns["Id"].Visible = false;
+            dgvListaProizvoda.Columns["ElEAN"].Visible = true;
+            dgvListaProizvoda.Columns["ElEAN"].HeaderText = "Barkod";
 
-                dgvListaProizvoda.Columns["ElSifraProizvoda"].Visible = true;
-                dgvListaProizvoda.Columns["ElSifraProizvoda"].HeaderText = "Šifra";
+            dgvListaProizvoda.Columns["Naziv"].Visible = true;
+            dgvListaProizvoda.Columns["Naziv"].HeaderText = "Naziv";
+            dgvListaProizvoda.Columns["Naziv"].Width = 200;
 
-                dgvListaProizvoda.Columns["ElEAN"].Visible = true;
-                dgvListaProizvoda.Columns["ElEAN"].HeaderText = "Barkod";
+            dgvListaProizvoda.Columns["ElKat"].Visible = true;
+            dgvListaProizvoda.Columns["ElKat"].HeaderText = "Kategorija";
 
-                dgvListaProizvoda.Columns["Naziv"].Visible = true;
-                dgvListaProizvoda.Columns["Naziv"].HeaderText = "Naziv";
-                dgvListaProizvoda.Columns["Naziv"].Width = 200;
+            dgvListaProizvoda.Columns["Brend"].Visible = true;
+            dgvListaProizvoda.Columns["Brend"].HeaderText = "Brend";
 
-                dgvListaProizvoda.Columns["ElKat"].Visible = true;
-                dgvListaProizvoda.Columns["ElKat"].HeaderText = "Kategorija";
+            dgvListaProizvoda.Columns["Dobavljac"].Visible = true;
+            dgvListaProizvoda.Columns["Dobavljac"].HeaderText = "Dobavljač";
 
-                dgvListaProizvoda.Columns["Brend"].Visible = true;
-                dgvListaProizvoda.Columns["Brend"].HeaderText = "Brend";
+            dgvListaProizvoda.Columns["ShopmaniaURL"].Visible = true;
+            dgvListaProizvoda.Columns["ShopmaniaURL"].HeaderText = "URL Sm";
+            dgvListaProizvoda.Columns["ShopmaniaURL"].Width = 800;
 
-                dgvListaProizvoda.Columns["Dobavljac"].Visible = true;
-                dgvListaProizvoda.Columns["Dobavljac"].HeaderText = "Dobavljač";
+            dgvListaProizvoda.Columns["KrolStavke"].Visible = false;
+            dgvListaProizvoda.Columns["KrolStavke"].HeaderText = "Stavke krola";
 
-                dgvListaProizvoda.Columns["ShopmaniaURL"].Visible = true;
-                dgvListaProizvoda.Columns["ShopmaniaURL"].HeaderText = "URL Sm";
-                dgvListaProizvoda.Columns["ShopmaniaURL"].Width = 800;
-
-                dgvListaProizvoda.Columns["KrolStavke"].Visible = false;
-                dgvListaProizvoda.Columns["KrolStavke"].HeaderText = "Stavke krola";
-            }
         }
 
 
@@ -101,9 +104,7 @@ namespace WebCene.UI
             {
                 frmProizvodi izmeniProizvod = new frmProizvodi(odabraniProizvod);
                 izmeniProizvod.ShowDialog();
-
             }
-
         }
 
 
@@ -180,10 +181,11 @@ namespace WebCene.UI
                             db.Entry(odabraniProizvod).State = System.Data.Entity.EntityState.Deleted;
                             db.SaveChanges();
 
-                            // ažuriranje liste, podiže INotifyPropertyChanged interfejs
-                            //ListaProizvoda.Remove(odabraniProizvod);
-                            dataGridBindingSource.Remove(odabraniProizvod);
+                            // brisanje iz dgv
+                            dgvListaProizvoda.Rows.RemoveAt(this.dgvListaProizvoda.SelectedRows[0].Index);
                             
+                            // osvežavanje dgv
+                            UcitajListuProizvoda();
 
                             MessageBox.Show("Proizvod je obrisan.", "Brisanje proizvoda");
                         }
@@ -205,11 +207,6 @@ namespace WebCene.UI
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            //UcitajListuProizvoda();
-            //PrikaziListuProizvoda();
-        }
 
         private void contextEdit_Click(object sender, EventArgs e)
         {
