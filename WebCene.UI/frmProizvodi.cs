@@ -81,10 +81,7 @@ namespace WebCene.UI
                     try
                     {
                         db.Proizvod.Add(odabraniProizvod);
-                        db.SaveChanges();
-
-                        //frmProizvodiLista frmListaProizvoda = new frmProizvodiLista();
-                        
+                        db.SaveChanges();                        
                         
                         MessageBox.Show("Proizvod je snimljen u bazu.", "Snimanje podataka");
                         Close();
@@ -165,11 +162,35 @@ namespace WebCene.UI
             }
         }
 
-
-
         private void btnSnimi_Click(object sender, EventArgs e)
         {
             SnimiProizvod();
+        }
+
+
+        private void Enter_NextControl(object sender, KeyEventArgs e)
+        {
+
+            /* prelazak na iduću kontrolu pomoću <enter> i close sa <esc> */
+
+
+            Control nextControl;
+
+            if (e.KeyCode == Keys.Enter)
+            {
+                nextControl = GetNextControl(ActiveControl, !e.Shift);
+                if (nextControl == null)
+                {
+                    nextControl = GetNextControl(null, true);
+                }
+                nextControl.Focus();
+                e.SuppressKeyPress = true;
+            }
+
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
         }
     }
 }

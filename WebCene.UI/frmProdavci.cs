@@ -31,7 +31,7 @@ namespace WebCene.UI
             }
         }
 
-
+        #region MAPIRANJE
         private void MapirajModelNaKontrole()
         {
             if (odabraniProdavac != null)
@@ -56,6 +56,7 @@ namespace WebCene.UI
             }
             return null;
         }
+        #endregion
 
         private void SnimiProdavca()
         {
@@ -153,5 +154,32 @@ namespace WebCene.UI
         {
             SnimiProdavca();
         }
+
+        private void Enter_NextControl(object sender, KeyEventArgs e)
+        {
+
+            /* prelazak na iduću kontrolu pomoću <enter> i close sa <esc> */
+
+
+            Control nextControl;
+
+            if (e.KeyCode == Keys.Enter)
+            {
+                nextControl = GetNextControl(ActiveControl, !e.Shift);
+                if (nextControl == null)
+                {
+                    nextControl = GetNextControl(null, true);
+                }
+                nextControl.Focus();
+                e.SuppressKeyPress = true;
+            }
+
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
+
+
     }
 }

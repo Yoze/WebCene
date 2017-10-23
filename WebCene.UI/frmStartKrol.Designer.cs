@@ -106,6 +106,7 @@
             this.listBoxProizvodi.ItemHeight = 17;
             this.listBoxProizvodi.Location = new System.Drawing.Point(16, 149);
             this.listBoxProizvodi.Name = "listBoxProizvodi";
+            this.listBoxProizvodi.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.listBoxProizvodi.Size = new System.Drawing.Size(369, 308);
             this.listBoxProizvodi.TabIndex = 8;
             // 
@@ -116,6 +117,7 @@
             this.listBoxProdavci.ItemHeight = 17;
             this.listBoxProdavci.Location = new System.Drawing.Point(406, 149);
             this.listBoxProdavci.Name = "listBoxProdavci";
+            this.listBoxProdavci.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.listBoxProdavci.Size = new System.Drawing.Size(369, 308);
             this.listBoxProdavci.TabIndex = 9;
             // 
@@ -140,9 +142,9 @@
             this.label4.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(13, 133);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(166, 13);
+            this.label4.Size = new System.Drawing.Size(106, 13);
             this.label4.TabIndex = 12;
-            this.label4.Text = "Odaberi proizvode (Ctrl za više)";
+            this.label4.Text = "Odaberi proizvode ";
             // 
             // label5
             // 
@@ -150,9 +152,9 @@
             this.label5.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(403, 133);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(162, 13);
+            this.label5.Size = new System.Drawing.Size(99, 13);
             this.label5.TabIndex = 13;
-            this.label5.Text = "Odaberi prodavce (Ctrl za više)";
+            this.label5.Text = "Odaberi prodavce";
             // 
             // btnStopKrol
             // 
@@ -173,7 +175,7 @@
             this.label6.TabIndex = 16;
             this.label6.Text = "Kompletirano";
             // 
-            // StartKrol
+            // frmStartKrol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -195,10 +197,11 @@
             this.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "StartKrol";
+            this.Name = "frmStartKrol";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "StartKrol";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Enter_NextControl);
             this.ResumeLayout(false);
             this.PerformLayout();
 

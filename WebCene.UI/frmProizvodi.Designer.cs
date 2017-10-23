@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.txtSifraArtikla = new System.Windows.Forms.TextBox();
+            this.proizvodBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.txtEAN = new System.Windows.Forms.TextBox();
             this.txtNazivProizvoda = new System.Windows.Forms.TextBox();
             this.txtKatProizvoda = new System.Windows.Forms.TextBox();
@@ -47,9 +48,8 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnSnimi = new System.Windows.Forms.Button();
             this.txtId = new System.Windows.Forms.TextBox();
-            this.proizvodBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.proizvodBindingSource)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -71,6 +71,10 @@
             this.txtSifraArtikla.Name = "txtSifraArtikla";
             this.txtSifraArtikla.Size = new System.Drawing.Size(100, 25);
             this.txtSifraArtikla.TabIndex = 1;
+            // 
+            // proizvodBindingSource
+            // 
+            this.proizvodBindingSource.DataSource = typeof(WebCene.Model.Proizvod);
             // 
             // txtEAN
             // 
@@ -237,10 +241,6 @@
             this.txtId.TabIndex = 15;
             this.txtId.Visible = false;
             // 
-            // proizvodBindingSource
-            // 
-            this.proizvodBindingSource.DataSource = typeof(WebCene.Model.Proizvod);
-            // 
             // frmProizvodi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -257,9 +257,10 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Proizvodi";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Enter_NextControl);
+            ((System.ComponentModel.ISupportInitialize)(this.proizvodBindingSource)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.proizvodBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

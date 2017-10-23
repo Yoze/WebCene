@@ -59,6 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Kroleri\EponudaKroler.cs" />
     <Compile Include="frmKrolovi.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.dgvDetaljiKrola = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dgvListaKrolova = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.btnNoviKrol = new System.Windows.Forms.Button();
-            this.dgvListaKrolova = new System.Windows.Forms.DataGridView();
-            this.dgvDetaljiKrola = new System.Windows.Forms.DataGridView();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDetaljiKrola)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaKrolova)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDetaljiKrola)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -50,6 +50,15 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Detalji krola";
             // 
+            // dgvDetaljiKrola
+            // 
+            this.dgvDetaljiKrola.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDetaljiKrola.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvDetaljiKrola.Location = new System.Drawing.Point(3, 21);
+            this.dgvDetaljiKrola.Name = "dgvDetaljiKrola";
+            this.dgvDetaljiKrola.Size = new System.Drawing.Size(942, 218);
+            this.dgvDetaljiKrola.TabIndex = 0;
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.dgvListaKrolova);
@@ -59,6 +68,15 @@
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lista krolova";
+            // 
+            // dgvListaKrolova
+            // 
+            this.dgvListaKrolova.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvListaKrolova.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvListaKrolova.Location = new System.Drawing.Point(3, 21);
+            this.dgvListaKrolova.Name = "dgvListaKrolova";
+            this.dgvListaKrolova.Size = new System.Drawing.Size(942, 230);
+            this.dgvListaKrolova.TabIndex = 0;
             // 
             // label1
             // 
@@ -79,25 +97,7 @@
             this.btnNoviKrol.Text = "Novi krol";
             this.btnNoviKrol.UseVisualStyleBackColor = true;
             // 
-            // dgvListaKrolova
-            // 
-            this.dgvListaKrolova.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvListaKrolova.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvListaKrolova.Location = new System.Drawing.Point(3, 21);
-            this.dgvListaKrolova.Name = "dgvListaKrolova";
-            this.dgvListaKrolova.Size = new System.Drawing.Size(942, 230);
-            this.dgvListaKrolova.TabIndex = 0;
-            // 
-            // dgvDetaljiKrola
-            // 
-            this.dgvDetaljiKrola.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDetaljiKrola.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvDetaljiKrola.Location = new System.Drawing.Point(3, 21);
-            this.dgvDetaljiKrola.Name = "dgvDetaljiKrola";
-            this.dgvDetaljiKrola.Size = new System.Drawing.Size(942, 218);
-            this.dgvDetaljiKrola.TabIndex = 0;
-            // 
-            // Krolovi
+            // frmKrolovi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -108,15 +108,17 @@
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "Krolovi";
+            this.Name = "frmKrolovi";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Krolovi";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Enter_NextControl);
             this.groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDetaljiKrola)).EndInit();
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaKrolova)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDetaljiKrola)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
