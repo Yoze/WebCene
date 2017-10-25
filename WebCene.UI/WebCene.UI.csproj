@@ -74,6 +74,12 @@
     <Compile Include="frmMainWindow.Designer.cs">
       <DependentUpon>frmMainWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmMolimSacekajte.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMolimSacekajte.Designer.cs">
+      <DependentUpon>frmMolimSacekajte.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmProdavci.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,11 +112,15 @@
     <Compile Include="frmStartKrol.Designer.cs">
       <DependentUpon>frmStartKrol.cs</DependentUpon>
     </Compile>
+    <Compile Include="RezultatKrolaZaPrikaz.cs" />
     <EmbeddedResource Include="frmKrolovi.resx">
       <DependentUpon>frmKrolovi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMainWindow.resx">
       <DependentUpon>frmMainWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMolimSacekajte.resx">
+      <DependentUpon>frmMolimSacekajte.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmProdavci.resx">
       <DependentUpon>frmProdavci.cs</DependentUpon>

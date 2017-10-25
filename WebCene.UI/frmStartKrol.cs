@@ -17,16 +17,21 @@ namespace WebCene.UI
         static BackgroundWorker _bw;
 
         // liste za ispis u listbox-ovima
-        public List<Proizvod> ListaProizvoda;
-        public List<Prodavci> ListaProdavaca;
+        public List<Proizvod> ListaProizvoda { get; set; }
+        public List<Prodavci> ListaProdavaca { get; set; }
 
         // lista proizvoda za krolovanje
-        private List<Proizvod> ListaOdabranihProizvodaZaKrol;
+        private List<Proizvod> ListaOdabranihProizvodaZaKrol { get; set; }
         // lista prodavaca za krolovanje
-        private List<Prodavci> ListaOdabranihProdavacaZaKrol;
+        private List<Prodavci> ListaOdabranihProdavacaZaKrol { get; set; }
 
-        // rezultati krola
-        private List<KrolStavke> KrolStavkePreciscenaLista; // rezultati krola sa odabranim prodavcima
+        // rezultati krola sa odabranim prodavcima
+        private List<KrolStavke> KrolStavkePreciscenaLista { get; set; }
+
+        private List<KrolStavke> _tempKrolStavkePreciscenaLista { get; set; }
+
+        // rezultati krola za prikaz u pregledu; ProizvodId i ProdavacId su povezani sa nazivima
+        private List<RezultatKrolaZaPrikaz> ListaZaPrikazRezultataKrola { get; set; }
 
         // brojač krol lupova
         private int iterationCounter;
@@ -51,6 +56,10 @@ namespace WebCene.UI
 
             PuniListuProizvoda();
             PrikaziListuProizvoda();
+
+            // ListView grupe
+            //KreirajListuZaPregledRezultataKrola();
+
         }
 
         private void _bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -91,18 +100,23 @@ namespace WebCene.UI
 
         private void btnStartKrol_Click(object sender, EventArgs e)
         {
-            lblKompletirano.Text = "Kompletirano";
+            lblKompletirano.Text = string.Empty;
+            btnStartKrol.Enabled = false;
+            lblSacekajte.Visible = true;
 
             bool pokreniKrol = KreirajListeZaKrol();
 
             if (pokreniKrol)
             {
-                btnStartKrol.Enabled = false;
                 PosaljiZahteveZaKrolProizvoda();
-                btnStartKrol.Enabled = true;
             }
-            else return;
+            else if (!pokreniKrol) return;
 
+            KreirajListuZaPregledRezultataKrola();
+            lblSacekajte.Visible = false;
+
+            PrikaziListViewRezultataKrola();
+            btnStartKrol.Enabled = true;
         }
 
         private void PosaljiZahteveZaKrolProizvoda()
@@ -119,6 +133,9 @@ namespace WebCene.UI
                 progressKrol.Step = 1;
 
                 iterationCounter = 0;
+
+                //List<Proizvod> _listaOdabranihProizvodaZaKrol = new List<Proizvod>();
+                //_listaOdabranihProizvodaZaKrol = ListaOdabranihProizvodaZaKrol;
 
                 foreach (var _proizvodZaKrol in ListaOdabranihProizvodaZaKrol)
                 {
@@ -176,31 +193,95 @@ namespace WebCene.UI
                     }
                 }
 
-                // ispis rezultata u msgboxu
-                string res = string.Empty;
-                if (KrolStavkePreciscenaLista.Count > 0)
-                {
-                    foreach (var item in KrolStavkePreciscenaLista)
-                    {
-                        res += "Id: " + item.Id
-                            + " GlavaId: " + item.KrolGlavaId
-                            + " ProizvodId: " + item.ProizvodId
-                            + " PradavacId: " + item.ProdavciId
-                            + " Cena: " + item.Cena.ToString()
-                            + "\r\n";
-                    }
-                }
-                else if (KrolStavkePreciscenaLista.Count == 0)
-                    res = "Za dati kriterijum nema rezultata pretrage.";
+                //// ispis rezultata u msgboxu
+                //string res = string.Empty;
+                //if (KrolStavkePreciscenaLista.Count > 0)
+                //{
+                //    foreach (var item in KrolStavkePreciscenaLista)
+                //    {
+                //        res += "Id: " + item.Id
+                //            + " GlavaId: " + item.KrolGlavaId
+                //            + " ProizvodId: " + item.ProizvodId
+                //            + " PradavacId: " + item.ProdavciId
+                //            + " Cena: " + item.Cena.ToString()
+                //            + "\r\n";
+                //    }
+                //}
+                //else if (KrolStavkePreciscenaLista.Count == 0)
+                //    res = "Za dati kriterijum nema rezultata pretrage.";
 
-                MessageBox.Show("Krolovanje je uspešno završeno. \r\n" + res, "Krolovanje");
+                //MessageBox.Show("Krolovanje je uspešno završeno. \r\n" + res, "Krolovanje");
             }
             else
             {
-                MessageBox.Show("Lista proizvoda je prazna.", "Greška");
+                MessageBox.Show("Lista proizvoda je prazna.", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 btnStartKrol.Enabled = true;
                 return;
             }
+        }
+
+        private void KreirajListuZaPregledRezultataKrola()
+        {
+            //ListViewGroup asus = new ListViewGroup("Asus");
+            //ListViewGroup HewlettPackard = new ListViewGroup("HewlettPackard");
+
+            //lstViewRezultat.Groups.Add(asus);
+            //lstViewRezultat.Groups.Add(HewlettPackard);
+
+            int brojRezultataKrola = KrolStavkePreciscenaLista.Count;
+            RezultatKrolaZaPrikaz stavkaZaPrikaz;
+
+            ListaZaPrikazRezultataKrola = new List<RezultatKrolaZaPrikaz>();
+
+            if (brojRezultataKrola > 0)
+            {
+                foreach (KrolStavke item in KrolStavkePreciscenaLista)
+                {
+                    string nazivProizvoda = ListaProizvoda.Find(p => p.Id.Equals(item.ProizvodId)).Naziv;
+                    //if (nazivProizvoda.EndsWith("\r\n"))
+                    //{
+                    //    nazivProizvoda = nazivProizvoda.Remove(nazivProizvoda.Length - 4, 4);
+                    //}
+
+                    string nazivProdavca = ListaProdavaca.Find(p => p.Id.Equals(item.ProdavciId)).NazivProdavca;
+
+                    if (item.Cena == null)
+                        item.Cena = Decimal.Zero;
+                    
+                    stavkaZaPrikaz = new RezultatKrolaZaPrikaz()
+                    {
+                        _ProizvodNaziv = nazivProizvoda,
+                        _ProdavacNaziv = nazivProdavca,
+                        _Cena = (decimal)item.Cena                        
+                    };
+                    ListaZaPrikazRezultataKrola.Add(stavkaZaPrikaz);
+                }
+            }
+         
+            else if (brojRezultataKrola == 0)
+            {
+                MessageBox.Show("Lista rezultata ne sadrži podatke. Prikaz nije moguć.", "Obaveštenje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+        }
+
+        private void PrikaziListViewRezultataKrola()
+        {
+            // TO DO
+
+            lstViewRezultat.Columns.Add("Proizvod", 200);
+            lstViewRezultat.Columns.Add("Prodavac", 200);
+            lstViewRezultat.Columns.Add("Cena", 100);
+
+            foreach (var item in ListaZaPrikazRezultataKrola)
+            {
+                lstViewRezultat.Items.Add(new ListViewItem(new string[] {
+                    item._ProizvodNaziv,
+                    item._ProdavacNaziv,
+                    item._Cena.ToString("N2")
+                }));
+            }
+
         }
 
 
@@ -276,6 +357,7 @@ namespace WebCene.UI
         }
 
 
+       
 
 
 
@@ -355,7 +437,7 @@ namespace WebCene.UI
 
         private void IzvrsiKrol(object source, ElapsedEventArgs e)
         {
-            PosaljiZahteveZaKrolProizvoda();
+            //PosaljiZahteveZaKrolProizvoda();
         }
 
 
