@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.txtId = new System.Windows.Forms.TextBox();
             this.txtNazivProdavca = new System.Windows.Forms.TextBox();
@@ -38,7 +39,9 @@
             this.label4 = new System.Windows.Forms.Label();
             this.btnSnimi = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.errorProviderProdavci = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderProdavci)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -67,6 +70,8 @@
             this.txtNazivProdavca.Name = "txtNazivProdavca";
             this.txtNazivProdavca.Size = new System.Drawing.Size(270, 25);
             this.txtNazivProdavca.TabIndex = 3;
+            this.txtNazivProdavca.Validating += new System.ComponentModel.CancelEventHandler(this.txtNazivProdavca_Validating);
+            this.txtNazivProdavca.Validated += new System.EventHandler(this.txtNazivProdavca_Validated);
             // 
             // txtSajt
             // 
@@ -85,6 +90,8 @@
             this.txtSMId.Name = "txtSMId";
             this.txtSMId.Size = new System.Drawing.Size(270, 25);
             this.txtSMId.TabIndex = 5;
+            this.txtSMId.Validating += new System.ComponentModel.CancelEventHandler(this.txtSMId_Validating);
+            this.txtSMId.Validated += new System.EventHandler(this.txtSMId_Validated);
             // 
             // label2
             // 
@@ -138,6 +145,10 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Podaci";
             // 
+            // errorProviderProdavci
+            // 
+            this.errorProviderProdavci.ContainerControl = this;
+            // 
             // frmProdavci
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -158,6 +169,7 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Enter_NextControl);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderProdavci)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -175,5 +187,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnSnimi;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.ErrorProvider errorProviderProdavci;
     }
 }

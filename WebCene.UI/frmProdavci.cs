@@ -20,6 +20,9 @@ namespace WebCene.UI
         {
             InitializeComponent();
 
+            // isključuje implicitnu validaciju kontrole nakon gubljenja fokusa 
+            this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
+
             if (_prodavac != null)
             {
                 odabraniProdavac = _prodavac;
@@ -152,15 +155,20 @@ namespace WebCene.UI
 
         private void btnSnimi_Click(object sender, EventArgs e)
         {
-            SnimiProdavca();
+            if (ValidateChildren(ValidationConstraints.Enabled))
+            {
+                SnimiProdavca();
+                Close();
+            }
+            else
+            {
+                MessageBox.Show("Morate popuniti obeležena polja.", "Greška pri unosu");
+            }            
         }
 
         private void Enter_NextControl(object sender, KeyEventArgs e)
         {
-
-            /* prelazak na iduću kontrolu pomoću <enter> i close sa <esc> */
-
-
+            
             Control nextControl;
 
             if (e.KeyCode == Keys.Enter)
@@ -180,6 +188,50 @@ namespace WebCene.UI
             }
         }
 
+        private void txtNazivProdavca_Validating(object sender, CancelEventArgs e)
+        {
+            bool cancel = false;
 
+            if (!string.IsNullOrWhiteSpace(txtNazivProdavca.Text))
+            {
+                // prolazi validaciju
+                cancel = false;
+            }
+            else
+            {
+                // ne prolazi validaciju
+                cancel = true;
+                errorProviderProdavci.SetError(txtNazivProdavca, "Obavezan podatak.");
+            }
+            e.Cancel = cancel;
+        }
+
+        private void txtNazivProdavca_Validated(object sender, EventArgs e)
+        {
+            errorProviderProdavci.SetError(txtNazivProdavca, string.Empty);
+        }
+
+        private void txtSMId_Validating(object sender, CancelEventArgs e)
+        {
+            bool cancel = false;
+
+            if (!string.IsNullOrWhiteSpace(txtSMId.Text))
+            {
+                // prolazi validaciju
+                cancel = false;
+            }
+            else
+            {
+                // ne prolazi validaciju
+                cancel = true;
+                errorProviderProdavci.SetError(txtSMId, "Obavezan podatak.");
+            }
+            e.Cancel = cancel;
+        }
+
+        private void txtSMId_Validated(object sender, EventArgs e)
+        {
+            errorProviderProdavci.SetError(txtSMId, string.Empty);
+        }
     }
 }

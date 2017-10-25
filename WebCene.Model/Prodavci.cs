@@ -51,7 +51,7 @@ namespace WebCene.Model
             }
         }
 
-        [StringLength(20)]
+        [StringLength(20)]        
         public string SMId
         {
             get { return _SMId; }

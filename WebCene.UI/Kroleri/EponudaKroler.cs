@@ -13,111 +13,106 @@ namespace WebCene.UI.Kroleri
     public class EponudaKroler
     {
 
-        public List<KrolStavke> RezultatKrola { get; set; } // lista dobijenih rezultata za url
+        //private List<EponudaRezultat> RezultatKrola { get; set; } // lista dobijenih rezultata za url
+
+        private List<KrolStavke> KrolStavkeFullLista { get; set; } // sve rezultati krola
+
+        private List<KrolStavke> KrolStavkePreciscenaLista { get; set; } // rezultati krola sa odabranim prodavcima
+        private List<Prodavci> ListaProdavaca { get; set; }
 
 
-
-        public void ePonudaGetPrice()
+        public bool EponudaStartKrol(Proizvod _proizvodZaKrol, int _krolGlavaId)
         {
-            // eponuda
+            //RezultatKrola = new List<EponudaRezultat>();
+            //List<KrolStavke> KrolStavkeLista = new List<KrolStavke>();
 
-            var html =
-                @"http://www.eponuda.com/laptopovi/asus-x541na-go020-15-6-intel-n3350-dual-core-1-1ghz-2-4ghz-4gb-1tb-odd-crno-zlatni-laptop-cena-411347";
+
+            ListaProdavaca = new List<Prodavci>();
+            using (WebCeneModel db = new WebCeneModel())
+            {
+                ListaProdavaca = db.Prodavci.ToList();
+            }
+
+
+            // dokument url
+            var url = _proizvodZaKrol.ShopmaniaURL;
 
             // dokument
-            HtmlWeb web = new HtmlWeb();
-            var doc = web.Load(html);
+            HtmlWeb destinationWebPage = new HtmlWeb();
+            var htmlDocument = destinationWebPage.Load(url);
 
             // svi <tr>
-            var trs = doc.DocumentNode.Descendants("tr");
+            var tableRows = htmlDocument.DocumentNode.Descendants("tr");
 
+            // lista <tr> nodova
+            List<HtmlNode> listaTableRows = tableRows.ToList();
 
-            List<HtmlNode> listaTR = trs.ToList();
-
-            int trsTotalElements = trs.Count();
+            int trsTotalElements = tableRows.Count();
 
             for (int i = 1; i < trsTotalElements; i++)
             {
-                var tr = listaTR[i];
+                var tableRow = listaTableRows[i];
 
-                //Prodavac
-                string prodavac = tr.SelectSingleNode("td/a/img").GetAttributeValue("alt", "");
+                // Prodavac alt
+                string prodavac = tableRow.SelectSingleNode("td/a/img").GetAttributeValue("alt", "");
 
                 // Datum ažuriranja cene
-                string datumAzuriranjaCene = tr.SelectSingleNode("td/div").InnerHtml;
+                //string datumAzuriranjaCene = tableRow.SelectSingleNode("td/div").InnerHtml;
 
                 // Cena
-                string cena = tr.SelectSingleNode("td/b").InnerHtml;
+                string cena = tableRow.SelectSingleNode("td/b").InnerHtml;
 
-                SM_DobijeniPodaci dobijeniPodaci = new SM_DobijeniPodaci()
+
+
+                /*  kompletan rezultat za pisanje u bazu */
+
+                // id prodavca na osnovu alt atributa
+                Prodavci prodavacAltToProdavacId =
+                    ListaProdavaca
+                    .Where(p => p.SMId == prodavac)
+                    .First();
+
+                int? prodavacId = null;
+
+                if (prodavacAltToProdavacId != null)
                 {
-                    Prodavac = prodavac,
-                    DatumAzuriranjaCene = datumAzuriranjaCene,
-                    Cena = cena
+                    prodavacId = prodavacAltToProdavacId.Id;
+                }
+
+
+                KrolStavke krolStavka = new KrolStavke()
+                {
+                    KrolGlavaId = _krolGlavaId,
+                    ProizvodId = _proizvodZaKrol.Id,
+                    ProdavciId = prodavacId,
+                    Cena = Convert.ToDecimal(cena)
                 };
 
-                //DobijeniPodaci.Add(dobijeniPodaci);
+                KrolStavkeFullLista.Add(krolStavka);
+
             }
 
-            //string message = string.Empty;
-            //foreach (var item in DobijeniPodaci)
-            //{
-            //    message += "Prodavac: " + item.Prodavac + " Datum:" + item.DatumAzuriranjaCene + " Cena:" + item.Cena + "\n";
-            //}
+            return true;
 
-            //MessageBox.Show(message);
+            //return _krolStavkeLista;
 
-
-
-
-            #region NEVAZECE
-            /* ---------------------- */
-
-            //foreach (var tr in trs)
-            //{
-            //    // Prodavac
-            //    string prodavac = tr.SelectSingleNode("//td[1]/a/img").GetAttributeValue("alt", "");
-
-            //    // Datum ažuriranja cene
-            //    string datumAzuriranjaCene = tr.SelectSingleNode("//td[3]/div").InnerHtml;
-
-            //    // Cena
-            //    string cena = tr.SelectSingleNode("//td[4]/b").InnerHtml;
-
-            //    SM_DobijeniPodaci dobijeniPodaci = new SM_DobijeniPodaci()
-            //    {
-            //        Prodavac = prodavac,
-            //        DatumAzuriranjaCene = datumAzuriranjaCene,
-            //        Cena = cena
-            //    };
-
-            //    DobijeniPodaci.Add(dobijeniPodaci);                
-
-            //}
-
-
-            /* ---------------- */
-            // prolaz kroz tr tabele
-            //for (int tr = 1 ; tr < tableBody.ChildNodes.Count; tr ++)
-            //{
-            //    string prodavac = tableBody.ChildNodes[tr].InnerHtml;
-
-            //    SM_DobijeniPodaci dobijeniPodatak = new SM_DobijeniPodaci()
-            //    {
-
-            //    };
-
-            //}
-
-            // petlja za prolaz kroz nodove tr
-
-            //var cenaDatumAzuriranja = htmlDoc.DocumentNode.SelectSingleNode("//table[1]/tr[4]/td[3]/div");
-            //var cena = htmlDoc.DocumentNode.SelectSingleNode("//table[1]/tr[4]/td[4]/b");
-
-            //lblResult.Text = cena.InnerHtml + " datum: " + cenaDatumAzuriranja.InnerHtml;
-            #endregion
         }
 
+
+        //var cenaDatumAzuriranja = htmlDoc.DocumentNode.SelectSingleNode("//table[1]/tr[4]/td[3]/div");
+        //var cena = htmlDoc.DocumentNode.SelectSingleNode("//table[1]/tr[4]/td[4]/b");
+
+        //lblResult.Text = cena.InnerHtml + " datum: " + cenaDatumAzuriranja.InnerHtml;
+
+        //private void KreirajListuProdavaca()
+        //{
+        //    //ListaProdavaca = new List<Prodavci>();
+
+        //    //using (WebCeneModel db = new WebCeneModel())
+        //    //{
+        //    //    ListaProdavaca = db.Prodavci.ToList();
+        //    //}
+        //}
 
     }
 }
