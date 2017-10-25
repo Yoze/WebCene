@@ -20,6 +20,9 @@ namespace WebCene.UI
         {
             InitializeComponent();
 
+            // sprečava implicitnu validaciju kada kontrola izgubi fokus
+            this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
+
             if (_proizvod != null)
             {
                 odabraniProizvod = _proizvod;
@@ -164,7 +167,16 @@ namespace WebCene.UI
 
         private void btnSnimi_Click(object sender, EventArgs e)
         {
-            SnimiProizvod();
+           
+            if (ValidateChildren(ValidationConstraints.Enabled))
+            {
+                SnimiProizvod();
+                Close();
+            }
+            else
+            {
+                MessageBox.Show("Morate popuniti obeležena polja.", "Greška kod unosa");
+            }
         }
 
 
@@ -191,6 +203,75 @@ namespace WebCene.UI
             {
                 this.Close();
             }
+        }
+
+        private void txtSifraArtikla_Validating(object sender, CancelEventArgs e)
+        {
+            bool cancel = false;
+
+            if (!(string.IsNullOrWhiteSpace(txtSifraArtikla.Text)))
+            {
+                // prolazi validaciju
+                cancel = false;
+            }
+            else
+            {
+                // ne prolazi validaciju
+                cancel = true;
+                errProviderProizvodi.SetError(txtSifraArtikla, "Obavezan podatak.");
+            }
+            e.Cancel = cancel;
+        }
+
+        private void txtSifraArtikla_Validated(object sender, EventArgs e)
+        {
+            errProviderProizvodi.SetError(txtSifraArtikla, string.Empty);
+        }
+
+        private void txtNazivProizvoda_Validating(object sender, CancelEventArgs e)
+        {
+            bool cancel = false;
+
+            if (!(string.IsNullOrWhiteSpace(txtNazivProizvoda.Text)))
+            {
+                // prolazi validaciju
+                cancel = false;
+            }
+            else
+            {
+                // ne prolazi validaciju
+                cancel = true;
+                errProviderProizvodi.SetError(txtNazivProizvoda, "Obavezan podatak.");
+            }
+            e.Cancel = cancel;
+        }
+
+        private void txtNazivProizvoda_Validated(object sender, EventArgs e)
+        {
+            errProviderProizvodi.SetError(txtNazivProizvoda, string.Empty);
+        }
+
+        private void txtShopmaniaURL_Validating(object sender, CancelEventArgs e)
+        {
+            bool cancel = false;
+
+            if (!(string.IsNullOrWhiteSpace(txtShopmaniaURL.Text)))
+            {
+                // prolazi validaciju
+                cancel = false;
+            }
+            else
+            {
+                // ne prolazi validaciju
+                cancel = true;
+                errProviderProizvodi.SetError(txtShopmaniaURL, "Obavezan podatak.");
+            }
+            e.Cancel = cancel;
+        }
+
+        private void txtShopmaniaURL_Validated(object sender, EventArgs e)
+        {
+            errProviderProizvodi.SetError(txtShopmaniaURL, string.Empty);
         }
     }
 }

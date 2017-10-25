@@ -62,7 +62,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Kroleri\EponudaKroler.cs" />
     <Compile Include="frmKrolovi.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -101,7 +100,6 @@
       <DependentUpon>frmProizvodiLista.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="EponudaRezultat.cs" />
     <Compile Include="frmStartKrol.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -163,6 +161,9 @@
       <Project>{b7c8dffb-3560-4d62-bbc1-17f92e39b600}</Project>
       <Name>WebCene.Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Kroleri\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

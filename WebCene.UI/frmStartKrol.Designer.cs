@@ -44,7 +44,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.checkSviProizvodi = new System.Windows.Forms.CheckBox();
             this.checkSviProdavci = new System.Windows.Forms.CheckBox();
-            this.bgWorkerKrol = new System.ComponentModel.BackgroundWorker();
             this.SuspendLayout();
             // 
             // label1
@@ -171,6 +170,7 @@
             this.btnStopKrol.TabIndex = 15;
             this.btnStopKrol.Text = "Stop";
             this.btnStopKrol.UseVisualStyleBackColor = true;
+            this.btnStopKrol.Visible = false;
             this.btnStopKrol.Click += new System.EventHandler(this.btnStopKrol_Click);
             // 
             // label6
@@ -203,12 +203,6 @@
             this.checkSviProdavci.Text = "Označi sve";
             this.checkSviProdavci.UseVisualStyleBackColor = true;
             this.checkSviProdavci.CheckedChanged += new System.EventHandler(this.checkSviProdavci_CheckedChanged);
-            // 
-            // bgWorkerKrol
-            // 
-            this.bgWorkerKrol.WorkerReportsProgress = true;
-            this.bgWorkerKrol.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgWorkerKrol_DoWork);
-            this.bgWorkerKrol.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.bgWorkerKrol_ProgressChanged);
             // 
             // frmStartKrol
             // 
@@ -262,6 +256,5 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.CheckBox checkSviProizvodi;
         private System.Windows.Forms.CheckBox checkSviProdavci;
-        private System.ComponentModel.BackgroundWorker bgWorkerKrol;
     }
 }

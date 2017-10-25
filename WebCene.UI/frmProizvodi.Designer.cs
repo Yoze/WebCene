@@ -48,8 +48,10 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnSnimi = new System.Windows.Forms.Button();
             this.txtId = new System.Windows.Forms.TextBox();
+            this.errProviderProizvodi = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.proizvodBindingSource)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errProviderProizvodi)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -71,6 +73,9 @@
             this.txtSifraArtikla.Name = "txtSifraArtikla";
             this.txtSifraArtikla.Size = new System.Drawing.Size(100, 25);
             this.txtSifraArtikla.TabIndex = 1;
+            this.txtSifraArtikla.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Enter_NextControl);
+            this.txtSifraArtikla.Validating += new System.ComponentModel.CancelEventHandler(this.txtSifraArtikla_Validating);
+            this.txtSifraArtikla.Validated += new System.EventHandler(this.txtSifraArtikla_Validated);
             // 
             // proizvodBindingSource
             // 
@@ -95,6 +100,8 @@
             this.txtNazivProizvoda.Name = "txtNazivProizvoda";
             this.txtNazivProizvoda.Size = new System.Drawing.Size(219, 25);
             this.txtNazivProizvoda.TabIndex = 3;
+            this.txtNazivProizvoda.Validating += new System.ComponentModel.CancelEventHandler(this.txtNazivProizvoda_Validating);
+            this.txtNazivProizvoda.Validated += new System.EventHandler(this.txtNazivProizvoda_Validated);
             // 
             // txtKatProizvoda
             // 
@@ -136,6 +143,8 @@
             this.txtShopmaniaURL.Name = "txtShopmaniaURL";
             this.txtShopmaniaURL.Size = new System.Drawing.Size(437, 62);
             this.txtShopmaniaURL.TabIndex = 7;
+            this.txtShopmaniaURL.Validating += new System.ComponentModel.CancelEventHandler(this.txtShopmaniaURL_Validating);
+            this.txtShopmaniaURL.Validated += new System.EventHandler(this.txtShopmaniaURL_Validated);
             // 
             // label2
             // 
@@ -218,14 +227,14 @@
             this.groupBox1.Controls.Add(this.txtKatProizvoda);
             this.groupBox1.Location = new System.Drawing.Point(16, 46);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(563, 297);
+            this.groupBox1.Size = new System.Drawing.Size(588, 297);
             this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Podaci o proizvodu";
             // 
             // btnSnimi
             // 
-            this.btnSnimi.Location = new System.Drawing.Point(461, 364);
+            this.btnSnimi.Location = new System.Drawing.Point(495, 364);
             this.btnSnimi.Name = "btnSnimi";
             this.btnSnimi.Size = new System.Drawing.Size(121, 37);
             this.btnSnimi.TabIndex = 15;
@@ -241,11 +250,15 @@
             this.txtId.TabIndex = 15;
             this.txtId.Visible = false;
             // 
+            // errProviderProizvodi
+            // 
+            this.errProviderProizvodi.ContainerControl = this;
+            // 
             // frmProizvodi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(594, 413);
+            this.ClientSize = new System.Drawing.Size(628, 413);
             this.Controls.Add(this.txtId);
             this.Controls.Add(this.btnSnimi);
             this.Controls.Add(this.groupBox1);
@@ -262,6 +275,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.proizvodBindingSource)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errProviderProizvodi)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -288,5 +302,6 @@
         private System.Windows.Forms.Button btnSnimi;
         private System.Windows.Forms.TextBox txtId;
         private System.Windows.Forms.BindingSource proizvodBindingSource;
+        private System.Windows.Forms.ErrorProvider errProviderProizvodi;
     }
 }
