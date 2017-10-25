@@ -41,7 +41,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.btnStopKrol = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
+            this.lblKompletirano = new System.Windows.Forms.Label();
             this.checkSviProizvodi = new System.Windows.Forms.CheckBox();
             this.checkSviProdavci = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
@@ -173,14 +173,14 @@
             this.btnStopKrol.Visible = false;
             this.btnStopKrol.Click += new System.EventHandler(this.btnStopKrol_Click);
             // 
-            // label6
+            // lblKompletirano
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(13, 551);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(87, 17);
-            this.label6.TabIndex = 16;
-            this.label6.Text = "Kompletirano";
+            this.lblKompletirano.AutoSize = true;
+            this.lblKompletirano.Location = new System.Drawing.Point(13, 551);
+            this.lblKompletirano.Name = "lblKompletirano";
+            this.lblKompletirano.Size = new System.Drawing.Size(87, 17);
+            this.lblKompletirano.TabIndex = 16;
+            this.lblKompletirano.Text = "Kompletirano";
             // 
             // checkSviProizvodi
             // 
@@ -211,7 +211,7 @@
             this.ClientSize = new System.Drawing.Size(792, 620);
             this.Controls.Add(this.checkSviProdavci);
             this.Controls.Add(this.checkSviProizvodi);
-            this.Controls.Add(this.label6);
+            this.Controls.Add(this.lblKompletirano);
             this.Controls.Add(this.btnStopKrol);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -253,7 +253,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnStopKrol;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblKompletirano;
         private System.Windows.Forms.CheckBox checkSviProizvodi;
         private System.Windows.Forms.CheckBox checkSviProdavci;
     }

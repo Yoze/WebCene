@@ -14,32 +14,71 @@ namespace WebCene.UI
     public partial class frmStartKrol : Form
     {
         //private static System.Timers.Timer krolTimer;
+        static BackgroundWorker _bw;
 
         // liste za ispis u listbox-ovima
         public List<Proizvod> ListaProizvoda;
         public List<Prodavci> ListaProdavaca;
-
 
         // lista proizvoda za krolovanje
         private List<Proizvod> ListaOdabranihProizvodaZaKrol;
         // lista prodavaca za krolovanje
         private List<Prodavci> ListaOdabranihProdavacaZaKrol;
 
-
         // rezultati krola
         private List<KrolStavke> KrolStavkePreciscenaLista; // rezultati krola sa odabranim prodavcima
 
+        // brojač krol lupova
+        private int iterationCounter;
 
 
         public frmStartKrol()
         {
             InitializeComponent();
 
+            //// osvežavanje UI iz drugog thread-a
+            //_bw = new BackgroundWorker
+            //{
+            //    WorkerReportsProgress = true,
+            //    WorkerSupportsCancellation = true
+            //};
+            //_bw.DoWork += _bw_DoWork;
+            //_bw.ProgressChanged += _bw_ProgressChanged;
+            //_bw.RunWorkerCompleted += _bw_RunWorkerCompleted;
+
             PuniListuProdavaca();
             PrikaziListuProdavaca();
 
             PuniListuProizvoda();
             PrikaziListuProizvoda();
+        }
+
+        private void _bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (e.Cancelled) return;
+            else if (e.Error != null)
+            {
+                MessageBox.Show("Background worker je otkazao.", "Greška");
+                return;
+            }            
+        }
+
+        private void _bw_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            progressKrol.Value = e.ProgressPercentage;
+        }
+
+        private void _bw_DoWork(object sender, DoWorkEventArgs e)
+        {
+            //iterationCounter++;
+            int _brojOdabranihProizvodaZaKrol = (int)e.Argument;
+
+            for (iterationCounter = 0; iterationCounter < _brojOdabranihProizvodaZaKrol; iterationCounter++)
+            {
+                _bw.ReportProgress(iterationCounter);
+
+                //lblKompletirano.Text = string.Format("Kompletirano {0}/{1}", iterationCounter, _brojOdabranihProizvodaZaKrol);
+            }
         }
 
 
@@ -52,12 +91,15 @@ namespace WebCene.UI
 
         private void btnStartKrol_Click(object sender, EventArgs e)
         {
+            lblKompletirano.Text = "Kompletirano";
+
             bool pokreniKrol = KreirajListeZaKrol();
 
             if (pokreniKrol)
             {
-                Enabled = false;
+                btnStartKrol.Enabled = false;
                 PosaljiZahteveZaKrolProizvoda();
+                btnStartKrol.Enabled = true;
             }
             else return;
 
@@ -76,6 +118,8 @@ namespace WebCene.UI
                 progressKrol.Maximum = brojOdabranihProizvodaZaKrol;
                 progressKrol.Step = 1;
 
+                iterationCounter = 0;
+
                 foreach (var _proizvodZaKrol in ListaOdabranihProizvodaZaKrol)
                 {
 
@@ -92,6 +136,13 @@ namespace WebCene.UI
                             result = KrolujProizvode(_proizvodZaKrol, 1); //promeni -1- u krolGlavaId
                             if (result)
                             {
+                                //_bw.RunWorkerAsync(brojOdabranihProizvodaZaKrol);
+
+                                iterationCounter++;
+
+                                lblKompletirano.Text =
+                                    string.Format("Kompletirano {0}/{1}", iterationCounter, brojOdabranihProizvodaZaKrol);
+
                                 progressKrol.PerformStep();
                             }
                             if (!result)
@@ -108,7 +159,6 @@ namespace WebCene.UI
                                 }
                                 if (dr == DialogResult.No)
                                 {
-                                    btnStartKrol.Enabled = true;
                                     return;
                                 }
                             }
@@ -128,18 +178,22 @@ namespace WebCene.UI
 
                 // ispis rezultata u msgboxu
                 string res = string.Empty;
-                foreach (var item in KrolStavkePreciscenaLista)
+                if (KrolStavkePreciscenaLista.Count > 0)
                 {
-                    res += "Id: " + item.Id
-                        + " GlavaId: " + item.KrolGlavaId
-                        + " ProizvodId: " + item.ProizvodId
-                        + " PradavacId: " + item.ProdavciId
-                        + " Cena: " + item.Cena.ToString()
-                        + "\r\n";
+                    foreach (var item in KrolStavkePreciscenaLista)
+                    {
+                        res += "Id: " + item.Id
+                            + " GlavaId: " + item.KrolGlavaId
+                            + " ProizvodId: " + item.ProizvodId
+                            + " PradavacId: " + item.ProdavciId
+                            + " Cena: " + item.Cena.ToString()
+                            + "\r\n";
+                    }
                 }
-                MessageBox.Show("Krolovanje je uspešno završeno. \r\n" + res, "Krolovanje");
-                btnStartKrol.Enabled = true;
+                else if (KrolStavkePreciscenaLista.Count == 0)
+                    res = "Za dati kriterijum nema rezultata pretrage.";
 
+                MessageBox.Show("Krolovanje je uspešno završeno. \r\n" + res, "Krolovanje");
             }
             else
             {
@@ -161,10 +215,9 @@ namespace WebCene.UI
             HtmlWeb destinationWebPage = new HtmlWeb();
             var htmlDocument = destinationWebPage.Load(url);
 
-            // provera response na status 404
+            // provera odgovora na status 404
             if (destinationWebPage.StatusCode == HttpStatusCode.OK)
             {
-
                 // svi <tr>
                 var tableRows = htmlDocument.DocumentNode.Descendants("tr");
 
