@@ -165,7 +165,7 @@ namespace WebCene.UI
 
         private void prethodniKroloviToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmKrolovi dosadasnjiKrolovi = new frmKrolovi();
+            frmListaKrolova dosadasnjiKrolovi = new frmListaKrolova();
             dosadasnjiKrolovi.ShowDialog();
         }
 

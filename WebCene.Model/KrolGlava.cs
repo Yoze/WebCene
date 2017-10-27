@@ -16,7 +16,11 @@ namespace WebCene.Model
 
         public int Id { get; set; }
 
-        public DateTime? DatumKrola { get; set; }
+        [Required]
+        [StringLength(50)]
+        public string NazivKrola { get; set; }
+
+        public DateTime DatumKrola { get; set; }
 
         [StringLength(50)]
         public string IzvrsilacKrola { get; set; }
