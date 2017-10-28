@@ -268,7 +268,7 @@ namespace WebCene.UI
 
             else if (brojRezultataKrola == 0)
             {
-                MessageBox.Show("Lista rezultata ne sadrži podatke. Prikaz nije moguć.", "Obaveštenje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Nema rezultata za odabrani kriterijum.", "Obaveštenje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
         }
@@ -689,14 +689,14 @@ namespace WebCene.UI
         {
             bool cancel = false;
 
-            if (dateTimeDatumKrola.Value > DateTime.Now.Date)
+            if (!(dateTimeDatumKrola.Value > DateTime.Now.Date.AddDays(1)))
             {
                 cancel = false;
             }
             else
             {
                 cancel = true;
-                errProviderNoviKrol.SetError(dateTimeDatumKrola, "Datum krola ne može biti u budućnosti.");
+                errProviderNoviKrol.SetError(dateTimeDatumKrola, "Datum krola ne može biti veći od današnjeg.");
             }
             e.Cancel = cancel;
         }

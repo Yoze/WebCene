@@ -151,7 +151,7 @@
             // 
             this.progressKrol.Location = new System.Drawing.Point(17, 599);
             this.progressKrol.Name = "progressKrol";
-            this.progressKrol.Size = new System.Drawing.Size(369, 9);
+            this.progressKrol.Size = new System.Drawing.Size(369, 4);
             this.progressKrol.TabIndex = 8;
             // 
             // label4
@@ -337,7 +337,7 @@
             this.lblSacekajte.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblSacekajte.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSacekajte.ForeColor = System.Drawing.Color.White;
-            this.lblSacekajte.Location = new System.Drawing.Point(441, 268);
+            this.lblSacekajte.Location = new System.Drawing.Point(437, 343);
             this.lblSacekajte.Name = "lblSacekajte";
             this.lblSacekajte.Padding = new System.Windows.Forms.Padding(7);
             this.lblSacekajte.Size = new System.Drawing.Size(316, 41);

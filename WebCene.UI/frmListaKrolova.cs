@@ -36,24 +36,40 @@ namespace WebCene.UI
 
             using (WebCeneModel db = new WebCeneModel())
             {
-                ListaKrolGlava = new List<KrolGlava>(db.KrolGlava);
+                //ListaKrolGlava = new List<KrolGlava>(db.KrolGlava);
+                ListaKrolGlava = new List<KrolGlava>();
+                ListaKrolGlava = db.KrolGlava
+                    .OrderByDescending(d => d.DatumKrola)
+                    .ToList();
 
-                lstViewKrolGlava.BeginUpdate();
+                int brojElemenataListe = ListaKrolGlava.Count;
 
-                foreach (KrolGlava krolGlavaStavka in ListaKrolGlava)
+                if (brojElemenataListe == 0)
                 {
-                    var item = new ListViewItem(new string[]
-                    {
-                    krolGlavaStavka.DatumKrola.ToShortDateString(),
-                    krolGlavaStavka.NazivKrola,
-                    krolGlavaStavka.IzvrsilacKrola,
-                    krolGlavaStavka.Id.ToString()
-                    });
-
-                    lstViewKrolGlava.Items.Add(item);
+                    lblKrolGlavaPoruka.Visible = true;
+                    return;
                 }
+                if (brojElemenataListe > 0)
+                {
+                    lblKrolGlavaPoruka.Visible = false;
 
-                lstViewKrolGlava.EndUpdate();
+                    lstViewKrolGlava.BeginUpdate();
+
+                    foreach (KrolGlava krolGlavaStavka in ListaKrolGlava)
+                    {
+                        var item = new ListViewItem(new string[]
+                        {
+                            krolGlavaStavka.DatumKrola.ToShortDateString(),
+                            krolGlavaStavka.NazivKrola,
+                            krolGlavaStavka.IzvrsilacKrola,
+                            krolGlavaStavka.Id.ToString()
+                        });
+
+                        lstViewKrolGlava.Items.Add(item);
+                    }
+
+                    lstViewKrolGlava.EndUpdate();
+                }
             }
         }
 
@@ -83,7 +99,7 @@ namespace WebCene.UI
             lstViewKrolDetalj.Items.Clear();
 
             int brElemenata = ListaKrolDetalja.Count;
-                       
+
             if (brElemenata == 0)
             {
                 lblDetaljPoruka.Visible = true;
