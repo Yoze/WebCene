@@ -25,8 +25,6 @@ namespace WebCene.UI
         {
             InitializeComponent();
 
-            lblDetaljPoruka.Text = string.Empty;
-
             PrikaziListuKrolGlava();
 
         }
@@ -60,38 +58,6 @@ namespace WebCene.UI
         }
 
 
-        private void PrikaziListuKrolDetalja()
-        {
-            int brElemenata = ListaKrolDetalja.Count;
-
-            lstViewKrolDetalj.BeginUpdate();
-            lstViewKrolDetalj.Groups.Clear();
-            lstViewKrolDetalj.Items.Clear();
-
-            if (brElemenata == 0)
-            {
-                lblDetaljPoruka.Text = "Odabrani krol ne sadrži detalje.";
-            }
-            else if (brElemenata > 0)
-            {
-                lblDetaljPoruka.Text = string.Empty;
-
-                foreach (viewKrolStavke krolDetaljStavke in ListaKrolDetalja)
-                {
-                    var item = new ListViewItem(new string[]
-                    {
-                    krolDetaljStavke.Naziv,
-                    krolDetaljStavke.NazivProdavca,
-                    krolDetaljStavke.Cena.ToString("N2")
-                    });
-
-                    lstViewKrolDetalj.Items.Add(item);
-                }
-            }
-
-            lstViewKrolDetalj.EndUpdate();
-        }
-
 
         private void UcitajDetaljeKrola(int _odabraniKrolGlavaId)
         {
@@ -111,7 +77,50 @@ namespace WebCene.UI
                 ListaKrolDetalja.Add(item);
             }
 
-            PrikaziListuKrolDetalja();
+            // grupisanje
+            lstViewKrolDetalj.BeginUpdate();
+            lstViewKrolDetalj.Groups.Clear();
+            lstViewKrolDetalj.Items.Clear();
+
+            int brElemenata = ListaKrolDetalja.Count;
+                       
+            if (brElemenata == 0)
+            {
+                lblDetaljPoruka.Visible = true;
+            }
+            else if (brElemenata > 0)
+            {
+                lblDetaljPoruka.Visible = false;
+
+                ListaKrolDetalja
+               .GroupBy(naz => naz.Naziv, KreirajListViewGrupe)
+               .ToList();
+            }
+            lstViewKrolDetalj.EndUpdate();
+        }
+
+
+        private ListViewGroup KreirajListViewGrupe(string _proizvodNaziv, IEnumerable<viewKrolStavke> _listaDetaljaKrolaPrikaz)
+        {
+            var group = new ListViewGroup(_proizvodNaziv);
+
+            lstViewKrolDetalj.Groups.Add(group);
+
+            foreach (var stavkaDetalj in _listaDetaljaKrolaPrikaz)
+            {
+
+                var item = new ListViewItem(new string[]
+                {
+                    string.Empty,
+                    stavkaDetalj.NazivProdavca,
+                    stavkaDetalj.Cena.ToString("N2")
+                }, group);
+
+                lstViewKrolDetalj.Items.Add(item);
+            }
+
+
+            return group;
         }
 
 
@@ -150,8 +159,6 @@ namespace WebCene.UI
 
             ListViewItem _odabraniKrolGlavaListItem = lstViewKrolGlava.SelectedItems[0];
 
-            //int odabranListItemKrolId
-
             if (_odabraniKrolGlavaListItem != null)
             {
                 OdabraniKrolGlavaId =
@@ -160,13 +167,6 @@ namespace WebCene.UI
                 UcitajDetaljeKrola((int)OdabraniKrolGlavaId);
             }
             if (_odabraniKrolGlavaListItem == null) return;
-            
-
-            //MessageBox.Show(odabranListItemKrolId.ToString());
-
-            //OdabraniKrolGlavaId = odabranListItemKrolId;
-
-            
 
         }
 
@@ -212,6 +212,13 @@ namespace WebCene.UI
                 MessageBox.Show("Odaberi stavku za brisanje.", "Brisanje");
                 return;
             }
+        }
+
+        private void btnNoviKrol_Click(object sender, EventArgs e)
+        {
+            frmStartKrol noviKrol = new frmStartKrol();
+            noviKrol.ShowDialog();
+            PrikaziListuKrolGlava();
         }
     }
 }

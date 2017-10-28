@@ -39,12 +39,12 @@
             this.Datum = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Naziv = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Izvrsilac = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.contextKrolGlava = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.obrišiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.btnNoviKrol = new System.Windows.Forms.Button();
             this.btnOdustani = new System.Windows.Forms.Button();
-            this.contextKrolGlava = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.lblDetaljPoruka = new System.Windows.Forms.Label();
-            this.obrišiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.contextKrolGlava.SuspendLayout();
@@ -52,13 +52,14 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.lblDetaljPoruka);
             this.groupBox2.Controls.Add(this.lstViewKrolDetalj);
             this.groupBox2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(627, 88);
+            this.groupBox2.Location = new System.Drawing.Point(565, 79);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(10);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(5);
-            this.groupBox2.Size = new System.Drawing.Size(450, 457);
+            this.groupBox2.Size = new System.Drawing.Size(459, 457);
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Detalji";
@@ -76,7 +77,7 @@
             this.lstViewKrolDetalj.Margin = new System.Windows.Forms.Padding(10);
             this.lstViewKrolDetalj.MultiSelect = false;
             this.lstViewKrolDetalj.Name = "lstViewKrolDetalj";
-            this.lstViewKrolDetalj.Size = new System.Drawing.Size(420, 409);
+            this.lstViewKrolDetalj.Size = new System.Drawing.Size(430, 409);
             this.lstViewKrolDetalj.TabIndex = 0;
             this.lstViewKrolDetalj.UseCompatibleStateImageBehavior = false;
             this.lstViewKrolDetalj.View = System.Windows.Forms.View.Details;
@@ -84,16 +85,18 @@
             // Proizvod
             // 
             this.Proizvod.Text = "Proizvod";
-            this.Proizvod.Width = 180;
+            this.Proizvod.Width = 160;
             // 
             // Prodavac
             // 
             this.Prodavac.Text = "Prodavac";
-            this.Prodavac.Width = 180;
+            this.Prodavac.Width = 160;
             // 
             // Cena
             // 
-            this.Cena.Text = "Cena";
+            this.Cena.Text = "";
+            this.Cena.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.Cena.Width = 100;
             // 
             // groupBox1
             // 
@@ -102,7 +105,7 @@
             this.groupBox1.Location = new System.Drawing.Point(26, 79);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(5);
-            this.groupBox1.Size = new System.Drawing.Size(560, 457);
+            this.groupBox1.Size = new System.Drawing.Size(526, 457);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Naziv";
@@ -122,7 +125,7 @@
             this.lstViewKrolGlava.Margin = new System.Windows.Forms.Padding(10);
             this.lstViewKrolGlava.MultiSelect = false;
             this.lstViewKrolGlava.Name = "lstViewKrolGlava";
-            this.lstViewKrolGlava.Size = new System.Drawing.Size(510, 409);
+            this.lstViewKrolGlava.Size = new System.Drawing.Size(500, 409);
             this.lstViewKrolGlava.TabIndex = 0;
             this.lstViewKrolGlava.UseCompatibleStateImageBehavior = false;
             this.lstViewKrolGlava.View = System.Windows.Forms.View.Details;
@@ -143,6 +146,21 @@
             this.Izvrsilac.Text = "Izvršilac";
             this.Izvrsilac.Width = 200;
             // 
+            // contextKrolGlava
+            // 
+            this.contextKrolGlava.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.obrišiToolStripMenuItem});
+            this.contextKrolGlava.Name = "contextKrolGlava";
+            this.contextKrolGlava.Size = new System.Drawing.Size(143, 26);
+            // 
+            // obrišiToolStripMenuItem
+            // 
+            this.obrišiToolStripMenuItem.ForeColor = System.Drawing.Color.Red;
+            this.obrišiToolStripMenuItem.Name = "obrišiToolStripMenuItem";
+            this.obrišiToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.obrišiToolStripMenuItem.Text = "Obriši stavku";
+            this.obrišiToolStripMenuItem.Click += new System.EventHandler(this.obrišiToolStripMenuItem_Click);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -156,16 +174,17 @@
             // 
             // btnNoviKrol
             // 
-            this.btnNoviKrol.Location = new System.Drawing.Point(12, 593);
+            this.btnNoviKrol.Location = new System.Drawing.Point(12, 562);
             this.btnNoviKrol.Name = "btnNoviKrol";
             this.btnNoviKrol.Size = new System.Drawing.Size(121, 37);
             this.btnNoviKrol.TabIndex = 17;
             this.btnNoviKrol.Text = "Novi krol";
             this.btnNoviKrol.UseVisualStyleBackColor = true;
+            this.btnNoviKrol.Click += new System.EventHandler(this.btnNoviKrol_Click);
             // 
             // btnOdustani
             // 
-            this.btnOdustani.Location = new System.Drawing.Point(841, 593);
+            this.btnOdustani.Location = new System.Drawing.Point(910, 562);
             this.btnOdustani.Name = "btnOdustani";
             this.btnOdustani.Size = new System.Drawing.Size(121, 37);
             this.btnOdustani.TabIndex = 18;
@@ -173,36 +192,24 @@
             this.btnOdustani.UseVisualStyleBackColor = true;
             this.btnOdustani.Click += new System.EventHandler(this.btnOdustani_Click);
             // 
-            // contextKrolGlava
-            // 
-            this.contextKrolGlava.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.obrišiToolStripMenuItem});
-            this.contextKrolGlava.Name = "contextKrolGlava";
-            this.contextKrolGlava.Size = new System.Drawing.Size(143, 26);
-            // 
             // lblDetaljPoruka
             // 
             this.lblDetaljPoruka.AutoSize = true;
-            this.lblDetaljPoruka.Location = new System.Drawing.Point(823, 61);
+            this.lblDetaljPoruka.BackColor = System.Drawing.Color.White;
+            this.lblDetaljPoruka.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDetaljPoruka.ForeColor = System.Drawing.Color.Red;
+            this.lblDetaljPoruka.Location = new System.Drawing.Point(139, 224);
             this.lblDetaljPoruka.Name = "lblDetaljPoruka";
-            this.lblDetaljPoruka.Size = new System.Drawing.Size(43, 17);
+            this.lblDetaljPoruka.Size = new System.Drawing.Size(196, 17);
             this.lblDetaljPoruka.TabIndex = 19;
-            this.lblDetaljPoruka.Text = "label2";
-            // 
-            // obrišiToolStripMenuItem
-            // 
-            this.obrišiToolStripMenuItem.ForeColor = System.Drawing.Color.Red;
-            this.obrišiToolStripMenuItem.Name = "obrišiToolStripMenuItem";
-            this.obrišiToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
-            this.obrišiToolStripMenuItem.Text = "Obriši stavku";
-            this.obrišiToolStripMenuItem.Click += new System.EventHandler(this.obrišiToolStripMenuItem_Click);
+            this.lblDetaljPoruka.Text = "Odabrani krol ne sadrži detalje.";
+            this.lblDetaljPoruka.Visible = false;
             // 
             // frmListaKrolova
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1118, 642);
-            this.Controls.Add(this.lblDetaljPoruka);
+            this.ClientSize = new System.Drawing.Size(1043, 611);
             this.Controls.Add(this.btnOdustani);
             this.Controls.Add(this.btnNoviKrol);
             this.Controls.Add(this.label1);
@@ -218,6 +225,7 @@
             this.Text = "Krolovi";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Enter_NextControl);
             this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.contextKrolGlava.ResumeLayout(false);
             this.ResumeLayout(false);

@@ -217,7 +217,7 @@ namespace WebCene.UI
 
         private void KreirajListuZaPregledRezultataKrola()
         {
-            /* PRIVREMENI PODACI ZA OFFLINE TEST GRUPISANJA */
+            /* PRIVREMENI PODACI ZA OFFLINE TEST */
             //_tempKrolStavkePreciscenaLista = new List<KrolStavke>(); // umesto KrolStavkePreciscenaLista OFFLINE
 
             //KrolStavke s1 = new KrolStavke() { ProizvodId = 1, ProdavciId = 2, Cena = 35990 };

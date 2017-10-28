@@ -109,7 +109,7 @@
             // 
             this.btnStartKrol.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStartKrol.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.btnStartKrol.Location = new System.Drawing.Point(896, 114);
+            this.btnStartKrol.Location = new System.Drawing.Point(876, 114);
             this.btnStartKrol.Name = "btnStartKrol";
             this.btnStartKrol.Size = new System.Drawing.Size(229, 37);
             this.btnStartKrol.TabIndex = 5;
@@ -232,9 +232,10 @@
             this.lstViewRezultat.FullRowSelect = true;
             this.lstViewRezultat.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lstViewRezultat.Location = new System.Drawing.Point(625, 207);
+            this.lstViewRezultat.Margin = new System.Windows.Forms.Padding(5);
             this.lstViewRezultat.MultiSelect = false;
             this.lstViewRezultat.Name = "lstViewRezultat";
-            this.lstViewRezultat.Size = new System.Drawing.Size(500, 325);
+            this.lstViewRezultat.Size = new System.Drawing.Size(480, 325);
             this.lstViewRezultat.TabIndex = 15;
             this.lstViewRezultat.UseCompatibleStateImageBehavior = false;
             this.lstViewRezultat.View = System.Windows.Forms.View.Details;
@@ -251,7 +252,8 @@
             // 
             // colCena
             // 
-            this.colCena.Text = "Cena";
+            this.colCena.Text = "";
+            this.colCena.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.colCena.Width = 90;
             // 
             // label6
@@ -269,7 +271,7 @@
             // btnSnimi
             // 
             this.btnSnimi.Enabled = false;
-            this.btnSnimi.Location = new System.Drawing.Point(1025, 585);
+            this.btnSnimi.Location = new System.Drawing.Point(1006, 585);
             this.btnSnimi.Name = "btnSnimi";
             this.btnSnimi.Size = new System.Drawing.Size(121, 37);
             this.btnSnimi.TabIndex = 6;
@@ -279,7 +281,7 @@
             // 
             // btnOdustani
             // 
-            this.btnOdustani.Location = new System.Drawing.Point(898, 585);
+            this.btnOdustani.Location = new System.Drawing.Point(879, 585);
             this.btnOdustani.Name = "btnOdustani";
             this.btnOdustani.Size = new System.Drawing.Size(121, 37);
             this.btnOdustani.TabIndex = 16;
@@ -350,7 +352,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1158, 634);
+            this.ClientSize = new System.Drawing.Size(1139, 634);
             this.Controls.Add(this.lblSacekajte);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnOdustani);
