@@ -13,7 +13,6 @@ namespace WebCene.UI
 {
     public partial class frmStartKrol : Form
     {
-        //private static System.Timers.Timer krolTimer;
         static BackgroundWorker _bw;
 
         // liste za ispis u listbox-ovima
@@ -44,13 +43,12 @@ namespace WebCene.UI
             InitializeComponent();
 
 
-
             // sprečava implicitnu validaciju kontrole kada izgubi fokus
             AutoValidate = System.Windows.Forms.AutoValidate.Disable;
 
             lblSacekajte.Visible = false;
 
-            //// osvežavanje UI iz drugog thread-a
+            //BgWorker
             _bw = new BackgroundWorker
             {
                 WorkerReportsProgress = true,
@@ -65,7 +63,6 @@ namespace WebCene.UI
 
             PuniListuProizvoda();
             PrikaziListuProizvoda();
-
         }
 
 
@@ -92,18 +89,15 @@ namespace WebCene.UI
 
         private void _bw_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-         
+            progressKrol.PerformStep();
             lblKompletirano.Text = 
                 string.Format("Kompletirano {0}/{1}", iterationCounter, brojOdabranihProizvodaZaKrol);
-
-            progressKrol.PerformStep();
 
         }
 
         private void _bw_DoWork(object sender, DoWorkEventArgs e)
         {
-            PosaljiZahteveZaKrolProizvoda();          
-
+            PosaljiZahteveZaKrolProizvoda();         
         }
 
         #endregion
@@ -120,9 +114,7 @@ namespace WebCene.UI
                 lblSacekajte.Visible = true;
 
                 /* disable za offline test */
-                //PosaljiZahteveZaKrolProizvoda();
                 _bw.RunWorkerAsync();
-
 
                 btnStartKrol.Enabled = false;
                 btnOdustani.Enabled = false;
@@ -131,10 +123,8 @@ namespace WebCene.UI
                 progressKrol.Minimum = 0;
                 progressKrol.Maximum = brojOdabranihProizvodaZaKrol;
                 progressKrol.Step = 1;
-
             }
             else if (!pokreniKrol) return;
-
         }
 
         private void PosaljiZahteveZaKrolProizvoda()
@@ -149,11 +139,8 @@ namespace WebCene.UI
 
                 foreach (var _proizvodZaKrol in ListaOdabranihProizvodaZaKrol)
                 {
-
                     int randomTime = GetRandomTimerInterval();
-
                     Thread.Sleep(randomTime);
-
                     bool result;
 
                     try
@@ -164,15 +151,10 @@ namespace WebCene.UI
                             if (result)
                             {
                                 iterationCounter++;
-
-                                //lblKompletirano.Text =
-                                //    string.Format("Kompletirano {0}/{1}", iterationCounter, brojOdabranihProizvodaZaKrol);
-
                                 int progressPercentage = (iterationCounter / brojOdabranihProizvodaZaKrol) * 100;
 
                                 _bw.ReportProgress(progressPercentage);
-
-                                //progressKrol.PerformStep();
+                                                                
                             }
                             if (!result)
                             {
@@ -233,10 +215,6 @@ namespace WebCene.UI
         }
 
 
-        #region PROBNA METODA ZA GRUPISANJE ListVIew
-
-
-
         private void KreirajListuZaPregledRezultataKrola()
         {
             /* PRIVREMENI PODACI ZA OFFLINE TEST GRUPISANJA */
@@ -259,11 +237,6 @@ namespace WebCene.UI
             //_tempKrolStavkePreciscenaLista.Add(s7);
 
 
-            // TO DO GRUPISANJE PODATAKA 
-
-
-
-
 
             int brojRezultataKrola = KrolStavkePreciscenaLista.Count; /* disable za offline test */
             //int brojRezultataKrola = _tempKrolStavkePreciscenaLista.Count;
@@ -280,8 +253,8 @@ namespace WebCene.UI
 
                     string nazivProdavca = ListaProdavaca.Find(p => p.Id.Equals(item.ProdavciId)).NazivProdavca;
 
-                    if (item.Cena == null)
-                        item.Cena = Decimal.Zero;
+                    //if (item.Cena == null)
+                    //    item.Cena = Decimal.Zero;
 
                     stavkaZaPrikaz = new RezultatKrolaZaPrikaz()
                     {
@@ -303,7 +276,6 @@ namespace WebCene.UI
 
         private void PrikaziListViewRezultataKrola()
         {
-
             lstViewRezultat.BeginUpdate();
             lstViewRezultat.Groups.Clear();
 
@@ -312,8 +284,6 @@ namespace WebCene.UI
                 .ToList();
 
             lstViewRezultat.EndUpdate();
-
-
         }
 
 
@@ -335,68 +305,6 @@ namespace WebCene.UI
             }
             return group;
         }
-
-
-
-        #endregion
-
-
-
-        //private void KreirajListuZaPregledRezultataKrola()
-        //{
-        //    int brojRezultataKrola = KrolStavkePreciscenaLista.Count; 
-
-        //    RezultatKrolaZaPrikaz stavkaZaPrikaz;
-
-        //    ListaZaPrikazRezultataKrola = new List<RezultatKrolaZaPrikaz>();
-
-        //    if (brojRezultataKrola > 0)
-        //    {
-        //        foreach (KrolStavke item in KrolStavkePreciscenaLista)     
-        //        {
-        //            string nazivProizvoda = ListaProizvoda.Find(p => p.Id.Equals(item.ProizvodId)).Naziv;
-
-        //            string nazivProdavca = ListaProdavaca.Find(p => p.Id.Equals(item.ProdavciId)).NazivProdavca;
-
-        //            if (item.Cena == null)
-        //                item.Cena = Decimal.Zero;
-
-        //            stavkaZaPrikaz = new RezultatKrolaZaPrikaz()
-        //            {
-        //                _ProizvodNaziv = nazivProizvoda,
-        //                _ProdavacNaziv = nazivProdavca,
-        //                _Cena = (decimal)item.Cena
-        //            };
-        //            ListaZaPrikazRezultataKrola.Add(stavkaZaPrikaz);
-        //        }
-        //    }
-
-        //    else if (brojRezultataKrola == 0)
-        //    {
-        //        MessageBox.Show("Lista rezultata ne sadrži podatke. Prikaz nije moguć.", "Obaveštenje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        //        return;
-        //    }
-        //}
-
-
-
-        //private void PrikaziListViewRezultataKrola()
-        //{
-        //    //lstViewRezultat.Groups.Clear();
-
-        //    lstViewRezultat.Items.Clear();
-
-        //    foreach (var item in ListaZaPrikazRezultataKrola)
-        //    {
-        //        lstViewRezultat.Items.Add(new ListViewItem(new string[] {
-        //            item._ProizvodNaziv,
-        //            item._ProdavacNaziv,
-        //            item._Cena.ToString("N2")
-        //        }));
-        //    }
-
-        //}
-
 
 
         private bool KrolujProizvode(Proizvod _proizvodZaKrol, int _krolGlavaId)
@@ -468,10 +376,6 @@ namespace WebCene.UI
                 return false;
             }
         }
-
-
-
-
 
 
         private bool KreirajListeZaKrol()
@@ -548,54 +452,17 @@ namespace WebCene.UI
         }
 
 
-        private void IzvrsiKrol(object source, ElapsedEventArgs e)
-        {
-            //PosaljiZahteveZaKrolProizvoda();
-        }
-
-
 
         private void btnStopKrol_Click(object sender, EventArgs e)
         {
-            //StopTimer();
 
             // TO DO
 
         }
 
-        #region TIMER
-        /* T I M E R */
-        //private void TimerSettings()
-        //{
-        //    krolTimer = new System.Timers.Timer();
-
-        //    krolTimer.Elapsed += new ElapsedEventHandler(IzvrsiKrol); // metoda koja se izvršava
-        //    krolTimer.AutoReset = true;
-        //    //krolTimer.Enabled = true;
-
-        //}
-
-        //private void StopTimer()
-        //{
-        //    // zaustavlja izvršavanje timera
-        //    try
-        //    {
-        //        krolTimer.Stop();
-        //        krolTimer.Close();
-        //        //MessageBox.Show("Timer stopped and disposed");
-        //    }
-        //    catch (Exception)
-        //    {
-        //        //MessageBox.Show("Timer is not initialized.");
-        //    }
-        //}
-
-
-        #endregion
 
         private static int GetRandomTimerInterval()
         {
-
             Random rnd = new Random();
             int _rnd = rnd.Next(1000, 3500); // miliseconds           
 
@@ -604,9 +471,6 @@ namespace WebCene.UI
 
         private void Enter_NextControl(object sender, KeyEventArgs e)
         {
-
-            /* prelazak na iduću kontrolu pomoću <enter> i close sa <esc> */
-
             Control nextControl;
 
             if (e.KeyCode == Keys.Enter)
@@ -672,6 +536,7 @@ namespace WebCene.UI
 
         private void btnOdustani_Click(object sender, EventArgs e)
         {
+            _bw.CancelAsync();
             Close();
         }
 
@@ -715,12 +580,6 @@ namespace WebCene.UI
 
         private bool SnimiRezultateKrola()
         {
-
-            // TO DO
-
-            // -prvo se snima se zaglavlje krola
-            // -ako je rez snimanja ok, snimaju se stavke krola prolazom kroz KrolStavkePreciscenaLista (TEST: _tempKrolStavkePreciscenaLista)
-
             using (WebCeneModel db = new WebCeneModel())
             {
                 KrolGlava noviKrolGlava = new KrolGlava()
@@ -751,7 +610,6 @@ namespace WebCene.UI
                                 ProdavciId = item.ProdavciId,
                                 Cena = item.Cena
                             };
-
                             try
                             {
                                 db.KrolStavke.Add(novaKrolStavka);
@@ -831,7 +689,7 @@ namespace WebCene.UI
         {
             bool cancel = false;
 
-            if (!(dateTimeDatumKrola.Value <= DateTime.Now.Date)) // nije dobar
+            if (dateTimeDatumKrola.Value > DateTime.Now.Date)
             {
                 cancel = false;
             }

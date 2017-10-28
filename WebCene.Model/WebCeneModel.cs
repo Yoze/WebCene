@@ -32,8 +32,8 @@ namespace WebCene.Model
                 .IsUnicode(false);
 
             modelBuilder.Entity<viewKrolStavke>()
-               .Property(e => e.Cena)
-               .HasPrecision(10, 2);
+                .Property(e => e.Cena)
+                .HasPrecision(10, 2);
         }
     }
 }

@@ -137,15 +137,15 @@
             // noviKrolToolStripMenuItem
             // 
             this.noviKrolToolStripMenuItem.Name = "noviKrolToolStripMenuItem";
-            this.noviKrolToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.noviKrolToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.noviKrolToolStripMenuItem.Text = "Novi krol";
             this.noviKrolToolStripMenuItem.Click += new System.EventHandler(this.noviKrolToolStripMenuItem_Click);
             // 
             // prethodniKroloviToolStripMenuItem
             // 
             this.prethodniKroloviToolStripMenuItem.Name = "prethodniKroloviToolStripMenuItem";
-            this.prethodniKroloviToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
-            this.prethodniKroloviToolStripMenuItem.Text = "Dosadašnji krolovi";
+            this.prethodniKroloviToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.prethodniKroloviToolStripMenuItem.Text = "Lista krolova";
             this.prethodniKroloviToolStripMenuItem.Click += new System.EventHandler(this.prethodniKroloviToolStripMenuItem_Click);
             // 
             // frmMainWindow

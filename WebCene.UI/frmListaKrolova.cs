@@ -15,89 +15,104 @@ namespace WebCene.UI
 {
     public partial class frmListaKrolova : Form
     {
-        private WebCeneModel db = null;
+        private List<viewKrolStavke> ListaKrolDetalja { get; set; }
+        private List<KrolGlava> ListaKrolGlava { get; set; }
 
-
-        #region PROPERTIES
-        private ObservableCollection<KrolGlava> kolekcijaKrolGlava;
-        public ObservableCollection<KrolGlava> KolekcijaKrolGlava
-        {
-            get { return kolekcijaKrolGlava; }
-            set
-            {
-                kolekcijaKrolGlava = value;
-                NotifyPropertyChanged();
-            }
-        }
-
-        KrolGlava odabraniKrol = null;
-        public KrolGlava OdabraniKrol
-        {
-            get { return odabraniKrol; }
-            set
-            {
-                odabraniKrol = value;
-                NotifyPropertyChanged();
-                if (odabraniKrol != null)
-                {
-                    UcitajDetaljeKrola(odabraniKrol.Id);
-                }
-            }
-        }
-
-
-
-
-        #endregion
-
-        private void UcitajDetaljeKrola(object _odabraniKrolId)
-        {
-            int krolGlavaId = int.Parse(_odabraniKrolId.ToString());
-
-            var query = (from detaljiKrola in db.viewKrolStavke
-                         where detaljiKrola.Id == krolGlavaId
-                         select detaljiKrola).ToList();
-
-
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        private int? OdabraniKrolGlavaId { get; set; }
 
 
         public frmListaKrolova()
         {
             InitializeComponent();
 
+            lblDetaljPoruka.Text = string.Empty;
 
-            db = new WebCeneModel();
-            db.Configuration.LazyLoadingEnabled = false;
-            db.Configuration.AutoDetectChangesEnabled = false;
-
-            // TO DO: init lists
+            PrikaziListuKrolGlava();
 
         }
 
 
+        private void PrikaziListuKrolGlava()
+        {
+            lstViewKrolGlava.Items.Clear();
+
+            using (WebCeneModel db = new WebCeneModel())
+            {
+                ListaKrolGlava = new List<KrolGlava>(db.KrolGlava);
+
+                lstViewKrolGlava.BeginUpdate();
+
+                foreach (KrolGlava krolGlavaStavka in ListaKrolGlava)
+                {
+                    var item = new ListViewItem(new string[]
+                    {
+                    krolGlavaStavka.DatumKrola.ToShortDateString(),
+                    krolGlavaStavka.NazivKrola,
+                    krolGlavaStavka.IzvrsilacKrola,
+                    krolGlavaStavka.Id.ToString()
+                    });
+
+                    lstViewKrolGlava.Items.Add(item);
+                }
+
+                lstViewKrolGlava.EndUpdate();
+            }
+        }
 
 
+        private void PrikaziListuKrolDetalja()
+        {
+            int brElemenata = ListaKrolDetalja.Count;
+
+            lstViewKrolDetalj.BeginUpdate();
+            lstViewKrolDetalj.Groups.Clear();
+            lstViewKrolDetalj.Items.Clear();
+
+            if (brElemenata == 0)
+            {
+                lblDetaljPoruka.Text = "Odabrani krol ne sadrži detalje.";
+            }
+            else if (brElemenata > 0)
+            {
+                lblDetaljPoruka.Text = string.Empty;
+
+                foreach (viewKrolStavke krolDetaljStavke in ListaKrolDetalja)
+                {
+                    var item = new ListViewItem(new string[]
+                    {
+                    krolDetaljStavke.Naziv,
+                    krolDetaljStavke.NazivProdavca,
+                    krolDetaljStavke.Cena.ToString("N2")
+                    });
+
+                    lstViewKrolDetalj.Items.Add(item);
+                }
+            }
+
+            lstViewKrolDetalj.EndUpdate();
+        }
 
 
-   
+        private void UcitajDetaljeKrola(int _odabraniKrolGlavaId)
+        {
+            List<viewKrolStavke> query = null;
+
+            using (WebCeneModel db = new WebCeneModel())
+            {
+                query = (from krols in db.viewKrolStavke
+                         where krols.KrolGLId == _odabraniKrolGlavaId
+                         select krols).ToList();
+            }
+
+            ListaKrolDetalja = new List<viewKrolStavke>();
+
+            foreach (viewKrolStavke item in query)
+            {
+                ListaKrolDetalja.Add(item);
+            }
+
+            PrikaziListuKrolDetalja();
+        }
 
 
 
@@ -108,10 +123,6 @@ namespace WebCene.UI
 
         private void Enter_NextControl(object sender, KeyEventArgs e)
         {
-
-            /* prelazak na iduću kontrolu pomoću <enter> i close sa <esc> */
-
-
             Control nextControl;
 
             if (e.KeyCode == Keys.Enter)
@@ -131,14 +142,76 @@ namespace WebCene.UI
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+
+
+        private void lstViewKrolGlava_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (PropertyChanged != null)
+            if (lstViewKrolGlava.SelectedItems.Count == 0) return;
+
+            ListViewItem _odabraniKrolGlavaListItem = lstViewKrolGlava.SelectedItems[0];
+
+            //int odabranListItemKrolId
+
+            if (_odabraniKrolGlavaListItem != null)
             {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+                OdabraniKrolGlavaId =
+                    Convert.ToInt32(_odabraniKrolGlavaListItem.SubItems[3].Text);
+
+                UcitajDetaljeKrola((int)OdabraniKrolGlavaId);
             }
+            if (_odabraniKrolGlavaListItem == null) return;
+            
+
+            //MessageBox.Show(odabranListItemKrolId.ToString());
+
+            //OdabraniKrolGlavaId = odabranListItemKrolId;
+
+            
+
         }
 
+        private void obrišiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (OdabraniKrolGlavaId != null)
+            {
+                KrolGlava stavkaZaBrisanje = new KrolGlava();
+
+                using (WebCeneModel db = new WebCeneModel())
+                {
+                    stavkaZaBrisanje = db.KrolGlava
+                        .Where(x => x.Id == OdabraniKrolGlavaId)
+                        .FirstOrDefault();
+
+                    DialogResult dr =
+                        MessageBox.Show("Odabrani krol i njegovi detalji će biti obrisani! Da li želite da nastavite sa brisanjem?", "Brisanje krola", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                    if (dr == DialogResult.Yes)
+                    {
+                        try
+                        {
+                            db.Entry(stavkaZaBrisanje).State = System.Data.Entity.EntityState.Deleted;
+                            db.SaveChanges();
+
+                            MessageBox.Show("Krol je obrisan.", "Brisanje");
+                        }
+                        catch (Exception xcp)
+                        {
+                            MessageBox.Show("Greška prilikom brisanja.\r\n" + xcp.Message, "Greška");
+                            return;
+                        }
+                    }
+                    if (dr == DialogResult.No)
+                    {
+                        return;
+                    }
+                }
+                PrikaziListuKrolGlava();
+            }
+            else
+            {
+                MessageBox.Show("Odaberi stavku za brisanje.", "Brisanje");
+                return;
+            }
+        }
     }
 }

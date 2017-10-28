@@ -13,11 +13,11 @@ namespace WebCene.Model
 
         public int KrolGlavaId { get; set; }
 
-        public int? ProizvodId { get; set; }
+        public int ProizvodId { get; set; }
 
-        public int? ProdavciId { get; set; }
+        public int ProdavciId { get; set; }
 
-        public decimal? Cena { get; set; }
+        public decimal Cena { get; set; }
 
         public virtual KrolGlava KrolGlava { get; set; }
 

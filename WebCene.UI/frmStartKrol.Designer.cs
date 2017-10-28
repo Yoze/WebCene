@@ -332,14 +332,15 @@
             // 
             this.lblSacekajte.AutoSize = true;
             this.lblSacekajte.BackColor = System.Drawing.Color.OrangeRed;
+            this.lblSacekajte.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblSacekajte.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSacekajte.ForeColor = System.Drawing.Color.White;
-            this.lblSacekajte.Location = new System.Drawing.Point(476, 314);
+            this.lblSacekajte.Location = new System.Drawing.Point(441, 268);
             this.lblSacekajte.Name = "lblSacekajte";
             this.lblSacekajte.Padding = new System.Windows.Forms.Padding(7);
-            this.lblSacekajte.Size = new System.Drawing.Size(252, 39);
+            this.lblSacekajte.Size = new System.Drawing.Size(316, 41);
             this.lblSacekajte.TabIndex = 13;
-            this.lblSacekajte.Text = "Krol je u toku, sačekajte...";
+            this.lblSacekajte.Text = "Krol je u toku. Molim sačekajte...";
             // 
             // errProviderNoviKrol
             // 
