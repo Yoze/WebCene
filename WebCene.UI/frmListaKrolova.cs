@@ -134,8 +134,6 @@ namespace WebCene.UI
 
                 lstViewKrolDetalj.Items.Add(item);
             }
-
-
             return group;
         }
 

@@ -137,14 +137,14 @@
             // noviKrolToolStripMenuItem
             // 
             this.noviKrolToolStripMenuItem.Name = "noviKrolToolStripMenuItem";
-            this.noviKrolToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.noviKrolToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.noviKrolToolStripMenuItem.Text = "Novi krol";
             this.noviKrolToolStripMenuItem.Click += new System.EventHandler(this.noviKrolToolStripMenuItem_Click);
             // 
             // prethodniKroloviToolStripMenuItem
             // 
             this.prethodniKroloviToolStripMenuItem.Name = "prethodniKroloviToolStripMenuItem";
-            this.prethodniKroloviToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.prethodniKroloviToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.prethodniKroloviToolStripMenuItem.Text = "Lista krolova";
             this.prethodniKroloviToolStripMenuItem.Click += new System.EventHandler(this.prethodniKroloviToolStripMenuItem_Click);
             // 
@@ -161,6 +161,7 @@
             this.Name = "frmMainWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Web Crawler";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmMainWindow_FormClosed);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
