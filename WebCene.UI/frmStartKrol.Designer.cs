@@ -141,7 +141,7 @@
             // 
             // txtKrolId
             // 
-            this.txtKrolId.Location = new System.Drawing.Point(481, 578);
+            this.txtKrolId.Location = new System.Drawing.Point(481, 549);
             this.txtKrolId.Name = "txtKrolId";
             this.txtKrolId.Size = new System.Drawing.Size(45, 25);
             this.txtKrolId.TabIndex = 9;
@@ -149,9 +149,9 @@
             // 
             // progressKrol
             // 
-            this.progressKrol.Location = new System.Drawing.Point(17, 599);
+            this.progressKrol.Location = new System.Drawing.Point(31, 598);
             this.progressKrol.Name = "progressKrol";
-            this.progressKrol.Size = new System.Drawing.Size(369, 4);
+            this.progressKrol.Size = new System.Drawing.Size(582, 7);
             this.progressKrol.TabIndex = 8;
             // 
             // label4
@@ -162,9 +162,9 @@
             this.label4.ForeColor = System.Drawing.Color.DarkRed;
             this.label4.Location = new System.Drawing.Point(27, 182);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(141, 20);
+            this.label4.Size = new System.Drawing.Size(112, 20);
             this.label4.TabIndex = 1;
-            this.label4.Text = "Odaberi proizvode ";
+            this.label4.Text = "Odaberi artikle";
             // 
             // label5
             // 
@@ -180,7 +180,7 @@
             // 
             // btnStopKrol
             // 
-            this.btnStopKrol.Location = new System.Drawing.Point(532, 571);
+            this.btnStopKrol.Location = new System.Drawing.Point(532, 542);
             this.btnStopKrol.Name = "btnStopKrol";
             this.btnStopKrol.Size = new System.Drawing.Size(121, 37);
             this.btnStopKrol.TabIndex = 10;
@@ -192,7 +192,7 @@
             // lblKompletirano
             // 
             this.lblKompletirano.AutoSize = true;
-            this.lblKompletirano.Location = new System.Drawing.Point(14, 578);
+            this.lblKompletirano.Location = new System.Drawing.Point(28, 578);
             this.lblKompletirano.Name = "lblKompletirano";
             this.lblKompletirano.Size = new System.Drawing.Size(87, 17);
             this.lblKompletirano.TabIndex = 7;
@@ -242,7 +242,7 @@
             // 
             // colProizvoda
             // 
-            this.colProizvoda.Text = "Proizvod";
+            this.colProizvoda.Text = "Artikal";
             this.colProizvoda.Width = 190;
             // 
             // colProdavac

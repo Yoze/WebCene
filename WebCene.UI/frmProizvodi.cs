@@ -15,6 +15,15 @@ namespace WebCene.UI
     {
         public Proizvod odabraniProizvod { get; set; }
 
+        // lista artikala
+        public List<C099_pravi> ListaArtikala { get; set; }
+
+        // lista brendova
+        public List<BRAND> ListaBrendova { get; set; }
+
+        //lista kategorija
+        public List<KATARTIK> ListaKategorija { get; set; }
+
 
         public frmProizvodi(Proizvod _proizvod)
         {
@@ -23,14 +32,31 @@ namespace WebCene.UI
             // sprečava implicitnu validaciju kada kontrola izgubi fokus
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
 
+
+            UcitajListeArtikalaKategorijaBrendova();
+
+            // postojeći artikal
             if (_proizvod != null)
             {
                 odabraniProizvod = _proizvod;
                 MapirajModelNaKontrole();
             }
+            // novi artikal
             if (_proizvod == null)
             {
                 odabraniProizvod = new Proizvod();
+            }
+        }
+
+
+        private void UcitajListeArtikalaKategorijaBrendova()
+        {
+            // učitavanje lista artikala, brendova i kategorija
+            using (ELBSModel db = new ELBSModel())
+            {
+                ListaArtikala = new List<C099_pravi>(db.C099_pravi);
+                ListaBrendova = new List<BRAND>(db.BRAND);
+                ListaKategorija = new List<KATARTIK>(db.KATARTIK);
             }
         }
 
@@ -45,6 +71,7 @@ namespace WebCene.UI
                 txtEAN.Text = odabraniProizvod.ElEAN;
                 txtNazivProizvoda.Text = odabraniProizvod.Naziv;
                 txtKatProizvoda.Text = odabraniProizvod.ElKat;
+                txtKatIspisNaziva.Text = ListaKategorija.Find(k => k.SHKAT.Equals(odabraniProizvod.ElKat)).KAT2;
                 txtBrend.Text = odabraniProizvod.Brend;
                 txtDobavljac.Text = odabraniProizvod.Dobavljac;
                 txtShopmaniaURL.Text = odabraniProizvod.ShopmaniaURL;
@@ -56,7 +83,8 @@ namespace WebCene.UI
         {
             if (_proizvod != null)
             {
-                _proizvod.Id = _proizvod.Id;
+                //_proizvod.Id = _proizvod.Id;
+                _proizvod.Id = Convert.ToInt32(txtId.Text);
                 _proizvod.ElSifraProizvoda = txtSifraArtikla.Text;
                 _proizvod.ElEAN = txtEAN.Text;
                 _proizvod.Naziv = txtNazivProizvoda.Text;
@@ -84,8 +112,8 @@ namespace WebCene.UI
                     try
                     {
                         db.Proizvod.Add(odabraniProizvod);
-                        db.SaveChanges();                        
-                        
+                        db.SaveChanges();
+
                         MessageBox.Show("Proizvod je snimljen u bazu.", "Snimanje podataka");
                         Close();
                         return;
@@ -167,7 +195,7 @@ namespace WebCene.UI
 
         private void btnSnimi_Click(object sender, EventArgs e)
         {
-           
+
             if (ValidateChildren(ValidationConstraints.Enabled))
             {
                 SnimiProizvod();
@@ -175,7 +203,7 @@ namespace WebCene.UI
             }
             else
             {
-                MessageBox.Show("Morate popuniti obeležena polja.", "Greška kod unosa");
+                MessageBox.Show("Morate popuniti obeležena polja u odgovarajućoj URL formi.", "Greška kod unosa");
             }
         }
 
@@ -184,7 +212,6 @@ namespace WebCene.UI
         {
 
             /* prelazak na iduću kontrolu pomoću <enter> i close sa <esc> */
-
 
             Control nextControl;
 
@@ -253,25 +280,92 @@ namespace WebCene.UI
 
         private void txtShopmaniaURL_Validating(object sender, CancelEventArgs e)
         {
-            bool cancel = false;
 
-            if (!(string.IsNullOrWhiteSpace(txtShopmaniaURL.Text)))
+            bool cancel = false;
+            //bool UrlSchemeValid = Uri.IsWellFormedUriString(txtShopmaniaURL.Text, UriKind.Absolute);
+
+            if (!(string.IsNullOrWhiteSpace(txtShopmaniaURL.Text))  && Uri.IsWellFormedUriString(txtShopmaniaURL.Text, UriKind.Absolute))
             {
-                // prolazi validaciju
+                // prolazi  
                 cancel = false;
+               
             }
+
             else
             {
-                // ne prolazi validaciju
+                // ne prolazi
                 cancel = true;
-                errProviderProizvodi.SetError(txtShopmaniaURL, "Obavezan podatak.");
+                errProviderProizvodi.SetError(txtShopmaniaURL, "Obavezan podatak ili URL šema nije odgovarajuća.");
             }
+
             e.Cancel = cancel;
         }
 
         private void txtShopmaniaURL_Validated(object sender, EventArgs e)
         {
             errProviderProizvodi.SetError(txtShopmaniaURL, string.Empty);
+        }
+
+        private void btnArtikli_Click(object sender, EventArgs e)
+        {
+            if (ListaArtikala.Count != 0)
+            {
+                frmListaArtikala listaArtikala = new frmListaArtikala();
+                listaArtikala.ShowDialog();
+
+
+                PronadjiProizvodPoId_ELBSBaza();
+            }
+            else
+            {
+                MessageBox.Show("Lista artikala ne sadrži stavke. Proveri vezu sa ELBS serverom.", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+        }
+
+        private void PronadjiProizvodPoId_ELBSBaza()
+        {
+            if (!string.IsNullOrWhiteSpace(frmListaArtikala.sifraOdabranogArtiklaString))
+            {
+                Proizvod pronadjeniProizvod;
+
+                try
+                {
+                    using (ELBSModel db = new ELBSModel())
+                    {
+                        var artikal = db.C099_pravi
+                            .Where(p => p.ARTIKAL.Equals(frmListaArtikala.sifraOdabranogArtiklaString))
+                            .FirstOrDefault();
+
+                        if (artikal != null)
+                        {
+
+                            pronadjeniProizvod = new Proizvod()
+                            {
+
+                                ElSifraProizvoda = artikal.ARTIKAL,
+                                ElEAN = artikal.BARCODE,
+                                Naziv = artikal.NAZIV,
+                                ElKat = artikal.SHKAT,
+                                Brend = artikal.PROIZVODJAC,
+                                ShopmaniaURL = string.Empty
+                            };
+
+                            odabraniProizvod = pronadjeniProizvod;
+
+                            MapirajModelNaKontrole();
+                        }
+                        else throw new Exception();
+
+                    }
+                }
+                catch (Exception xcp)
+                {
+                    MessageBox.Show("Proizvod ne postoji u bazi.\r\nGreška:\r\n " + xcp.Message, "Greška");
+                }
+            }
+            else return;
+
         }
     }
 }

@@ -45,12 +45,13 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(21, 22);
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Indigo;
+            this.label1.Location = new System.Drawing.Point(24, 22);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(115, 20);
+            this.label1.Size = new System.Drawing.Size(157, 25);
             this.label1.TabIndex = 3;
-            this.label1.Text = "Lista proizvoda";
+            this.label1.Text = "LISTA ARTIKALA";
             // 
             // dgvListaProizvoda
             // 
@@ -58,14 +59,15 @@
             this.dgvListaProizvoda.AllowUserToResizeRows = false;
             this.dgvListaProizvoda.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvListaProizvoda.ContextMenuStrip = this.contextMenu;
-            this.dgvListaProizvoda.Location = new System.Drawing.Point(25, 67);
+            this.dgvListaProizvoda.Location = new System.Drawing.Point(19, 71);
+            this.dgvListaProizvoda.Margin = new System.Windows.Forms.Padding(10);
             this.dgvListaProizvoda.MultiSelect = false;
             this.dgvListaProizvoda.Name = "dgvListaProizvoda";
             this.dgvListaProizvoda.ReadOnly = true;
             this.dgvListaProizvoda.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvListaProizvoda.ShowCellToolTips = false;
             this.dgvListaProizvoda.ShowEditingIcon = false;
-            this.dgvListaProizvoda.Size = new System.Drawing.Size(967, 286);
+            this.dgvListaProizvoda.Size = new System.Drawing.Size(1244, 547);
             this.dgvListaProizvoda.TabIndex = 4;
             // 
             // contextMenu
@@ -79,6 +81,7 @@
             // 
             // contextEdit
             // 
+            this.contextEdit.Enabled = false;
             this.contextEdit.Name = "contextEdit";
             this.contextEdit.Size = new System.Drawing.Size(109, 22);
             this.contextEdit.Text = "Izmeni";
@@ -99,11 +102,11 @@
             // 
             // btnNoviProizvod
             // 
-            this.btnNoviProizvod.Location = new System.Drawing.Point(25, 388);
+            this.btnNoviProizvod.Location = new System.Drawing.Point(12, 646);
             this.btnNoviProizvod.Name = "btnNoviProizvod";
             this.btnNoviProizvod.Size = new System.Drawing.Size(121, 37);
             this.btnNoviProizvod.TabIndex = 5;
-            this.btnNoviProizvod.Text = "Novi proizvod";
+            this.btnNoviProizvod.Text = "Novi artikal";
             this.btnNoviProizvod.UseVisualStyleBackColor = true;
             this.btnNoviProizvod.Click += new System.EventHandler(this.btnNoviProizvod_Click);
             // 
@@ -115,7 +118,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1028, 453);
+            this.ClientSize = new System.Drawing.Size(1282, 695);
             this.Controls.Add(this.btnNoviProizvod);
             this.Controls.Add(this.dgvListaProizvoda);
             this.Controls.Add(this.label1);
@@ -126,7 +129,7 @@
             this.Name = "frmProizvodiLista";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Proizvodi";
+            this.Text = "Artikli";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Enter_NextControl);
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaProizvoda)).EndInit();
             this.contextMenu.ResumeLayout(false);

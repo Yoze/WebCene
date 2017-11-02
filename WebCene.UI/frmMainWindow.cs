@@ -178,5 +178,11 @@ namespace WebCene.UI
         {
             Application.Exit();
         }
+
+        private void proširenaListaKrolovaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmListaKrolovaCrosstab listaKrolovaCrosstab = new frmListaKrolovaCrosstab();
+            listaKrolovaCrosstab.ShowDialog();
+        }
     }
 }

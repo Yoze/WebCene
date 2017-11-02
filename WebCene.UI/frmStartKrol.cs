@@ -252,10 +252,7 @@ namespace WebCene.UI
                     string nazivProizvoda = ListaProizvoda.Find(p => p.Id.Equals(item.ProizvodId)).Naziv;
 
                     string nazivProdavca = ListaProdavaca.Find(p => p.Id.Equals(item.ProdavciId)).NazivProdavca;
-
-                    //if (item.Cena == null)
-                    //    item.Cena = Decimal.Zero;
-
+                 
                     stavkaZaPrikaz = new RezultatKrolaZaPrikaz()
                     {
                         _ProizvodNaziv = nazivProizvoda,

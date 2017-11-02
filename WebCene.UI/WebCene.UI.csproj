@@ -50,6 +50,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -62,11 +63,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmListaArtikala.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmListaArtikala.Designer.cs">
+      <DependentUpon>frmListaArtikala.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmListaKrolova.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmListaKrolova.Designer.cs">
       <DependentUpon>frmListaKrolova.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmListaKrolovaCrosstab.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmListaKrolovaCrosstab.Designer.cs">
+      <DependentUpon>frmListaKrolovaCrosstab.cs</DependentUpon>
     </Compile>
     <Compile Include="frmMainWindow.cs">
       <SubType>Form</SubType>
@@ -113,8 +126,14 @@
       <DependentUpon>frmStartKrol.cs</DependentUpon>
     </Compile>
     <Compile Include="RezultatKrolaZaPrikaz.cs" />
+    <EmbeddedResource Include="frmListaArtikala.resx">
+      <DependentUpon>frmListaArtikala.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmListaKrolova.resx">
       <DependentUpon>frmListaKrolova.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmListaKrolovaCrosstab.resx">
+      <DependentUpon>frmListaKrolovaCrosstab.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMainWindow.resx">
       <DependentUpon>frmMainWindow.cs</DependentUpon>
@@ -171,7 +190,9 @@
       <Name>WebCene.Model</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\google_web_search-26.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

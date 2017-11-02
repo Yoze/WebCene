@@ -34,8 +34,8 @@
             this.dgvListaProdavaca = new System.Windows.Forms.DataGridView();
             this.contextMenuProdavci = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.izmeniContextMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.obrisiContextMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.obrisiContextMenu = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaProdavaca)).BeginInit();
             this.contextMenuProdavci.SuspendLayout();
             this.SuspendLayout();
@@ -70,6 +70,7 @@
             this.dgvListaProdavaca.MultiSelect = false;
             this.dgvListaProdavaca.Name = "dgvListaProdavaca";
             this.dgvListaProdavaca.ReadOnly = true;
+            this.dgvListaProdavaca.RowHeadersVisible = false;
             this.dgvListaProdavaca.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvListaProdavaca.Size = new System.Drawing.Size(634, 336);
             this.dgvListaProdavaca.TabIndex = 19;
@@ -86,22 +87,22 @@
             // izmeniContextMenu
             // 
             this.izmeniContextMenu.Name = "izmeniContextMenu";
-            this.izmeniContextMenu.Size = new System.Drawing.Size(152, 22);
+            this.izmeniContextMenu.Size = new System.Drawing.Size(109, 22);
             this.izmeniContextMenu.Text = "Izmeni";
             this.izmeniContextMenu.Click += new System.EventHandler(this.izmeniContextMenu_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(106, 6);
             // 
             // obrisiContextMenu
             // 
             this.obrisiContextMenu.ForeColor = System.Drawing.Color.Red;
             this.obrisiContextMenu.Name = "obrisiContextMenu";
-            this.obrisiContextMenu.Size = new System.Drawing.Size(152, 22);
+            this.obrisiContextMenu.Size = new System.Drawing.Size(109, 22);
             this.obrisiContextMenu.Text = "Obriši";
             this.obrisiContextMenu.Click += new System.EventHandler(this.obrisiContextMenu_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // frmProdavciLista
             // 

@@ -77,7 +77,7 @@ namespace WebCene.UI
             dgvListaProizvoda.Columns["Naziv"].HeaderText = "Naziv";
             dgvListaProizvoda.Columns["Naziv"].Width = 200;
 
-            dgvListaProizvoda.Columns["ElKat"].Visible = true;
+            dgvListaProizvoda.Columns["ElKat"].Visible = false;
             dgvListaProizvoda.Columns["ElKat"].HeaderText = "Kategorija";
 
             dgvListaProizvoda.Columns["Brend"].Visible = true;
@@ -104,6 +104,7 @@ namespace WebCene.UI
             {
                 frmProizvodi izmeniProizvod = new frmProizvodi(odabraniProizvod);
                 izmeniProizvod.ShowDialog();
+                UcitajListuProizvoda();
             }
         }
 
@@ -187,7 +188,7 @@ namespace WebCene.UI
                             // osvežavanje dgv
                             UcitajListuProizvoda();
 
-                            MessageBox.Show("Proizvod je obrisan.", "Brisanje proizvoda");
+                            //MessageBox.Show("Proizvod je obrisan.", "Brisanje proizvoda");
                         }
                         catch (Exception)
                         {

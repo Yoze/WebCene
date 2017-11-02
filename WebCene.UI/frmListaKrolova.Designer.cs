@@ -36,6 +36,7 @@
             this.Prodavac = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Cena = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblKrolGlavaPoruka = new System.Windows.Forms.Label();
             this.lstViewKrolGlava = new System.Windows.Forms.ListView();
             this.Datum = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Naziv = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -45,7 +46,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnNoviKrol = new System.Windows.Forms.Button();
             this.btnOdustani = new System.Windows.Forms.Button();
-            this.lblKrolGlavaPoruka = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.contextKrolGlava.SuspendLayout();
@@ -98,7 +98,7 @@
             // 
             // Proizvod
             // 
-            this.Proizvod.Text = "Proizvod";
+            this.Proizvod.Text = "Artikal";
             this.Proizvod.Width = 160;
             // 
             // Prodavac
@@ -124,6 +124,19 @@
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Krol";
+            // 
+            // lblKrolGlavaPoruka
+            // 
+            this.lblKrolGlavaPoruka.AutoSize = true;
+            this.lblKrolGlavaPoruka.BackColor = System.Drawing.Color.White;
+            this.lblKrolGlavaPoruka.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblKrolGlavaPoruka.ForeColor = System.Drawing.Color.Red;
+            this.lblKrolGlavaPoruka.Location = new System.Drawing.Point(171, 224);
+            this.lblKrolGlavaPoruka.Name = "lblKrolGlavaPoruka";
+            this.lblKrolGlavaPoruka.Size = new System.Drawing.Size(157, 17);
+            this.lblKrolGlavaPoruka.TabIndex = 20;
+            this.lblKrolGlavaPoruka.Text = "Nema sačuvanih krolova";
+            this.lblKrolGlavaPoruka.Visible = false;
             // 
             // lstViewKrolGlava
             // 
@@ -206,19 +219,6 @@
             this.btnOdustani.Text = "Odustani";
             this.btnOdustani.UseVisualStyleBackColor = true;
             this.btnOdustani.Click += new System.EventHandler(this.btnOdustani_Click);
-            // 
-            // lblKrolGlavaPoruka
-            // 
-            this.lblKrolGlavaPoruka.AutoSize = true;
-            this.lblKrolGlavaPoruka.BackColor = System.Drawing.Color.White;
-            this.lblKrolGlavaPoruka.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblKrolGlavaPoruka.ForeColor = System.Drawing.Color.Red;
-            this.lblKrolGlavaPoruka.Location = new System.Drawing.Point(171, 224);
-            this.lblKrolGlavaPoruka.Name = "lblKrolGlavaPoruka";
-            this.lblKrolGlavaPoruka.Size = new System.Drawing.Size(157, 17);
-            this.lblKrolGlavaPoruka.TabIndex = 20;
-            this.lblKrolGlavaPoruka.Text = "Nema sačuvanih krolova";
-            this.lblKrolGlavaPoruka.Visible = false;
             // 
             // frmListaKrolova
             // 

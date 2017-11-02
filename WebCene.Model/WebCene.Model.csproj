@@ -56,6 +56,10 @@
     <Compile Include="Prodavci.cs" />
     <Compile Include="Proizvod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="BRAND.cs" />
+    <Compile Include="C099_pravi.cs" />
+    <Compile Include="ELBSModel.cs" />
+    <Compile Include="KATARTIK.cs" />
     <Compile Include="viewKrolStavke.cs" />
     <Compile Include="WebCeneModel.cs" />
   </ItemGroup>
