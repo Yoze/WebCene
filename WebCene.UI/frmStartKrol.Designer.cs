@@ -53,11 +53,12 @@
             this.btnOdustani = new System.Windows.Forms.Button();
             this.txtNAzivKrola = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBoxZaglavlje = new System.Windows.Forms.GroupBox();
             this.lblSacekajte = new System.Windows.Forms.Label();
             this.errProviderNoviKrol = new System.Windows.Forms.ErrorProvider(this.components);
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.groupBox1.SuspendLayout();
+            this.lblKorisnikStopKrolPoruka = new System.Windows.Forms.Label();
+            this.groupBoxZaglavlje.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errProviderNoviKrol)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -124,7 +125,7 @@
             this.listBoxProizvodi.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listBoxProizvodi.FormattingEnabled = true;
             this.listBoxProizvodi.ItemHeight = 17;
-            this.listBoxProizvodi.Location = new System.Drawing.Point(31, 207);
+            this.listBoxProizvodi.Location = new System.Drawing.Point(31, 209);
             this.listBoxProizvodi.Name = "listBoxProizvodi";
             this.listBoxProizvodi.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.listBoxProizvodi.Size = new System.Drawing.Size(285, 357);
@@ -135,7 +136,7 @@
             this.listBoxProdavci.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listBoxProdavci.FormattingEnabled = true;
             this.listBoxProdavci.ItemHeight = 17;
-            this.listBoxProdavci.Location = new System.Drawing.Point(328, 207);
+            this.listBoxProdavci.Location = new System.Drawing.Point(328, 209);
             this.listBoxProdavci.Name = "listBoxProdavci";
             this.listBoxProdavci.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.listBoxProdavci.Size = new System.Drawing.Size(285, 357);
@@ -183,12 +184,13 @@
             // btnStopKrol
             // 
             this.btnStopKrol.BackColor = System.Drawing.Color.Tomato;
+            this.btnStopKrol.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStopKrol.ForeColor = System.Drawing.Color.White;
             this.btnStopKrol.Location = new System.Drawing.Point(625, 619);
             this.btnStopKrol.Name = "btnStopKrol";
             this.btnStopKrol.Size = new System.Drawing.Size(121, 37);
             this.btnStopKrol.TabIndex = 10;
-            this.btnStopKrol.Text = "Prekini krol";
+            this.btnStopKrol.Text = "ZAUSTAVI";
             this.btnStopKrol.UseVisualStyleBackColor = false;
             this.btnStopKrol.Visible = false;
             this.btnStopKrol.Click += new System.EventHandler(this.btnStopKrol_Click);
@@ -316,36 +318,35 @@
             this.label7.TabIndex = 3;
             this.label7.Text = "Naziv";
             // 
-            // groupBox1
+            // groupBoxZaglavlje
             // 
-            this.groupBox1.Controls.Add(this.txtIzvrsilacKrola);
-            this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.txtNAzivKrola);
-            this.groupBox1.Controls.Add(this.dateTimeDatumKrola);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.txtKrolId);
-            this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.groupBox1.Location = new System.Drawing.Point(17, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(596, 139);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "NOVI KROL ePonuda";
+            this.groupBoxZaglavlje.Controls.Add(this.txtIzvrsilacKrola);
+            this.groupBoxZaglavlje.Controls.Add(this.label7);
+            this.groupBoxZaglavlje.Controls.Add(this.label3);
+            this.groupBoxZaglavlje.Controls.Add(this.txtNAzivKrola);
+            this.groupBoxZaglavlje.Controls.Add(this.dateTimeDatumKrola);
+            this.groupBoxZaglavlje.Controls.Add(this.label2);
+            this.groupBoxZaglavlje.Controls.Add(this.txtKrolId);
+            this.groupBoxZaglavlje.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.groupBoxZaglavlje.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBoxZaglavlje.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.groupBoxZaglavlje.Location = new System.Drawing.Point(17, 12);
+            this.groupBoxZaglavlje.Name = "groupBoxZaglavlje";
+            this.groupBoxZaglavlje.Size = new System.Drawing.Size(596, 139);
+            this.groupBoxZaglavlje.TabIndex = 0;
+            this.groupBoxZaglavlje.TabStop = false;
+            this.groupBoxZaglavlje.Text = "NOVI KROL ePonuda";
             // 
             // lblSacekajte
             // 
             this.lblSacekajte.AutoSize = true;
             this.lblSacekajte.BackColor = System.Drawing.Color.OrangeRed;
-            this.lblSacekajte.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblSacekajte.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSacekajte.ForeColor = System.Drawing.Color.White;
             this.lblSacekajte.Location = new System.Drawing.Point(437, 343);
             this.lblSacekajte.Name = "lblSacekajte";
             this.lblSacekajte.Padding = new System.Windows.Forms.Padding(7);
-            this.lblSacekajte.Size = new System.Drawing.Size(316, 41);
+            this.lblSacekajte.Size = new System.Drawing.Size(314, 39);
             this.lblSacekajte.TabIndex = 13;
             this.lblSacekajte.Text = "Krol je u toku. Molim sačekajte...";
             // 
@@ -363,14 +364,27 @@
             this.pictureBox1.TabIndex = 17;
             this.pictureBox1.TabStop = false;
             // 
+            // lblKorisnikStopKrolPoruka
+            // 
+            this.lblKorisnikStopKrolPoruka.AutoSize = true;
+            this.lblKorisnikStopKrolPoruka.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblKorisnikStopKrolPoruka.ForeColor = System.Drawing.Color.Red;
+            this.lblKorisnikStopKrolPoruka.Location = new System.Drawing.Point(28, 642);
+            this.lblKorisnikStopKrolPoruka.Name = "lblKorisnikStopKrolPoruka";
+            this.lblKorisnikStopKrolPoruka.Size = new System.Drawing.Size(226, 17);
+            this.lblKorisnikStopKrolPoruka.TabIndex = 18;
+            this.lblKorisnikStopKrolPoruka.Text = "Krol je prekinut na zahtev korisnika!";
+            this.lblKorisnikStopKrolPoruka.Visible = false;
+            // 
             // frmStartKrol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1139, 668);
+            this.Controls.Add(this.lblKorisnikStopKrolPoruka);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblSacekajte);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.groupBoxZaglavlje);
             this.Controls.Add(this.btnOdustani);
             this.Controls.Add(this.btnSnimi);
             this.Controls.Add(this.label6);
@@ -391,10 +405,10 @@
             this.Name = "frmStartKrol";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Krol";
+            this.Text = "Pokretanje novog krola";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Enter_NextControl);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.groupBoxZaglavlje.ResumeLayout(false);
+            this.groupBoxZaglavlje.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errProviderNoviKrol)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -427,9 +441,10 @@
         private System.Windows.Forms.Button btnOdustani;
         private System.Windows.Forms.TextBox txtNAzivKrola;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBoxZaglavlje;
         private System.Windows.Forms.Label lblSacekajte;
         private System.Windows.Forms.ErrorProvider errProviderNoviKrol;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label lblKorisnikStopKrolPoruka;
     }
 }

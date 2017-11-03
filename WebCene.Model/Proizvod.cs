@@ -24,7 +24,7 @@ namespace WebCene.Model
         private string _ElKat;
         private string _Brend;
         private string _Dobavljac;
-        private string _ShopmaniaURL;
+        private string _ePonudaURL;
 
         public int Id
         {
@@ -119,12 +119,13 @@ namespace WebCene.Model
         }
 
         [StringLength(250)]
-        public string ShopmaniaURL {
-            get { return _ShopmaniaURL; }
+        public string ePonudaURL
+        {
+            get { return _ePonudaURL; }
             set {
-                if (value != _ShopmaniaURL)
+                if (value != _ePonudaURL)
                 {
-                    _ShopmaniaURL = value;
+                    _ePonudaURL = value;
                     NotifyPropertyChanged();
                 }
             }

@@ -86,9 +86,9 @@ namespace WebCene.UI
             dgvListaProizvoda.Columns["Dobavljac"].Visible = true;
             dgvListaProizvoda.Columns["Dobavljac"].HeaderText = "Dobavljač";
 
-            dgvListaProizvoda.Columns["ShopmaniaURL"].Visible = true;
-            dgvListaProizvoda.Columns["ShopmaniaURL"].HeaderText = "URL ePonuda";
-            dgvListaProizvoda.Columns["ShopmaniaURL"].Width = 800;
+            dgvListaProizvoda.Columns["ePonudaURL"].Visible = true;
+            dgvListaProizvoda.Columns["ePonudaURL"].HeaderText = "URL ePonuda";
+            dgvListaProizvoda.Columns["ePonudaURL"].Width = 800;
 
             dgvListaProizvoda.Columns["KrolStavke"].Visible = false;
             dgvListaProizvoda.Columns["KrolStavke"].HeaderText = "Stavke krola";

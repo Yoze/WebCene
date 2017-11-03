@@ -501,6 +501,7 @@ namespace WebCene.UI
                 btnFilter.Enabled = true;
                 linkResetFilter.Enabled = true;
 
+                PonistiFilter();
                 UcitajDetaljeKrola((int)OdabraniKrolGlavaId);
             }
             if (_odabraniKrolGlavaListItem == null) return;
@@ -508,14 +509,18 @@ namespace WebCene.UI
 
         private void linkResetFilter_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            PonistiFilter();
+            PrikaziDetaljeKrola(KrolStavkeDataTable);
+        }
+
+        private void PonistiFilter()
+        {
             comboBrendovi.SelectedIndex = -1;
             comboKategorije.SelectedIndex = -1;
 
             picFilter.Visible = false;
-
-            PrikaziDetaljeKrola(KrolStavkeDataTable);
-
         }
+
 
         private void btnOdustani_Click(object sender, EventArgs e)
         {
@@ -534,5 +539,52 @@ namespace WebCene.UI
 
             PrikaziListuKrolGlava();
         }
+
+        private void toolStripObrisiKrol_Click(object sender, EventArgs e)
+        {
+            if (OdabraniKrolGlavaId != null)
+            {
+                KrolGlava stavkaZaBrisanje = new KrolGlava();
+
+                using (WebCeneModel db = new WebCeneModel())
+                {
+                    stavkaZaBrisanje = db.KrolGlava
+                        .Where(x => x.Id == OdabraniKrolGlavaId)
+                        .FirstOrDefault();
+
+                    DialogResult dr =
+                        MessageBox.Show("Odabrani krol i njegovi detalji će biti obrisani! Da li želite da nastavite sa brisanjem?", "Brisanje krola", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                    if (dr == DialogResult.Yes)
+                    {
+                        try
+                        {
+                            db.Entry(stavkaZaBrisanje).State = System.Data.Entity.EntityState.Deleted;
+                            db.SaveChanges();
+
+                            MessageBox.Show("Krol je obrisan.", "Brisanje");
+                        }
+                        catch (Exception xcp)
+                        {
+                            MessageBox.Show("Greška prilikom brisanja.\r\n" + xcp.Message, "Greška");
+                            return;
+                        }
+                    }
+                    if (dr == DialogResult.No)
+                    {
+                        return;
+                    }
+                }
+                PrikaziListuKrolGlava();
+            }
+            else
+            {
+                MessageBox.Show("Odaberi stavku za brisanje.", "Brisanje");
+                return;
+            }
+        }
+
+        
+
     }
 }

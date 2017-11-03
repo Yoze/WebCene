@@ -71,13 +71,13 @@
             // 
             this.lblDetaljPoruka.AutoSize = true;
             this.lblDetaljPoruka.BackColor = System.Drawing.Color.White;
-            this.lblDetaljPoruka.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDetaljPoruka.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDetaljPoruka.ForeColor = System.Drawing.Color.Red;
-            this.lblDetaljPoruka.Location = new System.Drawing.Point(139, 224);
+            this.lblDetaljPoruka.Location = new System.Drawing.Point(158, 224);
             this.lblDetaljPoruka.Name = "lblDetaljPoruka";
-            this.lblDetaljPoruka.Size = new System.Drawing.Size(193, 17);
+            this.lblDetaljPoruka.Size = new System.Drawing.Size(164, 25);
             this.lblDetaljPoruka.TabIndex = 19;
-            this.lblDetaljPoruka.Text = "Odabrani krol ne sadrži detalje";
+            this.lblDetaljPoruka.Text = "Nema podataka !";
             this.lblDetaljPoruka.Visible = false;
             // 
             // lstViewKrolDetalj
@@ -131,13 +131,13 @@
             // 
             this.lblKrolGlavaPoruka.AutoSize = true;
             this.lblKrolGlavaPoruka.BackColor = System.Drawing.Color.White;
-            this.lblKrolGlavaPoruka.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblKrolGlavaPoruka.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblKrolGlavaPoruka.ForeColor = System.Drawing.Color.Red;
             this.lblKrolGlavaPoruka.Location = new System.Drawing.Point(171, 224);
             this.lblKrolGlavaPoruka.Name = "lblKrolGlavaPoruka";
-            this.lblKrolGlavaPoruka.Size = new System.Drawing.Size(157, 17);
+            this.lblKrolGlavaPoruka.Size = new System.Drawing.Size(164, 25);
             this.lblKrolGlavaPoruka.TabIndex = 20;
-            this.lblKrolGlavaPoruka.Text = "Nema sačuvanih krolova";
+            this.lblKrolGlavaPoruka.Text = "Nema podataka !";
             this.lblKrolGlavaPoruka.Visible = false;
             // 
             // lstViewKrolGlava
@@ -249,7 +249,7 @@
             this.Name = "frmListaKrolova";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Lista krolova";
+            this.Text = "Grupisana lista krolova";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Enter_NextControl);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();

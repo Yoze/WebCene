@@ -35,7 +35,9 @@ namespace WebCene.UI
         // brojač krol lupova
         private int iterationCounter { get; set; }
         private int brojOdabranihProizvodaZaKrol { get; set; }
-
+        
+        // prekidač za BackgroundWorker _bw
+        private bool cancelWorker;
 
 
         public frmStartKrol()
@@ -69,7 +71,10 @@ namespace WebCene.UI
         #region BackgroundWorker
         private void _bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            if (e.Cancelled) return;
+            if (e.Cancelled == true)
+            {
+                return;
+            }
             else if (e.Error != null)
             {
                 MessageBox.Show("Background worker je otkazao.", "Greška");
@@ -80,10 +85,17 @@ namespace WebCene.UI
                 KreirajListuZaPregledRezultataKrola();
                 PrikaziListViewRezultataKrola();
                 lblSacekajte.Visible = false;
-
+                if (cancelWorker)
+                    lblKorisnikStopKrolPoruka.Visible = true;
+                
                 btnStartKrol.Enabled = true;
                 btnSnimi.Enabled = true;
                 btnOdustani.Enabled = true;
+                listBoxProizvodi.Enabled = true;
+                listBoxProdavci.Enabled = true;
+                groupBoxZaglavlje.Enabled = true;
+
+                btnStopKrol.Visible = false;
             }
         }
 
@@ -97,7 +109,16 @@ namespace WebCene.UI
 
         private void _bw_DoWork(object sender, DoWorkEventArgs e)
         {
-            PosaljiZahteveZaKrolProizvoda();         
+            if (_bw.CancellationPending == true)
+            {
+                e.Cancel = true;
+                return;
+            }
+            else
+            {
+                PosaljiZahteveZaKrolProizvoda();
+            }
+            
         }
 
         #endregion
@@ -106,18 +127,27 @@ namespace WebCene.UI
         private void btnStartKrol_Click(object sender, EventArgs e)
         {
             lblKompletirano.Text = string.Empty;
+            lblKorisnikStopKrolPoruka.Visible = false;
 
             bool pokreniKrol = KreirajListeZaKrol();
 
             if (pokreniKrol)
             {
                 lblSacekajte.Visible = true;
+                btnStopKrol.Visible = true;
 
                 /* disable za offline test */
-                _bw.RunWorkerAsync();
+                if (_bw.IsBusy != true)
+                {
+                    _bw.RunWorkerAsync();
+                }
+                
 
                 btnStartKrol.Enabled = false;
                 btnOdustani.Enabled = false;
+                listBoxProizvodi.Enabled = false;
+                listBoxProdavci.Enabled = false;
+                groupBoxZaglavlje.Enabled = false;
 
                 progressKrol.Value = 0;
                 progressKrol.Minimum = 0;
@@ -130,12 +160,13 @@ namespace WebCene.UI
         private void PosaljiZahteveZaKrolProizvoda()
         {
             brojOdabranihProizvodaZaKrol = ListaOdabranihProizvodaZaKrol.Count;
-
+            
             if (brojOdabranihProizvodaZaKrol > 0)
             {
                 KrolStavkePreciscenaLista = new List<KrolStavke>();
-                
+                    
                 iterationCounter = 0;
+                cancelWorker = false;
 
                 foreach (var _proizvodZaKrol in ListaOdabranihProizvodaZaKrol)
                 {
@@ -143,47 +174,56 @@ namespace WebCene.UI
                     Thread.Sleep(randomTime);
                     bool result;
 
-                    try
+                    if(cancelWorker)
                     {
-                        if (_proizvodZaKrol != null)
-                        {
-                            result = KrolujProizvode(_proizvodZaKrol, 1); //promeni -1- u krolGlavaId
-                            if (result)
-                            {
-                                iterationCounter++;
-                                int progressPercentage = (iterationCounter / brojOdabranihProizvodaZaKrol) * 100;
-
-                                _bw.ReportProgress(progressPercentage);
-                                                                
-                            }
-                            if (!result)
-                            {
-                                DialogResult dr =
-                                    MessageBox.Show("Web adresa ne postoji. Proverite da li je ispravno upisana.\r\nProizvod:\r\n- " + _proizvodZaKrol.Naziv
-                                    + "\r\nWeb adresa:\r\n" + _proizvodZaKrol.ShopmaniaURL
-                                     + "\r\n\r\nDa li želite da nastavite krol ostalih proizvoda?",
-                                    "Pogrešna web adresa", MessageBoxButtons.YesNo);
-
-                                if (dr == DialogResult.Yes)
-                                {
-                                    continue;
-                                }
-                                if (dr == DialogResult.No)
-                                {
-                                    return;
-                                }
-                            }
-                        }
-                        else
-                        {
-                            throw new Exception();
-                        }
-                    }
-                    catch (Exception e)
-                    {
-                        MessageBox.Show("Greška u krolovanju!" + "\r\n" + e.Message, "Greška");
-                        btnStartKrol.Enabled = true;
+                        _bw.CancelAsync();
+                        MessageBox.Show("Uspešno ste prrekinuli tekući krol.", "Krol");                        
                         return;
+                    }
+                    else
+                    {
+                        try
+                        {
+                            if (_proizvodZaKrol != null)
+                            {
+                                result = KrolujProizvode(_proizvodZaKrol, 1); //promeni -1- u krolGlavaId
+                                if (result)
+                                {
+                                    iterationCounter++;
+                                    int progressPercentage = (iterationCounter / brojOdabranihProizvodaZaKrol) * 100;
+
+                                    _bw.ReportProgress(progressPercentage);
+
+                                }
+                                if (!result)
+                                {
+                                    DialogResult dr =
+                                        MessageBox.Show("Web adresa ne postoji. Proverite da li je ispravno upisana.\r\nProizvod:\r\n- " + _proizvodZaKrol.Naziv
+                                        + "\r\nWeb adresa:\r\n" + _proizvodZaKrol.ePonudaURL
+                                         + "\r\n\r\nDa li želite da nastavite krol ostalih proizvoda?",
+                                        "Pogrešna web adresa", MessageBoxButtons.YesNo);
+
+                                    if (dr == DialogResult.Yes)
+                                    {
+                                        continue;
+                                    }
+                                    if (dr == DialogResult.No)
+                                    {
+                                        return;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                throw new Exception();
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                            MessageBox.Show("Greška u krolovanju!" + "\r\n" + e.Message, "Greška");
+                            btnStartKrol.Enabled = true;
+                            return;
+                        }
                     }
                 }
 
@@ -308,7 +348,9 @@ namespace WebCene.UI
         {
 
             // dokument url
-            var url = _proizvodZaKrol.ShopmaniaURL;
+            var url = _proizvodZaKrol.ePonudaURL;
+
+
 
             // dokument
             HtmlWeb destinationWebPage = new HtmlWeb();
@@ -452,9 +494,7 @@ namespace WebCene.UI
 
         private void btnStopKrol_Click(object sender, EventArgs e)
         {
-
-            // TO DO
-            // prekini bw
+            cancelWorker = true;          
         }
 
 
@@ -533,7 +573,12 @@ namespace WebCene.UI
 
         private void btnOdustani_Click(object sender, EventArgs e)
         {
-            _bw.CancelAsync();
+            if (_bw.IsBusy == true)
+            {
+                _bw.CancelAsync();
+
+                MessageBox.Show("btnOdustani _bw Stopped");
+            }            
             Close();
         }
 

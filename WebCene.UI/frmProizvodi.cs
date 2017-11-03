@@ -74,7 +74,7 @@ namespace WebCene.UI
                 txtKatIspisNaziva.Text = ListaKategorija.Find(k => k.SHKAT.Equals(odabraniProizvod.ElKat)).KAT2;
                 txtBrend.Text = odabraniProizvod.Brend;
                 txtDobavljac.Text = odabraniProizvod.Dobavljac;
-                txtShopmaniaURL.Text = odabraniProizvod.ShopmaniaURL;
+                txtEPonudaURL.Text = odabraniProizvod.ePonudaURL;
             }
 
         }
@@ -91,7 +91,7 @@ namespace WebCene.UI
                 _proizvod.ElKat = txtKatProizvoda.Text;
                 _proizvod.Brend = txtBrend.Text;
                 _proizvod.Dobavljac = txtDobavljac.Text;
-                _proizvod.ShopmaniaURL = txtShopmaniaURL.Text;
+                _proizvod.ePonudaURL = txtEPonudaURL.Text;
 
                 return _proizvod;
             }
@@ -189,7 +189,7 @@ namespace WebCene.UI
                 _proizvod.ElKat = odabraniProizvod.ElKat;
                 _proizvod.Brend = odabraniProizvod.Brend;
                 _proizvod.Dobavljac = odabraniProizvod.Dobavljac;
-                _proizvod.ShopmaniaURL = odabraniProizvod.ShopmaniaURL;
+                _proizvod.ePonudaURL = odabraniProizvod.ePonudaURL;
             }
         }
 
@@ -284,7 +284,7 @@ namespace WebCene.UI
             bool cancel = false;
             //bool UrlSchemeValid = Uri.IsWellFormedUriString(txtShopmaniaURL.Text, UriKind.Absolute);
 
-            if (!(string.IsNullOrWhiteSpace(txtShopmaniaURL.Text))  && Uri.IsWellFormedUriString(txtShopmaniaURL.Text, UriKind.Absolute))
+            if (!(string.IsNullOrWhiteSpace(txtEPonudaURL.Text))  && Uri.IsWellFormedUriString(txtEPonudaURL.Text, UriKind.Absolute))
             {
                 // prolazi  
                 cancel = false;
@@ -295,7 +295,7 @@ namespace WebCene.UI
             {
                 // ne prolazi
                 cancel = true;
-                errProviderProizvodi.SetError(txtShopmaniaURL, "Obavezan podatak ili URL šema nije odgovarajuća.");
+                errProviderProizvodi.SetError(txtEPonudaURL, "Obavezan podatak ili URL šema nije odgovarajuća.");
             }
 
             e.Cancel = cancel;
@@ -303,7 +303,7 @@ namespace WebCene.UI
 
         private void txtShopmaniaURL_Validated(object sender, EventArgs e)
         {
-            errProviderProizvodi.SetError(txtShopmaniaURL, string.Empty);
+            errProviderProizvodi.SetError(txtEPonudaURL, string.Empty);
         }
 
         private void btnArtikli_Click(object sender, EventArgs e)
@@ -348,7 +348,7 @@ namespace WebCene.UI
                                 Naziv = artikal.NAZIV,
                                 ElKat = artikal.SHKAT,
                                 Brend = artikal.PROIZVODJAC,
-                                ShopmaniaURL = string.Empty
+                                ePonudaURL = string.Empty
                             };
 
                             odabraniProizvod = pronadjeniProizvod;

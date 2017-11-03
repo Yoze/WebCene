@@ -36,7 +36,7 @@
             this.txtKatProizvoda = new System.Windows.Forms.TextBox();
             this.txtBrend = new System.Windows.Forms.TextBox();
             this.txtDobavljac = new System.Windows.Forms.TextBox();
-            this.txtShopmaniaURL = new System.Windows.Forms.TextBox();
+            this.txtEPonudaURL = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -143,20 +143,20 @@
             this.txtDobavljac.Size = new System.Drawing.Size(243, 25);
             this.txtDobavljac.TabIndex = 6;
             // 
-            // txtShopmaniaURL
+            // txtEPonudaURL
             // 
-            this.txtShopmaniaURL.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtShopmaniaURL.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.proizvodBindingSource, "ShopmaniaURL", true));
-            this.txtShopmaniaURL.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtShopmaniaURL.ForeColor = System.Drawing.Color.Black;
-            this.txtShopmaniaURL.Location = new System.Drawing.Point(125, 264);
-            this.txtShopmaniaURL.MaxLength = 250;
-            this.txtShopmaniaURL.Multiline = true;
-            this.txtShopmaniaURL.Name = "txtShopmaniaURL";
-            this.txtShopmaniaURL.Size = new System.Drawing.Size(423, 70);
-            this.txtShopmaniaURL.TabIndex = 7;
-            this.txtShopmaniaURL.Validating += new System.ComponentModel.CancelEventHandler(this.txtShopmaniaURL_Validating);
-            this.txtShopmaniaURL.Validated += new System.EventHandler(this.txtShopmaniaURL_Validated);
+            this.txtEPonudaURL.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtEPonudaURL.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.proizvodBindingSource, "ePonudaURL", true));
+            this.txtEPonudaURL.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEPonudaURL.ForeColor = System.Drawing.Color.Black;
+            this.txtEPonudaURL.Location = new System.Drawing.Point(125, 264);
+            this.txtEPonudaURL.MaxLength = 250;
+            this.txtEPonudaURL.Multiline = true;
+            this.txtEPonudaURL.Name = "txtEPonudaURL";
+            this.txtEPonudaURL.Size = new System.Drawing.Size(423, 70);
+            this.txtEPonudaURL.TabIndex = 7;
+            this.txtEPonudaURL.Validating += new System.ComponentModel.CancelEventHandler(this.txtShopmaniaURL_Validating);
+            this.txtEPonudaURL.Validated += new System.EventHandler(this.txtShopmaniaURL_Validated);
             // 
             // label2
             // 
@@ -231,9 +231,9 @@
             this.label8.ForeColor = System.Drawing.Color.Black;
             this.label8.Location = new System.Drawing.Point(19, 267);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(100, 17);
+            this.label8.Size = new System.Drawing.Size(86, 17);
             this.label8.TabIndex = 14;
-            this.label8.Text = "Shopmania URL";
+            this.label8.Text = "ePonuda URL";
             // 
             // groupBox1
             // 
@@ -242,7 +242,7 @@
             this.groupBox1.Controls.Add(this.txtSifraArtikla);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.txtShopmaniaURL);
+            this.groupBox1.Controls.Add(this.txtEPonudaURL);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.txtEAN);
             this.groupBox1.Controls.Add(this.label6);
@@ -344,7 +344,7 @@
         private System.Windows.Forms.TextBox txtKatProizvoda;
         private System.Windows.Forms.TextBox txtBrend;
         private System.Windows.Forms.TextBox txtDobavljac;
-        private System.Windows.Forms.TextBox txtShopmaniaURL;
+        private System.Windows.Forms.TextBox txtEPonudaURL;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
