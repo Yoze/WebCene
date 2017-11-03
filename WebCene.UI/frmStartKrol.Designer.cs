@@ -111,7 +111,7 @@
             // 
             this.btnStartKrol.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStartKrol.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.btnStartKrol.Location = new System.Drawing.Point(876, 51);
+            this.btnStartKrol.Location = new System.Drawing.Point(876, 113);
             this.btnStartKrol.Name = "btnStartKrol";
             this.btnStartKrol.Size = new System.Drawing.Size(229, 56);
             this.btnStartKrol.TabIndex = 5;
@@ -353,9 +353,9 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::WebCene.UI.Properties.Resources.logoEponuda;
-            this.pictureBox1.Location = new System.Drawing.Point(876, 131);
+            this.pictureBox1.Location = new System.Drawing.Point(902, 34);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(173, 50);
+            this.pictureBox1.Size = new System.Drawing.Size(177, 42);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox1.TabIndex = 17;
             this.pictureBox1.TabStop = false;

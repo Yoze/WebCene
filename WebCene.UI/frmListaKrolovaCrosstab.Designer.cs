@@ -268,7 +268,7 @@
             this.groupBox3.Controls.Add(this.label3);
             this.groupBox3.Controls.Add(this.btnFilter);
             this.groupBox3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.groupBox3.Location = new System.Drawing.Point(548, 37);
+            this.groupBox3.Location = new System.Drawing.Point(310, 37);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(650, 100);
             this.groupBox3.TabIndex = 10;
@@ -309,9 +309,9 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::WebCene.UI.Properties.Resources.logoEponuda;
-            this.pictureBox1.Location = new System.Drawing.Point(346, 55);
+            this.pictureBox1.Location = new System.Drawing.Point(1011, 37);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(175, 68);
+            this.pictureBox1.Size = new System.Drawing.Size(175, 38);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox1.TabIndex = 21;
             this.pictureBox1.TabStop = false;
