@@ -34,6 +34,7 @@ namespace WebCene.UI
         private List<BRAND> ListaBrendova { get; set; }
         private int? OdabraniKrolGlavaId { get; set; }
         private DataTable KrolStavkeDataTable { get; set; }
+        private DataTable filteredKrolStavkeDataTable { get; set; }
 
 
         public frmListaKrolovaCrosstab()
@@ -136,7 +137,7 @@ namespace WebCene.UI
                     try
                     {
                         SqlDataAdapter da =
-                            new SqlDataAdapter("SELECT KrolGLId, Naziv, NazivProdavca, Cena FROM viewKrolStavke WHERE KrolGLId ='"
+                            new SqlDataAdapter("SELECT KrolGLId, Naziv, NazivProdavca, Cena, ElKat, Brend FROM viewKrolStavke WHERE KrolGLId ='"
                             + _odabraniKrolGlavaId.ToString() + "'"
                             , connMSSQLPlus);
 
@@ -148,17 +149,142 @@ namespace WebCene.UI
                         MessageBox.Show("Greška u preuzimanju podataka sa servera.", "Greška");
                         return;
                     }
-                    PrikaziDetaljeKrola();
+                    PrikaziDetaljeKrola(KrolStavkeDataTable);
                 }
             }
             else return;
         }
 
-        private void PrikaziDetaljeKrola()
+
+        private void FiltrirajListuDetalja(string _ElKat, string _Brend)
         {
+            // ispitivanje parametara radi kreiranja sql upita
+            string sqlParametri = string.Empty;
+
+            // obaNull
+            if (string.IsNullOrEmpty(_ElKat) && string.IsNullOrEmpty(_Brend)) sqlParametri = "obaNull";
+
+            // KatNullBrendNotNull
+            if (string.IsNullOrEmpty(_ElKat) && !(string.IsNullOrEmpty(_Brend))) sqlParametri = "KatNullBrendNotNull";
+
+            // KatNotNullBrendNull
+            if (!(string.IsNullOrEmpty(_Brend)) && string.IsNullOrEmpty(_Brend)) sqlParametri = "KatNotNullBrendNull";
+
+            // obaNotNull
+            if (!(string.IsNullOrEmpty(_ElKat)) && !(string.IsNullOrEmpty(_Brend))) sqlParametri = "obaNotNull";
+
+
+            if (OdabraniKrolGlavaId != null)
+            {
+                filteredKrolStavkeDataTable = new DataTable();
+
+                string connString = ConfigurationManager.ConnectionStrings["WebCeneADOConn"].ConnectionString;
+
+                using (SqlConnection connMSSQLPlus = new SqlConnection(connString))
+                {
+                    SqlDataAdapter da;
+
+                    try
+                    {
+                        switch (sqlParametri)
+                        {
+                            case "obaNull":
+                                MessageBox.Show("Odaberi parametre filtera iz padajućih menija.", "Filter podataka");
+                                picFilter.Visible = false;
+                                return;
+
+                            case "KatNullBrendNotNull":
+                                {
+                                    string _BrendTrimmed = _Brend.TrimEnd();
+
+                                    da = new SqlDataAdapter("SELECT KrolGLId, Naziv, NazivProdavca, Cena, ElKat, Brend FROM viewKrolStavke WHERE KrolGLId ='"
+                                        + OdabraniKrolGlavaId  + "' AND Brend='" + _BrendTrimmed + "'", connMSSQLPlus);
+
+                                    da.Fill(filteredKrolStavkeDataTable);
+                                    break;
+                                }
+
+                            case "KatNotNullBrendNull":
+                                {
+                                    string _ElKatTrimmed = _ElKat.TrimEnd();
+                                    da = new SqlDataAdapter("SELECT KrolGLId, Naziv, NazivProdavca, Cena, ElKat, Brend FROM viewKrolStavke WHERE KrolGLId ='"
+                                        + OdabraniKrolGlavaId + "' AND ElKat='" + _ElKatTrimmed + "'", connMSSQLPlus);
+
+                                    da.Fill(filteredKrolStavkeDataTable);
+                                    break;
+                                }
+
+                            case "obaNotNull":
+                                {
+                                    string _BrendTrimmed = _Brend.TrimEnd();
+                                    string _ElKatTrimmed = _ElKat.TrimEnd();
+
+                                    da = new SqlDataAdapter("SELECT KrolGLId, Naziv, NazivProdavca, Cena, ElKat, Brend FROM viewKrolStavke WHERE KrolGLId ='"
+                                        + OdabraniKrolGlavaId + "' AND ElKat='" + _ElKatTrimmed + "' AND Brend='" + _BrendTrimmed + "'"
+                                        , connMSSQLPlus);
+
+                                    da.Fill(filteredKrolStavkeDataTable);
+                                    break;
+                                }
+
+                            //default:
+                            //    break;
+                        }
+                        PrikaziDetaljeKrola(filteredKrolStavkeDataTable);
+                    }
+                    catch (Exception xcp)
+                    {
+                        MessageBox.Show("Greška pri filtriranju podataka.\r\nGreška: " + xcp.Message, "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    
+                }
+
+
+
+                //if (!(string.IsNullOrEmpty(_ElKat)) || !(string.IsNullOrEmpty(_Brend)))
+                //{
+                //    string _BrendTrimmed = _Brend.TrimEnd();
+                //    string _ElKatTrimmed = _ElKat.TrimEnd();
+
+                //    filteredKrolStavkeDataTable = new DataTable();
+
+                //    string connString = ConfigurationManager.ConnectionStrings["WebCeneADOConn"].ConnectionString;
+
+                //    using (SqlConnection connMSSQLPlus = new SqlConnection(connString))
+                //    {
+                //        try
+                //        {
+                //            SqlDataAdapter da =
+                //                new SqlDataAdapter("SELECT KrolGLId, Naziv, NazivProdavca, Cena, ElKat, Brend FROM viewKrolStavke WHERE KrolGLId ='"
+                //                + OdabraniKrolGlavaId
+                //                + " AND ElKat ='" + _ElKatTrimmed + "' AND Brend='" + _BrendTrimmed + "'", connMSSQLPlus);
+
+                //            da.Fill(filteredKrolStavkeDataTable);
+                //        }
+                //        catch (Exception)
+                //        {
+                //            MessageBox.Show("Greška u preuzimanju podataka sa servera.", "Greška");
+                //            return;
+                //        }
+                //        PrikaziDetaljeKrola(filteredKrolStavkeDataTable);
+                //    }
+                //}
+                //else return;
+            }
+            else return;
+
+        }
+
+
+
+        private void PrikaziDetaljeKrola(DataTable _tableToTransform)
+        {
+            /* OVA METODA POZIVA GetInversedDataTable ZA KREIRANJE PIVOT TABELE I VRŠI ISPIS U DGV*/
+
             DataTable inversedKrolStavkeDataTable = new DataTable();
 
-            inversedKrolStavkeDataTable = GetInversedDataTable(KrolStavkeDataTable, "NazivProdavca", "Naziv", "Cena", "-", false);
+            inversedKrolStavkeDataTable = GetInversedDataTable(_tableToTransform, "NazivProdavca", "Naziv", "Cena", "-", false);
 
             // dgview props
 
@@ -176,11 +302,11 @@ namespace WebCene.UI
                 for (int i = 1; i < brojKolona; i++)
                 {
                     // 1.kolona
-                    dgViewKrolDetalj.Columns[0].Width = 180;
+                    dgViewKrolDetalj.Columns[0].Width = 150;
                     dgViewKrolDetalj.Columns[0].CellTemplate.Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
 
                     // ostale kolone
-                    dgViewKrolDetalj.Columns[i].Width = 110;
+                    dgViewKrolDetalj.Columns[i].Width = 90;
                     dgViewKrolDetalj.Columns[i].CellTemplate.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
 
                 }
@@ -192,9 +318,6 @@ namespace WebCene.UI
                 lblDetaljPoruka.Visible = true;
                 return;
             }
-            
-
-           
         }
 
 
@@ -349,23 +472,20 @@ namespace WebCene.UI
 
         private void btnFilter_Click(object sender, EventArgs e)
         {
-            FiltrirajPrikazKrolova();
-
-        }
-
-        private void FiltrirajPrikazKrolova()
-        {
-            // TO DO
-
             string odabraniBrend =
                 (string)comboBrendovi.SelectedValue;
 
             string odabranaKategorija =
                 (string)comboKategorije.SelectedValue;
 
-            MessageBox.Show("Kat2: " + odabranaKategorija + "\r\nBrend: " + odabraniBrend);
+            //MessageBox.Show("Kat2: " + odabranaKategorija + "\r\nBrend: " + odabraniBrend);
+
+            picFilter.Visible = true;
+
+            FiltrirajListuDetalja(odabranaKategorija, odabraniBrend);
 
         }
+
 
         private void lstViewKrolGlava_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -378,6 +498,9 @@ namespace WebCene.UI
                 OdabraniKrolGlavaId =
                     Convert.ToInt32(_odabraniKrolGlavaListItem.SubItems[3].Text);
 
+                btnFilter.Enabled = true;
+                linkResetFilter.Enabled = true;
+
                 UcitajDetaljeKrola((int)OdabraniKrolGlavaId);
             }
             if (_odabraniKrolGlavaListItem == null) return;
@@ -388,6 +511,9 @@ namespace WebCene.UI
             comboBrendovi.SelectedIndex = -1;
             comboKategorije.SelectedIndex = -1;
 
+            picFilter.Visible = false;
+
+            PrikaziDetaljeKrola(KrolStavkeDataTable);
 
         }
 

@@ -116,9 +116,9 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(23, 101);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(91, 17);
+            this.label4.Size = new System.Drawing.Size(77, 17);
             this.label4.TabIndex = 8;
-            this.label4.Text = "Shopmania alt";
+            this.label4.Text = "ePonuda alt";
             // 
             // btnSnimi
             // 

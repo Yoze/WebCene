@@ -9,7 +9,7 @@ namespace WebCene.Model
     using System.Runtime.CompilerServices;
 
     [Table("infoekon_Bane.viewKrolStavke")]
-    public partial class viewKrolStavke 
+    public partial class viewKrolStavke
     {
         [Key]
         [Column(Order = 0)]
@@ -26,6 +26,15 @@ namespace WebCene.Model
         [Column(Order = 1)]
         public decimal Cena { get; set; }
 
+        [Key]
+        [Column(Order = 2)]
+        [StringLength(8)]
+        public string ElSifraProizvoda { get; set; }
 
+        [StringLength(20)]
+        public string ElKat { get; set; }
+
+        [StringLength(50)]
+        public string Brend { get; set; }
     }
 }

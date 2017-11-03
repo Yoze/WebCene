@@ -73,6 +73,16 @@ namespace WebCene.UI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap filled_filter_32 {
+            get {
+                object obj = ResourceManager.GetObject("filled_filter-32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap google_web_search_26 {
             get {
                 object obj = ResourceManager.GetObject("google_web_search-26", resourceCulture);

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.btnNoviProdavac = new System.Windows.Forms.Button();
             this.dgvListaProdavaca = new System.Windows.Forms.DataGridView();
@@ -67,6 +68,16 @@
             // 
             this.dgvListaProdavaca.AllowUserToAddRows = false;
             this.dgvListaProdavaca.AllowUserToResizeRows = false;
+            this.dgvListaProdavaca.BackgroundColor = System.Drawing.Color.MintCream;
+            this.dgvListaProdavaca.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.AliceBlue;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvListaProdavaca.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvListaProdavaca.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvListaProdavaca.ContextMenuStrip = this.contextMenuProdavci;
             this.dgvListaProdavaca.Location = new System.Drawing.Point(13, 45);

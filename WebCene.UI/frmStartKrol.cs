@@ -454,7 +454,7 @@ namespace WebCene.UI
         {
 
             // TO DO
-
+            // prekini bw
         }
 
 

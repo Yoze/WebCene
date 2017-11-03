@@ -121,31 +121,31 @@
             // 
             // listBoxProizvodi
             // 
-            this.listBoxProizvodi.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.listBoxProizvodi.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listBoxProizvodi.FormattingEnabled = true;
             this.listBoxProizvodi.ItemHeight = 17;
             this.listBoxProizvodi.Location = new System.Drawing.Point(31, 207);
             this.listBoxProizvodi.Name = "listBoxProizvodi";
             this.listBoxProizvodi.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.listBoxProizvodi.Size = new System.Drawing.Size(285, 359);
+            this.listBoxProizvodi.Size = new System.Drawing.Size(285, 357);
             this.listBoxProizvodi.TabIndex = 2;
             // 
             // listBoxProdavci
             // 
-            this.listBoxProdavci.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.listBoxProdavci.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listBoxProdavci.FormattingEnabled = true;
             this.listBoxProdavci.ItemHeight = 17;
             this.listBoxProdavci.Location = new System.Drawing.Point(328, 207);
             this.listBoxProdavci.Name = "listBoxProdavci";
             this.listBoxProdavci.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.listBoxProdavci.Size = new System.Drawing.Size(285, 359);
+            this.listBoxProdavci.Size = new System.Drawing.Size(285, 357);
             this.listBoxProdavci.TabIndex = 4;
             // 
             // txtKrolId
             // 
-            this.txtKrolId.Location = new System.Drawing.Point(781, 626);
+            this.txtKrolId.Location = new System.Drawing.Point(516, 31);
             this.txtKrolId.Name = "txtKrolId";
-            this.txtKrolId.Size = new System.Drawing.Size(45, 25);
+            this.txtKrolId.Size = new System.Drawing.Size(45, 33);
             this.txtKrolId.TabIndex = 9;
             this.txtKrolId.Visible = false;
             // 
@@ -182,12 +182,14 @@
             // 
             // btnStopKrol
             // 
-            this.btnStopKrol.Location = new System.Drawing.Point(654, 619);
+            this.btnStopKrol.BackColor = System.Drawing.Color.Tomato;
+            this.btnStopKrol.ForeColor = System.Drawing.Color.White;
+            this.btnStopKrol.Location = new System.Drawing.Point(625, 619);
             this.btnStopKrol.Name = "btnStopKrol";
             this.btnStopKrol.Size = new System.Drawing.Size(121, 37);
             this.btnStopKrol.TabIndex = 10;
-            this.btnStopKrol.Text = "Stop";
-            this.btnStopKrol.UseVisualStyleBackColor = true;
+            this.btnStopKrol.Text = "Prekini krol";
+            this.btnStopKrol.UseVisualStyleBackColor = false;
             this.btnStopKrol.Visible = false;
             this.btnStopKrol.Click += new System.EventHandler(this.btnStopKrol_Click);
             // 
@@ -226,7 +228,7 @@
             // 
             // lstViewRezultat
             // 
-            this.lstViewRezultat.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lstViewRezultat.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.lstViewRezultat.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.colProizvoda,
             this.colProdavac,
@@ -322,6 +324,7 @@
             this.groupBox1.Controls.Add(this.txtNAzivKrola);
             this.groupBox1.Controls.Add(this.dateTimeDatumKrola);
             this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.txtKrolId);
             this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
@@ -379,7 +382,6 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.progressKrol);
-            this.Controls.Add(this.txtKrolId);
             this.Controls.Add(this.btnStartKrol);
             this.Controls.Add(this.listBoxProizvodi);
             this.Controls.Add(this.listBoxProdavci);

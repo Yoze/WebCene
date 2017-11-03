@@ -51,11 +51,13 @@
             this.btnOdustani = new System.Windows.Forms.Button();
             this.btnNoviKrol = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.picFilter = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgViewKrolDetalj)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picFilter)).BeginInit();
             this.SuspendLayout();
             // 
             // comboKategorije
@@ -65,9 +67,9 @@
             this.comboKategorije.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboKategorije.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboKategorije.FormattingEnabled = true;
-            this.comboKategorije.Location = new System.Drawing.Point(19, 51);
+            this.comboKategorije.Location = new System.Drawing.Point(13, 52);
             this.comboKategorije.Name = "comboKategorije";
-            this.comboKategorije.Size = new System.Drawing.Size(209, 25);
+            this.comboKategorije.Size = new System.Drawing.Size(235, 25);
             this.comboKategorije.TabIndex = 0;
             // 
             // comboBrendovi
@@ -77,9 +79,9 @@
             this.comboBrendovi.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBrendovi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBrendovi.FormattingEnabled = true;
-            this.comboBrendovi.Location = new System.Drawing.Point(249, 51);
+            this.comboBrendovi.Location = new System.Drawing.Point(275, 52);
             this.comboBrendovi.Name = "comboBrendovi";
-            this.comboBrendovi.Size = new System.Drawing.Size(209, 25);
+            this.comboBrendovi.Size = new System.Drawing.Size(235, 25);
             this.comboBrendovi.TabIndex = 1;
             // 
             // label1
@@ -87,7 +89,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.BlueViolet;
-            this.label1.Location = new System.Drawing.Point(25, 37);
+            this.label1.Location = new System.Drawing.Point(25, 23);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(236, 25);
             this.label1.TabIndex = 2;
@@ -96,7 +98,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(16, 29);
+            this.label2.Location = new System.Drawing.Point(10, 32);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(68, 17);
             this.label2.TabIndex = 3;
@@ -105,7 +107,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(246, 29);
+            this.label3.Location = new System.Drawing.Point(272, 32);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(42, 17);
             this.label3.TabIndex = 4;
@@ -116,6 +118,8 @@
             this.dgViewKrolDetalj.AllowUserToAddRows = false;
             this.dgViewKrolDetalj.AllowUserToDeleteRows = false;
             this.dgViewKrolDetalj.AllowUserToResizeRows = false;
+            this.dgViewKrolDetalj.BackgroundColor = System.Drawing.Color.White;
+            this.dgViewKrolDetalj.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgViewKrolDetalj.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgViewKrolDetalj.Location = new System.Drawing.Point(13, 31);
             this.dgViewKrolDetalj.Margin = new System.Windows.Forms.Padding(10);
@@ -125,12 +129,13 @@
             this.dgViewKrolDetalj.RowHeadersVisible = false;
             this.dgViewKrolDetalj.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgViewKrolDetalj.ShowEditingIcon = false;
-            this.dgViewKrolDetalj.Size = new System.Drawing.Size(625, 427);
+            this.dgViewKrolDetalj.Size = new System.Drawing.Size(775, 427);
             this.dgViewKrolDetalj.TabIndex = 5;
             // 
             // btnFilter
             // 
-            this.btnFilter.Location = new System.Drawing.Point(477, 51);
+            this.btnFilter.Enabled = false;
+            this.btnFilter.Location = new System.Drawing.Point(535, 52);
             this.btnFilter.Name = "btnFilter";
             this.btnFilter.Size = new System.Drawing.Size(83, 25);
             this.btnFilter.TabIndex = 6;
@@ -144,9 +149,9 @@
             this.groupBox1.Controls.Add(this.lblDetaljPoruka);
             this.groupBox1.Controls.Add(this.dgViewKrolDetalj);
             this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.groupBox1.Location = new System.Drawing.Point(548, 155);
+            this.groupBox1.Location = new System.Drawing.Point(385, 155);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(650, 471);
+            this.groupBox1.Size = new System.Drawing.Size(801, 471);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Detalji";
@@ -156,7 +161,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Sienna;
-            this.label5.Location = new System.Drawing.Point(5, -3);
+            this.label5.Location = new System.Drawing.Point(9, -3);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(61, 21);
             this.label5.TabIndex = 22;
@@ -166,13 +171,12 @@
             // 
             this.lblDetaljPoruka.AutoSize = true;
             this.lblDetaljPoruka.BackColor = System.Drawing.Color.White;
-            this.lblDetaljPoruka.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblDetaljPoruka.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDetaljPoruka.ForeColor = System.Drawing.Color.Red;
-            this.lblDetaljPoruka.Location = new System.Drawing.Point(235, 228);
+            this.lblDetaljPoruka.Location = new System.Drawing.Point(297, 228);
             this.lblDetaljPoruka.Name = "lblDetaljPoruka";
             this.lblDetaljPoruka.Padding = new System.Windows.Forms.Padding(3);
-            this.lblDetaljPoruka.Size = new System.Drawing.Size(201, 25);
+            this.lblDetaljPoruka.Size = new System.Drawing.Size(199, 23);
             this.lblDetaljPoruka.TabIndex = 20;
             this.lblDetaljPoruka.Text = "Odabrani krol ne sadrži detalje";
             this.lblDetaljPoruka.Visible = false;
@@ -184,7 +188,7 @@
             this.groupBox2.Controls.Add(this.lstViewKrolGlava);
             this.groupBox2.Location = new System.Drawing.Point(17, 155);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(517, 471);
+            this.groupBox2.Size = new System.Drawing.Size(362, 471);
             this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Krol";
@@ -206,7 +210,7 @@
             this.lblKrolGlavaPoruka.BackColor = System.Drawing.Color.White;
             this.lblKrolGlavaPoruka.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblKrolGlavaPoruka.ForeColor = System.Drawing.Color.Red;
-            this.lblKrolGlavaPoruka.Location = new System.Drawing.Point(170, 228);
+            this.lblKrolGlavaPoruka.Location = new System.Drawing.Point(96, 228);
             this.lblKrolGlavaPoruka.Name = "lblKrolGlavaPoruka";
             this.lblKrolGlavaPoruka.Size = new System.Drawing.Size(157, 17);
             this.lblKrolGlavaPoruka.TabIndex = 21;
@@ -215,7 +219,7 @@
             // 
             // lstViewKrolGlava
             // 
-            this.lstViewKrolGlava.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lstViewKrolGlava.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.lstViewKrolGlava.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.colDatum,
             this.colNaziv,
@@ -226,7 +230,7 @@
             this.lstViewKrolGlava.Margin = new System.Windows.Forms.Padding(10);
             this.lstViewKrolGlava.MultiSelect = false;
             this.lstViewKrolGlava.Name = "lstViewKrolGlava";
-            this.lstViewKrolGlava.Size = new System.Drawing.Size(491, 427);
+            this.lstViewKrolGlava.Size = new System.Drawing.Size(337, 427);
             this.lstViewKrolGlava.TabIndex = 0;
             this.lstViewKrolGlava.UseCompatibleStateImageBehavior = false;
             this.lstViewKrolGlava.View = System.Windows.Forms.View.Details;
@@ -240,17 +244,18 @@
             // colNaziv
             // 
             this.colNaziv.Text = "Naziv";
-            this.colNaziv.Width = 200;
+            this.colNaziv.Width = 120;
             // 
             // colIzvrsilac
             // 
             this.colIzvrsilac.Text = "Izvršilac";
-            this.colIzvrsilac.Width = 200;
+            this.colIzvrsilac.Width = 120;
             // 
             // linkResetFilter
             // 
             this.linkResetFilter.AutoSize = true;
-            this.linkResetFilter.Location = new System.Drawing.Point(576, 54);
+            this.linkResetFilter.Enabled = false;
+            this.linkResetFilter.Location = new System.Drawing.Point(633, 55);
             this.linkResetFilter.Name = "linkResetFilter";
             this.linkResetFilter.Size = new System.Drawing.Size(46, 17);
             this.linkResetFilter.TabIndex = 9;
@@ -260,6 +265,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.picFilter);
             this.groupBox3.Controls.Add(this.label6);
             this.groupBox3.Controls.Add(this.comboKategorije);
             this.groupBox3.Controls.Add(this.linkResetFilter);
@@ -268,9 +274,9 @@
             this.groupBox3.Controls.Add(this.label3);
             this.groupBox3.Controls.Add(this.btnFilter);
             this.groupBox3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.groupBox3.Location = new System.Drawing.Point(310, 37);
+            this.groupBox3.Location = new System.Drawing.Point(385, 46);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(650, 100);
+            this.groupBox3.Size = new System.Drawing.Size(801, 94);
             this.groupBox3.TabIndex = 10;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Filter detalja";
@@ -288,7 +294,7 @@
             // 
             // btnOdustani
             // 
-            this.btnOdustani.Location = new System.Drawing.Point(1080, 665);
+            this.btnOdustani.Location = new System.Drawing.Point(1072, 665);
             this.btnOdustani.Name = "btnOdustani";
             this.btnOdustani.Size = new System.Drawing.Size(121, 37);
             this.btnOdustani.TabIndex = 19;
@@ -309,18 +315,30 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::WebCene.UI.Properties.Resources.logoEponuda;
-            this.pictureBox1.Location = new System.Drawing.Point(1011, 37);
+            this.pictureBox1.Location = new System.Drawing.Point(30, 75);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(175, 38);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox1.TabIndex = 21;
             this.pictureBox1.TabStop = false;
             // 
+            // picFilter
+            // 
+            this.picFilter.BackColor = System.Drawing.Color.LemonChiffon;
+            this.picFilter.Image = global::WebCene.UI.Properties.Resources.filled_filter_32;
+            this.picFilter.Location = new System.Drawing.Point(727, 29);
+            this.picFilter.Name = "picFilter";
+            this.picFilter.Size = new System.Drawing.Size(61, 50);
+            this.picFilter.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.picFilter.TabIndex = 22;
+            this.picFilter.TabStop = false;
+            this.picFilter.Visible = false;
+            // 
             // frmListaKrolovaCrosstab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1213, 714);
+            this.ClientSize = new System.Drawing.Size(1205, 714);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnNoviKrol);
             this.Controls.Add(this.btnOdustani);
@@ -345,6 +363,7 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picFilter)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -375,5 +394,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox picFilter;
     }
 }

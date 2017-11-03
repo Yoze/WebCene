@@ -23,17 +23,13 @@ namespace WebCene.Model
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<KrolStavke>()
-                .Property(e => e.Cena)
-                .HasPrecision(10, 2);
-
-            modelBuilder.Entity<Proizvod>()
-                .Property(e => e.ElSifraProizvoda)
-                .IsUnicode(false);
-
             modelBuilder.Entity<viewKrolStavke>()
                 .Property(e => e.Cena)
                 .HasPrecision(10, 2);
+
+            modelBuilder.Entity<viewKrolStavke>()
+                .Property(e => e.ElSifraProizvoda)
+                .IsUnicode(false);
         }
     }
 }

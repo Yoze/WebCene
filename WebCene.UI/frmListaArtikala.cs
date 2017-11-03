@@ -38,7 +38,7 @@ namespace WebCene.UI
 
         private DataTable UcitajArtikle()
         {
-            string connString = ConfigurationManager.ConnectionStrings["ELBS_2017Conn"].ConnectionString;
+            string connString = ConfigurationManager.ConnectionStrings["ELBS_2017ADOConn"].ConnectionString;
 
             using (SqlConnection connELBS_2017  = new SqlConnection(connString))
             {
