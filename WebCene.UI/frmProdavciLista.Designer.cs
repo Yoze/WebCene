@@ -36,23 +36,26 @@
             this.izmeniContextMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.obrisiContextMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaProdavaca)).BeginInit();
             this.contextMenuProdavci.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(19, 19);
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Fuchsia;
+            this.label1.Location = new System.Drawing.Point(6, -6);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(118, 20);
+            this.label1.Size = new System.Drawing.Size(181, 25);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Lista prodavaca";
+            this.label1.Text = "LISTA PRODAVACA";
             // 
             // btnNoviProdavac
             // 
-            this.btnNoviProdavac.Location = new System.Drawing.Point(12, 418);
+            this.btnNoviProdavac.Location = new System.Drawing.Point(12, 497);
             this.btnNoviProdavac.Name = "btnNoviProdavac";
             this.btnNoviProdavac.Size = new System.Drawing.Size(121, 37);
             this.btnNoviProdavac.TabIndex = 18;
@@ -66,13 +69,14 @@
             this.dgvListaProdavaca.AllowUserToResizeRows = false;
             this.dgvListaProdavaca.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvListaProdavaca.ContextMenuStrip = this.contextMenuProdavci;
-            this.dgvListaProdavaca.Location = new System.Drawing.Point(12, 54);
+            this.dgvListaProdavaca.Location = new System.Drawing.Point(13, 45);
+            this.dgvListaProdavaca.Margin = new System.Windows.Forms.Padding(10);
             this.dgvListaProdavaca.MultiSelect = false;
             this.dgvListaProdavaca.Name = "dgvListaProdavaca";
             this.dgvListaProdavaca.ReadOnly = true;
             this.dgvListaProdavaca.RowHeadersVisible = false;
             this.dgvListaProdavaca.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvListaProdavaca.Size = new System.Drawing.Size(634, 336);
+            this.dgvListaProdavaca.Size = new System.Drawing.Size(634, 371);
             this.dgvListaProdavaca.TabIndex = 19;
             // 
             // contextMenuProdavci
@@ -104,14 +108,24 @@
             this.obrisiContextMenu.Text = "Obriši";
             this.obrisiContextMenu.Click += new System.EventHandler(this.obrisiContextMenu_Click);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.dgvListaProdavaca);
+            this.groupBox1.Location = new System.Drawing.Point(23, 27);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(660, 429);
+            this.groupBox1.TabIndex = 20;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "groupBox1";
+            // 
             // frmProdavciLista
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(659, 476);
-            this.Controls.Add(this.dgvListaProdavaca);
+            this.ClientSize = new System.Drawing.Size(706, 546);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnNoviProdavac);
-            this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.KeyPreview = true;
@@ -123,8 +137,9 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Enter_NextControl);
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaProdavaca)).EndInit();
             this.contextMenuProdavci.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -137,5 +152,6 @@
         private System.Windows.Forms.ToolStripMenuItem izmeniContextMenu;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem obrisiContextMenu;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }

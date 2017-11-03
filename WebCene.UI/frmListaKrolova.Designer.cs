@@ -46,9 +46,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnNoviKrol = new System.Windows.Forms.Button();
             this.btnOdustani = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.contextKrolGlava.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -56,7 +58,7 @@
             this.groupBox2.Controls.Add(this.lblDetaljPoruka);
             this.groupBox2.Controls.Add(this.lstViewKrolDetalj);
             this.groupBox2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(559, 79);
+            this.groupBox2.Location = new System.Drawing.Point(565, 108);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(10);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(5);
@@ -117,7 +119,7 @@
             this.groupBox1.Controls.Add(this.lblKrolGlavaPoruka);
             this.groupBox1.Controls.Add(this.lstViewKrolGlava);
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(26, 79);
+            this.groupBox1.Location = new System.Drawing.Point(32, 108);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(5);
             this.groupBox1.Size = new System.Drawing.Size(530, 457);
@@ -193,16 +195,16 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Navy;
-            this.label1.Location = new System.Drawing.Point(7, 19);
+            this.label1.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.label1.Location = new System.Drawing.Point(28, 26);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(270, 25);
+            this.label1.Size = new System.Drawing.Size(250, 25);
             this.label1.TabIndex = 8;
-            this.label1.Text = "LISTA SAČUVANIH KROLOVA";
+            this.label1.Text = "Grupisana LISTA KROLOVA";
             // 
             // btnNoviKrol
             // 
-            this.btnNoviKrol.Location = new System.Drawing.Point(12, 562);
+            this.btnNoviKrol.Location = new System.Drawing.Point(12, 596);
             this.btnNoviKrol.Name = "btnNoviKrol";
             this.btnNoviKrol.Size = new System.Drawing.Size(121, 37);
             this.btnNoviKrol.TabIndex = 17;
@@ -212,19 +214,30 @@
             // 
             // btnOdustani
             // 
-            this.btnOdustani.Location = new System.Drawing.Point(910, 562);
+            this.btnOdustani.Location = new System.Drawing.Point(918, 596);
             this.btnOdustani.Name = "btnOdustani";
             this.btnOdustani.Size = new System.Drawing.Size(121, 37);
             this.btnOdustani.TabIndex = 18;
-            this.btnOdustani.Text = "Odustani";
+            this.btnOdustani.Text = "Zatvori";
             this.btnOdustani.UseVisualStyleBackColor = true;
             this.btnOdustani.Click += new System.EventHandler(this.btnOdustani_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::WebCene.UI.Properties.Resources.logoEponuda;
+            this.pictureBox1.Location = new System.Drawing.Point(379, 26);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(168, 69);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox1.TabIndex = 19;
+            this.pictureBox1.TabStop = false;
             // 
             // frmListaKrolova
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1043, 611);
+            this.ClientSize = new System.Drawing.Size(1051, 645);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnOdustani);
             this.Controls.Add(this.btnNoviKrol);
             this.Controls.Add(this.label1);
@@ -232,18 +245,18 @@
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "frmListaKrolova";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Krolovi";
+            this.Text = "Lista krolova";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Enter_NextControl);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.contextKrolGlava.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -268,5 +281,6 @@
         private System.Windows.Forms.Label lblDetaljPoruka;
         private System.Windows.Forms.ToolStripMenuItem obrišiToolStripMenuItem;
         private System.Windows.Forms.Label lblKrolGlavaPoruka;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

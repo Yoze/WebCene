@@ -42,7 +42,7 @@ namespace WebCene.UI
                 txtId.Text = odabraniProdavac.Id.ToString();
                 txtNazivProdavca.Text = odabraniProdavac.NazivProdavca;
                 txtSajt.Text = odabraniProdavac.SajtProdavca;
-                txtSMId.Text = odabraniProdavac.SMId;
+                txtEponudaId.Text = odabraniProdavac.EponudaId;
             }
         }
 
@@ -53,7 +53,7 @@ namespace WebCene.UI
                 _prodavac.Id = _prodavac.Id;
                 _prodavac.NazivProdavca = txtNazivProdavca.Text;
                 _prodavac.SajtProdavca = txtSajt.Text;
-                _prodavac.SMId = txtSMId.Text;
+                _prodavac.EponudaId = txtEponudaId.Text;
 
                 return _prodavac;
             }
@@ -149,7 +149,7 @@ namespace WebCene.UI
                 _prodavac.Id = odabraniProdavac.Id;
                 _prodavac.NazivProdavca = odabraniProdavac.NazivProdavca;
                 _prodavac.SajtProdavca = odabraniProdavac.SajtProdavca;
-                _prodavac.SMId = odabraniProdavac.SMId;
+                _prodavac.EponudaId = odabraniProdavac.EponudaId;
             }
         }
 
@@ -215,7 +215,7 @@ namespace WebCene.UI
         {
             bool cancel = false;
 
-            if (!string.IsNullOrWhiteSpace(txtSMId.Text))
+            if (!string.IsNullOrWhiteSpace(txtEponudaId.Text))
             {
                 // prolazi validaciju
                 cancel = false;
@@ -224,14 +224,14 @@ namespace WebCene.UI
             {
                 // ne prolazi validaciju
                 cancel = true;
-                errorProviderProdavci.SetError(txtSMId, "Obavezan podatak.");
+                errorProviderProdavci.SetError(txtEponudaId, "Obavezan podatak.");
             }
             e.Cancel = cancel;
         }
 
         private void txtSMId_Validated(object sender, EventArgs e)
         {
-            errorProviderProdavci.SetError(txtSMId, string.Empty);
+            errorProviderProdavci.SetError(txtEponudaId, string.Empty);
         }
     }
 }

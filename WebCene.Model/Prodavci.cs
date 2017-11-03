@@ -19,7 +19,7 @@ namespace WebCene.Model
         
         private string _NazivProdavca;
         private string _SajtProdavca;
-        private string _SMId;
+        private string _EponudaId;
         
         public int Id { get; set; }
 
@@ -52,14 +52,14 @@ namespace WebCene.Model
         }
 
         [StringLength(20)]        
-        public string SMId
+        public string EponudaId
         {
-            get { return _SMId; }
+            get { return _EponudaId; }
             set
             {
-                if (value != _SMId)
+                if (value != _EponudaId)
                 {
-                    _SMId = value;
+                    _EponudaId = value;
                     NotifyPropertyChanged();
                 }
             }

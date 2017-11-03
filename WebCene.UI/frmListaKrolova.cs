@@ -33,43 +33,49 @@ namespace WebCene.UI
         private void PrikaziListuKrolGlava()
         {
             lstViewKrolGlava.Items.Clear();
-
-            using (WebCeneModel db = new WebCeneModel())
+            try
             {
-                //ListaKrolGlava = new List<KrolGlava>(db.KrolGlava);
-                ListaKrolGlava = new List<KrolGlava>();
-                ListaKrolGlava = db.KrolGlava
-                    .OrderByDescending(d => d.DatumKrola)
-                    .ToList();
-
-                int brojElemenataListe = ListaKrolGlava.Count;
-
-                if (brojElemenataListe == 0)
+                using (WebCeneModel db = new WebCeneModel())
                 {
-                    lblKrolGlavaPoruka.Visible = true;
-                    return;
-                }
-                if (brojElemenataListe > 0)
-                {
-                    lblKrolGlavaPoruka.Visible = false;
+                    //ListaKrolGlava = new List<KrolGlava>(db.KrolGlava);
+                    ListaKrolGlava = new List<KrolGlava>();
+                    ListaKrolGlava = db.KrolGlava
+                        .OrderByDescending(d => d.DatumKrola)
+                        .ToList();
 
-                    lstViewKrolGlava.BeginUpdate();
+                    int brojElemenataListe = ListaKrolGlava.Count;
 
-                    foreach (KrolGlava krolGlavaStavka in ListaKrolGlava)
+                    if (brojElemenataListe == 0)
                     {
-                        var item = new ListViewItem(new string[]
-                        {
-                            krolGlavaStavka.DatumKrola.ToShortDateString(),
-                            krolGlavaStavka.NazivKrola,
-                            krolGlavaStavka.IzvrsilacKrola,
-                            krolGlavaStavka.Id.ToString()
-                        });
-
-                        lstViewKrolGlava.Items.Add(item);
+                        lblKrolGlavaPoruka.Visible = true;
+                        return;
                     }
+                    if (brojElemenataListe > 0)
+                    {
+                        lblKrolGlavaPoruka.Visible = false;
 
-                    lstViewKrolGlava.EndUpdate();
+                        lstViewKrolGlava.BeginUpdate();
+
+                        foreach (KrolGlava krolGlavaStavka in ListaKrolGlava)
+                        {
+                            var item = new ListViewItem(new string[]
+                            {
+                                krolGlavaStavka.DatumKrola.ToShortDateString(),
+                                krolGlavaStavka.NazivKrola,
+                                krolGlavaStavka.IzvrsilacKrola,
+                                krolGlavaStavka.Id.ToString()
+                            });
+
+                            lstViewKrolGlava.Items.Add(item);
+                        }
+
+                        lstViewKrolGlava.EndUpdate();
+                    }
                 }
+            }
+            catch (Exception xcp)
+            {
+                MessageBox.Show("Greška pri učitavanju KrolGlava.\r\nGreška: " + xcp.Message, "Greška");
             }
         }
 
@@ -79,12 +85,21 @@ namespace WebCene.UI
         {
             List<viewKrolStavke> query = null;
 
-            using (WebCeneModel db = new WebCeneModel())
+            try
             {
-                query = (from krols in db.viewKrolStavke
-                         where krols.KrolGLId == _odabraniKrolGlavaId
-                         select krols).ToList();
+                using (WebCeneModel db = new WebCeneModel())
+                {
+                    query = (from krols in db.viewKrolStavke
+                             where krols.KrolGLId == _odabraniKrolGlavaId
+                             select krols).ToList();
+                }
             }
+            catch (Exception xcp)
+            {
+                MessageBox.Show("Greška pri učitavanju.\r\nGreška: " + xcp.Message, "Greška");
+                return;
+            }
+           
 
             ListaKrolDetalja = new List<viewKrolStavke>();
 
@@ -232,6 +247,7 @@ namespace WebCene.UI
         {
             frmStartKrol noviKrol = new frmStartKrol();
             noviKrol.ShowDialog();
+            
             PrikaziListuKrolGlava();
         }
     }

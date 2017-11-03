@@ -56,17 +56,19 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lblSacekajte = new System.Windows.Forms.Label();
             this.errProviderNoviKrol = new System.Windows.Forms.ErrorProvider(this.components);
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errProviderNoviKrol)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // dateTimeDatumKrola
             // 
             this.dateTimeDatumKrola.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimeDatumKrola.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimeDatumKrola.Location = new System.Drawing.Point(92, 98);
+            this.dateTimeDatumKrola.Location = new System.Drawing.Point(89, 101);
             this.dateTimeDatumKrola.Name = "dateTimeDatumKrola";
-            this.dateTimeDatumKrola.Size = new System.Drawing.Size(111, 25);
+            this.dateTimeDatumKrola.Size = new System.Drawing.Size(134, 25);
             this.dateTimeDatumKrola.TabIndex = 2;
             this.dateTimeDatumKrola.Validating += new System.ComponentModel.CancelEventHandler(this.dateTimeDatumKrola_Validating);
             this.dateTimeDatumKrola.Validated += new System.EventHandler(this.dateTimeDatumKrola_Validated);
@@ -76,7 +78,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(11, 104);
+            this.label2.Location = new System.Drawing.Point(24, 107);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(46, 17);
             this.label2.TabIndex = 5;
@@ -86,10 +88,10 @@
             // 
             this.txtIzvrsilacKrola.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtIzvrsilacKrola.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtIzvrsilacKrola.Location = new System.Drawing.Point(92, 67);
+            this.txtIzvrsilacKrola.Location = new System.Drawing.Point(89, 70);
             this.txtIzvrsilacKrola.MaxLength = 50;
             this.txtIzvrsilacKrola.Name = "txtIzvrsilacKrola";
-            this.txtIzvrsilacKrola.Size = new System.Drawing.Size(347, 25);
+            this.txtIzvrsilacKrola.Size = new System.Drawing.Size(330, 25);
             this.txtIzvrsilacKrola.TabIndex = 1;
             this.txtIzvrsilacKrola.Validating += new System.ComponentModel.CancelEventHandler(this.txtIzvrsilacKrola_Validating);
             this.txtIzvrsilacKrola.Validated += new System.EventHandler(this.txtIzvrsilacKrola_Validated);
@@ -99,7 +101,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(11, 70);
+            this.label3.Location = new System.Drawing.Point(24, 73);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(53, 17);
             this.label3.TabIndex = 4;
@@ -109,9 +111,9 @@
             // 
             this.btnStartKrol.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStartKrol.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.btnStartKrol.Location = new System.Drawing.Point(876, 114);
+            this.btnStartKrol.Location = new System.Drawing.Point(876, 51);
             this.btnStartKrol.Name = "btnStartKrol";
-            this.btnStartKrol.Size = new System.Drawing.Size(229, 37);
+            this.btnStartKrol.Size = new System.Drawing.Size(229, 56);
             this.btnStartKrol.TabIndex = 5;
             this.btnStartKrol.Text = "POKRENI KROL";
             this.btnStartKrol.UseVisualStyleBackColor = true;
@@ -125,7 +127,7 @@
             this.listBoxProizvodi.Location = new System.Drawing.Point(31, 207);
             this.listBoxProizvodi.Name = "listBoxProizvodi";
             this.listBoxProizvodi.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.listBoxProizvodi.Size = new System.Drawing.Size(285, 325);
+            this.listBoxProizvodi.Size = new System.Drawing.Size(285, 359);
             this.listBoxProizvodi.TabIndex = 2;
             // 
             // listBoxProdavci
@@ -136,12 +138,12 @@
             this.listBoxProdavci.Location = new System.Drawing.Point(328, 207);
             this.listBoxProdavci.Name = "listBoxProdavci";
             this.listBoxProdavci.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.listBoxProdavci.Size = new System.Drawing.Size(285, 325);
+            this.listBoxProdavci.Size = new System.Drawing.Size(285, 359);
             this.listBoxProdavci.TabIndex = 4;
             // 
             // txtKrolId
             // 
-            this.txtKrolId.Location = new System.Drawing.Point(481, 549);
+            this.txtKrolId.Location = new System.Drawing.Point(781, 626);
             this.txtKrolId.Name = "txtKrolId";
             this.txtKrolId.Size = new System.Drawing.Size(45, 25);
             this.txtKrolId.TabIndex = 9;
@@ -149,7 +151,7 @@
             // 
             // progressKrol
             // 
-            this.progressKrol.Location = new System.Drawing.Point(31, 598);
+            this.progressKrol.Location = new System.Drawing.Point(31, 632);
             this.progressKrol.Name = "progressKrol";
             this.progressKrol.Size = new System.Drawing.Size(582, 7);
             this.progressKrol.TabIndex = 8;
@@ -180,7 +182,7 @@
             // 
             // btnStopKrol
             // 
-            this.btnStopKrol.Location = new System.Drawing.Point(532, 542);
+            this.btnStopKrol.Location = new System.Drawing.Point(654, 619);
             this.btnStopKrol.Name = "btnStopKrol";
             this.btnStopKrol.Size = new System.Drawing.Size(121, 37);
             this.btnStopKrol.TabIndex = 10;
@@ -192,7 +194,7 @@
             // lblKompletirano
             // 
             this.lblKompletirano.AutoSize = true;
-            this.lblKompletirano.Location = new System.Drawing.Point(28, 578);
+            this.lblKompletirano.Location = new System.Drawing.Point(28, 612);
             this.lblKompletirano.Name = "lblKompletirano";
             this.lblKompletirano.Size = new System.Drawing.Size(87, 17);
             this.lblKompletirano.TabIndex = 7;
@@ -235,7 +237,7 @@
             this.lstViewRezultat.Margin = new System.Windows.Forms.Padding(5);
             this.lstViewRezultat.MultiSelect = false;
             this.lstViewRezultat.Name = "lstViewRezultat";
-            this.lstViewRezultat.Size = new System.Drawing.Size(480, 325);
+            this.lstViewRezultat.Size = new System.Drawing.Size(480, 359);
             this.lstViewRezultat.TabIndex = 15;
             this.lstViewRezultat.UseCompatibleStateImageBehavior = false;
             this.lstViewRezultat.View = System.Windows.Forms.View.Details;
@@ -271,7 +273,7 @@
             // btnSnimi
             // 
             this.btnSnimi.Enabled = false;
-            this.btnSnimi.Location = new System.Drawing.Point(1006, 585);
+            this.btnSnimi.Location = new System.Drawing.Point(1006, 619);
             this.btnSnimi.Name = "btnSnimi";
             this.btnSnimi.Size = new System.Drawing.Size(121, 37);
             this.btnSnimi.TabIndex = 6;
@@ -281,11 +283,11 @@
             // 
             // btnOdustani
             // 
-            this.btnOdustani.Location = new System.Drawing.Point(879, 585);
+            this.btnOdustani.Location = new System.Drawing.Point(879, 619);
             this.btnOdustani.Name = "btnOdustani";
             this.btnOdustani.Size = new System.Drawing.Size(121, 37);
             this.btnOdustani.TabIndex = 16;
-            this.btnOdustani.Text = "Odustani";
+            this.btnOdustani.Text = "Zatvori";
             this.btnOdustani.UseVisualStyleBackColor = true;
             this.btnOdustani.Click += new System.EventHandler(this.btnOdustani_Click);
             // 
@@ -293,10 +295,10 @@
             // 
             this.txtNAzivKrola.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtNAzivKrola.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNAzivKrola.Location = new System.Drawing.Point(92, 36);
+            this.txtNAzivKrola.Location = new System.Drawing.Point(89, 39);
             this.txtNAzivKrola.MaxLength = 50;
             this.txtNAzivKrola.Name = "txtNAzivKrola";
-            this.txtNAzivKrola.Size = new System.Drawing.Size(347, 25);
+            this.txtNAzivKrola.Size = new System.Drawing.Size(330, 25);
             this.txtNAzivKrola.TabIndex = 0;
             this.txtNAzivKrola.Validating += new System.ComponentModel.CancelEventHandler(this.txtNAzivKrola_Validating);
             this.txtNAzivKrola.Validated += new System.EventHandler(this.txtNAzivKrola_Validated);
@@ -306,7 +308,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Black;
-            this.label7.Location = new System.Drawing.Point(11, 36);
+            this.label7.Location = new System.Drawing.Point(24, 39);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(40, 17);
             this.label7.TabIndex = 3;
@@ -328,7 +330,7 @@
             this.groupBox1.Size = new System.Drawing.Size(596, 139);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "NOVI KROL";
+            this.groupBox1.Text = "NOVI KROL ePonuda";
             // 
             // lblSacekajte
             // 
@@ -348,11 +350,22 @@
             // 
             this.errProviderNoviKrol.ContainerControl = this;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::WebCene.UI.Properties.Resources.logoEponuda;
+            this.pictureBox1.Location = new System.Drawing.Point(876, 131);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(173, 50);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox1.TabIndex = 17;
+            this.pictureBox1.TabStop = false;
+            // 
             // frmStartKrol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1139, 634);
+            this.ClientSize = new System.Drawing.Size(1139, 668);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblSacekajte);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnOdustani);
@@ -381,6 +394,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errProviderNoviKrol)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -414,5 +428,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label lblSacekajte;
         private System.Windows.Forms.ErrorProvider errProviderNoviKrol;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

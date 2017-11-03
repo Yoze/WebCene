@@ -41,9 +41,10 @@
             this.listaProdavacaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.krolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.noviKrolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.prethodniKroloviToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.proširenaListaKrolovaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripGrouped = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripCrosstab = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -94,14 +95,14 @@
             // noviProizvodToolStripMenuItem
             // 
             this.noviProizvodToolStripMenuItem.Name = "noviProizvodToolStripMenuItem";
-            this.noviProizvodToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.noviProizvodToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.noviProizvodToolStripMenuItem.Text = "Novi artikal";
             this.noviProizvodToolStripMenuItem.Click += new System.EventHandler(this.noviProizvodToolStripMenuItem_Click);
             // 
             // listaProizvodaToolStripMenuItem
             // 
             this.listaProizvodaToolStripMenuItem.Name = "listaProizvodaToolStripMenuItem";
-            this.listaProizvodaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.listaProizvodaToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.listaProizvodaToolStripMenuItem.Text = "Lista artikala";
             this.listaProizvodaToolStripMenuItem.Click += new System.EventHandler(this.listaProizvodaToolStripMenuItem_Click);
             // 
@@ -133,37 +134,53 @@
             this.krolToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.noviKrolToolStripMenuItem,
             this.toolStripSeparator2,
-            this.prethodniKroloviToolStripMenuItem,
-            this.proširenaListaKrolovaToolStripMenuItem});
+            this.toolStripTextBox1,
+            this.toolStripGrouped,
+            this.toolStripCrosstab});
+            this.krolToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.krolToolStripMenuItem.Name = "krolToolStripMenuItem";
             this.krolToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
             this.krolToolStripMenuItem.Text = "Krol";
             // 
             // noviKrolToolStripMenuItem
             // 
+            this.noviKrolToolStripMenuItem.ForeColor = System.Drawing.Color.MediumSlateBlue;
             this.noviKrolToolStripMenuItem.Name = "noviKrolToolStripMenuItem";
-            this.noviKrolToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
+            this.noviKrolToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.noviKrolToolStripMenuItem.Text = "Novi krol";
             this.noviKrolToolStripMenuItem.Click += new System.EventHandler(this.noviKrolToolStripMenuItem_Click);
-            // 
-            // prethodniKroloviToolStripMenuItem
-            // 
-            this.prethodniKroloviToolStripMenuItem.Name = "prethodniKroloviToolStripMenuItem";
-            this.prethodniKroloviToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
-            this.prethodniKroloviToolStripMenuItem.Text = "Lista krolova";
-            this.prethodniKroloviToolStripMenuItem.Click += new System.EventHandler(this.prethodniKroloviToolStripMenuItem_Click);
-            // 
-            // proširenaListaKrolovaToolStripMenuItem
-            // 
-            this.proširenaListaKrolovaToolStripMenuItem.Name = "proširenaListaKrolovaToolStripMenuItem";
-            this.proširenaListaKrolovaToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
-            this.proširenaListaKrolovaToolStripMenuItem.Text = "Proširena lista krolova";
-            this.proširenaListaKrolovaToolStripMenuItem.Click += new System.EventHandler(this.proširenaListaKrolovaToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(202, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(187, 6);
+            // 
+            // toolStripTextBox1
+            // 
+            this.toolStripTextBox1.AutoSize = false;
+            this.toolStripTextBox1.BackColor = System.Drawing.Color.White;
+            this.toolStripTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.toolStripTextBox1.Enabled = false;
+            this.toolStripTextBox1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripTextBox1.Name = "toolStripTextBox1";
+            this.toolStripTextBox1.Padding = new System.Windows.Forms.Padding(2);
+            this.toolStripTextBox1.ReadOnly = true;
+            this.toolStripTextBox1.Size = new System.Drawing.Size(130, 18);
+            this.toolStripTextBox1.Text = "Liste krolova";
+            // 
+            // toolStripGrouped
+            // 
+            this.toolStripGrouped.Name = "toolStripGrouped";
+            this.toolStripGrouped.Size = new System.Drawing.Size(190, 22);
+            this.toolStripGrouped.Text = "Grupisana LISTA";
+            this.toolStripGrouped.Click += new System.EventHandler(this.toolStripGrouped_Click);
+            // 
+            // toolStripCrosstab
+            // 
+            this.toolStripCrosstab.Name = "toolStripCrosstab";
+            this.toolStripCrosstab.Size = new System.Drawing.Size(190, 22);
+            this.toolStripCrosstab.Text = "Crosstab LISTA";
+            this.toolStripCrosstab.Click += new System.EventHandler(this.toolStripCrosstab_Click);
             // 
             // frmMainWindow
             // 
@@ -174,7 +191,7 @@
             this.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmMainWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Web Crawler";
@@ -200,9 +217,10 @@
         private System.Windows.Forms.ToolStripMenuItem listaProdavacaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem krolToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem noviKrolToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem prethodniKroloviToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripMenuItem proširenaListaKrolovaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripGrouped;
+        private System.Windows.Forms.ToolStripMenuItem toolStripCrosstab;
     }
 }
 

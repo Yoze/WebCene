@@ -344,9 +344,9 @@ namespace WebCene.UI
                             tableRow.SelectSingleNode("td/b").InnerHtml;
 
 
-                        if (ListaOdabranihProdavacaZaKrol.Exists(e => e.SMId.Equals(prodavac)))
+                        if (ListaOdabranihProdavacaZaKrol.Exists(e => e.EponudaId.Equals(prodavac)))
                         {
-                            int prodavacId = ListaOdabranihProdavacaZaKrol.Find(p => p.SMId.Equals(prodavac)).Id;
+                            int prodavacId = ListaOdabranihProdavacaZaKrol.Find(p => p.EponudaId.Equals(prodavac)).Id;
 
                             KrolStavke krolStavka = new KrolStavke()
                             {

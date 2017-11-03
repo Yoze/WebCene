@@ -55,13 +55,16 @@ namespace WebCene.UI
             dgvListaProdavaca.Columns["Id"].Visible = false;
 
             dgvListaProdavaca.Columns["NazivProdavca"].Visible = true;
+            dgvListaProdavaca.Columns["NazivProdavca"].HeaderText = "Naziv";
             dgvListaProdavaca.Columns["NazivProdavca"].Width = 250;
 
             dgvListaProdavaca.Columns["SajtProdavca"].Visible = true;
+            dgvListaProdavaca.Columns["SajtProdavca"].HeaderText = "Sajt prodavca";
             dgvListaProdavaca.Columns["SajtProdavca"].Width = 250;
 
-            dgvListaProdavaca.Columns["SMId"].Visible = true;
-            dgvListaProdavaca.Columns["SajtProdavca"].Width = 250;
+            dgvListaProdavaca.Columns["EponudaId"].Visible = true;
+            dgvListaProdavaca.Columns["EponudaId"].HeaderText = "ePonuda Id";
+            dgvListaProdavaca.Columns["EponudaId"].Width = 130;
 
             dgvListaProdavaca.Columns["KrolStavke"].Visible = false;
 

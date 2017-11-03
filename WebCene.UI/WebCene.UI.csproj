@@ -87,12 +87,6 @@
     <Compile Include="frmMainWindow.Designer.cs">
       <DependentUpon>frmMainWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmMolimSacekajte.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmMolimSacekajte.Designer.cs">
-      <DependentUpon>frmMolimSacekajte.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmProdavci.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -137,9 +131,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmMainWindow.resx">
       <DependentUpon>frmMainWindow.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmMolimSacekajte.resx">
-      <DependentUpon>frmMolimSacekajte.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmProdavci.resx">
       <DependentUpon>frmProdavci.cs</DependentUpon>
@@ -192,6 +183,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\google_web_search-26.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logoEponuda.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -33,7 +33,7 @@
             this.txtId = new System.Windows.Forms.TextBox();
             this.txtNazivProdavca = new System.Windows.Forms.TextBox();
             this.txtSajt = new System.Windows.Forms.TextBox();
-            this.txtSMId = new System.Windows.Forms.TextBox();
+            this.txtEponudaId = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -82,16 +82,16 @@
             this.txtSajt.Size = new System.Drawing.Size(270, 25);
             this.txtSajt.TabIndex = 4;
             // 
-            // txtSMId
+            // txtEponudaId
             // 
-            this.txtSMId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtSMId.Location = new System.Drawing.Point(120, 98);
-            this.txtSMId.MaxLength = 20;
-            this.txtSMId.Name = "txtSMId";
-            this.txtSMId.Size = new System.Drawing.Size(270, 25);
-            this.txtSMId.TabIndex = 5;
-            this.txtSMId.Validating += new System.ComponentModel.CancelEventHandler(this.txtSMId_Validating);
-            this.txtSMId.Validated += new System.EventHandler(this.txtSMId_Validated);
+            this.txtEponudaId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtEponudaId.Location = new System.Drawing.Point(120, 98);
+            this.txtEponudaId.MaxLength = 20;
+            this.txtEponudaId.Name = "txtEponudaId";
+            this.txtEponudaId.Size = new System.Drawing.Size(270, 25);
+            this.txtEponudaId.TabIndex = 5;
+            this.txtEponudaId.Validating += new System.ComponentModel.CancelEventHandler(this.txtSMId_Validating);
+            this.txtEponudaId.Validated += new System.EventHandler(this.txtSMId_Validated);
             // 
             // label2
             // 
@@ -135,7 +135,7 @@
             this.groupBox1.Controls.Add(this.txtSajt);
             this.groupBox1.Controls.Add(this.txtNazivProdavca);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.txtSMId);
+            this.groupBox1.Controls.Add(this.txtEponudaId);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Location = new System.Drawing.Point(16, 53);
@@ -181,7 +181,7 @@
         private System.Windows.Forms.TextBox txtId;
         private System.Windows.Forms.TextBox txtNazivProdavca;
         private System.Windows.Forms.TextBox txtSajt;
-        private System.Windows.Forms.TextBox txtSMId;
+        private System.Windows.Forms.TextBox txtEponudaId;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
