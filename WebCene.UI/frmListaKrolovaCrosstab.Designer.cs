@@ -40,12 +40,15 @@
             this.label5 = new System.Windows.Forms.Label();
             this.lblDetaljPoruka = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.lblNazivKrola = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.lblKrolGlavaPoruka = new System.Windows.Forms.Label();
             this.lstViewKrolGlava = new System.Windows.Forms.ListView();
             this.colDatum = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colNaziv = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colIzvrsilac = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.KrolGlavaContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripObrisiKrol = new System.Windows.Forms.ToolStripMenuItem();
             this.linkResetFilter = new System.Windows.Forms.LinkLabel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.picFilter = new System.Windows.Forms.PictureBox();
@@ -53,15 +56,13 @@
             this.btnOdustani = new System.Windows.Forms.Button();
             this.btnNoviKrol = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.KrolGlavaContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripObrisiKrol = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgViewKrolDetalj)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.KrolGlavaContextMenu.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picFilter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.KrolGlavaContextMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // comboKategorije
@@ -139,7 +140,7 @@
             // btnFilter
             // 
             this.btnFilter.Enabled = false;
-            this.btnFilter.Location = new System.Drawing.Point(535, 52);
+            this.btnFilter.Location = new System.Drawing.Point(612, 52);
             this.btnFilter.Name = "btnFilter";
             this.btnFilter.Size = new System.Drawing.Size(83, 25);
             this.btnFilter.TabIndex = 6;
@@ -187,6 +188,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.lblNazivKrola);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.lblKrolGlavaPoruka);
             this.groupBox2.Controls.Add(this.lstViewKrolGlava);
@@ -196,6 +198,20 @@
             this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Krol";
+            // 
+            // lblNazivKrola
+            // 
+            this.lblNazivKrola.AutoSize = true;
+            this.lblNazivKrola.BackColor = System.Drawing.Color.Gray;
+            this.lblNazivKrola.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNazivKrola.ForeColor = System.Drawing.Color.White;
+            this.lblNazivKrola.Location = new System.Drawing.Point(12, 22);
+            this.lblNazivKrola.Name = "lblNazivKrola";
+            this.lblNazivKrola.Padding = new System.Windows.Forms.Padding(2);
+            this.lblNazivKrola.Size = new System.Drawing.Size(47, 21);
+            this.lblNazivKrola.TabIndex = 22;
+            this.lblNazivKrola.Text = "label7";
+            this.lblNazivKrola.Visible = false;
             // 
             // label4
             // 
@@ -231,11 +247,11 @@
             this.lstViewKrolGlava.ContextMenuStrip = this.KrolGlavaContextMenu;
             this.lstViewKrolGlava.FullRowSelect = true;
             this.lstViewKrolGlava.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.lstViewKrolGlava.Location = new System.Drawing.Point(13, 31);
+            this.lstViewKrolGlava.Location = new System.Drawing.Point(12, 52);
             this.lstViewKrolGlava.Margin = new System.Windows.Forms.Padding(10);
             this.lstViewKrolGlava.MultiSelect = false;
             this.lstViewKrolGlava.Name = "lstViewKrolGlava";
-            this.lstViewKrolGlava.Size = new System.Drawing.Size(337, 427);
+            this.lstViewKrolGlava.Size = new System.Drawing.Size(337, 406);
             this.lstViewKrolGlava.TabIndex = 0;
             this.lstViewKrolGlava.UseCompatibleStateImageBehavior = false;
             this.lstViewKrolGlava.View = System.Windows.Forms.View.Details;
@@ -256,16 +272,32 @@
             this.colIzvrsilac.Text = "Izvršilac";
             this.colIzvrsilac.Width = 120;
             // 
+            // KrolGlavaContextMenu
+            // 
+            this.KrolGlavaContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripObrisiKrol});
+            this.KrolGlavaContextMenu.Name = "KrolGlavaContextMenu";
+            this.KrolGlavaContextMenu.Size = new System.Drawing.Size(129, 26);
+            // 
+            // toolStripObrisiKrol
+            // 
+            this.toolStripObrisiKrol.ForeColor = System.Drawing.Color.Red;
+            this.toolStripObrisiKrol.Image = global::WebCene.UI.Properties.Resources.delete_26;
+            this.toolStripObrisiKrol.Name = "toolStripObrisiKrol";
+            this.toolStripObrisiKrol.Size = new System.Drawing.Size(128, 22);
+            this.toolStripObrisiKrol.Text = "Obriši krol";
+            this.toolStripObrisiKrol.Click += new System.EventHandler(this.toolStripObrisiKrol_Click);
+            // 
             // linkResetFilter
             // 
             this.linkResetFilter.AutoSize = true;
             this.linkResetFilter.Enabled = false;
-            this.linkResetFilter.Location = new System.Drawing.Point(633, 55);
+            this.linkResetFilter.Location = new System.Drawing.Point(530, 56);
             this.linkResetFilter.Name = "linkResetFilter";
-            this.linkResetFilter.Size = new System.Drawing.Size(46, 17);
+            this.linkResetFilter.Size = new System.Drawing.Size(76, 17);
             this.linkResetFilter.TabIndex = 9;
             this.linkResetFilter.TabStop = true;
-            this.linkResetFilter.Text = "Poništi";
+            this.linkResetFilter.Text = "Poništi filter";
             this.linkResetFilter.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkResetFilter_LinkClicked);
             // 
             // groupBox3
@@ -339,22 +371,6 @@
             this.pictureBox1.TabIndex = 21;
             this.pictureBox1.TabStop = false;
             // 
-            // KrolGlavaContextMenu
-            // 
-            this.KrolGlavaContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripObrisiKrol});
-            this.KrolGlavaContextMenu.Name = "KrolGlavaContextMenu";
-            this.KrolGlavaContextMenu.Size = new System.Drawing.Size(129, 26);
-            // 
-            // toolStripObrisiKrol
-            // 
-            this.toolStripObrisiKrol.ForeColor = System.Drawing.Color.Red;
-            this.toolStripObrisiKrol.Image = global::WebCene.UI.Properties.Resources.delete_26;
-            this.toolStripObrisiKrol.Name = "toolStripObrisiKrol";
-            this.toolStripObrisiKrol.Size = new System.Drawing.Size(152, 22);
-            this.toolStripObrisiKrol.Text = "Obriši krol";
-            this.toolStripObrisiKrol.Click += new System.EventHandler(this.toolStripObrisiKrol_Click);
-            // 
             // frmListaKrolovaCrosstab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -381,11 +397,11 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.KrolGlavaContextMenu.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picFilter)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.KrolGlavaContextMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -419,5 +435,6 @@
         private System.Windows.Forms.PictureBox picFilter;
         private System.Windows.Forms.ContextMenuStrip KrolGlavaContextMenu;
         private System.Windows.Forms.ToolStripMenuItem toolStripObrisiKrol;
+        private System.Windows.Forms.Label lblNazivKrola;
     }
 }

@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using WebCene.Model;
 using HtmlAgilityPack;
 using System.Net;
+using System.Collections.ObjectModel;
 
 namespace WebCene.UI
 {
@@ -20,6 +21,7 @@ namespace WebCene.UI
         public List<Prodavci> ListaProdavaca { get; set; }
 
         // lista proizvoda za krolovanje
+        //private List<Proizvod> ListaOdabranihProizvodaZaKrol { get; set; }
         private List<Proizvod> ListaOdabranihProizvodaZaKrol { get; set; }
         // lista prodavaca za krolovanje
         private List<Prodavci> ListaOdabranihProdavacaZaKrol { get; set; }
@@ -39,11 +41,24 @@ namespace WebCene.UI
         // prekidač za BackgroundWorker _bw
         private bool cancelWorker;
 
+        // comboboxovi za filter
+        private List<KATARTIK> ListaKategorija { get; set; }
+        private List<BRAND> ListaBrendova { get; set; }
+
+        // odabrane vrednosti comboboxa
+        private string odabraniBrend { get; set; }
+        private string odabranaKategorija { get; set; }
+
+        // lista proizvoda rezultat filtera
+        private List<Proizvod> FilteredListaProizvoda { get; set; }
+
+        // lista artikala za krol binding source
+        BindingSource ArtikliZaKrolBindingSrc { get; set; }
+
 
         public frmStartKrol()
         {
             InitializeComponent();
-
 
             // sprečava implicitnu validaciju kontrole kada izgubi fokus
             AutoValidate = System.Windows.Forms.AutoValidate.Disable;
@@ -60,11 +75,23 @@ namespace WebCene.UI
             _bw.ProgressChanged += _bw_ProgressChanged;
             _bw.RunWorkerCompleted += _bw_RunWorkerCompleted;
 
+            // lista proizvoda
+            PuniListuProizvoda();
+            FiltrirajListuArtikala(null, null);
+
+            // init lista odabranih artikala za krol
+            ListaOdabranihProizvodaZaKrol = new List<Proizvod>();
+            PrikaziListuOdabranihArtikalaZaKrol();
+
+            // lista prodavaca
             PuniListuProdavaca();
             PrikaziListuProdavaca();
 
-            PuniListuProizvoda();
-            PrikaziListuProizvoda();
+            // combor filteri
+            NapuniListeZaCombo();
+            UcitajComboKategorije();
+            UcitajComboBrendovi();
+
         }
 
 
@@ -93,6 +120,15 @@ namespace WebCene.UI
                 btnOdustani.Enabled = true;
                 listBoxProizvodi.Enabled = true;
                 listBoxProdavci.Enabled = true;
+                listBoxArtikliZaKrol.Enabled = true;
+
+                comboBrendovi.Enabled = true;
+                comboKategorije.Enabled = true;
+                btnFilter.Enabled = true;
+                checkSviProdavci.Enabled = true;
+                checkSviProizvodi.Enabled = true;
+                linkPonisti.Enabled = true;
+
                 groupBoxZaglavlje.Enabled = true;
 
                 btnStopKrol.Visible = false;
@@ -124,6 +160,54 @@ namespace WebCene.UI
         #endregion
 
 
+        #region ComboBox Filteri
+
+        private void NapuniListeZaCombo()
+        {
+            try
+            {
+                using (ELBSModel db = new ELBSModel())
+                {
+                    ListaKategorija = new List<KATARTIK>();
+                    ListaKategorija = db.KATARTIK
+                        .OrderBy(k => k.KAT2)
+                        .ToList();
+
+                    ListaBrendova = new List<BRAND>();
+                    ListaBrendova = db.BRAND
+                        .OrderBy(b => b.PROIZVODJAC)
+                        .ToList();
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Greška pri učitavanju podataka za combo.", "Greška");
+            }
+        }
+
+        private void UcitajComboKategorije()
+        {
+            comboKategorije.DataSource = ListaKategorija;
+            comboKategorije.ValueMember = "SHKAT";
+            comboKategorije.DisplayMember = "KAT2";
+            comboKategorije.SelectedIndex = -1;
+
+        }
+
+        private void UcitajComboBrendovi()
+        {
+            comboBrendovi.DataSource = ListaBrendova;
+            comboBrendovi.ValueMember = "PROIZVODJAC";
+            comboBrendovi.DisplayMember = "PROIZVODJAC";
+            comboBrendovi.SelectedIndex = -1;
+        }
+
+
+
+        #endregion
+
+
+
         private void btnStartKrol_Click(object sender, EventArgs e)
         {
             lblKompletirano.Text = string.Empty;
@@ -147,6 +231,15 @@ namespace WebCene.UI
                 btnOdustani.Enabled = false;
                 listBoxProizvodi.Enabled = false;
                 listBoxProdavci.Enabled = false;
+                listBoxArtikliZaKrol.Enabled = false;
+
+                comboBrendovi.Enabled = false;
+                comboKategorije.Enabled = false;
+                btnFilter.Enabled = false;
+                checkSviProdavci.Enabled = false;
+                checkSviProizvodi.Enabled = false;
+                linkPonisti.Enabled = false;
+
                 groupBoxZaglavlje.Enabled = false;
 
                 progressKrol.Value = 0;
@@ -177,7 +270,7 @@ namespace WebCene.UI
                     if(cancelWorker)
                     {
                         _bw.CancelAsync();
-                        MessageBox.Show("Uspešno ste prrekinuli tekući krol.", "Krol");                        
+                        MessageBox.Show("Tekući krol je stopiran.", "Krol");                        
                         return;
                     }
                     else
@@ -419,30 +512,41 @@ namespace WebCene.UI
 
         private bool KreirajListeZaKrol()
         {
-            if (listBoxProizvodi.SelectedItems.Count > 0 && listBoxProdavci.SelectedItems.Count > 0)
+            int countListaZaKrol = ListaOdabranihProizvodaZaKrol.Count;
+
+            if (countListaZaKrol > 0 && listBoxProdavci.SelectedItems.Count > 0)
             {
-                KreirajListuProdavacaZaKrol();
-                KreirajListuProizvodaZaKrol();
+                KreirajListuProdavacaZaKrol();                
             }
-            if (listBoxProizvodi.SelectedItems.Count == 0 || listBoxProdavci.SelectedItems.Count == 0)
+            if (countListaZaKrol == 0 || listBoxProdavci.SelectedItems.Count == 0)
             {
-                MessageBox.Show("Označi proizvode/prodavce za krol!", "Selekcija");
+                MessageBox.Show("Dodaj artikle i označi prodavce za krol!", "Selekcija");
                 return false;
             }
             return true;
         }
 
 
-        private void KreirajListuProizvodaZaKrol()
+     
+
+
+        private void DodajArtikalListiZaKrol()
         {
             // Proizvodi
-            ListaOdabranihProizvodaZaKrol = new List<Proizvod>();
+            List<Proizvod> tempListaOdabranihProizvodaZaKrol = new List<Proizvod>();
 
             foreach (var item in listBoxProizvodi.SelectedItems)
             {
                 Proizvod oznaceniProizvod = (Proizvod)item;
                 ListaOdabranihProizvodaZaKrol.Add(oznaceniProizvod);
             }
+
+            // samo unikatni artikli idu u listu za krol
+            tempListaOdabranihProizvodaZaKrol =
+                ListaOdabranihProizvodaZaKrol.Distinct().ToList();
+
+            ListaOdabranihProizvodaZaKrol.Clear();
+            ListaOdabranihProizvodaZaKrol.AddRange(tempListaOdabranihProizvodaZaKrol);
         }
 
 
@@ -456,8 +560,25 @@ namespace WebCene.UI
                 Prodavci oznaceniProdavac = (Prodavci)item;
                 ListaOdabranihProdavacaZaKrol.Add(oznaceniProdavac);
             }
+            PrikaziListuOdabranihArtikalaZaKrol();
         }
 
+
+        private void BrisiOdabraneArtZaKrol()
+        {
+            if (listBoxArtikliZaKrol.SelectedItems.Count == 0)
+            {
+                return;
+            }
+            else
+            {
+                foreach (var item in listBoxArtikliZaKrol.SelectedItems)
+                {
+                    Proizvod oznaceniProizvod = (Proizvod)item;
+                    ListaOdabranihProizvodaZaKrol.Remove(oznaceniProizvod);
+                }
+            }
+        }
 
         private void PuniListuProdavaca()
         {
@@ -483,14 +604,25 @@ namespace WebCene.UI
             listBoxProdavci.ValueMember = "Id";
         }
 
-        private void PrikaziListuProizvoda()
+        private void PrikaziListuProizvoda(List<Proizvod> _listaProizvoda)
         {
-            listBoxProizvodi.DataSource = ListaProizvoda;
+            listBoxProizvodi.DataSource = _listaProizvoda;
             listBoxProizvodi.DisplayMember = "Naziv";
             listBoxProizvodi.ValueMember = "Id";
         }
 
+        private void PrikaziListuOdabranihArtikalaZaKrol()
+        {
+            BindingList<Proizvod> listaArtikalaZaKrol = new BindingList<Proizvod>(ListaOdabranihProizvodaZaKrol);
+            ArtikliZaKrolBindingSrc = new BindingSource(listaArtikalaZaKrol, null);
 
+            listBoxArtikliZaKrol.DataSource = ArtikliZaKrolBindingSrc;
+            listBoxArtikliZaKrol.DisplayMember = "Naziv";
+            listBoxArtikliZaKrol.ValueMember = "Id";
+
+            lblOdabraniArt.Text =
+                "Odabrani artikli (" + ListaOdabranihProizvodaZaKrol.Count + ")";
+        }
 
         private void btnStopKrol_Click(object sender, EventArgs e)
         {
@@ -501,7 +633,7 @@ namespace WebCene.UI
         private static int GetRandomTimerInterval()
         {
             Random rnd = new Random();
-            int _rnd = rnd.Next(1000, 3500); // miliseconds           
+            int _rnd = rnd.Next(1250, 3550); // miliseconds           
 
             return _rnd;
         }
@@ -747,6 +879,129 @@ namespace WebCene.UI
         {
             errProviderNoviKrol.SetError(dateTimeDatumKrola, string.Empty);
         }
+
+        private void btnFilter_Click(object sender, EventArgs e)
+        {
+            odabranaKategorija =
+                (string)comboKategorije.SelectedValue;
+
+            odabraniBrend =
+                (string)comboBrendovi.SelectedValue;
+
+            if (comboBrendovi.SelectedIndex == -1 && comboKategorije.SelectedIndex == -1)
+                picFilter.Visible = false;
+            else
+                picFilter.Visible = true;
+
+            FiltrirajListuArtikala(odabranaKategorija, odabraniBrend);
+        }
+
+
+        private void FiltrirajListuArtikala(string _ElKat, string _Brend)
+        {
+            // ispitivanje parametara radi kreiranja sql upita
+            string linqParametri = string.Empty;
+
+            // obaNull
+            if (string.IsNullOrEmpty(_ElKat) && string.IsNullOrEmpty(_Brend)) linqParametri = "obaNull";
+
+            // KatNullBrendNotNull
+            if (string.IsNullOrEmpty(_ElKat) && !(string.IsNullOrEmpty(_Brend))) linqParametri = "KatNullBrendNotNull";
+
+            // KatNotNullBrendNull
+            if (!(string.IsNullOrEmpty(_ElKat)) && string.IsNullOrEmpty(_Brend)) linqParametri = "KatNotNullBrendNull";
+
+            // obaNotNull
+            if (!(string.IsNullOrEmpty(_ElKat)) && !(string.IsNullOrEmpty(_Brend))) linqParametri = "obaNotNull";
+
+
+            FilteredListaProizvoda = new List<Proizvod>();
+
+            switch (linqParametri)
+            {
+                case "obaNull":
+                    {
+                        FilteredListaProizvoda = ListaProizvoda;
+                        break;
+                    }
+
+                case "KatNullBrendNotNull":
+                    {
+                        string _brendTrimmed = _Brend.TrimEnd();
+
+                        var tempLista = ListaProizvoda
+                            .Where(x => x.Brend.Equals(_brendTrimmed))
+                            .ToList();
+
+                        FilteredListaProizvoda = tempLista;
+                        break;
+                    }
+
+                case "KatNotNullBrendNull":
+                    {
+                        string _katTrimmed = _ElKat.TrimEnd();
+
+                        var tempLista = ListaProizvoda
+                            .Where(x => x.ElKat.Equals(_katTrimmed))
+                            .ToList();
+
+                        FilteredListaProizvoda = tempLista;
+                        break;
+                    }
+
+                case "obaNotNull":
+                    {
+                        string _brendTrimmed = _Brend.TrimEnd();
+                        string _katTrimmed = _ElKat.TrimEnd();
+
+                        var tempLista = ListaProizvoda
+                            .Where(k => k.ElKat.Equals(_katTrimmed))
+                            .Where(b => b.Brend.Equals(_brendTrimmed))
+                            .ToList();
+
+                        FilteredListaProizvoda = tempLista;
+                        break;
+                    }
+
+                default:
+                    break;
+            }
+            PrikaziListuProizvoda(FilteredListaProizvoda);
+        }
+
+        private void linkPonisti_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            PonistiFilter();
+            PrikaziListuProizvoda(ListaProizvoda);
+        }
+
+        private void PonistiFilter()
+        {
+            comboBrendovi.SelectedIndex = -1;
+            comboKategorije.SelectedIndex = -1;
+
+            picFilter.Visible = false;
+        }
+
+        private void contextMenuDodajZaKrol_Click(object sender, EventArgs e)
+        {
+            DodajArtikalListiZaKrol();
+            PrikaziListuOdabranihArtikalaZaKrol();
+        }
+
+        private void contextOdabraniArtObrisiSve_Click(object sender, EventArgs e)
+        {
+            ListaOdabranihProizvodaZaKrol.Clear();
+            PrikaziListuOdabranihArtikalaZaKrol(); 
+        }
+
+        private void contextOdabraniArtObrisiStavku_Click(object sender, EventArgs e)
+        {
+            BrisiOdabraneArtZaKrol();
+            PrikaziListuOdabranihArtikalaZaKrol();
+        }
+
+       
     }
 
 

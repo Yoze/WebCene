@@ -239,41 +239,8 @@ namespace WebCene.UI
                     }
                     
                 }
-
-
-
-                //if (!(string.IsNullOrEmpty(_ElKat)) || !(string.IsNullOrEmpty(_Brend)))
-                //{
-                //    string _BrendTrimmed = _Brend.TrimEnd();
-                //    string _ElKatTrimmed = _ElKat.TrimEnd();
-
-                //    filteredKrolStavkeDataTable = new DataTable();
-
-                //    string connString = ConfigurationManager.ConnectionStrings["WebCeneADOConn"].ConnectionString;
-
-                //    using (SqlConnection connMSSQLPlus = new SqlConnection(connString))
-                //    {
-                //        try
-                //        {
-                //            SqlDataAdapter da =
-                //                new SqlDataAdapter("SELECT KrolGLId, Naziv, NazivProdavca, Cena, ElKat, Brend FROM viewKrolStavke WHERE KrolGLId ='"
-                //                + OdabraniKrolGlavaId
-                //                + " AND ElKat ='" + _ElKatTrimmed + "' AND Brend='" + _BrendTrimmed + "'", connMSSQLPlus);
-
-                //            da.Fill(filteredKrolStavkeDataTable);
-                //        }
-                //        catch (Exception)
-                //        {
-                //            MessageBox.Show("Greška u preuzimanju podataka sa servera.", "Greška");
-                //            return;
-                //        }
-                //        PrikaziDetaljeKrola(filteredKrolStavkeDataTable);
-                //    }
-                //}
-                //else return;
             }
             else return;
-
         }
 
 
@@ -498,6 +465,11 @@ namespace WebCene.UI
                 OdabraniKrolGlavaId =
                     Convert.ToInt32(_odabraniKrolGlavaListItem.SubItems[3].Text);
 
+                lblNazivKrola.Visible = true;
+                lblNazivKrola.Text =
+                    _odabraniKrolGlavaListItem.SubItems[0].Text + "   " +
+                    _odabraniKrolGlavaListItem.SubItems[1].Text;
+
                 btnFilter.Enabled = true;
                 linkResetFilter.Enabled = true;
 
@@ -583,8 +555,5 @@ namespace WebCene.UI
                 return;
             }
         }
-
-        
-
     }
 }
