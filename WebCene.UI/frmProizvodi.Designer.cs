@@ -282,9 +282,9 @@
             this.btnArtikli.ForeColor = System.Drawing.Color.DimGray;
             this.btnArtikli.Image = global::WebCene.UI.Properties.Resources.google_web_search_26;
             this.btnArtikli.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnArtikli.Location = new System.Drawing.Point(412, 51);
+            this.btnArtikli.Location = new System.Drawing.Point(438, 51);
             this.btnArtikli.Name = "btnArtikli";
-            this.btnArtikli.Size = new System.Drawing.Size(136, 37);
+            this.btnArtikli.Size = new System.Drawing.Size(110, 37);
             this.btnArtikli.TabIndex = 15;
             this.btnArtikli.Text = " Odaberi";
             this.btnArtikli.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;

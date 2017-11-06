@@ -274,18 +274,18 @@
             // colProizvoda
             // 
             this.colProizvoda.Text = "Artikal";
-            this.colProizvoda.Width = 190;
+            this.colProizvoda.Width = 195;
             // 
             // colProdavac
             // 
             this.colProdavac.Text = "Prodavac";
-            this.colProdavac.Width = 190;
+            this.colProdavac.Width = 175;
             // 
             // colCena
             // 
             this.colCena.Text = "";
             this.colCena.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.colCena.Width = 90;
+            this.colCena.Width = 100;
             // 
             // label6
             // 

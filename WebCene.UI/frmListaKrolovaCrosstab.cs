@@ -258,7 +258,7 @@ namespace WebCene.UI
 
                 // 1.kolona
                 dgViewKrolDetalj.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-                dgViewKrolDetalj.Columns[0].Width = 180;
+                dgViewKrolDetalj.Columns[0].Width = 195;
 
                 for (int i = 1; i < brojKolona; i++)
                 {

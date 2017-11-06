@@ -143,7 +143,7 @@
             this.dgViewKrolDetalj.RowHeadersVisible = false;
             this.dgViewKrolDetalj.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgViewKrolDetalj.ShowEditingIcon = false;
-            this.dgViewKrolDetalj.Size = new System.Drawing.Size(775, 427);
+            this.dgViewKrolDetalj.Size = new System.Drawing.Size(856, 427);
             this.dgViewKrolDetalj.TabIndex = 5;
             // 
             // btnFilter
@@ -165,7 +165,7 @@
             this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.groupBox1.Location = new System.Drawing.Point(385, 155);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(801, 471);
+            this.groupBox1.Size = new System.Drawing.Size(882, 471);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Detalji";
@@ -322,7 +322,7 @@
             this.groupBox3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.groupBox3.Location = new System.Drawing.Point(385, 46);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(801, 94);
+            this.groupBox3.Size = new System.Drawing.Size(882, 94);
             this.groupBox3.TabIndex = 10;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Filter detalja";
@@ -331,7 +331,7 @@
             // 
             this.picFilter.BackColor = System.Drawing.Color.LemonChiffon;
             this.picFilter.Image = global::WebCene.UI.Properties.Resources.filled_filter_32;
-            this.picFilter.Location = new System.Drawing.Point(727, 29);
+            this.picFilter.Location = new System.Drawing.Point(808, 27);
             this.picFilter.Name = "picFilter";
             this.picFilter.Size = new System.Drawing.Size(61, 50);
             this.picFilter.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -352,7 +352,7 @@
             // 
             // btnOdustani
             // 
-            this.btnOdustani.Location = new System.Drawing.Point(1072, 665);
+            this.btnOdustani.Location = new System.Drawing.Point(1146, 665);
             this.btnOdustani.Name = "btnOdustani";
             this.btnOdustani.Size = new System.Drawing.Size(121, 37);
             this.btnOdustani.TabIndex = 19;
@@ -384,7 +384,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1205, 714);
+            this.ClientSize = new System.Drawing.Size(1279, 714);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnNoviKrol);
             this.Controls.Add(this.btnOdustani);
