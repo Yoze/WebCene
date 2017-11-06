@@ -110,8 +110,7 @@ namespace WebCene.UI
 
         private void SnimiProizvod()
         {
-
-            
+                        
             // provera da li je artikal postoji u bazi za krol
             
             // TO DO
