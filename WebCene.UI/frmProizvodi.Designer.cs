@@ -307,7 +307,6 @@
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(34, 25);
             this.txtId.TabIndex = 15;
-            this.txtId.Visible = false;
             // 
             // errProviderProizvodi
             // 

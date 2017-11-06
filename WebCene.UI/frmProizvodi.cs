@@ -45,6 +45,7 @@ namespace WebCene.UI
             if (_proizvod == null)
             {
                 odabraniProizvod = new Proizvod();
+                MapirajModelNaKontrole();
             }
         }
 
@@ -71,7 +72,14 @@ namespace WebCene.UI
                 txtEAN.Text = odabraniProizvod.ElEAN;
                 txtNazivProizvoda.Text = odabraniProizvod.Naziv;
                 txtKatProizvoda.Text = odabraniProizvod.ElKat;
-                txtKatIspisNaziva.Text = ListaKategorija.Find(k => k.SHKAT.Equals(odabraniProizvod.ElKat)).KAT2;
+                if (odabraniProizvod.Id == 0)
+                {
+                    txtKatIspisNaziva.Text = string.Empty;
+                }
+                else
+                {
+                    txtKatIspisNaziva.Text = ListaKategorija.Find(k => k.SHKAT.Equals(odabraniProizvod.ElKat)).KAT2;
+                }
                 txtBrend.Text = odabraniProizvod.Brend;
                 txtDobavljac.Text = odabraniProizvod.Dobavljac;
                 txtEPonudaURL.Text = odabraniProizvod.ePonudaURL;
@@ -83,7 +91,7 @@ namespace WebCene.UI
         {
             if (_proizvod != null)
             {
-                //_proizvod.Id = _proizvod.Id;
+                _proizvod.Id = _proizvod.Id;
                 _proizvod.Id = Convert.ToInt32(txtId.Text);
                 _proizvod.ElSifraProizvoda = txtSifraArtikla.Text;
                 _proizvod.ElEAN = txtEAN.Text;
@@ -102,6 +110,13 @@ namespace WebCene.UI
 
         private void SnimiProizvod()
         {
+
+            
+            // provera da li je artikal postoji u bazi za krol
+            
+            // TO DO
+
+
             // Novi proizvod
             if (odabraniProizvod.Id == 0)
             {
@@ -342,7 +357,7 @@ namespace WebCene.UI
 
                             pronadjeniProizvod = new Proizvod()
                             {
-
+                                Id = Convert.ToInt32(txtId.Text),
                                 ElSifraProizvoda = artikal.ARTIKAL,
                                 ElEAN = artikal.BARCODE,
                                 Naziv = artikal.NAZIV,

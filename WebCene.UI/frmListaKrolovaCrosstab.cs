@@ -168,7 +168,7 @@ namespace WebCene.UI
             if (string.IsNullOrEmpty(_ElKat) && !(string.IsNullOrEmpty(_Brend))) sqlParametri = "KatNullBrendNotNull";
 
             // KatNotNullBrendNull
-            if (!(string.IsNullOrEmpty(_Brend)) && string.IsNullOrEmpty(_Brend)) sqlParametri = "KatNotNullBrendNull";
+            if (!(string.IsNullOrEmpty(_ElKat)) && string.IsNullOrEmpty(_Brend)) sqlParametri = "KatNotNullBrendNull";
 
             // obaNotNull
             if (!(string.IsNullOrEmpty(_ElKat)) && !(string.IsNullOrEmpty(_Brend))) sqlParametri = "obaNotNull";
@@ -191,7 +191,8 @@ namespace WebCene.UI
                             case "obaNull":
                                 MessageBox.Show("Odaberi parametre filtera iz padajućih menija.", "Filter podataka");
                                 picFilter.Visible = false;
-                                return;
+                                filteredKrolStavkeDataTable = KrolStavkeDataTable;
+                                break;
 
                             case "KatNullBrendNotNull":
                                 {
@@ -482,7 +483,8 @@ namespace WebCene.UI
         private void linkResetFilter_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             PonistiFilter();
-            PrikaziDetaljeKrola(KrolStavkeDataTable);
+            filteredKrolStavkeDataTable = KrolStavkeDataTable;
+            PrikaziDetaljeKrola(filteredKrolStavkeDataTable);
         }
 
         private void PonistiFilter()

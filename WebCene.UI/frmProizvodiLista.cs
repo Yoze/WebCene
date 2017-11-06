@@ -102,7 +102,9 @@ namespace WebCene.UI
 
             if (proizvodPostoji == true)
             {
+                PronadjiProizvod();
                 frmProizvodi izmeniProizvod = new frmProizvodi(odabraniProizvod);
+
                 izmeniProizvod.ShowDialog();
                 UcitajListuProizvoda();
             }
