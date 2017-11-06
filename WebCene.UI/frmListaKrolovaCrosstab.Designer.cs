@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.comboKategorije = new System.Windows.Forms.ComboBox();
             this.comboBrendovi = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -126,6 +127,14 @@
             this.dgViewKrolDetalj.BackgroundColor = System.Drawing.Color.White;
             this.dgViewKrolDetalj.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgViewKrolDetalj.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgViewKrolDetalj.DefaultCellStyle = dataGridViewCellStyle1;
             this.dgViewKrolDetalj.Location = new System.Drawing.Point(13, 31);
             this.dgViewKrolDetalj.Margin = new System.Windows.Forms.Padding(10);
             this.dgViewKrolDetalj.MultiSelect = false;

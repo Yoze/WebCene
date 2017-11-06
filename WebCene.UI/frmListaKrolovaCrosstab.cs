@@ -16,18 +16,7 @@ namespace WebCene.UI
 {
     public partial class frmListaKrolovaCrosstab : Form
     {
-        /*
-         TO DO
-         dinamički crosstab datagridview
-         redovi sadrže proizvode
-         kolone sadrže prodavce
-
-
-         filter po kategoriji
-         filter po brendu
-        */
-
-
+      
         private List<KrolGlava> ListaKrolGlava { get; set; }
         private List<viewKrolStavke> ListaKrolStavke { get; set; }
         private List<KATARTIK> ListaKategorija { get; set; }
@@ -47,6 +36,7 @@ namespace WebCene.UI
             UcitajComboBrendovi();
 
             PrikaziListuKrolGlava();
+
 
         }
 
@@ -254,7 +244,6 @@ namespace WebCene.UI
 
             inversedKrolStavkeDataTable = GetInversedDataTable(_tableToTransform, "NazivProdavca", "Naziv", "Cena", "-", false);
 
-            // dgview props
 
             int brojKolona = inversedKrolStavkeDataTable.Columns.Count;
             int brojRedova = inversedKrolStavkeDataTable.Rows.Count;
@@ -267,17 +256,16 @@ namespace WebCene.UI
 
                 dgViewKrolDetalj.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
+                // 1.kolona
+                dgViewKrolDetalj.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+                dgViewKrolDetalj.Columns[0].Width = 180;
+
                 for (int i = 1; i < brojKolona; i++)
                 {
-                    // 1.kolona
-                    dgViewKrolDetalj.Columns[0].Width = 150;
-                    dgViewKrolDetalj.Columns[0].CellTemplate.Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
-
                     // ostale kolone
                     dgViewKrolDetalj.Columns[i].Width = 90;
-                    dgViewKrolDetalj.Columns[i].CellTemplate.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
-
                 }
+
             }
             if (brojRedova == 0)
             {
