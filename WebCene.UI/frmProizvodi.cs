@@ -353,6 +353,7 @@ namespace WebCene.UI
 
                         if (artikal != null)
                         {
+                            //string brendTrimmed = artikal.PROIZVODJAC.TrimEnd();
 
                             pronadjeniProizvod = new Proizvod()
                             {
@@ -362,6 +363,7 @@ namespace WebCene.UI
                                 Naziv = artikal.NAZIV,
                                 ElKat = artikal.SHKAT,
                                 Brend = artikal.PROIZVODJAC,
+                                //Brend = brendTrimmed,
                                 ePonudaURL = string.Empty
                             };
 

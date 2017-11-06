@@ -37,7 +37,7 @@ namespace WebCene.UI
         // brojač krol lupova
         private int iterationCounter { get; set; }
         private int brojOdabranihProizvodaZaKrol { get; set; }
-        
+
         // prekidač za BackgroundWorker _bw
         private bool cancelWorker;
 
@@ -114,7 +114,7 @@ namespace WebCene.UI
                 lblSacekajte.Visible = false;
                 if (cancelWorker)
                     lblKorisnikStopKrolPoruka.Visible = true;
-                
+
                 btnStartKrol.Enabled = true;
                 btnSnimi.Enabled = true;
                 btnOdustani.Enabled = true;
@@ -138,7 +138,7 @@ namespace WebCene.UI
         private void _bw_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             progressKrol.PerformStep();
-            lblKompletirano.Text = 
+            lblKompletirano.Text =
                 string.Format("Kompletirano {0}/{1}", iterationCounter, brojOdabranihProizvodaZaKrol);
 
         }
@@ -154,7 +154,7 @@ namespace WebCene.UI
             {
                 PosaljiZahteveZaKrolProizvoda();
             }
-            
+
         }
 
         #endregion
@@ -225,7 +225,7 @@ namespace WebCene.UI
                 {
                     _bw.RunWorkerAsync();
                 }
-                
+
 
                 btnStartKrol.Enabled = false;
                 btnOdustani.Enabled = false;
@@ -253,11 +253,11 @@ namespace WebCene.UI
         private void PosaljiZahteveZaKrolProizvoda()
         {
             brojOdabranihProizvodaZaKrol = ListaOdabranihProizvodaZaKrol.Count;
-            
+
             if (brojOdabranihProizvodaZaKrol > 0)
             {
                 KrolStavkePreciscenaLista = new List<KrolStavke>();
-                    
+
                 iterationCounter = 0;
                 cancelWorker = false;
 
@@ -267,10 +267,10 @@ namespace WebCene.UI
                     Thread.Sleep(randomTime);
                     bool result;
 
-                    if(cancelWorker)
+                    if (cancelWorker)
                     {
                         _bw.CancelAsync();
-                        MessageBox.Show("Tekući krol je stopiran.", "Krol");                        
+                        MessageBox.Show("Tekući krol je stopiran.", "Krol");
                         return;
                     }
                     else
@@ -291,7 +291,7 @@ namespace WebCene.UI
                                 if (!result)
                                 {
                                     DialogResult dr =
-                                        MessageBox.Show("Web adresa ne postoji. Proverite da li je ispravno upisana.\r\nProizvod:\r\n- " + _proizvodZaKrol.Naziv
+                                        MessageBox.Show("Proverite da li je web adresa ispravno upisana.\r\nProizvod:\r\n- " + _proizvodZaKrol.Naziv
                                         + "\r\nWeb adresa:\r\n" + _proizvodZaKrol.ePonudaURL
                                          + "\r\n\r\nDa li želite da nastavite krol ostalih proizvoda?",
                                         "Pogrešna web adresa", MessageBoxButtons.YesNo);
@@ -385,7 +385,7 @@ namespace WebCene.UI
                     string nazivProizvoda = ListaProizvoda.Find(p => p.Id.Equals(item.ProizvodId)).Naziv;
 
                     string nazivProdavca = ListaProdavaca.Find(p => p.Id.Equals(item.ProdavciId)).NazivProdavca;
-                 
+
                     stavkaZaPrikaz = new RezultatKrolaZaPrikaz()
                     {
                         _ProizvodNaziv = nazivProizvoda,
@@ -456,7 +456,8 @@ namespace WebCene.UI
                 var tableRows = htmlDocument.DocumentNode.Descendants("tr");
 
                 // lista <tr> nodova
-                List<HtmlNode> listaTableRows = tableRows.ToList();
+                List<HtmlNode> listaTableRows = new List<HtmlNode>();
+                listaTableRows = tableRows.ToList();
 
                 int trsTotalElements = tableRows.Count();
 
@@ -467,8 +468,32 @@ namespace WebCene.UI
                         var tableRow = listaTableRows[i];
 
                         // Prodavac alt
-                        string prodavac =
-                            tableRow.SelectSingleNode("td/a/img").GetAttributeValue("alt", "");
+                        string prodavac = string.Empty;
+                        
+                        try
+                        {
+                            var singleNode = tableRow.SelectSingleNode("td").LastChild.GetAttributeValue("alt", "");
+
+                            prodavac = singleNode;
+
+                            //if (singleNode.HasAttributes)
+                            //{
+                            //    prodavac = tableRow.SelectSingleNode("td/a/img").GetAttributeValue("alt", "");
+                            //}
+                            //if (!singleNode.HasAttributes)
+                            //{
+                            //    prodavac = tableRow.SelectSingleNode("td/img").GetAttributeValue("alt", "");
+                            //}
+                            //else continue;
+
+                            //MessageBox.Show(prodavac);
+                            
+                        }
+                        catch (Exception xcp)
+                        {
+                            MessageBox.Show("Greška prodavac tag\r\nSrc: " + xcp.Source + "\r\nMsg: " + xcp.Message, "Greška krol");
+                        }
+
 
                         // Datum ažuriranja cene
                         //string datumAzuriranjaCene = 
@@ -516,7 +541,7 @@ namespace WebCene.UI
 
             if (countListaZaKrol > 0 && listBoxProdavci.SelectedItems.Count > 0)
             {
-                KreirajListuProdavacaZaKrol();                
+                KreirajListuProdavacaZaKrol();
             }
             if (countListaZaKrol == 0 || listBoxProdavci.SelectedItems.Count == 0)
             {
@@ -527,7 +552,7 @@ namespace WebCene.UI
         }
 
 
-     
+
 
 
         private void DodajArtikalListiZaKrol()
@@ -541,7 +566,7 @@ namespace WebCene.UI
                 ListaOdabranihProizvodaZaKrol.Add(oznaceniProizvod);
             }
 
-            // samo unikatni artikli idu u listu za krol
+            // samo jedinstveni artikli idu u listu za krol
             tempListaOdabranihProizvodaZaKrol =
                 ListaOdabranihProizvodaZaKrol.Distinct().ToList();
 
@@ -626,7 +651,7 @@ namespace WebCene.UI
 
         private void btnStopKrol_Click(object sender, EventArgs e)
         {
-            cancelWorker = true;          
+            cancelWorker = true;
         }
 
 
@@ -710,7 +735,7 @@ namespace WebCene.UI
                 _bw.CancelAsync();
 
                 MessageBox.Show("btnOdustani _bw Stopped");
-            }            
+            }
             Close();
         }
 
@@ -719,8 +744,8 @@ namespace WebCene.UI
             if (ValidateChildren(ValidationConstraints.Enabled))
             {
 
-                DialogResult dr = 
-                    MessageBox.Show("Da li želite da snimite rezultate krola?", "Snimanje podataka", MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+                DialogResult dr =
+                    MessageBox.Show("Da li želite da snimite rezultate krola?", "Snimanje podataka", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 switch (dr)
                 {
@@ -747,7 +772,7 @@ namespace WebCene.UI
             }
             else
             {
-                MessageBox.Show("Morate popuniti obeležena polja.", "Greška pri unosu");                
+                MessageBox.Show("Morate popuniti obeležena polja.", "Greška pri unosu");
             }
         }
 
@@ -791,7 +816,7 @@ namespace WebCene.UI
 
                                 if (resultStavke > 0) continue;
                                 else throw new Exception();
-                                
+
                             }
                             catch (Exception)
                             {
@@ -927,10 +952,10 @@ namespace WebCene.UI
 
                 case "KatNullBrendNotNull":
                     {
-                        string _brendTrimmed = _Brend.TrimEnd();
+                        //string _brendTrimmed = _Brend.TrimEnd();
 
                         var tempLista = ListaProizvoda
-                            .Where(x => x.Brend.Equals(_brendTrimmed))
+                            .Where(x => x.Brend.Equals(_Brend))
                             .ToList();
 
                         FilteredListaProizvoda = tempLista;
@@ -951,12 +976,12 @@ namespace WebCene.UI
 
                 case "obaNotNull":
                     {
-                        string _brendTrimmed = _Brend.TrimEnd();
+                        //string _brendTrimmed = _Brend.TrimEnd();
                         string _katTrimmed = _ElKat.TrimEnd();
 
                         var tempLista = ListaProizvoda
                             .Where(k => k.ElKat.Equals(_katTrimmed))
-                            .Where(b => b.Brend.Equals(_brendTrimmed))
+                            .Where(b => b.Brend.Equals(_Brend))
                             .ToList();
 
                         FilteredListaProizvoda = tempLista;
@@ -992,7 +1017,7 @@ namespace WebCene.UI
         private void contextOdabraniArtObrisiSve_Click(object sender, EventArgs e)
         {
             ListaOdabranihProizvodaZaKrol.Clear();
-            PrikaziListuOdabranihArtikalaZaKrol(); 
+            PrikaziListuOdabranihArtikalaZaKrol();
         }
 
         private void contextOdabraniArtObrisiStavku_Click(object sender, EventArgs e)
@@ -1001,7 +1026,7 @@ namespace WebCene.UI
             PrikaziListuOdabranihArtikalaZaKrol();
         }
 
-       
+
     }
 
 
