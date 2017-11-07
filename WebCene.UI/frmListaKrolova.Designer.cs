@@ -58,11 +58,11 @@
             this.groupBox2.Controls.Add(this.lblDetaljPoruka);
             this.groupBox2.Controls.Add(this.lstViewKrolDetalj);
             this.groupBox2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(565, 108);
+            this.groupBox2.Location = new System.Drawing.Point(526, 108);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(10);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(5);
-            this.groupBox2.Size = new System.Drawing.Size(459, 457);
+            this.groupBox2.Size = new System.Drawing.Size(501, 457);
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Detalji";
@@ -93,7 +93,7 @@
             this.lstViewKrolDetalj.Margin = new System.Windows.Forms.Padding(10);
             this.lstViewKrolDetalj.MultiSelect = false;
             this.lstViewKrolDetalj.Name = "lstViewKrolDetalj";
-            this.lstViewKrolDetalj.Size = new System.Drawing.Size(430, 409);
+            this.lstViewKrolDetalj.Size = new System.Drawing.Size(471, 409);
             this.lstViewKrolDetalj.TabIndex = 0;
             this.lstViewKrolDetalj.UseCompatibleStateImageBehavior = false;
             this.lstViewKrolDetalj.View = System.Windows.Forms.View.Details;
@@ -101,7 +101,7 @@
             // Proizvod
             // 
             this.Proizvod.Text = "Artikal";
-            this.Proizvod.Width = 160;
+            this.Proizvod.Width = 195;
             // 
             // Prodavac
             // 
@@ -119,10 +119,10 @@
             this.groupBox1.Controls.Add(this.lblKrolGlavaPoruka);
             this.groupBox1.Controls.Add(this.lstViewKrolGlava);
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(32, 108);
+            this.groupBox1.Location = new System.Drawing.Point(12, 108);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(5);
-            this.groupBox1.Size = new System.Drawing.Size(530, 457);
+            this.groupBox1.Size = new System.Drawing.Size(501, 457);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Krol";
@@ -155,7 +155,7 @@
             this.lstViewKrolGlava.Margin = new System.Windows.Forms.Padding(10);
             this.lstViewKrolGlava.MultiSelect = false;
             this.lstViewKrolGlava.Name = "lstViewKrolGlava";
-            this.lstViewKrolGlava.Size = new System.Drawing.Size(500, 409);
+            this.lstViewKrolGlava.Size = new System.Drawing.Size(471, 409);
             this.lstViewKrolGlava.TabIndex = 0;
             this.lstViewKrolGlava.UseCompatibleStateImageBehavior = false;
             this.lstViewKrolGlava.View = System.Windows.Forms.View.Details;
@@ -169,12 +169,12 @@
             // Naziv
             // 
             this.Naziv.Text = "Naziv";
-            this.Naziv.Width = 200;
+            this.Naziv.Width = 185;
             // 
             // Izvrsilac
             // 
             this.Izvrsilac.Text = "Izvršilac";
-            this.Izvrsilac.Width = 200;
+            this.Izvrsilac.Width = 185;
             // 
             // contextKrolGlava
             // 
@@ -214,7 +214,7 @@
             // 
             // btnOdustani
             // 
-            this.btnOdustani.Location = new System.Drawing.Point(918, 596);
+            this.btnOdustani.Location = new System.Drawing.Point(908, 596);
             this.btnOdustani.Name = "btnOdustani";
             this.btnOdustani.Size = new System.Drawing.Size(121, 37);
             this.btnOdustani.TabIndex = 18;
@@ -236,7 +236,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1051, 645);
+            this.ClientSize = new System.Drawing.Size(1041, 645);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnOdustani);
             this.Controls.Add(this.btnNoviKrol);

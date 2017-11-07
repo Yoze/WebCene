@@ -16,7 +16,7 @@ namespace WebCene.UI
 {
     public partial class frmListaKrolovaCrosstab : Form
     {
-      
+
         private List<KrolGlava> ListaKrolGlava { get; set; }
         private List<viewKrolStavke> ListaKrolStavke { get; set; }
         private List<KATARTIK> ListaKategorija { get; set; }
@@ -189,7 +189,7 @@ namespace WebCene.UI
                                     string _BrendTrimmed = _Brend.TrimEnd();
 
                                     da = new SqlDataAdapter("SELECT KrolGLId, Naziv, NazivProdavca, Cena, ElKat, Brend FROM viewKrolStavke WHERE KrolGLId ='"
-                                        + OdabraniKrolGlavaId  + "' AND Brend='" + _BrendTrimmed + "'", connMSSQLPlus);
+                                        + OdabraniKrolGlavaId + "' AND Brend='" + _BrendTrimmed + "'", connMSSQLPlus);
 
                                     da.Fill(filteredKrolStavkeDataTable);
                                     break;
@@ -218,8 +218,8 @@ namespace WebCene.UI
                                     break;
                                 }
 
-                            //default:
-                            //    break;
+                                //default:
+                                //    break;
                         }
                         PrikaziDetaljeKrola(filteredKrolStavkeDataTable);
                     }
@@ -228,7 +228,7 @@ namespace WebCene.UI
                         MessageBox.Show("Greška pri filtriranju podataka.\r\nGreška: " + xcp.Message, "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
-                    
+
                 }
             }
             else return;
@@ -255,15 +255,61 @@ namespace WebCene.UI
                 dgViewKrolDetalj.DataSource = inversedKrolStavkeDataTable;
 
                 dgViewKrolDetalj.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
+                
                 // 1.kolona
                 dgViewKrolDetalj.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
                 dgViewKrolDetalj.Columns[0].Width = 195;
 
                 for (int i = 1; i < brojKolona; i++)
                 {
+
                     // ostale kolone
                     dgViewKrolDetalj.Columns[i].Width = 90;
+                }
+
+
+                // formatiranje boje pozadine minimalne vrednosti u redu
+                // redovi
+                for (int red = 0; red < brojRedova; red++)
+                {
+                    int indeksMinimalneCene = 0;
+                    decimal minCena = 0;
+                    decimal parsedCena;
+
+
+                    // kolone
+                    for (int kol = 0; kol < brojKolona; kol++)
+                    {
+
+                        var cellValue = dgViewKrolDetalj.Rows[red].Cells[kol].Value;
+
+                        bool isParsedToDecimal = decimal.TryParse(cellValue.ToString(), out parsedCena);
+
+                        if (isParsedToDecimal)
+                        {
+                            if (minCena == 0)
+                            {
+                                minCena = parsedCena;
+                                indeksMinimalneCene = kol;
+                            }
+
+                            if (parsedCena < minCena)
+                            {
+                                minCena = parsedCena;
+                                indeksMinimalneCene = kol;
+                            }
+                        }
+                        if (!isParsedToDecimal)
+                        {
+                            parsedCena = minCena;
+                        }
+                    }
+
+                    // ovde farbanje ćelije
+                    if (indeksMinimalneCene > 0)
+                    {
+                        dgViewKrolDetalj.Rows[red].Cells[indeksMinimalneCene].Style.BackColor = Color.Tan ;
+                    }
                 }
 
             }

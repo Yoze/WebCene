@@ -61,6 +61,25 @@ namespace WebCene.UI
         }
         #endregion
 
+        private bool ProdavacVecPostoji(Prodavci _odabraniProdavac)
+        {
+            // provera da li je prodavac postoji u bazi za krol
+
+            using (WebCeneModel db = new WebCeneModel())
+            {
+                var prodavac = db.Prodavci
+                    .Where(p => p.EponudaId == _odabraniProdavac.EponudaId)
+                    .SingleOrDefault();
+
+                if (prodavac != null)
+                    return true;
+                else
+                    return false;
+            }
+        }
+
+
+
         private void SnimiProdavca()
         {
             // Novi prodavac
@@ -70,13 +89,19 @@ namespace WebCene.UI
                 {
                     odabraniProdavac = MapirajKontroleNaModel(odabraniProdavac);
 
+                    bool prodavacPostoji = ProdavacVecPostoji(odabraniProdavac);
+
+                    if (prodavacPostoji)
+                    {
+                        MessageBox.Show("Prodavac postoji u bazi za krol.",
+                            "Postojeći prodavac", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        return;
+                    }
+
                     try
                     {
                         db.Prodavci.Add(odabraniProdavac);
                         db.SaveChanges();
-
-                        //frmProizvodiLista frmListaProizvoda = new frmProizvodiLista();
-
 
                         MessageBox.Show("Prodavac je snimljen u bazu.", "Snimanje podataka");
                         Close();

@@ -261,7 +261,7 @@
             this.groupBox1.Size = new System.Drawing.Size(573, 349);
             this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "NOVI ARTIKAL ZA KROL";
+            this.groupBox1.Text = "ARTIKAL ZA KROL";
             // 
             // txtKatIspisNaziva
             // 
@@ -274,12 +274,12 @@
             // 
             // btnArtikli
             // 
-            this.btnArtikli.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnArtikli.BackColor = System.Drawing.Color.Wheat;
             this.btnArtikli.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnArtikli.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.btnArtikli.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnArtikli.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnArtikli.ForeColor = System.Drawing.Color.DimGray;
+            this.btnArtikli.ForeColor = System.Drawing.Color.Black;
             this.btnArtikli.Image = global::WebCene.UI.Properties.Resources.google_web_search_26;
             this.btnArtikli.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnArtikli.Location = new System.Drawing.Point(438, 51);

@@ -108,20 +108,42 @@ namespace WebCene.UI
         }
 
 
+        private bool ArtikalVecPostoji(Proizvod _odabraniProizvod)
+        {
+            // provera da li je artikal postoji u bazi za krol
+
+            using (WebCeneModel db = new WebCeneModel())
+            {
+                var artikal = db.Proizvod
+                    .Where(p => p.ElSifraProizvoda == _odabraniProizvod.ElSifraProizvoda)
+                    .SingleOrDefault();
+
+                if (artikal != null)
+                    return true;
+                else
+                    return false;
+            }
+        }
+
+
         private void SnimiProizvod()
         {
-                        
-            // provera da li je artikal postoji u bazi za krol
-            
-            // TO DO
-
-
+           
             // Novi proizvod
             if (odabraniProizvod.Id == 0)
             {
                 using (WebCeneModel db = new WebCeneModel())
                 {
                     odabraniProizvod = MapirajKontroleNaModel(odabraniProizvod);
+
+                    bool artikalPostoji = ArtikalVecPostoji(odabraniProizvod);
+
+                    if (artikalPostoji)
+                    {
+                        MessageBox.Show("Artikal sa šifrom " + odabraniProizvod.ElSifraProizvoda.TrimEnd() + " postoji u bazi za krol.\r\nOdaberite drugi.", 
+                            "Postojeći artikal", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        return;
+                    }
 
                     try
                     {
@@ -217,7 +239,7 @@ namespace WebCene.UI
             }
             else
             {
-                MessageBox.Show("Morate popuniti obeležena polja u odgovarajućoj URL formi.", "Greška kod unosa");
+                MessageBox.Show("Morate popuniti obeležena polja. URL mora biti u odgovarajućoj formi.", "Greška kod unosa");
             }
         }
 
@@ -302,7 +324,6 @@ namespace WebCene.UI
             {
                 // prolazi  
                 cancel = false;
-               
             }
 
             else
@@ -372,7 +393,6 @@ namespace WebCene.UI
                             MapirajModelNaKontrole();
                         }
                         else throw new Exception();
-
                     }
                 }
                 catch (Exception xcp)
@@ -381,7 +401,6 @@ namespace WebCene.UI
                 }
             }
             else return;
-
         }
     }
 }
