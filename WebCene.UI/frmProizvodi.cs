@@ -97,7 +97,7 @@ namespace WebCene.UI
                 _proizvod.ElEAN = txtEAN.Text;
                 _proizvod.Naziv = txtNazivProizvoda.Text;
                 _proizvod.ElKat = txtKatProizvoda.Text;
-                _proizvod.Brend = txtBrend.Text;
+                _proizvod.Brend = txtBrend.Text.TrimEnd();
                 _proizvod.Dobavljac = txtDobavljac.Text;
                 _proizvod.ePonudaURL = txtEPonudaURL.Text;
 

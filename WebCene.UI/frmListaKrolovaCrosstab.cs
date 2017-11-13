@@ -124,22 +124,32 @@ namespace WebCene.UI
 
                 using (SqlConnection connMSSQLPlus = new SqlConnection(connString))
                 {
-                    try
+                    connMSSQLPlus.Open();
+
+                    if (connMSSQLPlus.State == ConnectionState.Open)
                     {
-                        SqlDataAdapter da =
-                            new SqlDataAdapter("SELECT KrolGLId, Naziv, NazivProdavca, Cena, ElKat, Brend FROM viewKrolStavke WHERE KrolGLId ='"
-                            + _odabraniKrolGlavaId.ToString() + "'"
-                            , connMSSQLPlus);
+                        try
+                        {
+                            SqlDataAdapter da =
+                                new SqlDataAdapter("SELECT KrolGLId, Naziv, NazivProdavca, Cena, ElKat, Brend FROM infoekon_Bane.viewKrolStavke WHERE KrolGLId ='"
+                                + _odabraniKrolGlavaId.ToString() + "'"
+                                , connMSSQLPlus);
 
-                        da.Fill(KrolStavkeDataTable);
-
+                            da.Fill(KrolStavkeDataTable);
+                        }
+                        catch (Exception xcp)
+                        {
+                            MessageBox.Show("Greška u preuzimanju podataka sa servera.\r\n:Err: " + xcp.Message, "Greška");
+                            return;
+                        }
+                        PrikaziDetaljeKrola(KrolStavkeDataTable);
                     }
-                    catch (Exception)
+                    else
                     {
-                        MessageBox.Show("Greška u preuzimanju podataka sa servera.", "Greška");
+                        MessageBox.Show("Konekcija sa serverom nije uspostavljena.", "Greška u konekciji");
                         return;
                     }
-                    PrikaziDetaljeKrola(KrolStavkeDataTable);
+                    
                 }
             }
             else return;
@@ -188,7 +198,7 @@ namespace WebCene.UI
                                 {
                                     string _BrendTrimmed = _Brend.TrimEnd();
 
-                                    da = new SqlDataAdapter("SELECT KrolGLId, Naziv, NazivProdavca, Cena, ElKat, Brend FROM viewKrolStavke WHERE KrolGLId ='"
+                                    da = new SqlDataAdapter("SELECT KrolGLId, Naziv, NazivProdavca, Cena, ElKat, Brend FROM infoekon_Bane.viewKrolStavke WHERE KrolGLId ='"
                                         + OdabraniKrolGlavaId + "' AND Brend='" + _BrendTrimmed + "'", connMSSQLPlus);
 
                                     da.Fill(filteredKrolStavkeDataTable);
@@ -198,7 +208,7 @@ namespace WebCene.UI
                             case "KatNotNullBrendNull":
                                 {
                                     string _ElKatTrimmed = _ElKat.TrimEnd();
-                                    da = new SqlDataAdapter("SELECT KrolGLId, Naziv, NazivProdavca, Cena, ElKat, Brend FROM viewKrolStavke WHERE KrolGLId ='"
+                                    da = new SqlDataAdapter("SELECT KrolGLId, Naziv, NazivProdavca, Cena, ElKat, Brend FROM infoekon_Bane.viewKrolStavke WHERE KrolGLId ='"
                                         + OdabraniKrolGlavaId + "' AND ElKat='" + _ElKatTrimmed + "'", connMSSQLPlus);
 
                                     da.Fill(filteredKrolStavkeDataTable);
@@ -210,7 +220,7 @@ namespace WebCene.UI
                                     string _BrendTrimmed = _Brend.TrimEnd();
                                     string _ElKatTrimmed = _ElKat.TrimEnd();
 
-                                    da = new SqlDataAdapter("SELECT KrolGLId, Naziv, NazivProdavca, Cena, ElKat, Brend FROM viewKrolStavke WHERE KrolGLId ='"
+                                    da = new SqlDataAdapter("SELECT KrolGLId, Naziv, NazivProdavca, Cena, ElKat, Brend FROM infoekon_Bane.viewKrolStavke WHERE KrolGLId ='"
                                         + OdabraniKrolGlavaId + "' AND ElKat='" + _ElKatTrimmed + "' AND Brend='" + _BrendTrimmed + "'"
                                         , connMSSQLPlus);
 

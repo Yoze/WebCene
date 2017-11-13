@@ -952,10 +952,11 @@ namespace WebCene.UI
 
                 case "KatNullBrendNotNull":
                     {
-                        //string _brendTrimmed = _Brend.TrimEnd();
+                        string _brendTrimmed = _Brend.TrimEnd();
 
                         var tempLista = ListaProizvoda
-                            .Where(x => x.Brend.Equals(_Brend))
+                            .Where(x => x.Brend.Equals(_brendTrimmed))
+                            //.Where(x => x.Brend ==_Brend)
                             .ToList();
 
                         FilteredListaProizvoda = tempLista;
