@@ -39,8 +39,11 @@
             this.label4 = new System.Windows.Forms.Label();
             this.btnSnimi = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.errorProviderProdavci = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderProdavci)).BeginInit();
             this.SuspendLayout();
             // 
@@ -122,7 +125,7 @@
             // 
             // btnSnimi
             // 
-            this.btnSnimi.Location = new System.Drawing.Point(392, 253);
+            this.btnSnimi.Location = new System.Drawing.Point(409, 317);
             this.btnSnimi.Name = "btnSnimi";
             this.btnSnimi.Size = new System.Drawing.Size(86, 29);
             this.btnSnimi.TabIndex = 9;
@@ -132,6 +135,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.pictureBox1);
+            this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.txtSajt);
             this.groupBox1.Controls.Add(this.txtNazivProdavca);
             this.groupBox1.Controls.Add(this.label4);
@@ -140,10 +145,30 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Location = new System.Drawing.Point(16, 53);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(430, 162);
+            this.groupBox1.Size = new System.Drawing.Size(467, 249);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Podaci";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox1.Image = global::WebCene.UI.Properties.Resources.altAttribute;
+            this.pictureBox1.Location = new System.Drawing.Point(6, 174);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(450, 58);
+            this.pictureBox1.TabIndex = 11;
+            this.pictureBox1.TabStop = false;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.label5.Location = new System.Drawing.Point(6, 154);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(119, 17);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "ePonuda alt atribut\r\n";
             // 
             // errorProviderProdavci
             // 
@@ -153,7 +178,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(490, 294);
+            this.ClientSize = new System.Drawing.Size(507, 358);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnSnimi);
             this.Controls.Add(this.txtId);
@@ -169,6 +194,7 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Enter_NextControl);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderProdavci)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -188,5 +214,7 @@
         private System.Windows.Forms.Button btnSnimi;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ErrorProvider errorProviderProdavci;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label label5;
     }
 }

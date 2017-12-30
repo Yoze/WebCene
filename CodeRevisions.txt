@@ -1,0 +1,5 @@
+
+1.2.0.1
+- Pogled frmListaKrolovaCrosstab
+	-> dodato je reorganizovanje kolona. korisnik može postavljati kolone u proizvoljnom redosledu
+	-> dodata je mogućnost selekcije redova za export u excel

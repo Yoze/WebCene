@@ -439,25 +439,21 @@ namespace WebCene.UI
 
         private bool KrolujProizvode(Proizvod _proizvodZaKrol, int _krolGlavaId)
         {
-
             // dokument url
             var url = _proizvodZaKrol.ePonudaURL;
-
-
 
             // dokument
             HtmlWeb destinationWebPage = new HtmlWeb();
             var htmlDocument = destinationWebPage.Load(url);
 
-            // provera odgovora na status 404
+            // provera na status 404
             if (destinationWebPage.StatusCode == HttpStatusCode.OK)
             {
                 // svi <tr>
                 var tableRows = htmlDocument.DocumentNode.Descendants("tr");
 
                 // lista <tr> nodova
-                List<HtmlNode> listaTableRows = new List<HtmlNode>();
-                listaTableRows = tableRows.ToList();
+                List<HtmlNode> listaTableRows = new List<HtmlNode>(tableRows.ToList());
 
                 int trsTotalElements = tableRows.Count();
 
@@ -465,49 +461,35 @@ namespace WebCene.UI
                 {
                     for (int i = 1; i < trsTotalElements; i++)
                     {
-                        var tableRow = listaTableRows[i];
 
-                        // Prodavac alt
+                        // Prodavac
                         string prodavac = string.Empty;
-                        
                         try
                         {
-                            var singleNode = tableRow.SelectSingleNode("td").LastChild.GetAttributeValue("alt", "");
-
-                            prodavac = singleNode;
-
-                            //if (singleNode.HasAttributes)
-                            //{
-                            //    prodavac = tableRow.SelectSingleNode("td/a/img").GetAttributeValue("alt", "");
-                            //}
-                            //if (!singleNode.HasAttributes)
-                            //{
-                            //    prodavac = tableRow.SelectSingleNode("td/img").GetAttributeValue("alt", "");
-                            //}
-                            //else continue;
-
-                            //MessageBox.Show(prodavac);
-                            
+                            prodavac = listaTableRows[i]
+                                .Descendants("img")
+                                .First()
+                                .Attributes["alt"].Value;
                         }
                         catch (Exception xcp)
                         {
                             MessageBox.Show("Greška prodavac tag\r\nSrc: " + xcp.Source + "\r\nMsg: " + xcp.Message, "Greška krol");
                         }
 
-
-                        // Datum ažuriranja cene
-                        //string datumAzuriranjaCene = 
-                        //    tableRow.SelectSingleNode("td/div").InnerHtml;
-
                         // Cena
-                        string cena =
-                            tableRow.SelectSingleNode("td/b").InnerHtml;
+                        string cena = string.Empty;
+                        cena = listaTableRows[i]
+                            .Descendants("div")
+                            .Where(x => x.Attributes.Contains("class") && x.Attributes["class"].Value.Contains("c-table__row__price__real"))
+                            .First()
+                            .InnerHtml;
 
-
+                        // Traži Id prodavca
                         if (ListaOdabranihProdavacaZaKrol.Exists(e => e.EponudaId.Equals(prodavac)))
                         {
                             int prodavacId = ListaOdabranihProdavacaZaKrol.Find(p => p.EponudaId.Equals(prodavac)).Id;
 
+                            // Novi krolStavkaObjekat
                             KrolStavke krolStavka = new KrolStavke()
                             {
                                 KrolGlavaId = _krolGlavaId,
@@ -516,6 +498,7 @@ namespace WebCene.UI
                                 Cena = Convert.ToDecimal(cena)
                             };
 
+                            // Kolekcija krol stavki
                             KrolStavkePreciscenaLista.Add(krolStavka);
                         }
                         else continue;
@@ -956,7 +939,6 @@ namespace WebCene.UI
 
                         var tempLista = ListaProizvoda
                             .Where(x => x.Brend.Equals(_brendTrimmed))
-                            //.Where(x => x.Brend ==_Brend)
                             .ToList();
 
                         FilteredListaProizvoda = tempLista;
@@ -977,12 +959,12 @@ namespace WebCene.UI
 
                 case "obaNotNull":
                     {
-                        //string _brendTrimmed = _Brend.TrimEnd();
                         string _katTrimmed = _ElKat.TrimEnd();
+                        string _brendTrimmed = _Brend.TrimEnd();
 
                         var tempLista = ListaProizvoda
                             .Where(k => k.ElKat.Equals(_katTrimmed))
-                            .Where(b => b.Brend.Equals(_Brend))
+                            .Where(b => b.Brend.Equals(_brendTrimmed))
                             .ToList();
 
                         FilteredListaProizvoda = tempLista;
