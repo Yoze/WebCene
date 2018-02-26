@@ -9,6 +9,7 @@ using WebCene.Model;
 using HtmlAgilityPack;
 using System.Net;
 using System.Collections.ObjectModel;
+using System.Data.SqlClient;
 
 namespace WebCene.UI
 {
@@ -226,7 +227,6 @@ namespace WebCene.UI
                     _bw.RunWorkerAsync();
                 }
 
-
                 btnStartKrol.Enabled = false;
                 btnOdustani.Enabled = false;
                 listBoxProizvodi.Enabled = false;
@@ -379,12 +379,23 @@ namespace WebCene.UI
 
             if (brojRezultataKrola > 0)
             {
+
                 foreach (KrolStavke item in KrolStavkePreciscenaLista) /* disable za offline test */
                 //foreach (KrolStavke item in _tempKrolStavkePreciscenaLista)
                 {
-                    string nazivProizvoda = ListaProizvoda.Find(p => p.Id.Equals(item.ProizvodId)).Naziv;
+                    string nazivProizvoda;
+                    string nazivProdavca;
 
-                    string nazivProdavca = ListaProdavaca.Find(p => p.Id.Equals(item.ProdavciId)).NazivProdavca;
+                    if(item.ProdavciId == 16)
+                    {
+                        nazivProizvoda = ListaProizvoda.Find(p => p.Id.Equals(item.ProizvodId)).Naziv;
+                        nazivProdavca = "CENAM";
+                    }
+                    else
+                    {
+                        nazivProizvoda = ListaProizvoda.Find(p => p.Id.Equals(item.ProizvodId)).Naziv;
+                        nazivProdavca = ListaProdavaca.Find(p => p.Id.Equals(item.ProdavciId)).NazivProdavca;
+                    }
 
                     stavkaZaPrikaz = new RezultatKrolaZaPrikaz()
                     {
@@ -393,6 +404,7 @@ namespace WebCene.UI
                         _Cena = (decimal)item.Cena
                     };
                     ListaZaPrikazRezultataKrola.Add(stavkaZaPrikaz);
+
                 }
             }
 
@@ -457,13 +469,19 @@ namespace WebCene.UI
 
                 int trsTotalElements = tableRows.Count();
 
+                // Prodavac
+                string prodavac = string.Empty;
+                // Cena
+                string cena = string.Empty;
+                // CenaM
+                decimal cenaM = decimal.Zero;
+
                 try
                 {
                     for (int i = 1; i < trsTotalElements; i++)
                     {
 
                         // Prodavac
-                        string prodavac = string.Empty;
                         try
                         {
                             prodavac = listaTableRows[i]
@@ -477,12 +495,12 @@ namespace WebCene.UI
                         }
 
                         // Cena
-                        string cena = string.Empty;
                         cena = listaTableRows[i]
                             .Descendants("div")
                             .Where(x => x.Attributes.Contains("class") && x.Attributes["class"].Value.Contains("c-table__row__price__real"))
                             .First()
                             .InnerHtml;
+
 
                         // Traži Id prodavca
                         if (ListaOdabranihProdavacaZaKrol.Exists(e => e.EponudaId.Equals(prodavac)))
@@ -503,6 +521,20 @@ namespace WebCene.UI
                         }
                         else continue;
                     }
+
+                    // Kolona CenaM za svaki proizvod
+                    cenaM = PronadjiCenaMZaProizvod(_proizvodZaKrol);
+                    KrolStavke kolonaCenaM = new KrolStavke
+                    {
+                        KrolGlavaId = _krolGlavaId,
+                        ProizvodId = _proizvodZaKrol.Id,
+                        ProdavciId = 16,
+                        Cena = cenaM
+                    };
+                    // Dodavanje CenaM kolone na kraj kolekcije
+                    KrolStavkePreciscenaLista.Add(kolonaCenaM);
+
+
                     return true;
                 }
                 catch (Exception e)
@@ -515,6 +547,44 @@ namespace WebCene.UI
             {
                 return false;
             }
+        }
+
+        private decimal PronadjiCenaMZaProizvod(Proizvod proizvod)
+        {
+            decimal cenaM = decimal.Zero;
+            string sifra = string.Empty;
+
+            using (SqlConnection elbsConn = new SqlConnection(Properties.Settings.Default.ELBS_2018_ConnString))
+            {
+                elbsConn.Open();
+                if (elbsConn.State == System.Data.ConnectionState.Open)
+                {
+                    try
+                    {
+                        string sqlQuery = "SELECT artikal, cenam FROM nabcene WHERE artikal ='" + proizvod.ElSifraProizvoda + "'";
+
+                        SqlCommand cmd = new SqlCommand(sqlQuery, elbsConn);
+
+                        SqlDataReader dr = cmd.ExecuteReader();
+
+                        if (dr.HasRows)
+                        {
+                            while (dr.Read())
+                            {
+                                sifra = dr.GetString(0);
+                                cenaM = (decimal)dr.GetDouble(1);
+                            }
+                        }
+
+                        dr.Close();
+                    }
+                    catch (Exception err)
+                    {
+                        MessageBox.Show("Greška: PronadjiCenaMZaProizvod()\r\nErr: " + err.Message, "Greška");
+                    }
+                }
+            }
+            return cenaM;
         }
 
 
@@ -592,7 +662,9 @@ namespace WebCene.UI
         {
             using (WebCeneModel db = new WebCeneModel())
             {
-                ListaProdavaca = db.Prodavci.ToList();
+                ListaProdavaca = db.Prodavci
+                    .Where(x => x.Id != 16)
+                    .ToList();
             }
         }
 
@@ -790,7 +862,7 @@ namespace WebCene.UI
                                 KrolGlavaId = noviKrolGlava.Id,
                                 ProizvodId = item.ProizvodId,
                                 ProdavciId = item.ProdavciId,
-                                Cena = item.Cena
+                                Cena = item.Cena,
                             };
                             try
                             {

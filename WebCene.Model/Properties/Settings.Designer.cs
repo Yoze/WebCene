@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebCene.UI.Properties {
+namespace WebCene.Model.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -20,17 +20,6 @@ namespace WebCene.UI.Properties {
         public static Settings Default {
             get {
                 return defaultInstance;
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=87.237.204.173;Initial Catalog=ELBS_2018;Persist Security Info=True;U" +
-            "ser ID=elbraco;Password=elbsNK")]
-        public string ELBS_2018_ConnString {
-            get {
-                return ((string)(this["ELBS_2018_ConnString"]));
             }
         }
     }

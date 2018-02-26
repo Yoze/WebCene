@@ -62,7 +62,7 @@
             this.groupBox2.Margin = new System.Windows.Forms.Padding(10);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(5);
-            this.groupBox2.Size = new System.Drawing.Size(501, 457);
+            this.groupBox2.Size = new System.Drawing.Size(528, 457);
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Detalji";
@@ -93,7 +93,7 @@
             this.lstViewKrolDetalj.Margin = new System.Windows.Forms.Padding(10);
             this.lstViewKrolDetalj.MultiSelect = false;
             this.lstViewKrolDetalj.Name = "lstViewKrolDetalj";
-            this.lstViewKrolDetalj.Size = new System.Drawing.Size(471, 409);
+            this.lstViewKrolDetalj.Size = new System.Drawing.Size(498, 409);
             this.lstViewKrolDetalj.TabIndex = 0;
             this.lstViewKrolDetalj.UseCompatibleStateImageBehavior = false;
             this.lstViewKrolDetalj.View = System.Windows.Forms.View.Details;
@@ -236,7 +236,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1041, 645);
+            this.ClientSize = new System.Drawing.Size(1071, 645);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnOdustani);
             this.Controls.Add(this.btnNoviKrol);

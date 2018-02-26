@@ -38,14 +38,14 @@ namespace WebCene.UI
 
         private DataTable UcitajArtikle()
         {
-            string connString = ConfigurationManager.ConnectionStrings["ELBS_2017ADOConn"].ConnectionString;
+            string connString = ConfigurationManager.ConnectionStrings["ELBS_2018ADOConn"].ConnectionString;
 
-            using (SqlConnection connELBS_2017  = new SqlConnection(connString))
+            using (SqlConnection connELBS_2018  = new SqlConnection(connString))
             {
                 try
                 {                  
                     SqlDataAdapter da =
-                       new SqlDataAdapter("SELECT barcode, artikal, naziv, proizvodjac, shkat FROM [099 pravi]", connELBS_2017);
+                       new SqlDataAdapter("SELECT barcode, artikal, naziv, proizvodjac, shkat FROM [099 pravi]", connELBS_2018);
 
                     DataSet ds = new DataSet();
                     da.Fill(ds, "Artikli");

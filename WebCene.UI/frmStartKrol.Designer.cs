@@ -266,7 +266,7 @@
             this.lstViewRezultat.Margin = new System.Windows.Forms.Padding(5);
             this.lstViewRezultat.MultiSelect = false;
             this.lstViewRezultat.Name = "lstViewRezultat";
-            this.lstViewRezultat.Size = new System.Drawing.Size(480, 440);
+            this.lstViewRezultat.Size = new System.Drawing.Size(497, 440);
             this.lstViewRezultat.TabIndex = 15;
             this.lstViewRezultat.UseCompatibleStateImageBehavior = false;
             this.lstViewRezultat.View = System.Windows.Forms.View.Details;
@@ -549,7 +549,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1425, 740);
+            this.ClientSize = new System.Drawing.Size(1439, 740);
             this.Controls.Add(this.picFilter);
             this.Controls.Add(this.lblSacekajte);
             this.Controls.Add(this.label4);

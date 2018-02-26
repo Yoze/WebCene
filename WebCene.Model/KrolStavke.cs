@@ -18,7 +18,7 @@ namespace WebCene.Model
         public int ProdavciId { get; set; }
 
         public decimal Cena { get; set; }
-
+      
         public virtual KrolGlava KrolGlava { get; set; }
 
         public virtual Prodavci Prodavci { get; set; }

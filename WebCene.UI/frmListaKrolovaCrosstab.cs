@@ -278,49 +278,49 @@ namespace WebCene.UI
                 }
 
 
-                // formatiranje boje pozadine minimalne vrednosti u redu
-                // redovi
-                for (int red = 0; red < brojRedova; red++)
-                {
-                    int indeksMinimalneCene = 0;
-                    decimal minCena = 0;
-                    decimal parsedCena;
+                //// formatiranje boje pozadine minimalne vrednosti u redu
+                //// redovi
+                //for (int red = 0; red < brojRedova; red++)
+                //{
+                //    int indeksMinimalneCene = 0;
+                //    decimal minCena = 0;
+                //    decimal parsedCena;
 
 
-                    // kolone
-                    for (int kol = 0; kol < brojKolona; kol++)
-                    {
+                //    // kolone
+                //    for (int kol = 0; kol < brojKolona; kol++)
+                //    {
 
-                        var cellValue = dgViewKrolDetalj.Rows[red].Cells[kol].Value;
+                //        var cellValue = dgViewKrolDetalj.Rows[red].Cells[kol].Value;
 
-                        bool isParsedToDecimal = decimal.TryParse(cellValue.ToString(), out parsedCena);
+                //        bool isParsedToDecimal = decimal.TryParse(cellValue.ToString(), out parsedCena);
 
-                        if (isParsedToDecimal)
-                        {
-                            if (minCena == 0)
-                            {
-                                minCena = parsedCena;
-                                indeksMinimalneCene = kol;
-                            }
+                //        if (isParsedToDecimal)
+                //        {
+                //            if (minCena == 0)
+                //            {
+                //                minCena = parsedCena;
+                //                indeksMinimalneCene = kol;
+                //            }
 
-                            if (parsedCena < minCena)
-                            {
-                                minCena = parsedCena;
-                                indeksMinimalneCene = kol;
-                            }
-                        }
-                        if (!isParsedToDecimal)
-                        {
-                            parsedCena = minCena;
-                        }
-                    }
+                //            if (parsedCena < minCena)
+                //            {
+                //                minCena = parsedCena;
+                //                indeksMinimalneCene = kol;
+                //            }
+                //        }
+                //        if (!isParsedToDecimal)
+                //        {
+                //            parsedCena = minCena;
+                //        }
+                //    }
 
-                    // ovde farbanje ćelije
-                    if (indeksMinimalneCene > 0)
-                    {
-                        dgViewKrolDetalj.Rows[red].Cells[indeksMinimalneCene].Style.BackColor = Color.Tan ;
-                    }
-                }
+                //    // ovde farbanje ćelije
+                //    if (indeksMinimalneCene > 0)
+                //    {
+                //        dgViewKrolDetalj.Rows[red].Cells[indeksMinimalneCene].Style.BackColor = Color.Tan;
+                //    }
+                //}
 
             }
             if (brojRedova == 0)

@@ -26,7 +26,7 @@ namespace WebCene.UI
             InitializeComponent();
 
             UcitajListuProdavaca();
-            PrikaziListuPradavaca();
+            PrikaziListuProdavaca();
         }
 
 
@@ -34,7 +34,9 @@ namespace WebCene.UI
         {
             using (WebCeneModel db = new WebCeneModel())
             {
-                ListaProdavaca = db.Prodavci.ToList();
+                ListaProdavaca = db.Prodavci
+                    .Where(x => x.Id != 16)
+                    .ToList();
 
                 if (ListaProdavaca != null)
                 {
@@ -49,7 +51,7 @@ namespace WebCene.UI
         }
 
 
-        private void PrikaziListuPradavaca()
+        private void PrikaziListuProdavaca()
         {
             // dgvProdavci props
             dgvListaProdavaca.Columns["Id"].Visible = false;
@@ -198,7 +200,7 @@ namespace WebCene.UI
             noviProdavac.ShowDialog();
 
             UcitajListuProdavaca();
-            PrikaziListuPradavaca();
+            PrikaziListuProdavaca();
             
         }
 
