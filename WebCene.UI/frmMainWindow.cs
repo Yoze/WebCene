@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Deployment.Application;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,6 +18,30 @@ namespace WebCene.UI
         public frmMainWindow()
         {
             InitializeComponent();
+
+            // naslovna linija (ispis trenutne verzije)
+            string windowTitle = "Elbraco Web Kroler - Verzija ";
+
+            if (System.Deployment.Application.ApplicationDeployment.IsNetworkDeployed)
+            {
+                System.Deployment.Application.ApplicationDeployment cd =
+                System.Deployment.Application.ApplicationDeployment.CurrentDeployment;
+                windowTitle += cd.CurrentVersion;
+            }
+
+            this.Text = windowTitle;
+        }
+
+        private Version getRunningVersion()
+        {
+            try
+            {
+                return ApplicationDeployment.CurrentDeployment.CurrentVersion;
+            }
+            catch (Exception)
+            {
+                return Assembly.GetExecutingAssembly().GetName().Version;
+            }
         }
 
       
@@ -49,8 +75,9 @@ namespace WebCene.UI
 
         private void noviKrolToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmStartKrol novitKrol = new frmStartKrol();
-            novitKrol.ShowDialog();
+            frmStartKrol noviKrol = new frmStartKrol();
+            noviKrol.MdiParent = this;
+            noviKrol.Show();
         }
 
 

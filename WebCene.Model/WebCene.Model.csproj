@@ -65,6 +65,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Podesavanja.cs" />
     <Compile Include="viewKrolStavke.cs" />
     <Compile Include="WebCeneModel.cs" />
   </ItemGroup>

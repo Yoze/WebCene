@@ -55,9 +55,9 @@
             this.txtNAzivKrola = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.groupBoxZaglavlje = new System.Windows.Forms.GroupBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblSacekajte = new System.Windows.Forms.Label();
             this.errProviderNoviKrol = new System.Windows.Forms.ErrorProvider(this.components);
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblKorisnikStopKrolPoruka = new System.Windows.Forms.Label();
             this.comboKategorije = new System.Windows.Forms.ComboBox();
             this.comboBrendovi = new System.Windows.Forms.ComboBox();
@@ -70,13 +70,17 @@
             this.contextOdabraniArtObrisiStavku = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.contextOdabraniArtObrisiSve = new System.Windows.Forms.ToolStripMenuItem();
-            this.linkPonisti = new System.Windows.Forms.LinkLabel();
             this.label4 = new System.Windows.Forms.Label();
             this.picFilter = new System.Windows.Forms.PictureBox();
+            this.comboPodesavanjaKrola = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.btnSnimiPodesavanjaKrola = new System.Windows.Forms.Button();
+            this.btnObrisiPodesavanjaKrola = new System.Windows.Forms.Button();
             this.IzborArtikalaContextMenu.SuspendLayout();
             this.groupBoxZaglavlje.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errProviderNoviKrol)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errProviderNoviKrol)).BeginInit();
             this.OdabraniArtikliContextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picFilter)).BeginInit();
             this.SuspendLayout();
@@ -85,7 +89,7 @@
             // 
             this.dateTimeDatumKrola.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimeDatumKrola.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimeDatumKrola.Location = new System.Drawing.Point(89, 101);
+            this.dateTimeDatumKrola.Location = new System.Drawing.Point(295, 94);
             this.dateTimeDatumKrola.Name = "dateTimeDatumKrola";
             this.dateTimeDatumKrola.Size = new System.Drawing.Size(141, 25);
             this.dateTimeDatumKrola.TabIndex = 2;
@@ -97,7 +101,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(14, 107);
+            this.label2.Location = new System.Drawing.Point(238, 100);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(46, 17);
             this.label2.TabIndex = 5;
@@ -107,7 +111,7 @@
             // 
             this.txtIzvrsilacKrola.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtIzvrsilacKrola.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtIzvrsilacKrola.Location = new System.Drawing.Point(89, 70);
+            this.txtIzvrsilacKrola.Location = new System.Drawing.Point(295, 63);
             this.txtIzvrsilacKrola.MaxLength = 50;
             this.txtIzvrsilacKrola.Name = "txtIzvrsilacKrola";
             this.txtIzvrsilacKrola.Size = new System.Drawing.Size(337, 25);
@@ -120,7 +124,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(14, 73);
+            this.label3.Location = new System.Drawing.Point(238, 66);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(53, 17);
             this.label3.TabIndex = 4;
@@ -130,7 +134,7 @@
             // 
             this.btnStartKrol.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStartKrol.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.btnStartKrol.Location = new System.Drawing.Point(1167, 95);
+            this.btnStartKrol.Location = new System.Drawing.Point(839, 50);
             this.btnStartKrol.Name = "btnStartKrol";
             this.btnStartKrol.Size = new System.Drawing.Size(229, 56);
             this.btnStartKrol.TabIndex = 5;
@@ -144,11 +148,11 @@
             this.listBoxProizvodi.ContextMenuStrip = this.IzborArtikalaContextMenu;
             this.listBoxProizvodi.FormattingEnabled = true;
             this.listBoxProizvodi.ItemHeight = 17;
-            this.listBoxProizvodi.Location = new System.Drawing.Point(31, 344);
+            this.listBoxProizvodi.Location = new System.Drawing.Point(31, 208);
             this.listBoxProizvodi.Margin = new System.Windows.Forms.Padding(5);
             this.listBoxProizvodi.Name = "listBoxProizvodi";
             this.listBoxProizvodi.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.listBoxProizvodi.Size = new System.Drawing.Size(285, 306);
+            this.listBoxProizvodi.Size = new System.Drawing.Size(285, 442);
             this.listBoxProizvodi.TabIndex = 2;
             // 
             // IzborArtikalaContextMenu
@@ -179,17 +183,17 @@
             // 
             // txtKrolId
             // 
-            this.txtKrolId.Location = new System.Drawing.Point(516, 31);
+            this.txtKrolId.Location = new System.Drawing.Point(638, 24);
             this.txtKrolId.Name = "txtKrolId";
-            this.txtKrolId.Size = new System.Drawing.Size(45, 33);
+            this.txtKrolId.Size = new System.Drawing.Size(13, 33);
             this.txtKrolId.TabIndex = 9;
             this.txtKrolId.Visible = false;
             // 
             // progressKrol
             // 
-            this.progressKrol.Location = new System.Drawing.Point(31, 688);
+            this.progressKrol.Location = new System.Drawing.Point(916, 672);
             this.progressKrol.Name = "progressKrol";
-            this.progressKrol.Size = new System.Drawing.Size(582, 7);
+            this.progressKrol.Size = new System.Drawing.Size(497, 8);
             this.progressKrol.TabIndex = 8;
             // 
             // label5
@@ -211,7 +215,7 @@
             this.btnStopKrol.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnStopKrol.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStopKrol.ForeColor = System.Drawing.Color.White;
-            this.btnStopKrol.Location = new System.Drawing.Point(1038, 688);
+            this.btnStopKrol.Location = new System.Drawing.Point(1038, 707);
             this.btnStopKrol.Name = "btnStopKrol";
             this.btnStopKrol.Size = new System.Drawing.Size(121, 37);
             this.btnStopKrol.TabIndex = 10;
@@ -223,7 +227,7 @@
             // lblKompletirano
             // 
             this.lblKompletirano.AutoSize = true;
-            this.lblKompletirano.Location = new System.Drawing.Point(28, 668);
+            this.lblKompletirano.Location = new System.Drawing.Point(914, 653);
             this.lblKompletirano.Name = "lblKompletirano";
             this.lblKompletirano.Size = new System.Drawing.Size(87, 17);
             this.lblKompletirano.TabIndex = 7;
@@ -233,7 +237,7 @@
             // 
             this.checkSviProizvodi.AutoSize = true;
             this.checkSviProizvodi.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkSviProizvodi.Location = new System.Drawing.Point(236, 323);
+            this.checkSviProizvodi.Location = new System.Drawing.Point(236, 183);
             this.checkSviProizvodi.Name = "checkSviProizvodi";
             this.checkSviProizvodi.Size = new System.Drawing.Size(80, 17);
             this.checkSviProizvodi.TabIndex = 11;
@@ -302,7 +306,7 @@
             // btnSnimi
             // 
             this.btnSnimi.Enabled = false;
-            this.btnSnimi.Location = new System.Drawing.Point(1292, 688);
+            this.btnSnimi.Location = new System.Drawing.Point(1292, 707);
             this.btnSnimi.Name = "btnSnimi";
             this.btnSnimi.Size = new System.Drawing.Size(121, 37);
             this.btnSnimi.TabIndex = 6;
@@ -312,7 +316,7 @@
             // 
             // btnOdustani
             // 
-            this.btnOdustani.Location = new System.Drawing.Point(1165, 688);
+            this.btnOdustani.Location = new System.Drawing.Point(1165, 707);
             this.btnOdustani.Name = "btnOdustani";
             this.btnOdustani.Size = new System.Drawing.Size(121, 37);
             this.btnOdustani.TabIndex = 16;
@@ -324,7 +328,7 @@
             // 
             this.txtNAzivKrola.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtNAzivKrola.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNAzivKrola.Location = new System.Drawing.Point(89, 39);
+            this.txtNAzivKrola.Location = new System.Drawing.Point(295, 32);
             this.txtNAzivKrola.MaxLength = 50;
             this.txtNAzivKrola.Name = "txtNAzivKrola";
             this.txtNAzivKrola.Size = new System.Drawing.Size(337, 25);
@@ -337,7 +341,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Black;
-            this.label7.Location = new System.Drawing.Point(14, 39);
+            this.label7.Location = new System.Drawing.Point(238, 32);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(40, 17);
             this.label7.TabIndex = 3;
@@ -345,6 +349,7 @@
             // 
             // groupBoxZaglavlje
             // 
+            this.groupBoxZaglavlje.BackColor = System.Drawing.Color.SeaShell;
             this.groupBoxZaglavlje.Controls.Add(this.txtIzvrsilacKrola);
             this.groupBoxZaglavlje.Controls.Add(this.label7);
             this.groupBoxZaglavlje.Controls.Add(this.label3);
@@ -352,15 +357,27 @@
             this.groupBoxZaglavlje.Controls.Add(this.dateTimeDatumKrola);
             this.groupBoxZaglavlje.Controls.Add(this.label2);
             this.groupBoxZaglavlje.Controls.Add(this.txtKrolId);
+            this.groupBoxZaglavlje.Controls.Add(this.btnStartKrol);
+            this.groupBoxZaglavlje.Controls.Add(this.pictureBox1);
             this.groupBoxZaglavlje.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.groupBoxZaglavlje.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxZaglavlje.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.groupBoxZaglavlje.Location = new System.Drawing.Point(17, 12);
+            this.groupBoxZaglavlje.Location = new System.Drawing.Point(322, 12);
             this.groupBoxZaglavlje.Name = "groupBoxZaglavlje";
-            this.groupBoxZaglavlje.Size = new System.Drawing.Size(596, 139);
+            this.groupBoxZaglavlje.Size = new System.Drawing.Size(1091, 139);
             this.groupBoxZaglavlje.TabIndex = 0;
             this.groupBoxZaglavlje.TabStop = false;
             this.groupBoxZaglavlje.Text = "NOVI KROL ePonuda";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::WebCene.UI.Properties.Resources.logoEponuda;
+            this.pictureBox1.Location = new System.Drawing.Point(30, 58);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(177, 42);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox1.TabIndex = 17;
+            this.pictureBox1.TabStop = false;
             // 
             // lblSacekajte
             // 
@@ -379,22 +396,12 @@
             // 
             this.errProviderNoviKrol.ContainerControl = this;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::WebCene.UI.Properties.Resources.logoEponuda;
-            this.pictureBox1.Location = new System.Drawing.Point(1195, 26);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(177, 42);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox1.TabIndex = 17;
-            this.pictureBox1.TabStop = false;
-            // 
             // lblKorisnikStopKrolPoruka
             // 
             this.lblKorisnikStopKrolPoruka.AutoSize = true;
             this.lblKorisnikStopKrolPoruka.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblKorisnikStopKrolPoruka.ForeColor = System.Drawing.Color.Red;
-            this.lblKorisnikStopKrolPoruka.Location = new System.Drawing.Point(28, 698);
+            this.lblKorisnikStopKrolPoruka.Location = new System.Drawing.Point(1254, 653);
             this.lblKorisnikStopKrolPoruka.Name = "lblKorisnikStopKrolPoruka";
             this.lblKorisnikStopKrolPoruka.Size = new System.Drawing.Size(159, 17);
             this.lblKorisnikStopKrolPoruka.TabIndex = 18;
@@ -408,10 +415,10 @@
             this.comboKategorije.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboKategorije.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboKategorije.FormattingEnabled = true;
-            this.comboKategorije.Location = new System.Drawing.Point(106, 208);
+            this.comboKategorije.Location = new System.Drawing.Point(31, 41);
             this.comboKategorije.Margin = new System.Windows.Forms.Padding(5);
             this.comboKategorije.Name = "comboKategorije";
-            this.comboKategorije.Size = new System.Drawing.Size(210, 25);
+            this.comboKategorije.Size = new System.Drawing.Size(285, 25);
             this.comboKategorije.TabIndex = 19;
             // 
             // comboBrendovi
@@ -421,16 +428,16 @@
             this.comboBrendovi.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBrendovi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBrendovi.FormattingEnabled = true;
-            this.comboBrendovi.Location = new System.Drawing.Point(106, 239);
+            this.comboBrendovi.Location = new System.Drawing.Point(31, 93);
             this.comboBrendovi.Margin = new System.Windows.Forms.Padding(5);
             this.comboBrendovi.Name = "comboBrendovi";
-            this.comboBrendovi.Size = new System.Drawing.Size(210, 25);
+            this.comboBrendovi.Size = new System.Drawing.Size(285, 25);
             this.comboBrendovi.TabIndex = 20;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(31, 211);
+            this.label1.Location = new System.Drawing.Point(28, 20);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(68, 17);
             this.label1.TabIndex = 21;
@@ -439,7 +446,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(31, 242);
+            this.label8.Location = new System.Drawing.Point(28, 71);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(42, 17);
             this.label8.TabIndex = 22;
@@ -459,9 +466,9 @@
             // 
             // btnFilter
             // 
-            this.btnFilter.Location = new System.Drawing.Point(233, 272);
+            this.btnFilter.Location = new System.Drawing.Point(236, 126);
             this.btnFilter.Name = "btnFilter";
-            this.btnFilter.Size = new System.Drawing.Size(83, 25);
+            this.btnFilter.Size = new System.Drawing.Size(80, 25);
             this.btnFilter.TabIndex = 24;
             this.btnFilter.Text = "Filter";
             this.btnFilter.UseVisualStyleBackColor = true;
@@ -510,24 +517,13 @@
             this.contextOdabraniArtObrisiSve.Text = "Briši SVE";
             this.contextOdabraniArtObrisiSve.Click += new System.EventHandler(this.contextOdabraniArtObrisiSve_Click);
             // 
-            // linkPonisti
-            // 
-            this.linkPonisti.AutoSize = true;
-            this.linkPonisti.Location = new System.Drawing.Point(151, 276);
-            this.linkPonisti.Name = "linkPonisti";
-            this.linkPonisti.Size = new System.Drawing.Size(76, 17);
-            this.linkPonisti.TabIndex = 26;
-            this.linkPonisti.TabStop = true;
-            this.linkPonisti.Text = "Poništi filter";
-            this.linkPonisti.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkPonisti_LinkClicked);
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.SystemColors.Control;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.DarkRed;
-            this.label4.Location = new System.Drawing.Point(30, 179);
+            this.label4.Location = new System.Drawing.Point(27, 179);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(101, 20);
             this.label4.TabIndex = 27;
@@ -536,46 +532,103 @@
             // picFilter
             // 
             this.picFilter.BackColor = System.Drawing.Color.LemonChiffon;
+            this.picFilter.Cursor = System.Windows.Forms.Cursors.No;
             this.picFilter.Image = global::WebCene.UI.Properties.Resources.filled_filter_32;
-            this.picFilter.Location = new System.Drawing.Point(34, 276);
+            this.picFilter.Location = new System.Drawing.Point(171, 126);
             this.picFilter.Name = "picFilter";
-            this.picFilter.Size = new System.Drawing.Size(61, 50);
+            this.picFilter.Size = new System.Drawing.Size(59, 47);
             this.picFilter.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.picFilter.TabIndex = 28;
             this.picFilter.TabStop = false;
             this.picFilter.Visible = false;
+            this.picFilter.Click += new System.EventHandler(this.picFilter_Click);
+            // 
+            // comboPodesavanjaKrola
+            // 
+            this.comboPodesavanjaKrola.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboPodesavanjaKrola.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboPodesavanjaKrola.FormattingEnabled = true;
+            this.comboPodesavanjaKrola.Location = new System.Drawing.Point(31, 714);
+            this.comboPodesavanjaKrola.Name = "comboPodesavanjaKrola";
+            this.comboPodesavanjaKrola.Size = new System.Drawing.Size(285, 25);
+            this.comboPodesavanjaKrola.TabIndex = 0;
+            this.comboPodesavanjaKrola.SelectionChangeCommitted += new System.EventHandler(this.comboPodesavanjaKrola_SelectionChangeCommitted);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.BackColor = System.Drawing.SystemColors.Control;
+            this.label10.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.Color.DarkRed;
+            this.label10.Location = new System.Drawing.Point(27, 672);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(135, 20);
+            this.label10.TabIndex = 29;
+            this.label10.Text = "Podešavanja krola";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(28, 694);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(193, 17);
+            this.label9.TabIndex = 31;
+            this.label9.Text = "Odaberi snimljeno podešavanje";
+            // 
+            // btnSnimiPodesavanjaKrola
+            // 
+            this.btnSnimiPodesavanjaKrola.Location = new System.Drawing.Point(327, 714);
+            this.btnSnimiPodesavanjaKrola.Name = "btnSnimiPodesavanjaKrola";
+            this.btnSnimiPodesavanjaKrola.Size = new System.Drawing.Size(80, 25);
+            this.btnSnimiPodesavanjaKrola.TabIndex = 30;
+            this.btnSnimiPodesavanjaKrola.Text = "Snimi";
+            this.btnSnimiPodesavanjaKrola.UseVisualStyleBackColor = true;
+            this.btnSnimiPodesavanjaKrola.Click += new System.EventHandler(this.btnSnimiPodesavanjaKrola_Click);
+            // 
+            // btnObrisiPodesavanjaKrola
+            // 
+            this.btnObrisiPodesavanjaKrola.ForeColor = System.Drawing.Color.OrangeRed;
+            this.btnObrisiPodesavanjaKrola.Location = new System.Drawing.Point(413, 714);
+            this.btnObrisiPodesavanjaKrola.Name = "btnObrisiPodesavanjaKrola";
+            this.btnObrisiPodesavanjaKrola.Size = new System.Drawing.Size(80, 25);
+            this.btnObrisiPodesavanjaKrola.TabIndex = 32;
+            this.btnObrisiPodesavanjaKrola.Text = "Obriši";
+            this.btnObrisiPodesavanjaKrola.UseVisualStyleBackColor = true;
+            this.btnObrisiPodesavanjaKrola.Click += new System.EventHandler(this.btnObrisiPodesavanjaKrola_Click);
             // 
             // frmStartKrol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1439, 740);
+            this.ClientSize = new System.Drawing.Size(1439, 763);
+            this.Controls.Add(this.btnObrisiPodesavanjaKrola);
             this.Controls.Add(this.picFilter);
-            this.Controls.Add(this.lblSacekajte);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.linkPonisti);
-            this.Controls.Add(this.listBoxArtikliZaKrol);
-            this.Controls.Add(this.btnFilter);
-            this.Controls.Add(this.lblOdabraniArt);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.comboBrendovi);
             this.Controls.Add(this.comboKategorije);
+            this.Controls.Add(this.btnSnimiPodesavanjaKrola);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.comboPodesavanjaKrola);
+            this.Controls.Add(this.btnFilter);
+            this.Controls.Add(this.checkSviProizvodi);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.listBoxProizvodi);
+            this.Controls.Add(this.lblSacekajte);
+            this.Controls.Add(this.listBoxArtikliZaKrol);
+            this.Controls.Add(this.lblOdabraniArt);
             this.Controls.Add(this.lblKorisnikStopKrolPoruka);
-            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.groupBoxZaglavlje);
             this.Controls.Add(this.btnOdustani);
             this.Controls.Add(this.btnSnimi);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.lstViewRezultat);
             this.Controls.Add(this.checkSviProdavci);
-            this.Controls.Add(this.checkSviProizvodi);
             this.Controls.Add(this.lblKompletirano);
             this.Controls.Add(this.btnStopKrol);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.progressKrol);
-            this.Controls.Add(this.btnStartKrol);
-            this.Controls.Add(this.listBoxProizvodi);
             this.Controls.Add(this.listBoxProdavci);
             this.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
@@ -588,8 +641,8 @@
             this.IzborArtikalaContextMenu.ResumeLayout(false);
             this.groupBoxZaglavlje.ResumeLayout(false);
             this.groupBoxZaglavlje.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errProviderNoviKrol)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errProviderNoviKrol)).EndInit();
             this.OdabraniArtikliContextMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picFilter)).EndInit();
             this.ResumeLayout(false);
@@ -632,7 +685,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label lblOdabraniArt;
         private System.Windows.Forms.Button btnFilter;
-        private System.Windows.Forms.LinkLabel linkPonisti;
         private System.Windows.Forms.ListBox listBoxArtikliZaKrol;
         private System.Windows.Forms.ContextMenuStrip IzborArtikalaContextMenu;
         private System.Windows.Forms.ToolStripMenuItem contextMenuDodajZaKrol;
@@ -642,5 +694,10 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem contextOdabraniArtObrisiSve;
         private System.Windows.Forms.PictureBox picFilter;
+        private System.Windows.Forms.ComboBox comboPodesavanjaKrola;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Button btnSnimiPodesavanjaKrola;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button btnObrisiPodesavanjaKrola;
     }
 }

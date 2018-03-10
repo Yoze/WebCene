@@ -184,7 +184,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmMainWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Web Crawler";
+            this.Text = "Elbraco Web Kroler";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmMainWindow_FormClosed);
             this.menuStrip1.ResumeLayout(false);

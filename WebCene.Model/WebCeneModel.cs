@@ -17,6 +17,7 @@ namespace WebCene.Model
         public DbSet<KrolStavke> KrolStavke { get; set; }
         public DbSet<Prodavci> Prodavci { get; set; }
         public DbSet<Proizvod> Proizvod { get; set; }
+        public DbSet<Podesavanja> Podesavanja { get; set; }
 
         // Views
         public virtual DbSet<viewKrolStavke> viewKrolStavke { get; set; }
