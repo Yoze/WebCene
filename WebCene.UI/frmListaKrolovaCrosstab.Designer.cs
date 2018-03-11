@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             this.comboKategorije = new System.Windows.Forms.ComboBox();
             this.comboBrendovi = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -50,7 +50,6 @@
             this.colIzvrsilac = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.KrolGlavaContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripObrisiKrol = new System.Windows.Forms.ToolStripMenuItem();
-            this.linkResetFilter = new System.Windows.Forms.LinkLabel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.picFilter = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -58,6 +57,13 @@
             this.btnNoviKrol = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.grpBoxCenaMaloPM = new System.Windows.Forms.GroupBox();
+            this.chkSO = new System.Windows.Forms.CheckBox();
+            this.chkAPA = new System.Windows.Forms.CheckBox();
+            this.chkODZ = new System.Windows.Forms.CheckBox();
+            this.chkKULA = new System.Windows.Forms.CheckBox();
+            this.chkBPAL = new System.Windows.Forms.CheckBox();
+            this.linkResetFilter = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.dgViewKrolDetalj)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -66,6 +72,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.picFilter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
+            this.grpBoxCenaMaloPM.SuspendLayout();
             this.SuspendLayout();
             // 
             // comboKategorije
@@ -132,14 +139,14 @@
             this.dgViewKrolDetalj.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgViewKrolDetalj.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
             this.dgViewKrolDetalj.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgViewKrolDetalj.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgViewKrolDetalj.DefaultCellStyle = dataGridViewCellStyle13;
             this.dgViewKrolDetalj.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgViewKrolDetalj.Location = new System.Drawing.Point(3, 21);
             this.dgViewKrolDetalj.Margin = new System.Windows.Forms.Padding(10);
@@ -148,7 +155,7 @@
             this.dgViewKrolDetalj.RowHeadersVisible = false;
             this.dgViewKrolDetalj.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgViewKrolDetalj.ShowEditingIcon = false;
-            this.dgViewKrolDetalj.Size = new System.Drawing.Size(960, 481);
+            this.dgViewKrolDetalj.Size = new System.Drawing.Size(1142, 481);
             this.dgViewKrolDetalj.TabIndex = 5;
             // 
             // btnFilter
@@ -172,7 +179,7 @@
             this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.groupBox1.Location = new System.Drawing.Point(373, 153);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(966, 505);
+            this.groupBox1.Size = new System.Drawing.Size(1148, 505);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Detalji";
@@ -306,18 +313,6 @@
             this.toolStripObrisiKrol.Text = "Obriši krol";
             this.toolStripObrisiKrol.Click += new System.EventHandler(this.toolStripObrisiKrol_Click);
             // 
-            // linkResetFilter
-            // 
-            this.linkResetFilter.AutoSize = true;
-            this.linkResetFilter.Enabled = false;
-            this.linkResetFilter.Location = new System.Drawing.Point(530, 56);
-            this.linkResetFilter.Name = "linkResetFilter";
-            this.linkResetFilter.Size = new System.Drawing.Size(76, 17);
-            this.linkResetFilter.TabIndex = 9;
-            this.linkResetFilter.TabStop = true;
-            this.linkResetFilter.Text = "Poništi filter";
-            this.linkResetFilter.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkResetFilter_LinkClicked);
-            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.picFilter);
@@ -363,7 +358,7 @@
             // btnOdustani
             // 
             this.btnOdustani.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOdustani.Location = new System.Drawing.Point(1196, 686);
+            this.btnOdustani.Location = new System.Drawing.Point(1378, 686);
             this.btnOdustani.Margin = new System.Windows.Forms.Padding(25);
             this.btnOdustani.Name = "btnOdustani";
             this.btnOdustani.Size = new System.Drawing.Size(121, 30);
@@ -408,6 +403,7 @@
             this.tableLayoutPanel1.Controls.Add(this.groupBox3, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.groupBox1, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.btnOdustani, 2, 3);
+            this.tableLayoutPanel1.Controls.Add(this.grpBoxCenaMaloPM, 2, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -416,14 +412,101 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1342, 741);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1524, 741);
             this.tableLayoutPanel1.TabIndex = 22;
+            // 
+            // grpBoxCenaMaloPM
+            // 
+            this.grpBoxCenaMaloPM.Controls.Add(this.chkBPAL);
+            this.grpBoxCenaMaloPM.Controls.Add(this.chkKULA);
+            this.grpBoxCenaMaloPM.Controls.Add(this.chkODZ);
+            this.grpBoxCenaMaloPM.Controls.Add(this.chkAPA);
+            this.grpBoxCenaMaloPM.Controls.Add(this.chkSO);
+            this.grpBoxCenaMaloPM.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grpBoxCenaMaloPM.Location = new System.Drawing.Point(1173, 53);
+            this.grpBoxCenaMaloPM.Name = "grpBoxCenaMaloPM";
+            this.grpBoxCenaMaloPM.Size = new System.Drawing.Size(348, 94);
+            this.grpBoxCenaMaloPM.TabIndex = 22;
+            this.grpBoxCenaMaloPM.TabStop = false;
+            this.grpBoxCenaMaloPM.Text = "CENAMALO * 0.9";
+            // 
+            // chkSO
+            // 
+            this.chkSO.AutoSize = true;
+            this.chkSO.Location = new System.Drawing.Point(6, 24);
+            this.chkSO.Name = "chkSO";
+            this.chkSO.Size = new System.Drawing.Size(74, 21);
+            this.chkSO.TabIndex = 0;
+            this.chkSO.Tag = "SOMBOR";
+            this.chkSO.Text = "Sombor";
+            this.chkSO.UseVisualStyleBackColor = true;
+            this.chkSO.CheckedChanged += new System.EventHandler(this.chkSO_CheckedChanged);
+            // 
+            // chkAPA
+            // 
+            this.chkAPA.AutoSize = true;
+            this.chkAPA.Location = new System.Drawing.Point(6, 51);
+            this.chkAPA.Name = "chkAPA";
+            this.chkAPA.Size = new System.Drawing.Size(64, 21);
+            this.chkAPA.TabIndex = 1;
+            this.chkAPA.Tag = "APATIN";
+            this.chkAPA.Text = "Apatin";
+            this.chkAPA.UseVisualStyleBackColor = true;
+            this.chkAPA.CheckedChanged += new System.EventHandler(this.chkAPA_CheckedChanged);
+            // 
+            // chkODZ
+            // 
+            this.chkODZ.AutoSize = true;
+            this.chkODZ.Location = new System.Drawing.Point(117, 24);
+            this.chkODZ.Name = "chkODZ";
+            this.chkODZ.Size = new System.Drawing.Size(67, 21);
+            this.chkODZ.TabIndex = 2;
+            this.chkODZ.Tag = "ODŽACI";
+            this.chkODZ.Text = "Odžaci";
+            this.chkODZ.UseVisualStyleBackColor = true;
+            this.chkODZ.CheckedChanged += new System.EventHandler(this.chkODZ_CheckedChanged);
+            // 
+            // chkKULA
+            // 
+            this.chkKULA.AutoSize = true;
+            this.chkKULA.Location = new System.Drawing.Point(117, 51);
+            this.chkKULA.Name = "chkKULA";
+            this.chkKULA.Size = new System.Drawing.Size(52, 21);
+            this.chkKULA.TabIndex = 3;
+            this.chkKULA.Tag = "KULA";
+            this.chkKULA.Text = "Kula";
+            this.chkKULA.UseVisualStyleBackColor = true;
+            this.chkKULA.CheckedChanged += new System.EventHandler(this.chkKULA_CheckedChanged);
+            // 
+            // chkBPAL
+            // 
+            this.chkBPAL.AutoSize = true;
+            this.chkBPAL.Location = new System.Drawing.Point(221, 24);
+            this.chkBPAL.Name = "chkBPAL";
+            this.chkBPAL.Size = new System.Drawing.Size(81, 21);
+            this.chkBPAL.TabIndex = 4;
+            this.chkBPAL.Tag = "B.PALANKA";
+            this.chkBPAL.Text = "B.Palanka";
+            this.chkBPAL.UseVisualStyleBackColor = true;
+            this.chkBPAL.CheckedChanged += new System.EventHandler(this.chkBPAL_CheckedChanged);
+            // 
+            // linkResetFilter
+            // 
+            this.linkResetFilter.AutoSize = true;
+            this.linkResetFilter.Enabled = false;
+            this.linkResetFilter.Location = new System.Drawing.Point(530, 56);
+            this.linkResetFilter.Name = "linkResetFilter";
+            this.linkResetFilter.Size = new System.Drawing.Size(76, 17);
+            this.linkResetFilter.TabIndex = 9;
+            this.linkResetFilter.TabStop = true;
+            this.linkResetFilter.Text = "Poništi filter";
+            this.linkResetFilter.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkResetFilter_LinkClicked);
             // 
             // frmListaKrolovaCrosstab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1342, 741);
+            this.ClientSize = new System.Drawing.Size(1524, 741);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -446,6 +529,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            this.grpBoxCenaMaloPM.ResumeLayout(false);
+            this.grpBoxCenaMaloPM.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -466,7 +551,6 @@
         private System.Windows.Forms.ColumnHeader colNaziv;
         private System.Windows.Forms.ColumnHeader colIzvrsilac;
         private System.Windows.Forms.Label lblKrolGlavaPoruka;
-        private System.Windows.Forms.LinkLabel linkResetFilter;
         private System.Windows.Forms.Label lblDetaljPoruka;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button btnOdustani;
@@ -480,5 +564,12 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripObrisiKrol;
         private System.Windows.Forms.Label lblNazivKrola;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.GroupBox grpBoxCenaMaloPM;
+        private System.Windows.Forms.CheckBox chkBPAL;
+        private System.Windows.Forms.CheckBox chkKULA;
+        private System.Windows.Forms.CheckBox chkODZ;
+        private System.Windows.Forms.CheckBox chkAPA;
+        private System.Windows.Forms.CheckBox chkSO;
+        private System.Windows.Forms.LinkLabel linkResetFilter;
     }
 }

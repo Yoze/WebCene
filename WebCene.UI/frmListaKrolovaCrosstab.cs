@@ -278,6 +278,19 @@ namespace WebCene.UI
                 }
 
 
+                // provera prikaza kolone CENAMALO za prodavnice
+                //foreach (Control chk in grpBoxCenaMaloPM.Controls)
+                //{
+                //    string tag = chk.Tag.ToString();
+
+                //    if ((chk is CheckBox) && ((CheckBox)chk).Checked) dgViewKrolDetalj.Columns[tag].Visible = true;
+                //    else dgViewKrolDetalj.Columns[tag].Visible = false;
+                //}
+                ShowHideCenaMaloX09Kolone();
+
+
+
+
                 //// formatiranje boje pozadine minimalne vrednosti u redu
                 //// redovi
                 //for (int red = 0; red < brojRedova; red++)
@@ -600,6 +613,53 @@ namespace WebCene.UI
                 MessageBox.Show("Odaberi stavku za brisanje.", "Brisanje");
                 return;
             }
+        }
+
+       
+
+        // Show/hide CENAMALO kolonu za svaku prodavnicu
+        private void ShowHideCenaMaloX09Kolone()
+        {
+            // provera prikaza kolone CENAMALO za prodavnice
+            foreach (Control chk in grpBoxCenaMaloPM.Controls)
+            {
+                string tag = chk.Tag.ToString();
+
+                if ((chk is CheckBox) && ((CheckBox)chk).Checked)
+                {
+                    if (dgViewKrolDetalj.Columns.Contains(tag) && dgViewKrolDetalj.Columns[tag].Visible == false) dgViewKrolDetalj.Columns[tag].Visible = true;
+                    else return;
+                }
+
+                else if (dgViewKrolDetalj.Columns.Contains(tag) && dgViewKrolDetalj.Columns[tag].Visible == true) dgViewKrolDetalj.Columns[tag].Visible = false;
+                else return;
+            }
+
+        }
+
+        private void chkSO_CheckedChanged(object sender, EventArgs e)
+        {
+            ShowHideCenaMaloX09Kolone();
+        }
+
+        private void chkAPA_CheckedChanged(object sender, EventArgs e)
+        {
+            ShowHideCenaMaloX09Kolone();
+        }
+
+        private void chkODZ_CheckedChanged(object sender, EventArgs e)
+        {
+            ShowHideCenaMaloX09Kolone();
+        }
+
+        private void chkKULA_CheckedChanged(object sender, EventArgs e)
+        {
+            ShowHideCenaMaloX09Kolone();
+        }
+
+        private void chkBPAL_CheckedChanged(object sender, EventArgs e)
+        {
+            ShowHideCenaMaloX09Kolone();
         }
     }
 }

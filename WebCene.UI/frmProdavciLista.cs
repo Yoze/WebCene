@@ -35,7 +35,7 @@ namespace WebCene.UI
             using (WebCeneModel db = new WebCeneModel())
             {
                 ListaProdavaca = db.Prodavci
-                    .Where(x => x.Id != 16)
+                    .Where(x => !x.EponudaId.StartsWith("00"))
                     .ToList();
 
                 if (ListaProdavaca != null)

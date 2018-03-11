@@ -331,25 +331,6 @@ namespace WebCene.UI
                         }
                     }
                 }
-
-                //// ispis rezultata u msgboxu
-                //string res = string.Empty;
-                //if (KrolStavkePreciscenaLista.Count > 0)
-                //{
-                //    foreach (var item in KrolStavkePreciscenaLista)
-                //    {
-                //        res += "Id: " + item.Id
-                //            + " GlavaId: " + item.KrolGlavaId
-                //            + " ProizvodId: " + item.ProizvodId
-                //            + " PradavacId: " + item.ProdavciId
-                //            + " Cena: " + item.Cena.ToString()
-                //            + "\r\n";
-                //    }
-                //}
-                //else if (KrolStavkePreciscenaLista.Count == 0)
-                //    res = "Za dati kriterijum nema rezultata pretrage.";
-
-                //MessageBox.Show("Krolovanje je uspešno završeno. \r\n" + res, "Krolovanje");
             }
             else
             {
@@ -362,29 +343,8 @@ namespace WebCene.UI
 
         private void KreirajListuZaPregledRezultataKrola()
         {
-            /* PRIVREMENI PODACI ZA OFFLINE TEST */
-            //_tempKrolStavkePreciscenaLista = new List<KrolStavke>(); // umesto KrolStavkePreciscenaLista OFFLINE
-
-            //KrolStavke s1 = new KrolStavke() { ProizvodId = 1, ProdavciId = 2, Cena = 35990 };
-            //KrolStavke s2 = new KrolStavke() { ProizvodId = 1, ProdavciId = 3, Cena = 36990 };
-            //KrolStavke s3 = new KrolStavke() { ProizvodId = 1, ProdavciId = 4, Cena = 37999 };
-            //KrolStavke s4 = new KrolStavke() { ProizvodId = 2, ProdavciId = 3, Cena = 38997 };
-            //KrolStavke s5 = new KrolStavke() { ProizvodId = 3, ProdavciId = 3, Cena = 32994 };
-            //KrolStavke s6 = new KrolStavke() { ProizvodId = 4, ProdavciId = 2, Cena = 39990 };
-            //KrolStavke s7 = new KrolStavke() { ProizvodId = 4, ProdavciId = 3, Cena = 44991 };
-
-            //_tempKrolStavkePreciscenaLista.Add(s1);
-            //_tempKrolStavkePreciscenaLista.Add(s2);
-            //_tempKrolStavkePreciscenaLista.Add(s3);
-            //_tempKrolStavkePreciscenaLista.Add(s4);
-            //_tempKrolStavkePreciscenaLista.Add(s5);
-            //_tempKrolStavkePreciscenaLista.Add(s6);
-            //_tempKrolStavkePreciscenaLista.Add(s7);
-
-
-
-            int brojRezultataKrola = KrolStavkePreciscenaLista.Count; /* disable za offline test */
-            //int brojRezultataKrola = _tempKrolStavkePreciscenaLista.Count;
+           
+            int brojRezultataKrola = KrolStavkePreciscenaLista.Count;
             RezultatKrolaZaPrikaz stavkaZaPrikaz;
 
             ListaZaPrikazRezultataKrola = new List<RezultatKrolaZaPrikaz>();
@@ -392,8 +352,7 @@ namespace WebCene.UI
             if (brojRezultataKrola > 0)
             {
 
-                foreach (KrolStavke item in KrolStavkePreciscenaLista) /* disable za offline test */
-                //foreach (KrolStavke item in _tempKrolStavkePreciscenaLista)
+                foreach (KrolStavke item in KrolStavkePreciscenaLista) 
                 {
                     string nazivProizvoda;
                     string nazivProdavca;
@@ -547,6 +506,27 @@ namespace WebCene.UI
                     KrolStavkePreciscenaLista.Add(kolonaCenaM);
 
 
+                    // Kolona CENAMALO * 0.9 iz tabele ARTPROD -> za svaki proizvod i za svaku prodavnicu
+                    for ( int shpro = 1; shpro <= 5; shpro ++ )
+                    {
+                        // loop kroz sve prodavnice i pretraga po šifri proizvoda za vrednošću kolone CENAMALO
+                        decimal CENAMALOx09zaProdavnicu = PronadjiCenaMaloFromArtProd(_proizvodZaKrol, "00" + shpro.ToString());
+
+                        int elbsProdavnicaId = PronadjiProdavnicaIdFromKrolProdavci("00" + shpro.ToString());
+
+                        KrolStavke kolonaCENAMALOx09ZaProdavnicu = new KrolStavke()
+                        {
+                            KrolGlavaId = _krolGlavaId,
+                            ProizvodId = _proizvodZaKrol.Id,
+                            ProdavciId = elbsProdavnicaId,
+                            Cena = CENAMALOx09zaProdavnicu
+                        };
+
+                        // Dodavanje CENAMALO * 0.9 za svaku prodavnicu na kraj kolekcije
+                        KrolStavkePreciscenaLista.Add(kolonaCENAMALOx09ZaProdavnicu);
+                    }
+
+
                     return true;
                 }
                 catch (Exception e)
@@ -560,6 +540,73 @@ namespace WebCene.UI
                 return false;
             }
         }
+
+
+        private int PronadjiProdavnicaIdFromKrolProdavci(string shpro)
+        {
+            int elbsProdavnicaId = 0;
+
+            using (WebCeneModel db = new WebCeneModel())
+            {
+                // ne prikazuje CENAM u listi prodavaca
+                elbsProdavnicaId = db.Prodavci
+                    .Where(x => x.EponudaId == shpro)
+                    .Select(p => p.Id)
+                    .FirstOrDefault();
+            }
+
+            if (elbsProdavnicaId > 0) return elbsProdavnicaId;
+            else throw new Exception("Elbraco prodavnica pod šifrom " + shpro + " nije pronađena u tabeli ELBS_WebKroler.Prodavci!\r\nUkoliko nisi B.Šoškić pozovi ga i pročitaj mu poruku.");
+
+        }
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="proizvod"></param>
+        /// <param name="sifraProdavnice"></param>
+        /// <returns>CENAMALO * 0.9</returns>
+        private decimal PronadjiCenaMaloFromArtProd(Proizvod proizvod, string sifraProdavnice)
+        {
+            string artikal = string.Empty;
+            decimal CENAMALO = decimal.Zero;
+            decimal multiplier = 0.9M;
+
+            using (SqlConnection elbsConn = new SqlConnection(Properties.Settings.Default.ELBS_2018_ConnString))
+            {
+                elbsConn.Open();
+                if (elbsConn.State == System.Data.ConnectionState.Open)
+                {
+                    try
+                    {
+                        string sqlQuery = "SELECT artikal, cenamalo FROM artprod WHERE artikal ='" + proizvod.ElSifraProizvoda + "' AND" + " sifrapro='" + sifraProdavnice + "'";
+
+                        SqlCommand cmd = new SqlCommand(sqlQuery, elbsConn);
+
+                        SqlDataReader dr = cmd.ExecuteReader();
+
+                        if (dr.HasRows)
+                        {
+                            while (dr.Read())
+                            {
+                                artikal = dr.GetString(0);
+                                CENAMALO = (decimal)dr.GetDouble(1);
+                            }
+                        }
+
+                        dr.Close();
+                    }
+                    catch (Exception err)
+                    {
+                        MessageBox.Show("Greška: PronadjiCenaMZaProizvod()\r\nErr: " + err.Message, "Greška");
+                    }
+                }
+            }
+            return decimal.Multiply(CENAMALO, multiplier);
+        }
+
 
         private decimal PronadjiCenaMZaProizvod(Proizvod proizvod)
         {
@@ -676,7 +723,7 @@ namespace WebCene.UI
             {
                 // ne prikazuje CENAM u listi prodavaca
                 ListaProdavaca = db.Prodavci
-                    .Where(x => x.Id != 16)
+                    .Where(x => !x.EponudaId.StartsWith("00"))
                     .ToList();
             }
         }
