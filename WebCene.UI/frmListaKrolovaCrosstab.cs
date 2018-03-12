@@ -24,6 +24,7 @@ namespace WebCene.UI
         private int? OdabraniKrolGlavaId { get; set; }
         private DataTable KrolStavkeDataTable { get; set; }
         private DataTable filteredKrolStavkeDataTable { get; set; }
+        List<string> naziviKolonaZaCenaMVrednosti { get; set; }
 
 
         public frmListaKrolovaCrosstab()
@@ -37,8 +38,34 @@ namespace WebCene.UI
 
             PrikaziListuKrolGlava();
 
+            UcitajNaziveKolonaZaCenaMVrednosti();
 
         }
+
+
+        private void UcitajNaziveKolonaZaCenaMVrednosti()
+        {
+            naziviKolonaZaCenaMVrednosti = new List<string>();
+
+            using (WebCeneModel db = new WebCeneModel())
+            {
+                string naziv = string.Empty;
+
+                for (int i = 0; i < 5; i++)
+                {
+                    naziv = db.Prodavci
+                    .Where(x => x.EponudaId == "00" + i.ToString())
+                    .Select(p => p.NazivProdavca)
+                    .FirstOrDefault();
+
+                    if (!string.IsNullOrEmpty(naziv)) naziviKolonaZaCenaMVrednosti.Add(naziv);
+                }
+                
+                //else throw new Exception("Greška u funkciji: UcitajNAziveKolonaZaCenaMVrednosti()");
+            }
+        }
+
+
 
         private void NapuniListeZaCombo()
         {
@@ -277,63 +304,61 @@ namespace WebCene.UI
                     dgViewKrolDetalj.Columns[i].Width = 90;
                 }
 
-
-                // provera prikaza kolone CENAMALO za prodavnice
-                //foreach (Control chk in grpBoxCenaMaloPM.Controls)
-                //{
-                //    string tag = chk.Tag.ToString();
-
-                //    if ((chk is CheckBox) && ((CheckBox)chk).Checked) dgViewKrolDetalj.Columns[tag].Visible = true;
-                //    else dgViewKrolDetalj.Columns[tag].Visible = false;
-                //}
+                // prikaz kolona CENAM i  CENAMALO za prodavnice
                 ShowHideCenaMaloX09Kolone();
 
 
 
+                /* OBSOLETE */
+                // formatiranje boje pozadine minimalne vrednosti u redu
+                // redovi
 
-                //// formatiranje boje pozadine minimalne vrednosti u redu
-                //// redovi
-                //for (int red = 0; red < brojRedova; red++)
-                //{
-                //    int indeksMinimalneCene = 0;
-                //    decimal minCena = 0;
-                //    decimal parsedCena;
+                for (int red = 0; red < brojRedova; red++)
+                {
+                    int indeksMinimalneCene = 0;
+                    decimal minCena = 0;
+                    decimal parsedCena;
 
 
-                //    // kolone
-                //    for (int kol = 0; kol < brojKolona; kol++)
-                //    {
+                    // kolone
+                    for (int kol = 0; kol < brojKolona; kol++)
+                    {
+                        // izostavljanje iz markiranja najniže vrednosti za kolone CENAM i CENAMALO za prodavnice
+                        string colName = dgViewKrolDetalj.Columns[kol].Name;
 
-                //        var cellValue = dgViewKrolDetalj.Rows[red].Cells[kol].Value;
+                        if (naziviKolonaZaCenaMVrednosti.Exists(p => p == colName)) continue;
+                            
 
-                //        bool isParsedToDecimal = decimal.TryParse(cellValue.ToString(), out parsedCena);
+                        var cellValue = dgViewKrolDetalj.Rows[red].Cells[kol].Value;
 
-                //        if (isParsedToDecimal)
-                //        {
-                //            if (minCena == 0)
-                //            {
-                //                minCena = parsedCena;
-                //                indeksMinimalneCene = kol;
-                //            }
+                        bool isParsedToDecimal = decimal.TryParse(cellValue.ToString(), out parsedCena);
 
-                //            if (parsedCena < minCena)
-                //            {
-                //                minCena = parsedCena;
-                //                indeksMinimalneCene = kol;
-                //            }
-                //        }
-                //        if (!isParsedToDecimal)
-                //        {
-                //            parsedCena = minCena;
-                //        }
-                //    }
+                        if (isParsedToDecimal)
+                        {
+                            if (minCena == 0)
+                            {
+                                minCena = parsedCena;
+                                indeksMinimalneCene = kol;
+                            }
 
-                //    // ovde farbanje ćelije
-                //    if (indeksMinimalneCene > 0)
-                //    {
-                //        dgViewKrolDetalj.Rows[red].Cells[indeksMinimalneCene].Style.BackColor = Color.Tan;
-                //    }
-                //}
+                            if (parsedCena < minCena)
+                            {
+                                minCena = parsedCena;
+                                indeksMinimalneCene = kol;
+                            }
+                        }
+                        if (!isParsedToDecimal)
+                        {
+                            parsedCena = minCena;
+                        }
+                    }
+
+                    // ovde farbanje ćelije
+                    if (indeksMinimalneCene > 0)
+                    {
+                        dgViewKrolDetalj.Rows[red].Cells[indeksMinimalneCene].Style.BackColor = Color.Tan;
+                    }
+                }
 
             }
             if (brojRedova == 0)
@@ -529,7 +554,7 @@ namespace WebCene.UI
                     _odabraniKrolGlavaListItem.SubItems[1].Text;
 
                 btnFilter.Enabled = true;
-                linkResetFilter.Enabled = true;
+                //linkResetFilter.Enabled = true;
 
                 PonistiFilter();
                 UcitajDetaljeKrola((int)OdabraniKrolGlavaId);
@@ -627,12 +652,27 @@ namespace WebCene.UI
 
                 if ((chk is CheckBox) && ((CheckBox)chk).Checked)
                 {
-                    if (dgViewKrolDetalj.Columns.Contains(tag) && dgViewKrolDetalj.Columns[tag].Visible == false) dgViewKrolDetalj.Columns[tag].Visible = true;
+                    // boldovani ispis selektovanog
+                    Font boldedText = new Font(chk.Font.FontFamily, chk.Font.Size, FontStyle.Bold );
+                    chk.Font = boldedText;
+
+                    // prikaz kolone
+                    if (dgViewKrolDetalj.Columns.Contains(tag))
+                        dgViewKrolDetalj.Columns[tag].Visible = true;
                     else return;
                 }
+                else
+                {
+                    // normalni ispis selektovanog
+                    Font normalText = new Font(chk.Font.FontFamily, chk.Font.Size, FontStyle.Regular);
+                    chk.Font = normalText;
 
-                else if (dgViewKrolDetalj.Columns.Contains(tag) && dgViewKrolDetalj.Columns[tag].Visible == true) dgViewKrolDetalj.Columns[tag].Visible = false;
-                else return;
+                    // skrivanje kolone
+                    if (dgViewKrolDetalj.Columns.Contains(tag))
+                        dgViewKrolDetalj.Columns[tag].Visible = false;
+                    else return;
+                }
+                
             }
 
         }
@@ -660,6 +700,18 @@ namespace WebCene.UI
         private void chkBPAL_CheckedChanged(object sender, EventArgs e)
         {
             ShowHideCenaMaloX09Kolone();
+        }
+
+        private void chkCenaM_CheckedChanged(object sender, EventArgs e)
+        {
+            ShowHideCenaMaloX09Kolone();
+        }
+
+        private void picFilter_Click(object sender, EventArgs e)
+        {
+            PonistiFilter();
+            filteredKrolStavkeDataTable = KrolStavkeDataTable;
+            PrikaziDetaljeKrola(filteredKrolStavkeDataTable);
         }
     }
 }

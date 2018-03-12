@@ -352,15 +352,30 @@ namespace WebCene.UI
             if (brojRezultataKrola > 0)
             {
 
+                // CENAM PRovere u ispisu rezultata krola
+                // ids CENAM za prodavnice iz tabele Prodavci
+                List<int> cenaMKolone = new List<int>();
+                List<Prodavci> elbracoRows = GetElbracoRowsFromProdavciTable();
+
+
+                for (int i = 0; i <= 5; i++)
+                {
+                    // prodavnice
+                    int id = PronadjiProdavnicaIdFromKrolProdavci("00" + i.ToString());
+                    cenaMKolone.Add(id);
+
+                }
+
                 foreach (KrolStavke item in KrolStavkePreciscenaLista) 
                 {
                     string nazivProizvoda;
                     string nazivProdavca;
 
-                    if (item.ProdavciId == 16)
+                    //if (cenaMKolone.Exists(p => p == item.ProdavciId))
+                    if(elbracoRows.Exists(p => p.Id == item.ProdavciId))
                     {
                         nazivProizvoda = ListaProizvoda.Find(p => p.Id.Equals(item.ProizvodId)).Naziv;
-                        nazivProdavca = "CENAM";
+                        nazivProdavca = elbracoRows.Find(p => p.Id.Equals(item.ProdavciId)).NazivProdavca;
                     }
                     else
                     {
@@ -444,8 +459,7 @@ namespace WebCene.UI
                 string prodavac = string.Empty;
                 // Cena
                 string cena = string.Empty;
-                // CenaM
-                decimal cenaM = decimal.Zero;
+              
 
                 try
                 {
@@ -493,20 +507,25 @@ namespace WebCene.UI
                         else continue;
                     }
 
-                    // Kolona CenaM za svaki proizvod
+
+                    /** Kolona CenaM za svaki proizvod */
+
+                    decimal cenaM = decimal.Zero;
+                    int elbsCENAMKolona = PronadjiProdavnicaIdFromKrolProdavci("000");
                     cenaM = PronadjiCenaMZaProizvod(_proizvodZaKrol);
+
                     KrolStavke kolonaCenaM = new KrolStavke
                     {
                         KrolGlavaId = _krolGlavaId,
                         ProizvodId = _proizvodZaKrol.Id,
-                        ProdavciId = 16,
+                        ProdavciId = elbsCENAMKolona,
                         Cena = cenaM
                     };
-                    // Dodavanje CenaM kolone na kraj kolekcije
                     KrolStavkePreciscenaLista.Add(kolonaCenaM);
 
 
-                    // Kolona CENAMALO * 0.9 iz tabele ARTPROD -> za svaki proizvod i za svaku prodavnicu
+
+                    /** Kolona CENAMALO * 0.9 iz tabele ARTPROD -> za svaki proizvod i za svaku prodavnicu */
                     for ( int shpro = 1; shpro <= 5; shpro ++ )
                     {
                         // loop kroz sve prodavnice i pretraga po šifri proizvoda za vrednošću kolone CENAMALO
@@ -521,8 +540,6 @@ namespace WebCene.UI
                             ProdavciId = elbsProdavnicaId,
                             Cena = CENAMALOx09zaProdavnicu
                         };
-
-                        // Dodavanje CENAMALO * 0.9 za svaku prodavnicu na kraj kolekcije
                         KrolStavkePreciscenaLista.Add(kolonaCENAMALOx09ZaProdavnicu);
                     }
 
@@ -539,6 +556,23 @@ namespace WebCene.UI
             {
                 return false;
             }
+        }
+
+        private List<Prodavci> GetElbracoRowsFromProdavciTable()
+        {
+            List<Prodavci> result = new List<Prodavci>();
+
+            using(WebCeneModel db = new WebCeneModel())
+            {
+                Prodavci elbsRow = null;
+
+                foreach (Prodavci item in db.Prodavci.Where(x => x.EponudaId.Contains("00")))
+                {
+                    result.Add(item);
+                }
+            }
+
+            return result;
         }
 
 
