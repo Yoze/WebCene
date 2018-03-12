@@ -51,7 +51,7 @@ namespace WebCene.UI
             {
                 string naziv = string.Empty;
 
-                for (int i = 0; i < 5; i++)
+                for (int i = 0; i <= 5; i++)
                 {
                     naziv = db.Prodavci
                     .Where(x => x.EponudaId == "00" + i.ToString())
@@ -59,9 +59,9 @@ namespace WebCene.UI
                     .FirstOrDefault();
 
                     if (!string.IsNullOrEmpty(naziv)) naziviKolonaZaCenaMVrednosti.Add(naziv);
+
+                    else throw new Exception("Greška u funkciji: UcitajNAziveKolonaZaCenaMVrednosti()");
                 }
-                
-                //else throw new Exception("Greška u funkciji: UcitajNAziveKolonaZaCenaMVrednosti()");
             }
         }
 
@@ -308,8 +308,6 @@ namespace WebCene.UI
                 ShowHideCenaMaloX09Kolone();
 
 
-
-                /* OBSOLETE */
                 // formatiranje boje pozadine minimalne vrednosti u redu
                 // redovi
 

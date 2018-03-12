@@ -97,6 +97,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="b2bForms\frmMainB2B.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="b2bForms\frmMainB2B.Designer.cs">
+      <DependentUpon>frmMainB2B.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmKrolSetovanjePopUp.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -165,6 +171,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="RezultatKrolaZaPrikaz.cs" />
+    <EmbeddedResource Include="b2bForms\frmMainB2B.resx">
+      <DependentUpon>frmMainB2B.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmKrolSetovanjePopUp.resx">
       <DependentUpon>frmKrolSetovanjePopUp.cs</DependentUpon>
     </EmbeddedResource>
@@ -222,6 +231,10 @@
     <None Include="Resources\faviconCodeSpace.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\WebCene.Helper\WebCene.Helper.csproj">
+      <Project>{13f93580-dae8-4bc9-bf23-c7987690add9}</Project>
+      <Name>WebCene.Helper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WebCene.Model\WebCene.Model.csproj">
       <Project>{b7c8dffb-3560-4d62-bbc1-17f92e39b600}</Project>
       <Name>WebCene.Model</Name>

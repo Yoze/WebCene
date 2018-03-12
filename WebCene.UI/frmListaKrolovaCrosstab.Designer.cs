@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.comboKategorije = new System.Windows.Forms.ComboBox();
             this.comboBrendovi = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -58,12 +58,12 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.grpBoxCenaMaloPM = new System.Windows.Forms.GroupBox();
+            this.chkCenaM = new System.Windows.Forms.CheckBox();
             this.chkBPAL = new System.Windows.Forms.CheckBox();
             this.chkKULA = new System.Windows.Forms.CheckBox();
             this.chkODZ = new System.Windows.Forms.CheckBox();
             this.chkAPA = new System.Windows.Forms.CheckBox();
             this.chkSO = new System.Windows.Forms.CheckBox();
-            this.chkCenaM = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgViewKrolDetalj)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -139,14 +139,14 @@
             this.dgViewKrolDetalj.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgViewKrolDetalj.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
             this.dgViewKrolDetalj.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgViewKrolDetalj.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgViewKrolDetalj.DefaultCellStyle = dataGridViewCellStyle1;
             this.dgViewKrolDetalj.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgViewKrolDetalj.Location = new System.Drawing.Point(3, 21);
             this.dgViewKrolDetalj.Margin = new System.Windows.Forms.Padding(10);
@@ -435,6 +435,21 @@
             this.grpBoxCenaMaloPM.TabStop = false;
             this.grpBoxCenaMaloPM.Text = "CENAMALO (ARTPROD) * 0.9";
             // 
+            // chkCenaM
+            // 
+            this.chkCenaM.AutoSize = true;
+            this.chkCenaM.Checked = true;
+            this.chkCenaM.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkCenaM.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.chkCenaM.Location = new System.Drawing.Point(221, 51);
+            this.chkCenaM.Name = "chkCenaM";
+            this.chkCenaM.Size = new System.Drawing.Size(141, 21);
+            this.chkCenaM.TabIndex = 5;
+            this.chkCenaM.Tag = "CENAM";
+            this.chkCenaM.Text = "CENAM (NABCENE)";
+            this.chkCenaM.UseVisualStyleBackColor = true;
+            this.chkCenaM.CheckedChanged += new System.EventHandler(this.chkCenaM_CheckedChanged);
+            // 
             // chkBPAL
             // 
             this.chkBPAL.AutoSize = true;
@@ -499,21 +514,6 @@
             this.chkSO.Text = "Sombor";
             this.chkSO.UseVisualStyleBackColor = true;
             this.chkSO.CheckedChanged += new System.EventHandler(this.chkSO_CheckedChanged);
-            // 
-            // chkCenaM
-            // 
-            this.chkCenaM.AutoSize = true;
-            this.chkCenaM.Checked = true;
-            this.chkCenaM.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkCenaM.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.chkCenaM.Location = new System.Drawing.Point(221, 51);
-            this.chkCenaM.Name = "chkCenaM";
-            this.chkCenaM.Size = new System.Drawing.Size(141, 21);
-            this.chkCenaM.TabIndex = 5;
-            this.chkCenaM.Tag = "CENAM";
-            this.chkCenaM.Text = "CENAM (NABCENE)";
-            this.chkCenaM.UseVisualStyleBackColor = true;
-            this.chkCenaM.CheckedChanged += new System.EventHandler(this.chkCenaM_CheckedChanged);
             // 
             // frmListaKrolovaCrosstab
             // 

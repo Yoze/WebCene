@@ -352,30 +352,17 @@ namespace WebCene.UI
             if (brojRezultataKrola > 0)
             {
 
-                // CENAM PRovere u ispisu rezultata krola
-                // ids CENAM za prodavnice iz tabele Prodavci
-                List<int> cenaMKolone = new List<int>();
-                List<Prodavci> elbracoRows = GetElbracoRowsFromProdavciTable();
-
-
-                for (int i = 0; i <= 5; i++)
-                {
-                    // prodavnice
-                    int id = PronadjiProdavnicaIdFromKrolProdavci("00" + i.ToString());
-                    cenaMKolone.Add(id);
-
-                }
+                List<Prodavci> elbracoRowsFromProdavciTable = GetElbracoRowsFromProdavciTable();
 
                 foreach (KrolStavke item in KrolStavkePreciscenaLista) 
                 {
                     string nazivProizvoda;
                     string nazivProdavca;
 
-                    //if (cenaMKolone.Exists(p => p == item.ProdavciId))
-                    if(elbracoRows.Exists(p => p.Id == item.ProdavciId))
+                    if(elbracoRowsFromProdavciTable.Exists(p => p.Id == item.ProdavciId))
                     {
                         nazivProizvoda = ListaProizvoda.Find(p => p.Id.Equals(item.ProizvodId)).Naziv;
-                        nazivProdavca = elbracoRows.Find(p => p.Id.Equals(item.ProdavciId)).NazivProdavca;
+                        nazivProdavca = elbracoRowsFromProdavciTable.Find(p => p.Id.Equals(item.ProdavciId)).NazivProdavca;
                     }
                     else
                     {
@@ -564,11 +551,13 @@ namespace WebCene.UI
 
             using(WebCeneModel db = new WebCeneModel())
             {
-                Prodavci elbsRow = null;
+                Prodavci elbsRow = new Prodavci();
 
                 foreach (Prodavci item in db.Prodavci.Where(x => x.EponudaId.Contains("00")))
                 {
-                    result.Add(item);
+                    elbsRow = item;
+                    if (elbsRow != null) result.Add(item);
+                    else throw new Exception("Greška: GetElbracoRowsFromProdavciTable()");
                 }
             }
 
@@ -591,7 +580,6 @@ namespace WebCene.UI
 
             if (elbsProdavnicaId > 0) return elbsProdavnicaId;
             else throw new Exception("Elbraco prodavnica pod šifrom " + shpro + " nije pronađena u tabeli ELBS_WebKroler.Prodavci!\r\nUkoliko nisi B.Šoškić pozovi ga i pročitaj mu poruku.");
-
         }
 
 

@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using HtmlAgilityPack;
+using WebCene.UI.b2bForms;
 
 namespace WebCene.UI
 {
@@ -107,6 +108,12 @@ namespace WebCene.UI
             frmListaKrolovaCrosstab listaKrolovaCrosstab = new frmListaKrolovaCrosstab();
             listaKrolovaCrosstab.MdiParent = this;
             listaKrolovaCrosstab.Show();
+        }
+
+        private void mainTestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmMainB2B mainB2B = new frmMainB2B();
+            mainB2B.Show();
         }
     }
 }

@@ -44,6 +44,8 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripCrosstab = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripGrouped = new System.Windows.Forms.ToolStripMenuItem();
+            this.b2BToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mainTestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,10 +56,11 @@
             this.programToolStripMenuItem,
             this.prooizvodToolStripMenuItem,
             this.prodavacToolStripMenuItem,
-            this.krolToolStripMenuItem});
+            this.krolToolStripMenuItem,
+            this.b2BToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1105, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1105, 29);
             this.menuStrip1.TabIndex = 7;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -68,7 +71,7 @@
             this.izlazToolStripMenuItem});
             this.programToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.programToolStripMenuItem.Name = "programToolStripMenuItem";
-            this.programToolStripMenuItem.Size = new System.Drawing.Size(78, 24);
+            this.programToolStripMenuItem.Size = new System.Drawing.Size(78, 25);
             this.programToolStripMenuItem.Text = "Program";
             // 
             // toolStripSeparator1
@@ -90,7 +93,7 @@
             this.listaProizvodaToolStripMenuItem});
             this.prooizvodToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.prooizvodToolStripMenuItem.Name = "prooizvodToolStripMenuItem";
-            this.prooizvodToolStripMenuItem.Size = new System.Drawing.Size(60, 24);
+            this.prooizvodToolStripMenuItem.Size = new System.Drawing.Size(60, 25);
             this.prooizvodToolStripMenuItem.Text = "Artikli";
             // 
             // noviProizvodToolStripMenuItem
@@ -114,7 +117,7 @@
             this.listaProdavacaToolStripMenuItem});
             this.prodavacToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.prodavacToolStripMenuItem.Name = "prodavacToolStripMenuItem";
-            this.prodavacToolStripMenuItem.Size = new System.Drawing.Size(82, 24);
+            this.prodavacToolStripMenuItem.Size = new System.Drawing.Size(82, 25);
             this.prodavacToolStripMenuItem.Text = "Prodavac";
             // 
             // noviProdavacToolStripMenuItem
@@ -141,7 +144,7 @@
             this.krolToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.krolToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.krolToolStripMenuItem.Name = "krolToolStripMenuItem";
-            this.krolToolStripMenuItem.Size = new System.Drawing.Size(48, 24);
+            this.krolToolStripMenuItem.Size = new System.Drawing.Size(48, 25);
             this.krolToolStripMenuItem.Text = "Krol";
             // 
             // noviKrolToolStripMenuItem
@@ -170,6 +173,22 @@
             this.toolStripGrouped.Size = new System.Drawing.Size(175, 24);
             this.toolStripGrouped.Text = "Grupisana lista";
             this.toolStripGrouped.Click += new System.EventHandler(this.toolStripGrouped_Click);
+            // 
+            // b2BToolStripMenuItem
+            // 
+            this.b2BToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mainTestToolStripMenuItem});
+            this.b2BToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.b2BToolStripMenuItem.Name = "b2BToolStripMenuItem";
+            this.b2BToolStripMenuItem.Size = new System.Drawing.Size(53, 25);
+            this.b2BToolStripMenuItem.Text = "B2B ";
+            // 
+            // mainTestToolStripMenuItem
+            // 
+            this.mainTestToolStripMenuItem.Name = "mainTestToolStripMenuItem";
+            this.mainTestToolStripMenuItem.Size = new System.Drawing.Size(152, 26);
+            this.mainTestToolStripMenuItem.Text = "Main Test";
+            this.mainTestToolStripMenuItem.Click += new System.EventHandler(this.mainTestToolStripMenuItem_Click);
             // 
             // frmMainWindow
             // 
@@ -210,6 +229,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem toolStripGrouped;
         private System.Windows.Forms.ToolStripMenuItem toolStripCrosstab;
+        private System.Windows.Forms.ToolStripMenuItem b2BToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mainTestToolStripMenuItem;
     }
 }
 
