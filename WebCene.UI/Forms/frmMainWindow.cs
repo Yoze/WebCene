@@ -10,9 +10,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using HtmlAgilityPack;
-using WebCene.UI.b2bForms;
+using WebCene.UI.Forms.B2B;
+using WebCene.UI.Forms.Kroler;
 
-namespace WebCene.UI
+namespace WebCene.UI.Forms
 {
     public partial class frmMainWindow : Form
     {

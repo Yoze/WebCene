@@ -10,7 +10,8 @@ using System.Windows.Forms;
 using WebCene.Model;
 using WebCene.Helper;
 
-namespace WebCene.UI.b2bForms
+
+namespace WebCene.UI.Forms.B2B
 {
     public partial class frmMainB2B : Form
     {

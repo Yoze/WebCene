@@ -12,7 +12,7 @@ using System.Windows.Forms;
 using WebCene.Model;
 using WebCene.UI;
 
-namespace WebCene.UI
+namespace WebCene.UI.Forms.Kroler
 {
     public partial class frmListaKrolovaCrosstab : Form
     {

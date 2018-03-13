@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WebCene.Model;
 
-namespace WebCene.UI
+namespace WebCene.UI.Forms.Kroler
 {
     public partial class frmProdavci : Form
     {

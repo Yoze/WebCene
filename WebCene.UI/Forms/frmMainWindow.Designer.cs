@@ -1,4 +1,4 @@
-﻿namespace WebCene.UI
+﻿namespace WebCene.UI.Forms
 {
     partial class frmMainWindow
     {

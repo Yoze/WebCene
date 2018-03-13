@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WebCene.UI
+namespace WebCene.UI.Forms.Kroler
 {
     public partial class frmKrolSetovanjePopUp : Form
     {

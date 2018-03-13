@@ -51,23 +51,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="KrolGlava.cs" />
-    <Compile Include="KrolStavke.cs" />
-    <Compile Include="Prodavci.cs" />
-    <Compile Include="Proizvod.cs" />
+    <Compile Include="Kroler\KrolGlava.cs" />
+    <Compile Include="Kroler\KrolStavke.cs" />
+    <Compile Include="Kroler\Prodavci.cs" />
+    <Compile Include="Kroler\Proizvod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="BRAND.cs" />
-    <Compile Include="C099_pravi.cs" />
-    <Compile Include="ELBSModel.cs" />
-    <Compile Include="KATARTIK.cs" />
+    <Compile Include="Kroler\BRAND.cs" />
+    <Compile Include="Kroler\C099_pravi.cs" />
+    <Compile Include="Kroler\ELBSModel.cs" />
+    <Compile Include="Kroler\KATARTIK.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Podesavanja.cs" />
-    <Compile Include="viewKrolStavke.cs" />
-    <Compile Include="WebCeneModel.cs" />
+    <Compile Include="Kroler\Podesavanja.cs" />
+    <Compile Include="Kroler\viewKrolStavke.cs" />
+    <Compile Include="Kroler\WebCeneModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -78,6 +78,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="B2B\" />
     <Folder Include="tmp\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using WebCene.Model;
 using System.Data.SqlClient;
 
-namespace WebCene.UI
+namespace WebCene.UI.Forms.Kroler
 {
     public partial class frmProizvodiLista : Form
     {

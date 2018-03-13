@@ -12,7 +12,7 @@ using System.Collections.ObjectModel;
 using System.Data.SqlClient;
 using Newtonsoft.Json;
 
-namespace WebCene.UI
+namespace WebCene.UI.Forms.Kroler
 {
     public partial class frmStartKrol : Form
     {

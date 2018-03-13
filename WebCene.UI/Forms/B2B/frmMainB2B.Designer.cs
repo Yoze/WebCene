@@ -1,4 +1,4 @@
-﻿namespace WebCene.UI.b2bForms
+﻿namespace WebCene.UI.Forms.B2B
 {
     partial class frmMainB2B
     {
