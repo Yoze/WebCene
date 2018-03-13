@@ -60,7 +60,7 @@
             this.b2BToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1105, 29);
+            this.menuStrip1.Size = new System.Drawing.Size(1105, 28);
             this.menuStrip1.TabIndex = 7;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -71,7 +71,7 @@
             this.izlazToolStripMenuItem});
             this.programToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.programToolStripMenuItem.Name = "programToolStripMenuItem";
-            this.programToolStripMenuItem.Size = new System.Drawing.Size(78, 25);
+            this.programToolStripMenuItem.Size = new System.Drawing.Size(78, 24);
             this.programToolStripMenuItem.Text = "Program";
             // 
             // toolStripSeparator1
@@ -93,7 +93,7 @@
             this.listaProizvodaToolStripMenuItem});
             this.prooizvodToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.prooizvodToolStripMenuItem.Name = "prooizvodToolStripMenuItem";
-            this.prooizvodToolStripMenuItem.Size = new System.Drawing.Size(60, 25);
+            this.prooizvodToolStripMenuItem.Size = new System.Drawing.Size(60, 24);
             this.prooizvodToolStripMenuItem.Text = "Artikli";
             // 
             // noviProizvodToolStripMenuItem
@@ -117,7 +117,7 @@
             this.listaProdavacaToolStripMenuItem});
             this.prodavacToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.prodavacToolStripMenuItem.Name = "prodavacToolStripMenuItem";
-            this.prodavacToolStripMenuItem.Size = new System.Drawing.Size(82, 25);
+            this.prodavacToolStripMenuItem.Size = new System.Drawing.Size(82, 24);
             this.prodavacToolStripMenuItem.Text = "Prodavac";
             // 
             // noviProdavacToolStripMenuItem
@@ -144,33 +144,33 @@
             this.krolToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.krolToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.krolToolStripMenuItem.Name = "krolToolStripMenuItem";
-            this.krolToolStripMenuItem.Size = new System.Drawing.Size(48, 25);
+            this.krolToolStripMenuItem.Size = new System.Drawing.Size(48, 24);
             this.krolToolStripMenuItem.Text = "Krol";
             // 
             // noviKrolToolStripMenuItem
             // 
             this.noviKrolToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.noviKrolToolStripMenuItem.Name = "noviKrolToolStripMenuItem";
-            this.noviKrolToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
+            this.noviKrolToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.noviKrolToolStripMenuItem.Text = "Novi krol";
             this.noviKrolToolStripMenuItem.Click += new System.EventHandler(this.noviKrolToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(172, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
             // 
             // toolStripCrosstab
             // 
             this.toolStripCrosstab.Name = "toolStripCrosstab";
-            this.toolStripCrosstab.Size = new System.Drawing.Size(175, 24);
+            this.toolStripCrosstab.Size = new System.Drawing.Size(180, 24);
             this.toolStripCrosstab.Text = "Crosstab lista";
             this.toolStripCrosstab.Click += new System.EventHandler(this.toolStripCrosstab_Click);
             // 
             // toolStripGrouped
             // 
             this.toolStripGrouped.Name = "toolStripGrouped";
-            this.toolStripGrouped.Size = new System.Drawing.Size(175, 24);
+            this.toolStripGrouped.Size = new System.Drawing.Size(180, 24);
             this.toolStripGrouped.Text = "Grupisana lista";
             this.toolStripGrouped.Click += new System.EventHandler(this.toolStripGrouped_Click);
             // 
@@ -178,15 +178,15 @@
             // 
             this.b2BToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mainTestToolStripMenuItem});
-            this.b2BToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.b2BToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.b2BToolStripMenuItem.Name = "b2BToolStripMenuItem";
-            this.b2BToolStripMenuItem.Size = new System.Drawing.Size(53, 25);
-            this.b2BToolStripMenuItem.Text = "B2B ";
+            this.b2BToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
+            this.b2BToolStripMenuItem.Text = "B2Bs";
             // 
             // mainTestToolStripMenuItem
             // 
             this.mainTestToolStripMenuItem.Name = "mainTestToolStripMenuItem";
-            this.mainTestToolStripMenuItem.Size = new System.Drawing.Size(152, 26);
+            this.mainTestToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.mainTestToolStripMenuItem.Text = "Main Test";
             this.mainTestToolStripMenuItem.Click += new System.EventHandler(this.mainTestToolStripMenuItem_Click);
             // 

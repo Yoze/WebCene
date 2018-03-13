@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WebCene.Model;
+using WebCene.Model.Kroler;
 
 namespace WebCene.UI.Forms.Kroler
 {
@@ -65,7 +65,7 @@ namespace WebCene.UI.Forms.Kroler
         {
             // provera da li je prodavac postoji u bazi za krol
 
-            using (WebCeneModel db = new WebCeneModel())
+            using (KrolerContext db = new KrolerContext())
             {
                 var prodavac = db.Prodavci
                     .Where(p => p.EponudaId == _odabraniProdavac.EponudaId)
@@ -85,7 +85,7 @@ namespace WebCene.UI.Forms.Kroler
             // Novi prodavac
             if (odabraniProdavac.Id == 0)
             {
-                using (WebCeneModel db = new WebCeneModel())
+                using (KrolerContext db = new KrolerContext())
                 {
                     odabraniProdavac = MapirajKontroleNaModel(odabraniProdavac);
 
@@ -119,7 +119,7 @@ namespace WebCene.UI.Forms.Kroler
             if (odabraniProdavac.Id > 0)
             {
                 // 1.korak
-                using (WebCeneModel db = new WebCeneModel())
+                using (KrolerContext db = new KrolerContext())
                 {
                     odabraniProdavac = db.Prodavci
                         .Where(x => x.Id == odabraniProdavac.Id)
@@ -138,7 +138,7 @@ namespace WebCene.UI.Forms.Kroler
                 }
 
                 //3.korak
-                using (WebCeneModel db = new WebCeneModel())
+                using (KrolerContext db = new KrolerContext())
                 {
                     try
                     {

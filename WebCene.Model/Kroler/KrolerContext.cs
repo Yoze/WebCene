@@ -1,16 +1,18 @@
-namespace WebCene.Model
+namespace WebCene.Model.Kroler
 {
     using System;
     using System.Data.Entity;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
+    using WebCene.Model.B2B;
 
-    public partial class WebCeneModel : DbContext
+    public partial class KrolerContext : DbContext
     {
-        public WebCeneModel()
-            : base("name=WebCeneModel")
+        public KrolerContext()
+            : base("name=KrolerContext")
         {
         }
+
 
         // Tables
         public DbSet<KrolGlava> KrolGlava { get; set; }
@@ -18,9 +20,13 @@ namespace WebCene.Model
         public DbSet<Prodavci> Prodavci { get; set; }
         public DbSet<Proizvod> Proizvod { get; set; }
         public DbSet<Podesavanja> Podesavanja { get; set; }
+        public virtual DbSet<KonfigDobavljaca> KonfigDobavljaca { get; set; }
+
 
         // Views
         public virtual DbSet<viewKrolStavke> viewKrolStavke { get; set; }
+
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -31,6 +37,10 @@ namespace WebCene.Model
             modelBuilder.Entity<viewKrolStavke>()
                 .Property(e => e.ElSifraProizvoda)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<KonfigDobavljaca>()
+               .Property(e => e.WebProtokol)
+               .IsFixedLength();
         }
     }
 }

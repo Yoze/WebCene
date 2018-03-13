@@ -50,6 +50,7 @@ namespace WebCene.UI.Forms
         private void noviProizvodToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmProizvodi proizvod = new frmProizvodi(null);
+            proizvod.MdiParent = this;
             proizvod.ShowDialog();
 
         }
@@ -65,6 +66,7 @@ namespace WebCene.UI.Forms
         private void noviProdavacToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmProdavci prodavac = new frmProdavci(null);
+            prodavac.MdiParent = this;
             prodavac.ShowDialog();
         }
 
@@ -104,8 +106,6 @@ namespace WebCene.UI.Forms
 
         private void toolStripCrosstab_Click(object sender, EventArgs e)
         {
-            // child form
-
             frmListaKrolovaCrosstab listaKrolovaCrosstab = new frmListaKrolovaCrosstab();
             listaKrolovaCrosstab.MdiParent = this;
             listaKrolovaCrosstab.Show();
@@ -114,6 +114,7 @@ namespace WebCene.UI.Forms
         private void mainTestToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmMainB2B mainB2B = new frmMainB2B();
+            mainB2B.MdiParent = this;
             mainB2B.Show();
         }
     }

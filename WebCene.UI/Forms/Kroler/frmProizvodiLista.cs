@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WebCene.Model;
+using WebCene.Model.Kroler;
 using System.Data.SqlClient;
 
 namespace WebCene.UI.Forms.Kroler
@@ -44,7 +44,7 @@ namespace WebCene.UI.Forms.Kroler
 
         public void UcitajListuProizvoda()
         {
-            using (WebCeneModel db = new WebCeneModel())
+            using (KrolerContext db = new KrolerContext())
             {
                 ListaProizvoda = db.Proizvod.ToList();
 
@@ -133,7 +133,7 @@ namespace WebCene.UI.Forms.Kroler
                 // id odabranog zapisa
                 int idOdabranogProizvoda = odabraniRed.Id;
 
-                using (WebCeneModel db = new WebCeneModel())
+                using (KrolerContext db = new KrolerContext())
                 {
                     Proizvod _odabraniProizvod = new Proizvod();
 
@@ -168,7 +168,7 @@ namespace WebCene.UI.Forms.Kroler
         {
             PronadjiProizvod();
 
-            using (WebCeneModel db = new WebCeneModel())
+            using (KrolerContext db = new KrolerContext())
             {
                 if (odabraniProizvod != null)
                 {

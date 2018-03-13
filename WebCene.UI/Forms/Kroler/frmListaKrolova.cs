@@ -9,7 +9,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WebCene.Model;
+using WebCene.Model.Kroler;
 
 namespace WebCene.UI.Forms.Kroler
 {
@@ -35,7 +35,7 @@ namespace WebCene.UI.Forms.Kroler
             lstViewKrolGlava.Items.Clear();
             try
             {
-                using (WebCeneModel db = new WebCeneModel())
+                using (KrolerContext db = new KrolerContext())
                 {
                     //ListaKrolGlava = new List<KrolGlava>(db.KrolGlava);
                     ListaKrolGlava = new List<KrolGlava>();
@@ -87,7 +87,7 @@ namespace WebCene.UI.Forms.Kroler
 
             try
             {
-                using (WebCeneModel db = new WebCeneModel())
+                using (KrolerContext db = new KrolerContext())
                 {
                     query = (from krols in db.viewKrolStavke
                              where krols.KrolGLId == _odabraniKrolGlavaId
@@ -205,7 +205,7 @@ namespace WebCene.UI.Forms.Kroler
             {
                 KrolGlava stavkaZaBrisanje = new KrolGlava();
 
-                using (WebCeneModel db = new WebCeneModel())
+                using (KrolerContext db = new KrolerContext())
                 {
                     stavkaZaBrisanje = db.KrolGlava
                         .Where(x => x.Id == OdabraniKrolGlavaId)

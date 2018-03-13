@@ -11,6 +11,7 @@ using System.Net;
 using System.Collections.ObjectModel;
 using System.Data.SqlClient;
 using Newtonsoft.Json;
+using WebCene.Model.Kroler;
 
 namespace WebCene.UI.Forms.Kroler
 {
@@ -549,7 +550,7 @@ namespace WebCene.UI.Forms.Kroler
         {
             List<Prodavci> result = new List<Prodavci>();
 
-            using(WebCeneModel db = new WebCeneModel())
+            using(KrolerContext db = new KrolerContext())
             {
                 Prodavci elbsRow = new Prodavci();
 
@@ -569,7 +570,7 @@ namespace WebCene.UI.Forms.Kroler
         {
             int elbsProdavnicaId = 0;
 
-            using (WebCeneModel db = new WebCeneModel())
+            using (KrolerContext db = new KrolerContext())
             {
                 // ne prikazuje CENAM u listi prodavaca
                 elbsProdavnicaId = db.Prodavci
@@ -741,7 +742,7 @@ namespace WebCene.UI.Forms.Kroler
 
         private void PuniListuProdavaca()
         {
-            using (WebCeneModel db = new WebCeneModel())
+            using (KrolerContext db = new KrolerContext())
             {
                 // ne prikazuje CENAM u listi prodavaca
                 ListaProdavaca = db.Prodavci
@@ -753,7 +754,7 @@ namespace WebCene.UI.Forms.Kroler
 
         private void PuniListuProizvoda()
         {
-            using (WebCeneModel db = new WebCeneModel())
+            using (KrolerContext db = new KrolerContext())
             {
                 ListaProizvoda = db.Proizvod.ToList();
             }
@@ -841,7 +842,7 @@ namespace WebCene.UI.Forms.Kroler
                 };
                 try
                 {
-                    using (WebCeneModel db = new WebCeneModel())
+                    using (KrolerContext db = new KrolerContext())
                     {
                         db.Podesavanja.Add(podesavanja);
                         db.SaveChanges();
@@ -858,7 +859,7 @@ namespace WebCene.UI.Forms.Kroler
         
         private void PuniListuPodesavanjaKrola()
         {
-            using (WebCeneModel db = new WebCeneModel())
+            using (KrolerContext db = new KrolerContext())
             {
                 ListaPodesavanjaKrola = db.Podesavanja
                     .ToList();
@@ -888,7 +889,7 @@ namespace WebCene.UI.Forms.Kroler
             // deserijalizacija učitanih podešavanja
             setovanjaProizvoda = JsonConvert.DeserializeObject<List<int>>(podesavanjaJSON);
 
-            using (WebCeneModel db = new WebCeneModel())
+            using (KrolerContext db = new KrolerContext())
             {
 
                     // pražnjenje postojeće liste odabranih proizvoda za krol
@@ -942,7 +943,7 @@ namespace WebCene.UI.Forms.Kroler
                     switch (dr)
                     {                        
                         case DialogResult.Yes:
-                            using (WebCeneModel db = new WebCeneModel())
+                            using (KrolerContext db = new KrolerContext())
                             {
                                 try
                                 {
@@ -1108,7 +1109,7 @@ namespace WebCene.UI.Forms.Kroler
 
         private bool SnimiRezultateKrola()
         {
-            using (WebCeneModel db = new WebCeneModel())
+            using (KrolerContext db = new KrolerContext())
             {
                 KrolGlava noviKrolGlava = new KrolGlava()
                 {

@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WebCene.Model;
+using WebCene.Model.Kroler;
 
 namespace WebCene.UI.Forms.Kroler
 {

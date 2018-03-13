@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WebCene.Model;
+using WebCene.Model.Kroler;
 using WebCene.UI;
 
 namespace WebCene.UI.Forms.Kroler
@@ -47,7 +47,7 @@ namespace WebCene.UI.Forms.Kroler
         {
             naziviKolonaZaCenaMVrednosti = new List<string>();
 
-            using (WebCeneModel db = new WebCeneModel())
+            using (KrolerContext db = new KrolerContext())
             {
                 string naziv = string.Empty;
 
@@ -96,7 +96,7 @@ namespace WebCene.UI.Forms.Kroler
             lstViewKrolGlava.Items.Clear();
             try
             {
-                using (WebCeneModel db = new WebCeneModel())
+                using (KrolerContext db = new KrolerContext())
                 {
                     ListaKrolGlava = new List<KrolGlava>();
 
@@ -600,7 +600,7 @@ namespace WebCene.UI.Forms.Kroler
             {
                 KrolGlava stavkaZaBrisanje = new KrolGlava();
 
-                using (WebCeneModel db = new WebCeneModel())
+                using (KrolerContext db = new KrolerContext())
                 {
                     stavkaZaBrisanje = db.KrolGlava
                         .Where(x => x.Id == OdabraniKrolGlavaId)

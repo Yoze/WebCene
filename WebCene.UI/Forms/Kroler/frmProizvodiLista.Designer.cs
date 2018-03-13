@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvListaProizvoda = new System.Windows.Forms.DataGridView();
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -38,21 +37,24 @@
             this.contextDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.btnNoviProizvod = new System.Windows.Forms.Button();
             this.proizvodBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaProizvoda)).BeginInit();
             this.contextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.proizvodBindingSource)).BeginInit();
-            this.groupBox1.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Crimson;
-            this.label1.Location = new System.Drawing.Point(6, 0);
+            this.label1.Location = new System.Drawing.Point(20, 20);
+            this.label1.Margin = new System.Windows.Forms.Padding(20);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(157, 25);
+            this.label1.Size = new System.Drawing.Size(157, 40);
             this.label1.TabIndex = 3;
             this.label1.Text = "LISTA ARTIKALA";
             // 
@@ -62,18 +64,11 @@
             this.dgvListaProizvoda.AllowUserToResizeRows = false;
             this.dgvListaProizvoda.BackgroundColor = System.Drawing.Color.MintCream;
             this.dgvListaProizvoda.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvListaProizvoda.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvListaProizvoda.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvListaProizvoda.ContextMenuStrip = this.contextMenu;
-            this.dgvListaProizvoda.Location = new System.Drawing.Point(13, 49);
-            this.dgvListaProizvoda.Margin = new System.Windows.Forms.Padding(10);
+            this.dgvListaProizvoda.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvListaProizvoda.Location = new System.Drawing.Point(20, 100);
+            this.dgvListaProizvoda.Margin = new System.Windows.Forms.Padding(20);
             this.dgvListaProizvoda.MultiSelect = false;
             this.dgvListaProizvoda.Name = "dgvListaProizvoda";
             this.dgvListaProizvoda.ReadOnly = true;
@@ -81,7 +76,7 @@
             this.dgvListaProizvoda.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvListaProizvoda.ShowCellToolTips = false;
             this.dgvListaProizvoda.ShowEditingIcon = false;
-            this.dgvListaProizvoda.Size = new System.Drawing.Size(1204, 521);
+            this.dgvListaProizvoda.Size = new System.Drawing.Size(1018, 483);
             this.dgvListaProizvoda.TabIndex = 4;
             // 
             // contextMenu
@@ -115,7 +110,8 @@
             // 
             // btnNoviProizvod
             // 
-            this.btnNoviProizvod.Location = new System.Drawing.Point(12, 646);
+            this.btnNoviProizvod.Location = new System.Drawing.Point(10, 613);
+            this.btnNoviProizvod.Margin = new System.Windows.Forms.Padding(10);
             this.btnNoviProizvod.Name = "btnNoviProizvod";
             this.btnNoviProizvod.Size = new System.Drawing.Size(121, 37);
             this.btnNoviProizvod.TabIndex = 5;
@@ -125,28 +121,33 @@
             // 
             // proizvodBindingSource
             // 
-            this.proizvodBindingSource.DataSource = typeof(WebCene.Model.Proizvod);
+            this.proizvodBindingSource.DataSource = typeof(WebCene.Model.Kroler.Proizvod);
             // 
-            // groupBox1
+            // tableLayoutPanel1
             // 
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.dgvListaProizvoda);
-            this.groupBox1.Location = new System.Drawing.Point(23, 23);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1230, 583);
-            this.groupBox1.TabIndex = 6;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
+            this.tableLayoutPanel1.ColumnCount = 1;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Controls.Add(this.dgvListaProizvoda, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.btnNoviProizvod, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 3;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1058, 683);
+            this.tableLayoutPanel1.TabIndex = 7;
             // 
             // frmProizvodiLista
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1275, 695);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.btnNoviProizvod);
+            this.ClientSize = new System.Drawing.Size(1058, 683);
+            this.Controls.Add(this.tableLayoutPanel1);
             this.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "frmProizvodiLista";
@@ -157,8 +158,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaProizvoda)).EndInit();
             this.contextMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.proizvodBindingSource)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -173,6 +174,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem contextDelete;
         private System.Windows.Forms.BindingSource proizvodBindingSource;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
     }
 }

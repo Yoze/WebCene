@@ -1,4 +1,4 @@
-namespace WebCene.Model
+namespace WebCene.Model.Kroler
 {
     using System;
     using System.Data.Entity;

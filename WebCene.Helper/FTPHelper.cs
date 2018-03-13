@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net;
 using System.IO;
+using WebCene.Model.B2B;
 
 namespace WebCene.Helper
 {
@@ -44,16 +45,16 @@ namespace WebCene.Helper
         }
 
 
-        public void GetXmlFileFromFtp(string ftpUrl)
+        public string GetXmlFileFromFtp(KonfigDobavljaca konfigDobavljaca)
         {
             // https://www.c-sharpcorner.com/UploadFile/0d5b44/ftp-using-C-Sharp-net/
 
             try
             {
                 // FTP request
-                FtpWebRequest request = (FtpWebRequest)WebRequest.Create(ftpUrl);
+                FtpWebRequest request = (FtpWebRequest)WebRequest.Create(konfigDobavljaca.URL);
 
-                request.Credentials = new NetworkCredential("elbraco", "Jeev1oju");
+                request.Credentials = new NetworkCredential(konfigDobavljaca.Username, konfigDobavljaca.Password);
                 request.KeepAlive = false;
                 request.UseBinary = true;
                 request.UsePassive = true;
@@ -65,25 +66,21 @@ namespace WebCene.Helper
 
                 // Stream reader
                 Stream responseStream = response.GetResponseStream();
-
                 StreamReader reader = new StreamReader(responseStream);
 
                 string result = reader.ReadToEnd();
-
 
 
                 // Dispose
                 reader.Close();
                 response.Close();
 
-                string v = "";
+                return result;
             }
             catch (Exception e)
             {
-
-                throw;
+                throw new Exception("Greška: GetXmlFileFromFtp()\r\n" + e.Message);
             }
-
         }
         
 

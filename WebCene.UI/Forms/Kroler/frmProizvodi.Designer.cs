@@ -73,7 +73,7 @@
             // 
             // proizvodBindingSource
             // 
-            this.proizvodBindingSource.DataSource = typeof(WebCene.Model.Proizvod);
+            this.proizvodBindingSource.DataSource = typeof(WebCene.Model.Kroler.Proizvod);
             // 
             // txtEAN
             // 

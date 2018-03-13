@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="B2B\KonfigDobavljaca.cs" />
     <Compile Include="Kroler\KrolGlava.cs" />
     <Compile Include="Kroler\KrolStavke.cs" />
     <Compile Include="Kroler\Prodavci.cs" />
@@ -67,7 +68,7 @@
     </Compile>
     <Compile Include="Kroler\Podesavanja.cs" />
     <Compile Include="Kroler\viewKrolStavke.cs" />
-    <Compile Include="Kroler\WebCeneModel.cs" />
+    <Compile Include="Kroler\KrolerContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -78,7 +79,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="B2B\" />
     <Folder Include="tmp\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
