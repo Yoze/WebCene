@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Net;
 using System.IO;
 using WebCene.Model.B2B;
+using System.Xml;
+using System.Diagnostics;
 
 namespace WebCene.Helper
 {
@@ -45,7 +47,7 @@ namespace WebCene.Helper
         }
 
 
-        public string GetXmlFileFromFtp(KonfigDobavljaca konfigDobavljaca)
+        public XmlDocument GetXmlFileFromFtp(KonfigDobavljaca konfigDobavljaca)
         {
             // https://www.c-sharpcorner.com/UploadFile/0d5b44/ftp-using-C-Sharp-net/
 
@@ -59,23 +61,37 @@ namespace WebCene.Helper
                 request.UseBinary = true;
                 request.UsePassive = true;
 
-
                 // FTP response
                 FtpWebResponse response = (FtpWebResponse)request.GetResponse();
 
-
                 // Stream reader
+                // http://csharp.net-tutorials.com/xml/reading-xml-with-the-xmlreader-class/
                 Stream responseStream = response.GetResponseStream();
                 StreamReader reader = new StreamReader(responseStream);
 
-                string result = reader.ReadToEnd();
+                string readerResult = reader.ReadToEnd();
+                                
+                // Dispose reader
+                if ( reader != null ) reader.Close();
+                if ( response != null ) response.Close();
 
 
-                // Dispose
-                reader.Close();
-                response.Close();
+                // New Xml Document
+                // https://docs.microsoft.com/en-us/dotnet/api/system.xml.xmldocument.-ctor?f1url=https%3A%2F%2Fmsdn.microsoft.com%2Fquery%2Fdev15.query%3FappId%3DDev15IDEF1%26l%3DEN-US%26k%3Dk(System.Xml.XmlDocument.%2523ctor);k(TargetFrameworkMoniker-.NETFramework,Version%3Dv4.6.1);k(DevLang-csharp)%26rd%3Dtrue&view=netframework-4.7.1
 
-                return result;
+                XmlDocument xmlResult = new XmlDocument();
+                xmlResult.LoadXml(readerResult);
+
+
+                // test 
+                foreach (XmlElement item in xmlResult)
+                {
+                    if (item.Attributes["name"] != null)  Debug.WriteLine(item.Attributes["name"].Value);
+                }
+
+
+
+                return xmlResult;
             }
             catch (Exception e)
             {
