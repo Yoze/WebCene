@@ -22,10 +22,19 @@ namespace WebCene.UI.Forms.B2B
 
         private void button1_Click(object sender, EventArgs e)
         {
-            int idDobavljaca = 2; // Vox
+            int idDobavljaca = 3; 
 
-            XmlDocument xmlResult = FTPHelper.Instance.GetXmlFileFromFtp(DBHelper.Instance.GetKonfigDobavljaca(idDobavljaca));
-            
+            KonfigDobavljaca konfigDobavljaca = DBHelper.Instance.GetKonfigDobavljaca(idDobavljaca);
+
+            XmlDocument xmlResult = FTPHelper.Instance.GetXmlFileFromFtp(konfigDobavljaca);
+
+            // Error reading xml file from Ftp
+            if (xmlResult == null) return;
+
+
+            var result = XMLHelper.Instance.DeserializeXmlResult(konfigDobavljaca, xmlResult);
+
+
             MessageBox.Show(FTPHelper.Instance.Test());
                         
         }
@@ -35,7 +44,14 @@ namespace WebCene.UI.Forms.B2B
 
             int idDobavljaca = 1; // Ewe
 
-            XmlDocument xmlResult = HTTPSHelper.Instance.GetXmlFromHttpRequest(DBHelper.Instance.GetKonfigDobavljaca(idDobavljaca));
+            KonfigDobavljaca konfigDobavljaca = DBHelper.Instance.GetKonfigDobavljaca(idDobavljaca);
+
+            XmlDocument xmlResult = HTTPSHelper.Instance.GetXmlFromHttpRequest(konfigDobavljaca);
+
+            // Error reading xml file from Ftp
+            if (xmlResult == null) return;
+
+            var result = XMLHelper.Instance.DeserializeXmlResult(konfigDobavljaca, xmlResult);
 
             MessageBox.Show(HTTPSHelper.Instance.Test());
         }
