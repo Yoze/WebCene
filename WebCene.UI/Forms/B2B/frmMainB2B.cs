@@ -56,6 +56,16 @@ namespace WebCene.UI.Forms.B2B
             MessageBox.Show(HTTPSHelper.Instance.Test());
         }
 
+        private void btnWebService_Click(object sender, EventArgs e)
+        {
+
+            // web service
+
+            KimTecWebServiceClient.Instance.CallWebService();
+
+
+
+        }
 
 
 
