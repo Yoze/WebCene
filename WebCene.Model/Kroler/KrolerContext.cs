@@ -20,7 +20,7 @@ namespace WebCene.Model.Kroler
         public DbSet<Prodavci> Prodavci { get; set; }
         public DbSet<Proizvod> Proizvod { get; set; }
         public DbSet<Podesavanja> Podesavanja { get; set; }
-        public virtual DbSet<KonfigDobavljaca> KonfigDobavljaca { get; set; }
+        public DbSet<KonfigDobavljaca> KonfigDobavljaca { get; set; }
 
 
         // Views

@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using WebCene.Model.B2B;
 using WebCene.Helper;
 using System.Xml;
+using System.Threading;
 
 namespace WebCene.UI.Forms.B2B
 {
@@ -32,7 +33,7 @@ namespace WebCene.UI.Forms.B2B
             if (xmlResult == null) return;
 
 
-            var result = XMLHelper.Instance.DeserializeXmlResult(konfigDobavljaca, xmlResult);
+            List<XmlRezultat> result = XMLHelper.Instance.DeserializeXmlResult(konfigDobavljaca, xmlResult);
 
 
             MessageBox.Show(FTPHelper.Instance.Test());
@@ -51,7 +52,7 @@ namespace WebCene.UI.Forms.B2B
             // Error reading xml file from Ftp
             if (xmlResult == null) return;
 
-            var result = XMLHelper.Instance.DeserializeXmlResult(konfigDobavljaca, xmlResult);
+            List<XmlRezultat> result = XMLHelper.Instance.DeserializeXmlResult(konfigDobavljaca, xmlResult);
 
             MessageBox.Show(HTTPSHelper.Instance.Test());
         }
@@ -63,10 +64,42 @@ namespace WebCene.UI.Forms.B2B
 
             KimTecWebServiceClient.Instance.CallWebService();
 
-
-
+            
         }
 
+        private void btnLoadXmls_Click(object sender, EventArgs e)
+        {
+
+            List<KonfigDobavljaca> listaKonfigDobavljaca = DBHelper.Instance.GetKonfigDobavljacaList();
+
+            int redniBroj = 1;
+
+            foreach (KonfigDobavljaca item in listaKonfigDobavljaca)
+            {
+                StatusXmlUcitavanja status = new StatusXmlUcitavanja()
+                {
+                    Number = redniBroj,
+                    Naziv = item.Naziv,
+                    URL = item.URL,
+                    isLoaded = true
+                };
+
+                PrikaziStatusUcitavanja(status);
+
+                redniBroj++;
+
+               
+            }
+        }
+
+
+
+        private void PrikaziStatusUcitavanja(StatusXmlUcitavanja status)
+        {
+          
+            dgvStatus.Rows.Add(status.Number, status.Naziv, status.isLoaded);
+
+        }
 
 
 

@@ -52,6 +52,20 @@ namespace WebCene.Helper
         } 
            
 
+        public List<KonfigDobavljaca> GetKonfigDobavljacaList()
+        {
+            List<KonfigDobavljaca> listaKonfigDobavljaca = new List<KonfigDobavljaca>();
+
+            using (KrolerContext db = new KrolerContext())
+            {
+                listaKonfigDobavljaca = db.KonfigDobavljaca.ToList();
+            }
+
+            return listaKonfigDobavljaca;
+        }
+
+
+
 
 
     }

@@ -55,6 +55,7 @@
     <Compile Include="B2B\model_BOSCH.cs" />
     <Compile Include="B2B\model_ERG.cs" />
     <Compile Include="B2B\model_EWE.cs" />
+    <Compile Include="B2B\StatusXmlUcitavanja.cs" />
     <Compile Include="B2B\XmlRezultat.cs" />
     <Compile Include="Kroler\KrolGlava.cs" />
     <Compile Include="Kroler\KrolStavke.cs" />

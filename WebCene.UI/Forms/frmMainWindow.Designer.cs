@@ -151,26 +151,26 @@
             // 
             this.noviKrolToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.noviKrolToolStripMenuItem.Name = "noviKrolToolStripMenuItem";
-            this.noviKrolToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.noviKrolToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
             this.noviKrolToolStripMenuItem.Text = "Novi krol";
             this.noviKrolToolStripMenuItem.Click += new System.EventHandler(this.noviKrolToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(172, 6);
             // 
             // toolStripCrosstab
             // 
             this.toolStripCrosstab.Name = "toolStripCrosstab";
-            this.toolStripCrosstab.Size = new System.Drawing.Size(180, 24);
+            this.toolStripCrosstab.Size = new System.Drawing.Size(175, 24);
             this.toolStripCrosstab.Text = "Crosstab lista";
             this.toolStripCrosstab.Click += new System.EventHandler(this.toolStripCrosstab_Click);
             // 
             // toolStripGrouped
             // 
             this.toolStripGrouped.Name = "toolStripGrouped";
-            this.toolStripGrouped.Size = new System.Drawing.Size(180, 24);
+            this.toolStripGrouped.Size = new System.Drawing.Size(175, 24);
             this.toolStripGrouped.Text = "Grupisana lista";
             this.toolStripGrouped.Click += new System.EventHandler(this.toolStripGrouped_Click);
             // 

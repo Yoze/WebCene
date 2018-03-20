@@ -53,7 +53,7 @@ namespace WebCene.Helper
         }
 
 
-        public object DeserializeXmlResult(KonfigDobavljaca konfigDobavljaca, XmlDocument loadedXmlDocument)
+        public List<XmlRezultat> DeserializeXmlResult(KonfigDobavljaca konfigDobavljaca, XmlDocument loadedXmlDocument)
         {
             // deserijalizacija učitanih xml podataka u odgovarajući .NET objekat
 
