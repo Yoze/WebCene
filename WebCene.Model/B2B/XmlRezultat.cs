@@ -9,6 +9,9 @@ namespace WebCene.Model.B2B
     public class XmlRezultat
     {
 
+        public List<XmlRezultat> XmlRezultati { get; set; }
+
+
         public string Barcode { get; set; }
 
         public int Kolicina { get; set; }

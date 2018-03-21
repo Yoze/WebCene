@@ -23,7 +23,5 @@ namespace WebCene.Model.B2B
         public bool isValidated { get; set; }
 
 
-
-
     }
 }

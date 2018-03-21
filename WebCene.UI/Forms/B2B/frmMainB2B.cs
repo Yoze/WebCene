@@ -16,6 +16,10 @@ namespace WebCene.UI.Forms.B2B
 {
     public partial class frmMainB2B : Form
     {
+
+        private List<XmlRezultat> zbirniXml;
+
+
         public frmMainB2B()
         {
             InitializeComponent();
@@ -70,37 +74,104 @@ namespace WebCene.UI.Forms.B2B
         private void btnLoadXmls_Click(object sender, EventArgs e)
         {
 
+            // zbirni Xml rezultati za sve dobavljače
+            zbirniXml = new List<XmlRezultat>();
+
+            // Xml rezultat za jednog dobavljača
+            List<XmlRezultat> pojedinacniXml;
+
             List<KonfigDobavljaca> listaKonfigDobavljaca = DBHelper.Instance.GetKonfigDobavljacaList();
 
             int redniBroj = 1;
 
             foreach (KonfigDobavljaca item in listaKonfigDobavljaca)
             {
+                pojedinacniXml = new List<XmlRezultat>();
+
+                // učitavanje podataka
+                pojedinacniXml = UcitajXmlZaDobavljaca(item);
+                bool isLoaded = pojedinacniXml.Count > 0 ? true : false;
+
+
+                // prikaz statusa učitavanja
                 StatusXmlUcitavanja status = new StatusXmlUcitavanja()
                 {
                     Number = redniBroj,
                     Naziv = item.Naziv,
                     URL = item.URL,
-                    isLoaded = true
-                };
-
+                    isLoaded = isLoaded
+                };                
                 PrikaziStatusUcitavanja(status);
-
                 redniBroj++;
 
-               
+
+                
+                // dodavanje u listu rezultata učitavanja
+                zbirniXml.AddRange(pojedinacniXml);
             }
+            
+            // prikaz svih rezultata učitavanja
+            PrikaziSveUcitanePodatke(zbirniXml);
+
         }
 
+
+        private void PrikaziSveUcitanePodatke(List<XmlRezultat> zbirniXml)
+        {
+            // prikaz podataka
+
+            DataTable dt = Helpers.Instance.ListToDataTable<XmlRezultat>(zbirniXml);
+            dgvZbirniXml.DataSource = dt;
+        }
+
+
+        
 
 
         private void PrikaziStatusUcitavanja(StatusXmlUcitavanja status)
         {
-          
-            dgvStatus.Rows.Add(status.Number, status.Naziv, status.isLoaded);
+            // prikaz statusa učitavanja 
 
+            dgvStatus.Rows.Add(status.Number, status.Naziv, status.isLoaded);
+            dgvStatus.Refresh();
         }
 
+
+        private List<XmlRezultat> UcitajXmlZaDobavljaca(KonfigDobavljaca konfigDobavljaca)
+        {
+            // učutavanje xml podataka za dobavljača
+
+            List<XmlRezultat> result = new List<XmlRezultat>();
+
+            switch (konfigDobavljaca.WebProtokol.TrimEnd())
+            {
+                case "ftp":
+                    {
+                        XmlDocument xmlResult = FTPHelper.Instance.GetXmlFileFromFtp(konfigDobavljaca);
+                        result = XMLHelper.Instance.DeserializeXmlResult(konfigDobavljaca, xmlResult);
+                        return result;
+                    }                    
+
+                case "http":
+                    {
+                        XmlDocument xmlResult = HTTPSHelper.Instance.GetXmlFromHttpRequest(konfigDobavljaca);
+                        result = XMLHelper.Instance.DeserializeXmlResult(konfigDobavljaca, xmlResult);
+                        return result;
+                    }
+                    
+
+                case "webservice":
+                    // TO DO
+                    break;
+
+                default:
+                    break;
+            }
+
+
+
+            return result;
+        }
 
 
     }
