@@ -28,7 +28,7 @@
     <PublisherName>Elbraco</PublisherName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>WebKroler.htm</WebPage>
-    <ApplicationRevision>5</ApplicationRevision>
+    <ApplicationRevision>6</ApplicationRevision>
     <ApplicationVersion>1.6.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -103,6 +103,12 @@
     <Compile Include="Forms\B2B\frmMainB2B.Designer.cs">
       <DependentUpon>frmMainB2B.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\B2B\tempPwd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\B2B\tempPwd.Designer.cs">
+      <DependentUpon>tempPwd.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Kroler\frmKrolSetovanjePopUp.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -173,6 +179,9 @@
     <Compile Include="RezultatKrolaZaPrikaz.cs" />
     <EmbeddedResource Include="Forms\B2B\frmMainB2B.resx">
       <DependentUpon>frmMainB2B.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\B2B\tempPwd.resx">
+      <DependentUpon>tempPwd.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Kroler\frmKrolSetovanjePopUp.resx">
       <DependentUpon>frmKrolSetovanjePopUp.cs</DependentUpon>

@@ -43,7 +43,8 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(28, 486);
+            this.button1.Enabled = false;
+            this.button1.Location = new System.Drawing.Point(12, 354);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(136, 40);
             this.button1.TabIndex = 0;
@@ -53,7 +54,8 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(28, 532);
+            this.button2.Enabled = false;
+            this.button2.Location = new System.Drawing.Point(12, 400);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(136, 40);
             this.button2.TabIndex = 1;
@@ -63,7 +65,8 @@
             // 
             // btnWebService
             // 
-            this.btnWebService.Location = new System.Drawing.Point(28, 578);
+            this.btnWebService.Enabled = false;
+            this.btnWebService.Location = new System.Drawing.Point(12, 446);
             this.btnWebService.Name = "btnWebService";
             this.btnWebService.Size = new System.Drawing.Size(136, 40);
             this.btnWebService.TabIndex = 2;
@@ -73,7 +76,7 @@
             // 
             // btnLoadXmls
             // 
-            this.btnLoadXmls.Location = new System.Drawing.Point(12, 232);
+            this.btnLoadXmls.Location = new System.Drawing.Point(12, 160);
             this.btnLoadXmls.Name = "btnLoadXmls";
             this.btnLoadXmls.Size = new System.Drawing.Size(136, 40);
             this.btnLoadXmls.TabIndex = 3;
@@ -88,7 +91,7 @@
             this.rbr,
             this.dobavljac,
             this.isLoaded});
-            this.dgvStatus.Location = new System.Drawing.Point(12, 80);
+            this.dgvStatus.Location = new System.Drawing.Point(12, 12);
             this.dgvStatus.Name = "dgvStatus";
             this.dgvStatus.Size = new System.Drawing.Size(352, 132);
             this.dgvStatus.TabIndex = 5;
@@ -114,7 +117,7 @@
             // dgvZbirniXml
             // 
             this.dgvZbirniXml.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvZbirniXml.Location = new System.Drawing.Point(393, 80);
+            this.dgvZbirniXml.Location = new System.Drawing.Point(431, 12);
             this.dgvZbirniXml.Name = "dgvZbirniXml";
             this.dgvZbirniXml.Size = new System.Drawing.Size(794, 474);
             this.dgvZbirniXml.TabIndex = 6;
@@ -123,7 +126,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1246, 637);
+            this.ClientSize = new System.Drawing.Size(1246, 541);
             this.Controls.Add(this.dgvZbirniXml);
             this.Controls.Add(this.dgvStatus);
             this.Controls.Add(this.btnLoadXmls);
@@ -131,6 +134,8 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Name = "frmMainB2B";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.Text = "frmMainB2B";
             ((System.ComponentModel.ISupportInitialize)(this.dgvStatus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvZbirniXml)).EndInit();

@@ -65,6 +65,14 @@ namespace WebCene.Helper
         }
 
 
+        public List<DARTIKLI> GetDARTIKLI()
+        {
+            List<DARTIKLI> dartikli = new List<DARTIKLI>();
+
+
+
+            return dartikli;
+        }
 
 
 

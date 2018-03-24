@@ -13,13 +13,18 @@ using HtmlAgilityPack;
 using WebCene.UI.Forms.B2B;
 using WebCene.UI.Forms.Kroler;
 
+
 namespace WebCene.UI.Forms
 {
     public partial class frmMainWindow : Form
     {
+        public static Form thisForm;
+
         public frmMainWindow()
         {
             InitializeComponent();
+
+            thisForm = this;
 
             // naslovna linija (ispis trenutne verzije)
             string windowTitle = "Elbraco Web Kroler - Verzija ";
@@ -50,7 +55,7 @@ namespace WebCene.UI.Forms
         private void noviProizvodToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmProizvodi proizvod = new frmProizvodi(null);
-            proizvod.MdiParent = this;
+            //proizvod.MdiParent = this;
             proizvod.ShowDialog();
 
         }
@@ -66,7 +71,7 @@ namespace WebCene.UI.Forms
         private void noviProdavacToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmProdavci prodavac = new frmProdavci(null);
-            prodavac.MdiParent = this;
+            //prodavac.MdiParent = this;
             prodavac.ShowDialog();
         }
 
@@ -113,9 +118,32 @@ namespace WebCene.UI.Forms
 
         private void mainTestToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmMainB2B mainB2B = new frmMainB2B();
-            mainB2B.MdiParent = this;
-            mainB2B.Show();
+            // provera da li frmMainB2B forma već otvorena
+            if (isFormOpened(Application.OpenForms, typeof(frmMainB2B))) return;            
+
+            
+            // nova instanca tempPwd forme
+            tempPwd pwd = new tempPwd();
+            pwd.ShowDialog();
+
+            DialogResult dr = pwd.dialogResult;
+
+            if (pwd.dialogResult == DialogResult.OK)
+            {
+                frmMainB2B mainB2B = new frmMainB2B();
+                mainB2B.MdiParent = this;
+                mainB2B.Show();
+            }
+            else return;
+            
         }
+
+
+        private bool isFormOpened(FormCollection formCollection, Type formType)
+        {
+            return Application.OpenForms.Cast<Form>().Any(f => f.GetType() == formType);
+        }
+       
+
     }
 }

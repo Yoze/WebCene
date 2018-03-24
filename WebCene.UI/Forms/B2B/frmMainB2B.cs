@@ -27,38 +27,38 @@ namespace WebCene.UI.Forms.B2B
 
         private void button1_Click(object sender, EventArgs e)
         {
-            int idDobavljaca = 3; 
+            //int idDobavljaca = 3; 
 
-            KonfigDobavljaca konfigDobavljaca = DBHelper.Instance.GetKonfigDobavljaca(idDobavljaca);
+            //KonfigDobavljaca konfigDobavljaca = DBHelper.Instance.GetKonfigDobavljaca(idDobavljaca);
 
-            XmlDocument xmlResult = FTPHelper.Instance.GetXmlFileFromFtp(konfigDobavljaca);
+            //XmlDocument xmlResult = FTPHelper.Instance.GetXmlFileFromFtp(konfigDobavljaca);
 
-            // Error reading xml file from Ftp
-            if (xmlResult == null) return;
-
-
-            List<XmlRezultat> result = XMLHelper.Instance.DeserializeXmlResult(konfigDobavljaca, xmlResult);
+            //// Error reading xml file from Ftp
+            //if (xmlResult == null) return;
 
 
-            MessageBox.Show(FTPHelper.Instance.Test());
+            //List<XmlRezultat> result = XMLHelper.Instance.DeserializeXmlResult(konfigDobavljaca, xmlResult);
+
+
+            //MessageBox.Show(FTPHelper.Instance.Test());
                         
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
 
-            int idDobavljaca = 1; // Ewe
+            //int idDobavljaca = 1; // Ewe
 
-            KonfigDobavljaca konfigDobavljaca = DBHelper.Instance.GetKonfigDobavljaca(idDobavljaca);
+            //KonfigDobavljaca konfigDobavljaca = DBHelper.Instance.GetKonfigDobavljaca(idDobavljaca);
 
-            XmlDocument xmlResult = HTTPSHelper.Instance.GetXmlFromHttpRequest(konfigDobavljaca);
+            //XmlDocument xmlResult = HTTPSHelper.Instance.GetXmlFromHttpRequest(konfigDobavljaca);
 
-            // Error reading xml file from Ftp
-            if (xmlResult == null) return;
+            //// Error reading xml file from Ftp
+            //if (xmlResult == null) return;
 
-            List<XmlRezultat> result = XMLHelper.Instance.DeserializeXmlResult(konfigDobavljaca, xmlResult);
+            //List<XmlRezultat> result = XMLHelper.Instance.DeserializeXmlResult(konfigDobavljaca, xmlResult);
 
-            MessageBox.Show(HTTPSHelper.Instance.Test());
+            //MessageBox.Show(HTTPSHelper.Instance.Test());
         }
 
         private void btnWebService_Click(object sender, EventArgs e)
@@ -123,9 +123,6 @@ namespace WebCene.UI.Forms.B2B
             DataTable dt = Helpers.Instance.ListToDataTable<XmlRezultat>(zbirniXml);
             dgvZbirniXml.DataSource = dt;
         }
-
-
-        
 
 
         private void PrikaziStatusUcitavanja(StatusXmlUcitavanja status)
