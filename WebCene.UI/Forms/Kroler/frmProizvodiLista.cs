@@ -18,6 +18,7 @@ namespace WebCene.UI.Forms.Kroler
         Proizvod odabraniProizvod { get; set; }
         private int indeksOdabranogProizvoda { get; set; }
 
+        public int totalRows { get; set; }
 
         public static List<Proizvod> ListaProizvoda { get; set; }
         private BindingSource dataGridBindingSource { get; set; }
@@ -48,6 +49,9 @@ namespace WebCene.UI.Forms.Kroler
             {
                 ListaProizvoda = db.Proizvod.ToList();
 
+                // brojač redova 
+                lblTotalRows.Text = ListaProizvoda.Count().ToString();
+
                 if (ListaProizvoda != null)
                 {
                     // Binding list
@@ -58,7 +62,28 @@ namespace WebCene.UI.Forms.Kroler
                     dgvListaProizvoda.DataSource = dataGridBindingSource;
                 }
             }
+        }
 
+
+        public void BrzaPretragaListeProizvoda(string filter)
+       {
+            List<Proizvod> filtriranaLista = new List<Proizvod>();
+
+            filtriranaLista = ListaProizvoda
+                .Where(x => x.Naziv.ToLower().Contains(filter.ToLower()))
+                .ToList();
+
+            // brojač redova 
+            lblTotalRows.Text = filtriranaLista.Count().ToString();
+
+            // Binding list
+            var bindingListaProizvodaView = new BindingList<Proizvod>(filtriranaLista);
+            dataGridBindingSource = new BindingSource(bindingListaProizvodaView, null);
+
+            // Data source
+            dgvListaProizvoda.DataSource = dataGridBindingSource;
+
+            dgvListaProizvoda.Refresh();
         }
 
 
@@ -246,6 +271,17 @@ namespace WebCene.UI.Forms.Kroler
             }
         }
 
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
 
+            BrzaPretragaListeProizvoda(textBox.Text);
+        }
+
+        private void btnClearSearch_Click(object sender, EventArgs e)
+        {
+            txtSearch.Clear();
+            txtSearch.Focus();
+        }
     }
 }

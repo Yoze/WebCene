@@ -182,6 +182,42 @@ namespace WebCene.Helper
                     }
                     return xmlRezultats;
 
+                //case "ZOM":
+                //    {
+                //        Artikl zomImpex = new Artikl();
+                //        var serializer = new XmlSerializer(typeof(Artikl));
+
+                //        using (XmlReader reader = new XmlNodeReader(loadedXmlDocument))
+                //        {
+                //            zomImpex = (Artikl)serializer.Deserialize(reader);
+                //        }
+
+                //        foreach (var item in zomImpex.InformacijeArtikla)
+                //        {
+
+                //            // količina
+                //            int kolicina = 0;
+                //            bool isKolicina = Int32.TryParse(item.Količina, out kolicina);
+
+                //            // cena
+
+
+                //            XmlRezultat xmlRezultat = new XmlRezultat()
+                //            {
+                //                Barcode = item.Bar_kod,
+                //                Kolicina = kolicina,
+                //                Cena = item.Cena,
+                //                PMC = 0,
+                //                DatumUlistavanja = DateTime.Today,
+                //                PrimarniDobavljac = konfigDobavljaca.Naziv
+                //            };
+
+                //            xmlRezultats.Add(xmlRezultat);
+                //        }
+
+                //    }
+                //    return xmlRezultats;
+
 
 
                 default:

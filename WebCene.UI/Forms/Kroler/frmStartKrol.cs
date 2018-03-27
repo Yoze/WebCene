@@ -1284,9 +1284,13 @@ namespace WebCene.UI.Forms.Kroler
                     {
                         string _brendTrimmed = _Brend.TrimEnd();
 
+                        //var tempLista = ListaProizvoda
+                        //    .Where(x => x.Brend.Equals(_brendTrimmed))
+                        //    .ToList();
+
                         var tempLista = ListaProizvoda
-                            .Where(x => x.Brend.Equals(_brendTrimmed))
-                            .ToList();
+                          .Where(x => x.Brend.ToLower().Equals(_brendTrimmed.ToLower()))
+                          .ToList();
 
                         FilteredListaProizvoda = tempLista;
                         break;
@@ -1296,9 +1300,13 @@ namespace WebCene.UI.Forms.Kroler
                     {
                         string _katTrimmed = _ElKat.TrimEnd();
 
+                        //var tempLista = ListaProizvoda
+                        //    .Where(x => x.ElKat.Equals(_katTrimmed))
+                        //    .ToList();
+
                         var tempLista = ListaProizvoda
-                            .Where(x => x.ElKat.Equals(_katTrimmed))
-                            .ToList();
+                           .Where(x => x.ElKat.ToLower().Equals(_katTrimmed.ToLower()))
+                           .ToList();
 
                         FilteredListaProizvoda = tempLista;
                         break;
@@ -1309,10 +1317,15 @@ namespace WebCene.UI.Forms.Kroler
                         string _katTrimmed = _ElKat.TrimEnd();
                         string _brendTrimmed = _Brend.TrimEnd();
 
+                        //var tempLista = ListaProizvoda
+                        //    .Where(k => k.ElKat.Equals(_katTrimmed))
+                        //    .Where(b => b.Brend.Equals(_brendTrimmed))
+                        //    .ToList();
+
                         var tempLista = ListaProizvoda
-                            .Where(k => k.ElKat.Equals(_katTrimmed))
-                            .Where(b => b.Brend.Equals(_brendTrimmed))
-                            .ToList();
+                           .Where(k => k.ElKat.ToLower().Equals(_katTrimmed.ToLower()))
+                           .Where(b => b.Brend.ToLower().Equals(_brendTrimmed.ToLower()))
+                           .ToList();
 
                         FilteredListaProizvoda = tempLista;
                         break;
