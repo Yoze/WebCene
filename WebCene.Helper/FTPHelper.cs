@@ -69,6 +69,7 @@ namespace WebCene.Helper
         {
             // https://www.c-sharpcorner.com/UploadFile/0d5b44/ftp-using-C-Sharp-net/
 
+            XmlDocument xmlResult = new XmlDocument();
 
             // requestUriString
             string requestUriString = CreateRequestUri(konfigDobavljaca);
@@ -90,25 +91,48 @@ namespace WebCene.Helper
 
                 string responseStatus = response.StatusDescription;
 
-                // Stream reader
-                // http://csharp.net-tutorials.com/xml/reading-xml-with-the-xmlreader-class/
                 Stream responseStream = response.GetResponseStream();
 
-                StreamReader reader = new StreamReader(responseStream);
-                string readerResult = reader.ReadToEnd();
+                StreamReader reader = null;
+                //StreamReader reader = new StreamReader(responseStream);
+                //string readerResult = reader.ReadToEnd();
 
                 // Dispose resources
-                if (reader != null) reader.Close();
-                if (response != null) response.Close();
+                //if (reader != null) reader.Close();
+                //if (response != null) response.Close();
 
 
-                // New Xml Document
-                // https://docs.microsoft.com/en-us/dotnet/api/system.xml.xmldocument.-ctor?f1url=https%3A%2F%2Fmsdn.microsoft.com%2Fquery%2Fdev15.query%3FappId%3DDev15IDEF1%26l%3DEN-US%26k%3Dk(System.Xml.XmlDocument.%2523ctor);k(TargetFrameworkMoniker-.NETFramework,Version%3Dv4.6.1);k(DevLang-csharp)%26rd%3Dtrue&view=netframework-4.7.1
-                XmlDocument xmlResult = new XmlDocument();
-                xmlResult.LoadXml(readerResult);
+                switch (konfigDobavljaca.ExtraData)
+                {
+                    case "GORENJE":
+                        {
+                            using (reader = new StreamReader(responseStream, Encoding.UTF8, false))
+                            {
+                                xmlResult.Load(reader);
+                            }
+                            if (response != null) response.Close();
+                        }
+                        return xmlResult;
+
+                    default:
+                        {
+                            string readerResult; 
+
+                            using (reader = new StreamReader(responseStream))
+                            {
+                                readerResult = reader.ReadToEnd();
+                            }
+
+                            xmlResult.LoadXml(readerResult);
+                            if (response != null) response.Close();
+                        }                       
+                        return xmlResult;
+                }
+ 
+               
 
 
-                return xmlResult;
+                
             }
             catch (Exception e)
             {

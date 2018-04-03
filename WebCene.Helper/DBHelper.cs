@@ -69,7 +69,7 @@ namespace WebCene.Helper
         {
             List<DARTIKLI> dartikli = new List<DARTIKLI>();
 
-
+            // TO DO
 
             return dartikli;
         }

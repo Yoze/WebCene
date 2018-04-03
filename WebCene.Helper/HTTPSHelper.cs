@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using System.Xml.Serialization;
 using WebCene.Model.B2B;
 
 namespace WebCene.Helper
@@ -47,19 +49,33 @@ namespace WebCene.Helper
             using (var webClient = new WebClient())
             {
                 downloadResult = webClient.DownloadString(xmlPath);
+
+                XmlDocument xmlResult = new XmlDocument();
+
+                switch (konfigDobavljaca.ExtraData)
+                {
+                    case "ZOMIMPEX":                  
+                        { 
+                            Stream stream = webClient.OpenRead(xmlPath);
+
+                            using (StreamReader reader = new StreamReader(stream, Encoding.UTF8, true))
+                            {
+                                //XmlSerializer serializer = new XmlSerializer(typeof(Artikl));
+
+                                //object result = serializer.Deserialize(reader);
+
+                                xmlResult.Load(reader);
+                            }
+                        }
+                        return xmlResult;
+
+                    default:
+                        xmlResult.LoadXml(downloadResult);
+                        return xmlResult;
+                }
+
             }
-
-
-            // New Xml Document
-            // https://docs.microsoft.com/en-us/dotnet/api/system.xml.xmldocument.-ctor?f1url=https%3A%2F%2Fmsdn.microsoft.com%2Fquery%2Fdev15.query%3FappId%3DDev15IDEF1%26l%3DEN-US%26k%3Dk(System.Xml.XmlDocument.%2523ctor);k(TargetFrameworkMoniker-.NETFramework,Version%3Dv4.6.1);k(DevLang-csharp)%26rd%3Dtrue&view=netframework-4.7.1
-
-            // http://csharp.net-tutorials.com/xml/reading-xml-with-the-xmldocument-class/
-
-            XmlDocument xmlResult = new XmlDocument();
-            xmlResult.LoadXml(downloadResult);
-
-
-            return xmlResult;
+            
         }
 
 

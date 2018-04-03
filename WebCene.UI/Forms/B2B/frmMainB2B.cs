@@ -82,12 +82,18 @@ namespace WebCene.UI.Forms.B2B
 
             List<KonfigDobavljaca> listaKonfigDobavljaca = DBHelper.Instance.GetKonfigDobavljacaList();
 
+
+            /** T E S T  ===>  učitava listaKonfigDobavljaca.Count - x dobavljača */
+            listaKonfigDobavljaca.RemoveRange(0, listaKonfigDobavljaca.Count - 3);
+
+
             int redniBroj = 1;
 
             foreach (KonfigDobavljaca item in listaKonfigDobavljaca)
             {
                 pojedinacniXml = new List<XmlRezultat>();
 
+                
                 // učitavanje podataka
                 pojedinacniXml = UcitajXmlZaDobavljaca(item);
                 bool isLoaded = pojedinacniXml.Count > 0 ? true : false;

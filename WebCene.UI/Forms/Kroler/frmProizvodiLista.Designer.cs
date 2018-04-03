@@ -41,9 +41,8 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
             this.txtSearch = new System.Windows.Forms.TextBox();
-            this.lblTotalRows = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.btnClearSearch = new System.Windows.Forms.Button();
+            this.lblTotalRows = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaProizvoda)).BeginInit();
             this.contextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.proizvodBindingSource)).BeginInit();
@@ -155,7 +154,6 @@
             this.flowLayoutPanel1.Controls.Add(this.label2);
             this.flowLayoutPanel1.Controls.Add(this.txtSearch);
             this.flowLayoutPanel1.Controls.Add(this.btnClearSearch);
-            this.flowLayoutPanel1.Controls.Add(this.label3);
             this.flowLayoutPanel1.Controls.Add(this.lblTotalRows);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 83);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -187,31 +185,6 @@
             this.txtSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
-            // lblTotalRows
-            // 
-            this.lblTotalRows.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lblTotalRows.AutoSize = true;
-            this.lblTotalRows.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lblTotalRows.Location = new System.Drawing.Point(433, 12);
-            this.lblTotalRows.Margin = new System.Windows.Forms.Padding(1);
-            this.lblTotalRows.Name = "lblTotalRows";
-            this.lblTotalRows.Size = new System.Drawing.Size(15, 17);
-            this.lblTotalRows.TabIndex = 1;
-            this.lblTotalRows.Text = "0";
-            this.lblTotalRows.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label3
-            // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(378, 12);
-            this.label3.Margin = new System.Windows.Forms.Padding(15, 1, 1, 1);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(53, 17);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Ukupno";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // btnClearSearch
             // 
             this.btnClearSearch.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -228,6 +201,19 @@
             this.btnClearSearch.Text = "X";
             this.btnClearSearch.UseVisualStyleBackColor = true;
             this.btnClearSearch.Click += new System.EventHandler(this.btnClearSearch_Click);
+            // 
+            // lblTotalRows
+            // 
+            this.lblTotalRows.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lblTotalRows.AutoSize = true;
+            this.lblTotalRows.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lblTotalRows.Location = new System.Drawing.Point(373, 12);
+            this.lblTotalRows.Margin = new System.Windows.Forms.Padding(10, 1, 1, 1);
+            this.lblTotalRows.Name = "lblTotalRows";
+            this.lblTotalRows.Size = new System.Drawing.Size(15, 17);
+            this.lblTotalRows.TabIndex = 1;
+            this.lblTotalRows.Text = "0";
+            this.lblTotalRows.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // frmProizvodiLista
             // 
@@ -269,7 +255,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Label lblTotalRows;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnClearSearch;
     }
 }
