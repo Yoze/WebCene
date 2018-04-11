@@ -8,6 +8,8 @@ using System.IO;
 using WebCene.Model.B2B;
 using System.Xml;
 using System.Diagnostics;
+using System.Xml.Serialization;
+using System.Xml.Schema;
 
 namespace WebCene.Helper
 {
@@ -106,8 +108,30 @@ namespace WebCene.Helper
                 {
                     case "GORENJE":
                         {
-                            using (reader = new StreamReader(responseStream, Encoding.UTF8, false))
+                            using (reader = new StreamReader(responseStream, Encoding.UTF8, true))
                             {
+
+                                Root gorenje = new Root();
+                                var serializer = new XmlSerializer(typeof(Root));
+
+                                XmlReaderSettings xmlReaderSettings = new XmlReaderSettings();
+                                xmlReaderSettings.ValidationType = ValidationType.DTD;
+                                //xmlReaderSettings.ValidationEventHandler += new ValidationEventHandler(ValidationCallback);
+
+
+                                XmlTextReader xmlNodeReader = new XmlTextReader(reader);
+
+
+                                using (XmlReader xmlReader = XmlReader.Create(xmlNodeReader, xmlReaderSettings))
+                                {
+
+                                    gorenje = (Root)serializer.Deserialize(xmlReader);
+                                }
+
+
+
+
+
                                 xmlResult.Load(reader);
                             }
                             if (response != null) response.Close();

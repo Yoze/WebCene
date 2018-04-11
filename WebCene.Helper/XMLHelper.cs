@@ -12,6 +12,9 @@ using WebCene.Helper;
 using System.IO;
 using System.Xml.Schema;
 
+using extendedNamespace = WebCene.Model.B2B.extendNameSpace;
+
+
 namespace WebCene.Helper
 {
     public sealed class XMLHelper
@@ -116,7 +119,9 @@ namespace WebCene.Helper
 
                         foreach (var item in erg.ITEM)
                         {
-                            if (!(string.IsNullOrWhiteSpace(item.barcode)))
+                            string barcodeTrimmed = item.barcode.TrimEnd();
+
+                            if (!(string.IsNullOrWhiteSpace(barcodeTrimmed)))
                             {
 
                                 // kolicina
@@ -127,14 +132,19 @@ namespace WebCene.Helper
                                 else isKolicina = Int32.TryParse(item.stock.ToString(), out kolicina);
 
                                 //cena
-                                decimal cena = decimal.Zero;
-                                bool isCena = decimal.TryParse(item.price.ToString(), out cena);
+                                //decimal cena = decimal.Zero;
+
+                                //cena = item.price;
+
+                                //bool isCena = decimal.TryParse(price, out cena);
+
+                              
 
                                 XmlRezultat xmlRezultat = new XmlRezultat()
                                 {
                                     Barcode = item.barcode.TrimEnd(),
                                     Kolicina = kolicina,
-                                    Cena = cena,
+                                    Cena = item.price,
                                     PMC = 0,
                                     DatumUlistavanja = DateTime.Today,
                                     PrimarniDobavljac = konfigDobavljaca.Naziv
@@ -186,10 +196,18 @@ namespace WebCene.Helper
                         Root gorenje = new Root();
                         var serializer = new XmlSerializer(typeof(Root));
 
-                        using (XmlNodeReader reader = new XmlNodeReader(loadedXmlDocument))
-                        {
+                        XmlReaderSettings xmlReaderSettings = new XmlReaderSettings();
+                        xmlReaderSettings.ValidationType = ValidationType.DTD;
+                        xmlReaderSettings.ValidationEventHandler += new ValidationEventHandler(ValidationCallback);
 
-                            gorenje = (Root)serializer.Deserialize(reader);
+
+                        XmlTextReader xmlNodeReader = new XmlTextReader(loadedXmlDocument.ToString());
+                        
+
+                        using (XmlReader xmlReader = XmlReader.Create(xmlNodeReader, xmlReaderSettings))
+                        {
+                            
+                            gorenje = (Root)serializer.Deserialize(xmlReader);
                         }
 
                         // Provere cena, barkoda, ...
@@ -202,8 +220,8 @@ namespace WebCene.Helper
                             {
                                 Barcode = item.EAN_code.ToString(),
                                 Kolicina = item.kom,
-                                Cena = 0,
-                                PMC = 0,
+                                Cena = decimal.Zero,
+                                PMC = decimal.Zero,
                                 DatumUlistavanja = DateTime.Today,
                                 PrimarniDobavljac = konfigDobavljaca.Naziv
                             };
@@ -279,6 +297,35 @@ namespace WebCene.Helper
 
                     }
                     return xmlRezultats;
+                case "CANDY":
+                    {
+                        extendedNamespace.Root candy = new extendedNamespace.Root();
+                        var serializer = new XmlSerializer(typeof(extendedNamespace.Root));
+
+                        using (XmlReader reader = new XmlNodeReader(loadedXmlDocument))
+                        {
+                            candy = (extendedNamespace.Root)serializer.Deserialize(reader);
+                        }
+
+
+                        foreach (var item in candy.Row)
+                        {
+
+
+                            XmlRezultat xmlRezultat = new XmlRezultat()
+                            {
+                                Barcode = item.barkod.ToString(),
+                                Kolicina = item.Kolicina,
+                                Cena = decimal.Zero,
+                                PMC = decimal.Zero,
+                                DatumUlistavanja = DateTime.Today,
+                                PrimarniDobavljac = konfigDobavljaca.Naziv
+                            };
+                            xmlRezultats.Add(xmlRezultat);
+                        }
+
+                    }
+                    return xmlRezultats;
 
                 default:
                     return xmlRezultats;
@@ -288,6 +335,52 @@ namespace WebCene.Helper
 
 
         }
+
+
+        private void DeserializeXmlToClass(XmlDocument loadedXmlDocument, Type targetClass )
+        {
+            // TO DO: 
+            
+        }
+
+
+        public List<XmlRezultat> UcitajXmlZaDobavljaca(KonfigDobavljaca konfigDobavljaca)
+        {
+            // učutavanje xml podataka za dobavljača
+
+            List<XmlRezultat> result = new List<XmlRezultat>();
+
+            switch (konfigDobavljaca.WebProtokol.TrimEnd())
+            {
+                case "ftp":
+                    {
+                        XmlDocument xmlResult = FTPHelper.Instance.GetXmlFileFromFtp(konfigDobavljaca);
+                        result = XMLHelper.Instance.DeserializeXmlResult(konfigDobavljaca, xmlResult);
+                        return result;
+                    }
+
+                case "http":
+                    {
+                        XmlDocument xmlResult = HTTPSHelper.Instance.GetXmlFromHttpRequest(konfigDobavljaca);
+                        result = XMLHelper.Instance.DeserializeXmlResult(konfigDobavljaca, xmlResult);
+                        return result;
+                    }
+
+
+                case "webservice":
+                    // TO DO
+                    break;
+
+                default:
+                    break;
+            }
+
+
+
+            return result;
+        }
+
+
 
         private static void ValidationCallback(object sender, ValidationEventArgs e)
         {
