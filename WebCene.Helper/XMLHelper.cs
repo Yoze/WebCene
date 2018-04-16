@@ -327,6 +327,43 @@ namespace WebCene.Helper
                     }
                     return xmlRezultats;
 
+                case "ORBICO":
+                    {
+                        extendedNamespace.Items orbico = new extendedNamespace.Items();
+                        var serializer = new XmlSerializer(typeof(extendedNamespace.Items));
+
+                        using (XmlReader reader = new XmlNodeReader(loadedXmlDocument))
+                        {
+                            orbico = (extendedNamespace.Items)serializer.Deserialize(reader);
+                        }
+
+                        foreach (var item in orbico.Item)
+                        {
+                            // cena sa popustom (price_rebate)
+                            decimal cena = decimal.Zero;
+                            bool isParsedPriceRebate = decimal.TryParse(item.price_rebate, out cena);
+
+                            // PMC
+                            decimal pmc = decimal.Zero;
+                            bool isParsedPrice = decimal.TryParse(item.price, out pmc);
+
+
+                            XmlRezultat xmlRezultat = new XmlRezultat()
+                            {
+                                Barcode = item.ean.ToString(),
+                                Kolicina = item.qty,
+                                Cena = cena,
+                                PMC = pmc,
+                                DatumUlistavanja = DateTime.Today,
+                                PrimarniDobavljac = konfigDobavljaca.Naziv
+                            };
+                            xmlRezultats.Add(xmlRezultat);
+                        }
+
+                    }
+                    return xmlRezultats;
+
+
                 default:
                     return xmlRezultats;
             }

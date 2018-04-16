@@ -59,7 +59,7 @@ namespace WebCene.UI.Forms.B2B
             List<KonfigDobavljaca> listaKonfigDobavljaca = DBHelper.Instance.GetKonfigDobavljacaList();
 
             ///** T E S T  ===>  učitava listaKonfigDobavljaca.Count - x dobavljača */
-            //listaKonfigDobavljaca.RemoveRange(0, listaKonfigDobavljaca.Count - 6);
+            //listaKonfigDobavljaca.RemoveRange(0, listaKonfigDobavljaca.Count - 7);
 
 
             int redniBroj = 1;
