@@ -51,7 +51,7 @@ namespace WebCene.UI.Forms.Kroler
             {
                 string naziv = string.Empty;
 
-                for (int i = 0; i <= 5; i++)
+                for (int i = 0; i <= 6; i++)
                 {
                     naziv = db.Prodavci
                     .Where(x => x.EponudaId == "00" + i.ToString())
@@ -710,6 +710,11 @@ namespace WebCene.UI.Forms.Kroler
             PonistiFilter();
             filteredKrolStavkeDataTable = KrolStavkeDataTable;
             PrikaziDetaljeKrola(filteredKrolStavkeDataTable);
+        }
+
+        private void checNNCDartikli_CheckedChanged(object sender, EventArgs e)
+        {
+            ShowHideCenaMaloX09Kolone();
         }
     }
 }

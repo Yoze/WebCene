@@ -497,9 +497,8 @@ namespace WebCene.UI.Forms.Kroler
 
 
                     /** Kolona CenaM za svaki proizvod */
-
                     decimal cenaM = decimal.Zero;
-                    int elbsCENAMKolona = PronadjiProdavnicaIdFromKrolProdavci("000");
+                    int elbsCENAMKolona = PronadjiProdavnicaIdFromKrolProdavci("000"); // tab. Prodavci kol. EponudaId
                     cenaM = PronadjiCenaMZaProizvod(_proizvodZaKrol);
 
                     KrolStavke kolonaCenaM = new KrolStavke
@@ -510,6 +509,7 @@ namespace WebCene.UI.Forms.Kroler
                         Cena = cenaM
                     };
                     KrolStavkePreciscenaLista.Add(kolonaCenaM);
+
 
 
 
@@ -530,6 +530,23 @@ namespace WebCene.UI.Forms.Kroler
                         };
                         KrolStavkePreciscenaLista.Add(kolonaCENAMALOx09ZaProdavnicu);
                     }
+
+
+
+                    /** Kolona NNC iz tabele DARTIKLI -> za svaki proizvod */
+                    decimal NNC = decimal.Zero;
+                    int elbsNNCKolona = PronadjiProdavnicaIdFromKrolProdavci("006"); // tab. Prodavci kol. EponudaId
+                    NNC = PronadjiNNCDartikliZaProizvod(_proizvodZaKrol);
+
+                    KrolStavke kolonaNNC = new KrolStavke
+                    {
+                        KrolGlavaId = _krolGlavaId,
+                        ProizvodId = _proizvodZaKrol.Id,
+                        ProdavciId = elbsNNCKolona,
+                        Cena = NNC
+                    };
+                    KrolStavkePreciscenaLista.Add(kolonaNNC);
+
 
 
                     return true;
@@ -626,9 +643,55 @@ namespace WebCene.UI.Forms.Kroler
                         MessageBox.Show("Greška: PronadjiCenaMZaProizvod()\r\nErr: " + err.Message, "Greška");
                     }
                 }
+                else throw new Exception("Greška u komunikaciji sa ELBS serverom.\r\nFunkcija: PronadjiCenaMaloFromArtProd()");
             }
             return decimal.Multiply(CENAMALO, multiplier);
         }
+
+
+
+        private decimal PronadjiNNCDartikliZaProizvod(Proizvod proizvod)
+        {
+            decimal NNC = decimal.Zero;
+            string sifra = string.Empty;
+
+
+            using (SqlConnection elbsConn = new SqlConnection(Properties.Settings.Default.ELBS_2018_ConnString))
+            {
+                elbsConn.Open();
+                if (elbsConn.State == System.Data.ConnectionState.Open)
+                {
+                    try
+                    {
+                        string sqlQuery = "SELECT artikal, nnc FROM dartikli WHERE artikal ='" + proizvod.ElSifraProizvoda + "'";
+
+                        SqlCommand cmd = new SqlCommand(sqlQuery, elbsConn);
+
+                        SqlDataReader dr = cmd.ExecuteReader();
+
+                        if (dr.HasRows)
+                        {
+                            while (dr.Read())
+                            {
+                                sifra = dr.GetString(0);
+                                NNC = (decimal)dr.GetDouble(1);
+                            }
+                        }
+                        dr.Close();
+                    }
+                    catch (Exception err)
+                    {
+                        MessageBox.Show("Greška SQLDataReader: PronadjiNncIzDartikliZaProizvod()\r\nErr: " + err.Message, "Greška");
+                    }
+                                        
+                }
+                else throw new Exception("Greška u komunikaciji sa ELBS serverom.\r\nFunkcija: PronadjiNncIzDartikliZaProizvod()");
+            }
+
+            return NNC;            
+        }
+
+
 
 
         private decimal PronadjiCenaMZaProizvod(Proizvod proizvod)
@@ -662,9 +725,10 @@ namespace WebCene.UI.Forms.Kroler
                     }
                     catch (Exception err)
                     {
-                        MessageBox.Show("Greška: PronadjiCenaMZaProizvod()\r\nErr: " + err.Message, "Greška");
+                        MessageBox.Show("Greška SQLDataReader: PronadjiCenaMZaProizvod()\r\nErr: " + err.Message, "Greška");
                     }
                 }
+                else throw new Exception("Greška u komunikaciji sa ELBS serverom.\r\nFunkcija: PronadjiCenaMZaProizvod()");
             }
             return cenaM;
         }

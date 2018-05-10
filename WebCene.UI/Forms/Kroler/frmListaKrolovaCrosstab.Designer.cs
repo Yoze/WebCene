@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.comboKategorije = new System.Windows.Forms.ComboBox();
             this.comboBrendovi = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -64,6 +64,7 @@
             this.chkODZ = new System.Windows.Forms.CheckBox();
             this.chkAPA = new System.Windows.Forms.CheckBox();
             this.chkSO = new System.Windows.Forms.CheckBox();
+            this.checNNCDartikli = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgViewKrolDetalj)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -139,14 +140,14 @@
             this.dgViewKrolDetalj.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgViewKrolDetalj.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
             this.dgViewKrolDetalj.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgViewKrolDetalj.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgViewKrolDetalj.DefaultCellStyle = dataGridViewCellStyle5;
             this.dgViewKrolDetalj.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgViewKrolDetalj.Location = new System.Drawing.Point(3, 21);
             this.dgViewKrolDetalj.Margin = new System.Windows.Forms.Padding(10);
@@ -404,7 +405,7 @@
             this.tableLayoutPanel1.Controls.Add(this.groupBox3, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.groupBox1, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.btnOdustani, 2, 3);
-            this.tableLayoutPanel1.Controls.Add(this.grpBoxCenaMaloPM, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.grpBoxCenaMaloPM, 2, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -413,11 +414,13 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1524, 741);
             this.tableLayoutPanel1.TabIndex = 22;
             // 
             // grpBoxCenaMaloPM
             // 
+            this.grpBoxCenaMaloPM.Controls.Add(this.checNNCDartikli);
             this.grpBoxCenaMaloPM.Controls.Add(this.chkCenaM);
             this.grpBoxCenaMaloPM.Controls.Add(this.chkBPAL);
             this.grpBoxCenaMaloPM.Controls.Add(this.chkKULA);
@@ -427,10 +430,11 @@
             this.grpBoxCenaMaloPM.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grpBoxCenaMaloPM.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.grpBoxCenaMaloPM.ForeColor = System.Drawing.Color.Firebrick;
-            this.grpBoxCenaMaloPM.Location = new System.Drawing.Point(1070, 60);
+            this.grpBoxCenaMaloPM.Location = new System.Drawing.Point(1070, 10);
             this.grpBoxCenaMaloPM.Margin = new System.Windows.Forms.Padding(10);
             this.grpBoxCenaMaloPM.Name = "grpBoxCenaMaloPM";
-            this.grpBoxCenaMaloPM.Size = new System.Drawing.Size(444, 80);
+            this.tableLayoutPanel1.SetRowSpan(this.grpBoxCenaMaloPM, 2);
+            this.grpBoxCenaMaloPM.Size = new System.Drawing.Size(444, 130);
             this.grpBoxCenaMaloPM.TabIndex = 22;
             this.grpBoxCenaMaloPM.TabStop = false;
             this.grpBoxCenaMaloPM.Text = "CENAMALO (ARTPROD) * 0.9";
@@ -441,7 +445,7 @@
             this.chkCenaM.Checked = true;
             this.chkCenaM.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkCenaM.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.chkCenaM.Location = new System.Drawing.Point(221, 51);
+            this.chkCenaM.Location = new System.Drawing.Point(255, 36);
             this.chkCenaM.Name = "chkCenaM";
             this.chkCenaM.Size = new System.Drawing.Size(141, 21);
             this.chkCenaM.TabIndex = 5;
@@ -454,7 +458,7 @@
             // 
             this.chkBPAL.AutoSize = true;
             this.chkBPAL.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.chkBPAL.Location = new System.Drawing.Point(221, 24);
+            this.chkBPAL.Location = new System.Drawing.Point(110, 63);
             this.chkBPAL.Name = "chkBPAL";
             this.chkBPAL.Size = new System.Drawing.Size(81, 21);
             this.chkBPAL.TabIndex = 4;
@@ -467,7 +471,7 @@
             // 
             this.chkKULA.AutoSize = true;
             this.chkKULA.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.chkKULA.Location = new System.Drawing.Point(117, 51);
+            this.chkKULA.Location = new System.Drawing.Point(110, 36);
             this.chkKULA.Name = "chkKULA";
             this.chkKULA.Size = new System.Drawing.Size(52, 21);
             this.chkKULA.TabIndex = 3;
@@ -480,7 +484,7 @@
             // 
             this.chkODZ.AutoSize = true;
             this.chkODZ.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.chkODZ.Location = new System.Drawing.Point(117, 24);
+            this.chkODZ.Location = new System.Drawing.Point(18, 90);
             this.chkODZ.Name = "chkODZ";
             this.chkODZ.Size = new System.Drawing.Size(67, 21);
             this.chkODZ.TabIndex = 2;
@@ -493,7 +497,7 @@
             // 
             this.chkAPA.AutoSize = true;
             this.chkAPA.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.chkAPA.Location = new System.Drawing.Point(6, 51);
+            this.chkAPA.Location = new System.Drawing.Point(18, 63);
             this.chkAPA.Name = "chkAPA";
             this.chkAPA.Size = new System.Drawing.Size(64, 21);
             this.chkAPA.TabIndex = 1;
@@ -506,7 +510,7 @@
             // 
             this.chkSO.AutoSize = true;
             this.chkSO.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.chkSO.Location = new System.Drawing.Point(6, 24);
+            this.chkSO.Location = new System.Drawing.Point(18, 36);
             this.chkSO.Name = "chkSO";
             this.chkSO.Size = new System.Drawing.Size(74, 21);
             this.chkSO.TabIndex = 0;
@@ -514,6 +518,21 @@
             this.chkSO.Text = "Sombor";
             this.chkSO.UseVisualStyleBackColor = true;
             this.chkSO.CheckedChanged += new System.EventHandler(this.chkSO_CheckedChanged);
+            // 
+            // checNNCDartikli
+            // 
+            this.checNNCDartikli.AutoSize = true;
+            this.checNNCDartikli.Checked = true;
+            this.checNNCDartikli.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checNNCDartikli.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.checNNCDartikli.Location = new System.Drawing.Point(255, 63);
+            this.checNNCDartikli.Name = "checNNCDartikli";
+            this.checNNCDartikli.Size = new System.Drawing.Size(118, 21);
+            this.checNNCDartikli.TabIndex = 6;
+            this.checNNCDartikli.Tag = "NNC";
+            this.checNNCDartikli.Text = "NNC (DARTIKLI)";
+            this.checNNCDartikli.UseVisualStyleBackColor = true;
+            this.checNNCDartikli.CheckedChanged += new System.EventHandler(this.checNNCDartikli_CheckedChanged);
             // 
             // frmListaKrolovaCrosstab
             // 
@@ -584,5 +603,6 @@
         private System.Windows.Forms.CheckBox chkAPA;
         private System.Windows.Forms.CheckBox chkSO;
         private System.Windows.Forms.CheckBox chkCenaM;
+        private System.Windows.Forms.CheckBox checNNCDartikli;
     }
 }

@@ -56,6 +56,7 @@
     <Compile Include="B2B\extendNameSpace\model_CANDY.cs" />
     <Compile Include="B2B\model_ERG.cs" />
     <Compile Include="B2B\model_EWE.cs" />
+    <Compile Include="B2B\model_GAMAGROUP.cs" />
     <Compile Include="B2B\model_GORENJE.cs" />
     <Compile Include="B2B\model_MKA.cs" />
     <Compile Include="B2B\model_ZOM.cs" />
