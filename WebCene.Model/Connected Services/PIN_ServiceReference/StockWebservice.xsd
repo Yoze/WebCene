@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://webservice.b2b.navigator.rs/" targetNamespace="http://webservice.b2b.navigator.rs/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="b2BWebServiceDAO" type="tns:b2BWebServiceDAO" />
+  <xs:element name="getAllItems" type="tns:getAllItems" />
+  <xs:element name="getAllItemsResponse" type="tns:getAllItemsResponse" />
+  <xs:element name="getAllItemsWithQuantities" type="tns:getAllItemsWithQuantities" />
+  <xs:element name="getAllItemsWithQuantitiesResponse" type="tns:getAllItemsWithQuantitiesResponse" />
+  <xs:element name="getItemImage" type="tns:getItemImage" />
+  <xs:element name="getItemImageResponse" type="tns:getItemImageResponse" />
+  <xs:element name="getItemPrices" type="tns:getItemPrices" />
+  <xs:element name="getItemPricesResponse" type="tns:getItemPricesResponse" />
+  <xs:element name="getStockAvailability" type="tns:getStockAvailability" />
+  <xs:element name="getStockAvailabilityResponse" type="tns:getStockAvailabilityResponse" />
+  <xs:complexType name="getStockAvailability">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="guid" type="xs:string" />
+      <xs:element minOccurs="0" name="shopId" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getStockAvailabilityResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:b2BWebServiceDAO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="b2BWebServiceDAO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="item_image" type="tns:stockItemImageDAO" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="tns:item" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="price_item" type="tns:stockItemPriceDAO" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="stock_item" type="tns:stockItemSimpleDAO" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="stock_item_quantity" type="tns:stockItemQuantityDAO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="stockItemImageDAO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="item_image" type="xs:base64Binary" />
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:long" />
+  </xs:complexType>
+  <xs:complexType name="item">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="attribute_value" type="tns:attribute_value" />
+      <xs:element minOccurs="0" name="description" type="xs:string" />
+      <xs:element minOccurs="0" name="ean" type="xs:string" />
+      <xs:element minOccurs="0" name="erp_code" type="xs:string" />
+      <xs:element minOccurs="0" name="item_code" type="xs:string" />
+      <xs:element minOccurs="0" name="item_group" type="tns:item_group" />
+      <xs:element minOccurs="0" name="manufacturer" type="tns:manufacturer" />
+      <xs:element minOccurs="0" name="name" type="xs:string" />
+      <xs:element minOccurs="0" name="oem" type="xs:string" />
+      <xs:element minOccurs="0" name="stock" type="xs:double" />
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:long" />
+    <xs:attribute name="on_stock" type="xs:boolean" use="required" />
+    <xs:attribute name="price" type="xs:double" />
+    <xs:attribute name="price_with_discounts" type="xs:double" />
+    <xs:attribute name="retail_price" type="xs:double" />
+    <xs:attribute name="tax_value" type="xs:double" use="required" />
+    <xs:attribute name="warranty" type="xs:int" />
+  </xs:complexType>
+  <xs:complexType name="attribute_value">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="attribute" type="tns:attribute" />
+      <xs:element minOccurs="0" name="value" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute name="erp_code" type="xs:string" />
+    <xs:attribute name="id" type="xs:long" />
+  </xs:complexType>
+  <xs:complexType name="attribute">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="name" type="xs:string" />
+      <xs:element minOccurs="0" name="selected" type="xs:boolean" />
+    </xs:sequence>
+    <xs:attribute name="erp_code" type="xs:string" />
+    <xs:attribute name="id" type="xs:long" />
+    <xs:attribute name="type" type="tns:attributeType" />
+  </xs:complexType>
+  <xs:complexType name="item_group">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:group">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="parent_group" type="tns:item_group" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="group" abstract="true">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="name" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:long" />
+    <xs:attribute name="order_num" type="xs:int" />
+  </xs:complexType>
+  <xs:complexType name="manufacturer">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="name" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:long" />
+  </xs:complexType>
+  <xs:complexType name="stockItemPriceDAO">
+    <xs:sequence />
+    <xs:attribute name="id" type="xs:long" />
+    <xs:attribute name="price" type="xs:double" />
+    <xs:attribute name="price_with_discounts" type="xs:double" />
+    <xs:attribute name="retail_price" type="xs:double" />
+  </xs:complexType>
+  <xs:complexType name="stockItemSimpleDAO">
+    <xs:sequence />
+    <xs:attribute name="id" type="xs:long" />
+    <xs:attribute name="on_stock" type="xs:boolean" use="required" />
+  </xs:complexType>
+  <xs:complexType name="stockItemQuantityDAO">
+    <xs:sequence />
+    <xs:attribute name="item_code" type="xs:string" />
+    <xs:attribute name="quantity" type="xs:double" />
+  </xs:complexType>
+  <xs:complexType name="getAllItemsWithQuantities">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="guid" type="xs:string" />
+      <xs:element minOccurs="0" name="shopId" type="xs:long" />
+      <xs:element minOccurs="0" name="warehouseErpCode" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getAllItemsWithQuantitiesResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:b2BWebServiceDAO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getItemImage">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:long" />
+      <xs:element minOccurs="0" name="arg1" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getItemImageResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:b2BWebServiceDAO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getItemPrices">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="guid" type="xs:string" />
+      <xs:element minOccurs="0" name="shopId" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getItemPricesResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:b2BWebServiceDAO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getAllItems">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="guid" type="xs:string" />
+      <xs:element minOccurs="0" name="shopId" type="xs:long" />
+      <xs:element name="allItems" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getAllItemsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:b2BWebServiceDAO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="attributeType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="STRING" />
+      <xs:enumeration value="NUMERIC" />
+      <xs:enumeration value="DATE" />
+      <xs:enumeration value="LINK" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

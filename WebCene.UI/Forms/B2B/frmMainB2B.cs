@@ -7,10 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WebCene.Model;
 using WebCene.Model.B2B;
 using WebCene.Helper;
 using System.Xml;
 using System.Threading;
+using WebCene.Model.PIN_ServiceReference;
 
 namespace WebCene.UI.Forms.B2B
 {
@@ -34,9 +36,23 @@ namespace WebCene.UI.Forms.B2B
 
             // web service
 
-            KimTecWebServiceClient.Instance.CallWebService();
+            //KimTecWebServiceClient.Instance.CallWebService();
 
-            
+
+            StockWebserviceClient pinServiceClient = new Model.PIN_ServiceReference.StockWebserviceClient("StockWebservicePort");
+            var allItems = pinServiceClient.getAllItems("c794398a-732c-4d5e-b6a4-783eb1a268c0", 4, true);
+
+            pinServiceClient.Close();
+
+
+            /**
+            'How to: Configure a Basic Windows Communication Foundation Client'
+            https://docs.microsoft.com/en-us/dotnet/framework/wcf/how-to-configure-a-basic-wcf-client
+             
+             'How to: Use a Windows Communication Foundation Client'
+             https://docs.microsoft.com/en-us/dotnet/framework/wcf/how-to-use-a-wcf-client
+             */
+
         }
 
         private void btnLoadXmls_Click(object sender, EventArgs e)

@@ -43,6 +43,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -62,6 +63,11 @@
     <Compile Include="B2B\model_ZOM.cs" />
     <Compile Include="B2B\StatusXmlUcitavanja.cs" />
     <Compile Include="B2B\XmlRezultat.cs" />
+    <Compile Include="Connected Services\PIN_ServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Kroler\KrolGlava.cs" />
     <Compile Include="Kroler\KrolStavke.cs" />
     <Compile Include="Kroler\Prodavci.cs" />
@@ -84,6 +90,28 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Connected Services\PIN_ServiceReference\StockWebservice.wsdl" />
+    <None Include="Connected Services\PIN_ServiceReference\StockWebservice.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\PIN_ServiceReference\WebCene.Model.PIN_ServiceReference.b2BWebServiceDAO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\PIN_ServiceReference\WebCene.Model.PIN_ServiceReference.getAllItemsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\PIN_ServiceReference\WebCene.Model.PIN_ServiceReference.getAllItemsWithQuantitiesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\PIN_ServiceReference\WebCene.Model.PIN_ServiceReference.getItemImageResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\PIN_ServiceReference\WebCene.Model.PIN_ServiceReference.getItemPricesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\PIN_ServiceReference\WebCene.Model.PIN_ServiceReference.getStockAvailabilityResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -92,6 +120,26 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="tmp\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\PIN_ServiceReference\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\PIN_ServiceReference\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\PIN_ServiceReference\configuration.svcinfo">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\PIN_ServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

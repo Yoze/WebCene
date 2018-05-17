@@ -75,14 +75,12 @@
             // 
             // btnWebService
             // 
-            this.btnWebService.Enabled = false;
             this.btnWebService.Location = new System.Drawing.Point(167, 3);
             this.btnWebService.Name = "btnWebService";
             this.btnWebService.Size = new System.Drawing.Size(76, 32);
             this.btnWebService.TabIndex = 2;
             this.btnWebService.Text = "web service";
             this.btnWebService.UseVisualStyleBackColor = true;
-            this.btnWebService.Visible = false;
             this.btnWebService.Click += new System.EventHandler(this.btnWebService_Click);
             // 
             // btnLoadXmls
