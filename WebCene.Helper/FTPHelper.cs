@@ -106,37 +106,37 @@ namespace WebCene.Helper
 
                 switch (konfigDobavljaca.ExtraData)
                 {
-                    case "GORENJE":
-                        {
-                            using (reader = new StreamReader(responseStream, Encoding.UTF8, true))
-                            {
+                    //case "GORENJE":
+                    //    {
+                    //        using (reader = new StreamReader(responseStream, Encoding.UTF8, true))
+                    //        {
 
-                                Root gorenje = new Root();
-                                var serializer = new XmlSerializer(typeof(Root));
+                    //            Root gorenje = new Root();
+                    //            var serializer = new XmlSerializer(typeof(Root));
 
-                                XmlReaderSettings xmlReaderSettings = new XmlReaderSettings();
-                                xmlReaderSettings.ValidationType = ValidationType.DTD;
-                                //xmlReaderSettings.ValidationEventHandler += new ValidationEventHandler(ValidationCallback);
-
-
-                                XmlTextReader xmlNodeReader = new XmlTextReader(reader);
+                    //            XmlReaderSettings xmlReaderSettings = new XmlReaderSettings();
+                    //            xmlReaderSettings.ValidationType = ValidationType.DTD;
+                    //            //xmlReaderSettings.ValidationEventHandler += new ValidationEventHandler(ValidationCallback);
 
 
-                                using (XmlReader xmlReader = XmlReader.Create(xmlNodeReader, xmlReaderSettings))
-                                {
-
-                                    gorenje = (Root)serializer.Deserialize(xmlReader);
-                                }
+                    //            XmlTextReader xmlNodeReader = new XmlTextReader(reader);
 
 
+                    //            using (XmlReader xmlReader = XmlReader.Create(xmlNodeReader, xmlReaderSettings))
+                    //            {
+
+                    //                gorenje = (Root)serializer.Deserialize(xmlReader);
+                    //            }
 
 
 
-                                xmlResult.Load(reader);
-                            }
-                            if (response != null) response.Close();
-                        }
-                        return xmlResult;
+
+
+                    //            xmlResult.Load(reader);
+                    //        }
+                    //        if (response != null) response.Close();
+                    //    }
+                    //    return xmlResult;
 
                     default:
                         {

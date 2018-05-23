@@ -13,6 +13,8 @@ using WebCene.Helper;
 using System.Xml;
 using System.Threading;
 using WebCene.Model.PIN_ServiceReference;
+using System.ServiceModel;
+using System.ServiceModel.Description;
 
 namespace WebCene.UI.Forms.B2B
 {
@@ -29,7 +31,27 @@ namespace WebCene.UI.Forms.B2B
             SetStatusLabel("", true);
         }
 
-       
+
+        //public static void Configure(ServiceConfiguration config)
+        //{
+
+        //    // Configuring WCF Services in Code
+
+        //    ServiceEndpoint se = new ServiceEndpoint(new ContractDescription("PIN_ServiceReference.StockWebservice"), new BasicHttpsBinding(), new EndpointAddress("https://partner.pinsoft.com/StockWebservice/StockWebservice"));
+
+        //    /*  ServiceModel Metadata Utility Tool (Svcutil.exe) 
+        //     *  
+        //     *  https://docs.microsoft.com/en-us/dotnet/framework/wcf/servicemodel-metadata-utility-tool-svcutil-exe
+        //     *  */
+
+
+
+
+
+        //  }
+
+
+
 
         private void btnWebService_Click(object sender, EventArgs e)
         {
@@ -39,7 +61,11 @@ namespace WebCene.UI.Forms.B2B
             //KimTecWebServiceClient.Instance.CallWebService();
 
 
-            StockWebserviceClient pinServiceClient = new Model.PIN_ServiceReference.StockWebserviceClient("StockWebservicePort");
+            //StockWebserviceClient pinServiceClient = new StockWebserviceClient("StockWebservicePort", "https://partner.pinsoft.com/StockWebservice/StockWebservice");
+
+
+            StockWebserviceClient pinServiceClient = new StockWebserviceClient();
+
             var allItems = pinServiceClient.getAllItems("c794398a-732c-4d5e-b6a4-783eb1a268c0", 4, true);
 
             pinServiceClient.Close();
@@ -48,7 +74,7 @@ namespace WebCene.UI.Forms.B2B
             /**
             'How to: Configure a Basic Windows Communication Foundation Client'
             https://docs.microsoft.com/en-us/dotnet/framework/wcf/how-to-configure-a-basic-wcf-client
-             
+
              'How to: Use a Windows Communication Foundation Client'
              https://docs.microsoft.com/en-us/dotnet/framework/wcf/how-to-use-a-wcf-client
              */
@@ -71,7 +97,7 @@ namespace WebCene.UI.Forms.B2B
 
             // Xml rezultat za jednog dobavljača
             List<XmlRezultat> pojedinacniXml;
-            
+
             List<KonfigDobavljaca> listaKonfigDobavljaca = DBHelper.Instance.GetKonfigDobavljacaList();
 
             ///** T E S T  ===>  učitava listaKonfigDobavljaca.Count - x dobavljača */
@@ -99,22 +125,22 @@ namespace WebCene.UI.Forms.B2B
                 }
                 catch (Exception)
                 {
-                    SetStatusLabel("Greška "  + item.Naziv, true);
+                    SetStatusLabel("Greška " + item.Naziv, true);
 
                     status = SetStatusUcitavanja(redniBroj, item.Naziv, item.URL, false);
                     PrikaziStatusUcitavanja(status);
                     redniBroj++;
                     continue;
-                }                
-         
+                }
+
                 PrikaziStatusUcitavanja(status);
                 redniBroj++;
-                
-                
+
+
                 // dodavanje u listu rezultata učitavanja
                 zbirniXml.AddRange(pojedinacniXml);
             }
-            
+
             // prikaz svih rezultata učitavanja
             PrikaziSveUcitanePodatke(zbirniXml);
 
@@ -139,7 +165,7 @@ namespace WebCene.UI.Forms.B2B
             // status tabela
             dgvStatus.Rows.Clear();
             dgvStatus.Refresh();
-            
+
         }
 
         private StatusXmlUcitavanja SetStatusUcitavanja(int redniBroj, string nazivDobavljaca, string url, bool isLoaded)

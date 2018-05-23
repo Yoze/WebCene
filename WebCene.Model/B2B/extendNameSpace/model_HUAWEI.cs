@@ -4,9 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WebCene.Model.B2B.extendNameSpace.candy
+namespace WebCene.Model.B2B.extendNameSpace.huawei
 {
-
 
 
     // NOTE: Generated code may require at least .NET Framework 4.5 or .NET Core/Standard 2.0.
@@ -18,21 +17,9 @@ namespace WebCene.Model.B2B.extendNameSpace.candy
     public partial class Root
     {
 
-        private RootRow[] rowField;
-
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("Row")]
-        public RootRow[] Row
-        {
-            get
-            {
-                return this.rowField;
-            }
-            set
-            {
-                this.rowField = value;
-            }
-        }
+        public RootRow[] Row { get; set; }
     }
 
     /// <remarks/>
@@ -42,39 +29,21 @@ namespace WebCene.Model.B2B.extendNameSpace.candy
     public partial class RootRow
     {
 
-        private ushort kolicinaField;
-
-        private ulong barkodField;
+        /// <remarks/>
+        public ulong barcod { get; set; }
 
         /// <remarks/>
-        public ushort Kolicina
-        {
-            get
-            {
-                return this.kolicinaField;
-            }
-            set
-            {
-                this.kolicinaField = value;
-            }
-        }
+        public byte kolicina { get; set; }
 
         /// <remarks/>
-        public ulong barkod
-        {
-            get
-            {
-                return this.barkodField;
-            }
-            set
-            {
-                this.barkodField = value;
-            }
-        }
+        public decimal Neto_VP_za_valutu { get; set; }
+
+        /// <remarks/>
+        public decimal Neto_VP_za_avans { get; set; }
+
+        /// <remarks/>
+        public uint RRP { get; set; }
     }
-
-
-
 
 
 

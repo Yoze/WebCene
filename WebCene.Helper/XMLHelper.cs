@@ -107,6 +107,7 @@ namespace WebCene.Helper
                         }
                     }
                     return xmlRezultats;
+
                 case "ERG":
                     {
                         var serializer = new XmlSerializer(typeof(ITEMS));
@@ -155,6 +156,7 @@ namespace WebCene.Helper
                         }
                     }
                     return xmlRezultats;
+
                 case "BOSCH":
                     {
                         izdelki bsh = new izdelki();
@@ -191,54 +193,40 @@ namespace WebCene.Helper
                         }
                     }
                     return xmlRezultats;
+
                 case "GORENJE":
                     {
-                        Root gorenje = new Root();
-                        var serializer = new XmlSerializer(typeof(Root));
+                        extendedNamespace.gorenje.Root gorenje = new extendedNamespace.gorenje.Root();
+                        var serializer = new XmlSerializer(typeof(extendedNamespace.gorenje.Root));
 
-                        XmlReaderSettings xmlReaderSettings = new XmlReaderSettings();
-                        xmlReaderSettings.ValidationType = ValidationType.DTD;
-                        xmlReaderSettings.ValidationEventHandler += new ValidationEventHandler(ValidationCallback);
-
-
-                        XmlTextReader xmlNodeReader = new XmlTextReader(loadedXmlDocument.ToString());
-                        
-
-                        using (XmlReader xmlReader = XmlReader.Create(xmlNodeReader, xmlReaderSettings))
+                        using (XmlReader reader = new XmlNodeReader(loadedXmlDocument))
                         {
-                            
-                            gorenje = (Root)serializer.Deserialize(xmlReader);
+                            gorenje = (extendedNamespace.gorenje.Root)serializer.Deserialize(reader); // throw exception here !!!
                         }
-
-                        // Provere cena, barkoda, ...
-                        //
-
 
                         foreach (var item in gorenje.Row)
                         {
                             XmlRezultat xmlRezultat = new XmlRezultat()
                             {
-                                Barcode = item.EAN_code.ToString(),
-                                Kolicina = item.kom,
-                                Cena = decimal.Zero,
-                                PMC = decimal.Zero,
+                                Barcode = item.EAN.ToString(),
+                                Kolicina = 0,
+                                Cena = item.Neto_prodajna_cena,
+                                PMC = item.PREP_MPC,
                                 DatumUlistavanja = DateTime.Today,
                                 PrimarniDobavljac = konfigDobavljaca.Naziv
                             };
-
                             xmlRezultats.Add(xmlRezultat);
                         }
                     }
                     return xmlRezultats;
+
                 case "ZOMIMPEX":
                     {
                         Artikl zomImpex = new Artikl();
                         var serializer = new XmlSerializer(typeof(Artikl));
-
                        
                         using (XmlReader reader = new XmlNodeReader(loadedXmlDocument))
-                        {
-                           
+                        {                           
                             zomImpex = (Artikl)serializer.Deserialize(reader);
                         }
 
@@ -267,6 +255,7 @@ namespace WebCene.Helper
 
                     }
                     return xmlRezultats;
+
                 case "MKA":
                     {
                         Dokument mka = new Dokument();
@@ -297,21 +286,20 @@ namespace WebCene.Helper
 
                     }
                     return xmlRezultats;
+
                 case "CANDY":
                     {
-                        extendedNamespace.Root candy = new extendedNamespace.Root();
-                        var serializer = new XmlSerializer(typeof(extendedNamespace.Root));
+                        extendedNamespace.candy.Root candy = new extendedNamespace.candy.Root();
+                        var serializer = new XmlSerializer(typeof(extendedNamespace.candy.Root));
 
                         using (XmlReader reader = new XmlNodeReader(loadedXmlDocument))
                         {
-                            candy = (extendedNamespace.Root)serializer.Deserialize(reader);
+                            candy = (extendedNamespace.candy.Root)serializer.Deserialize(reader);
                         }
 
 
                         foreach (var item in candy.Row)
                         {
-
-
                             XmlRezultat xmlRezultat = new XmlRezultat()
                             {
                                 Barcode = item.barkod.ToString(),
@@ -329,12 +317,12 @@ namespace WebCene.Helper
 
                 case "ORBICO":
                     {
-                        extendedNamespace.Items orbico = new extendedNamespace.Items();
-                        var serializer = new XmlSerializer(typeof(extendedNamespace.Items));
+                        extendedNamespace.orbico.Items orbico = new extendedNamespace.orbico.Items();
+                        var serializer = new XmlSerializer(typeof(extendedNamespace.orbico.Items));
 
                         using (XmlReader reader = new XmlNodeReader(loadedXmlDocument))
                         {
-                            orbico = (extendedNamespace.Items)serializer.Deserialize(reader);
+                            orbico = (extendedNamespace.orbico.Items)serializer.Deserialize(reader);
                         }
 
                         foreach (var item in orbico.Item)
@@ -362,6 +350,113 @@ namespace WebCene.Helper
 
                     }
                     return xmlRezultats;
+
+                case "ACRMOBILE":
+                    {
+                        extendedNamespace.acrmobile.Root acrmobile = new extendedNamespace.acrmobile.Root();
+                        var serializer = new XmlSerializer(typeof(extendedNamespace.acrmobile.Root));
+
+                        using (XmlReader reader = new XmlNodeReader(loadedXmlDocument))
+                        {
+                            acrmobile = (extendedNamespace.acrmobile.Root)serializer.Deserialize(reader);
+                        }
+
+                        foreach (var item in acrmobile.Row)
+                        {
+                            XmlRezultat xmlRezultat = new XmlRezultat()
+                            {
+                                Barcode = item.barcod,
+                                Kolicina = item.kolicina,
+                                Cena = item.VP_cena,
+                                PMC = 0,
+                                DatumUlistavanja = DateTime.Today,
+                                PrimarniDobavljac = konfigDobavljaca.Naziv
+                            };
+                            xmlRezultats.Add(xmlRezultat);
+                        }
+                    }
+                    return xmlRezultats;
+
+                case "ALCA":
+                    {
+                        extendedNamespace.alca.Root alcatrgovina = new extendedNamespace.alca.Root();
+                        var serializer = new XmlSerializer(typeof(extendedNamespace.alca.Root));
+
+
+                        using (XmlReader reader = new XmlNodeReader(loadedXmlDocument))
+                        {
+                            alcatrgovina = (extendedNamespace.alca.Root)serializer.Deserialize(reader);
+                        }
+
+                        foreach (var item in alcatrgovina.Row)
+                        {
+                            XmlRezultat xmlRezultat = new XmlRezultat()
+                            {
+                                Barcode = item.barcod.ToString(),
+                                Kolicina = item.kolicina,
+                                Cena = item.Prodajna_cena,
+                                PMC = item.Prodajna_cena_s_PDVom,
+                                DatumUlistavanja = DateTime.Today,
+                                PrimarniDobavljac = konfigDobavljaca.Naziv
+                            };
+                            xmlRezultats.Add(xmlRezultat);
+                        }
+                    }
+                    return xmlRezultats;
+
+                case "MISON":
+                    {
+                        extendedNamespace.mison.Root mison = new extendedNamespace.mison.Root();
+                        var serializer = new XmlSerializer(typeof(extendedNamespace.mison.Root));
+
+                        using (XmlReader reader = new XmlNodeReader(loadedXmlDocument))
+                        {
+                            mison = (extendedNamespace.mison.Root)serializer.Deserialize(reader);
+                        }
+
+                        foreach (var item in mison.Row)
+                        {
+                            XmlRezultat xmlRezultat = new XmlRezultat()
+                            {
+                                Barcode = item.barcod.ToString(),
+                                Kolicina = item.kolicina,
+                                Cena = item.VP__Cena_u_DIN,
+                                PMC = item.PREPORU_ENA_MP_CENA,
+                                DatumUlistavanja = DateTime.Today,
+                                PrimarniDobavljac = konfigDobavljaca.Naziv
+                            };
+                            xmlRezultats.Add(xmlRezultat);
+                        }
+                    }
+                    return xmlRezultats;
+
+                case "HUAWEI":
+                    {
+                        extendedNamespace.huawei.Root huawei = new extendedNamespace.huawei.Root();
+                        var serializer = new XmlSerializer(typeof(extendedNamespace.huawei.Root));
+
+                        using (XmlReader reader = new XmlNodeReader(loadedXmlDocument))
+                        {
+                            huawei = (extendedNamespace.huawei.Root)serializer.Deserialize(reader);
+                        }
+
+                        foreach (var item in huawei.Row)
+                        {
+                            XmlRezultat xmlRezultat = new XmlRezultat()
+                            {
+                                Barcode = item.barcod.ToString(),
+                                Kolicina = item.kolicina,
+                                Cena = item.Neto_VP_za_valutu,
+                                PMC = item.RRP,
+                                DatumUlistavanja = DateTime.Today,
+                                PrimarniDobavljac = konfigDobavljaca.Naziv
+                            };
+                            xmlRezultats.Add(xmlRezultat);
+                        }
+                    }
+                    return xmlRezultats;
+
+
 
 
                 default:

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WebCene.Model.B2B.extendNameSpace.candy
+namespace WebCene.Model.B2B.extendNameSpace.gorenje
 {
 
 
@@ -18,21 +18,9 @@ namespace WebCene.Model.B2B.extendNameSpace.candy
     public partial class Root
     {
 
-        private RootRow[] rowField;
-
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("Row")]
-        public RootRow[] Row
-        {
-            get
-            {
-                return this.rowField;
-            }
-            set
-            {
-                this.rowField = value;
-            }
-        }
+        public RootRow[] Row { get; set; }
     }
 
     /// <remarks/>
@@ -42,38 +30,20 @@ namespace WebCene.Model.B2B.extendNameSpace.candy
     public partial class RootRow
     {
 
-        private ushort kolicinaField;
-
-        private ulong barkodField;
+        /// <remarks/>
+        public ulong EAN { get; set; }
 
         /// <remarks/>
-        public ushort Kolicina
-        {
-            get
-            {
-                return this.kolicinaField;
-            }
-            set
-            {
-                this.kolicinaField = value;
-            }
-        }
+        public decimal Neto_prodajna_cena { get; set; }
 
         /// <remarks/>
-        public ulong barkod
-        {
-            get
-            {
-                return this.barkodField;
-            }
-            set
-            {
-                this.barkodField = value;
-            }
-        }
+        public uint PREP_MPC { get; set; }
     }
 
 
+
+
+   
 
 
 
