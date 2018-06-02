@@ -30,34 +30,34 @@ namespace WebCene.Helper
          https://docs.microsoft.com/en-us/sql/reporting-services/report-server-web-service/net-framework/creating-the-web-service-proxy
          */
 
-        public void CallWebService()
-        {
+        //public void CallWebService()
+        //{
 
-            /* 
-             * USER: elbraco.group
-             * PSW: vthvAJZ3sqW
-             * 
-             * najnoviji psw: 1053
-             */
-
-
-            string certPath = @"D:\Temp\B2B ELBRACO GROUP d.o.o..p12";
-            string certPassword = "1053";
+        //    /* 
+        //     * USER: elbraco.group
+        //     * PSW: vthvAJZ3sqW
+        //     * 
+        //     * najnoviji psw: 1053
+        //     */
 
 
-            X509Certificate certificate = new X509Certificate(certPath, certPassword);
-
-            string resultTrue = certificate.ToString(true);
-
-            string resultFalse = certificate.ToString(false);
+        //    string certPath = @"D:\Temp\B2B ELBRACO GROUP d.o.o..p12";
+        //    string certPassword = "1053";
 
 
+        //    X509Certificate certificate = new X509Certificate(certPath, certPassword);
 
-            string certName = "<B2B ELBRACO GROUP d.o.o..p12>";
+        //    string resultTrue = certificate.ToString(true);
+
+        //    string resultFalse = certificate.ToString(false);
 
 
 
-        }
+        //    //string certName = "<B2B ELBRACO GROUP d.o.o..p12>";
+
+
+
+        //}
 
 
 

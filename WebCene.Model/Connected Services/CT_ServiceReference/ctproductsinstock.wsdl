@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.ct4partners.com/B2B" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://www.ct4partners.com/B2B" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.ct4partners.com/B2B">
+      <s:element name="GetCTProductGroups">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCTProductGroupsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCTProductGroupsResult" type="tns:ArrayOfProductGroup" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfProductGroup">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ProductGroup" nillable="true" type="tns:ProductGroup" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ProductGroup">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="GroupDescription" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Attributes" type="tns:ArrayOfProductAttribute" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfProductAttribute">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ProductAttribute" nillable="true" type="tns:ProductAttribute" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ProductAttribute">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="AttributeName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AttributeValue" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AttributeCode" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetCTProductGroups_WithAttributes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCTProductGroups_WithAttributesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCTProductGroups_WithAttributesResult" type="tns:ArrayOfProductGroup" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCTProducts">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="productGroupCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="manufacturerCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="searchphrase" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCTProductsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCTProductsResult" type="tns:ArrayOfCTPRODUCT" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfCTPRODUCT">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CTPRODUCT" nillable="true" type="tns:CTPRODUCT" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CTPRODUCT">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CODE" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PRODUCTGROUPCODE" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NAME" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MANUFACTURER" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MANUFACTURERCODE" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="QTTYINSTOCK" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TAX" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PRICE" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PRICENOTAX" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RETAILPRICE" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SHORT_DESCRIPTION" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="WARRANTY" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EUR_ExchangeRate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BARCODE" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IMAGE_URL" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IMAGE_URLS" type="tns:ArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="ATTRIBUTES" type="tns:ArrayOfProductAttribute1" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="URL" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfProductAttribute1">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ATTRIBUTE" nillable="true" type="tns:ProductAttribute" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetCTProducts_WithAttributes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="productGroupCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="manufacturerCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="searchphrase" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCTProducts_WithAttributesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCTProducts_WithAttributesResult" type="tns:ArrayOfCTPRODUCT" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetCTProductGroupsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCTProductGroups" />
+  </wsdl:message>
+  <wsdl:message name="GetCTProductGroupsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCTProductGroupsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCTProductGroups_WithAttributesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCTProductGroups_WithAttributes" />
+  </wsdl:message>
+  <wsdl:message name="GetCTProductGroups_WithAttributesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCTProductGroups_WithAttributesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCTProductsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCTProducts" />
+  </wsdl:message>
+  <wsdl:message name="GetCTProductsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCTProductsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCTProducts_WithAttributesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCTProducts_WithAttributes" />
+  </wsdl:message>
+  <wsdl:message name="GetCTProducts_WithAttributesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCTProducts_WithAttributesResponse" />
+  </wsdl:message>
+  <wsdl:portType name="CTProductsInStockSoap">
+    <wsdl:operation name="GetCTProductGroups">
+      <wsdl:input message="tns:GetCTProductGroupsSoapIn" />
+      <wsdl:output message="tns:GetCTProductGroupsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCTProductGroups_WithAttributes">
+      <wsdl:input message="tns:GetCTProductGroups_WithAttributesSoapIn" />
+      <wsdl:output message="tns:GetCTProductGroups_WithAttributesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCTProducts">
+      <wsdl:input message="tns:GetCTProductsSoapIn" />
+      <wsdl:output message="tns:GetCTProductsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCTProducts_WithAttributes">
+      <wsdl:input message="tns:GetCTProducts_WithAttributesSoapIn" />
+      <wsdl:output message="tns:GetCTProducts_WithAttributesSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CTProductsInStockSoap" type="tns:CTProductsInStockSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetCTProductGroups">
+      <soap:operation soapAction="http://www.ct4partners.com/B2B/GetCTProductGroups" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCTProductGroups_WithAttributes">
+      <soap:operation soapAction="http://www.ct4partners.com/B2B/GetCTProductGroups_WithAttributes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCTProducts">
+      <soap:operation soapAction="http://www.ct4partners.com/B2B/GetCTProducts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCTProducts_WithAttributes">
+      <soap:operation soapAction="http://www.ct4partners.com/B2B/GetCTProducts_WithAttributes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CTProductsInStockSoap12" type="tns:CTProductsInStockSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetCTProductGroups">
+      <soap12:operation soapAction="http://www.ct4partners.com/B2B/GetCTProductGroups" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCTProductGroups_WithAttributes">
+      <soap12:operation soapAction="http://www.ct4partners.com/B2B/GetCTProductGroups_WithAttributes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCTProducts">
+      <soap12:operation soapAction="http://www.ct4partners.com/B2B/GetCTProducts" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCTProducts_WithAttributes">
+      <soap12:operation soapAction="http://www.ct4partners.com/B2B/GetCTProducts_WithAttributes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CTProductsInStock">
+    <wsdl:port name="CTProductsInStockSoap" binding="tns:CTProductsInStockSoap">
+      <soap:address location="http://www.ct4partners.com/ws/ctproductsinstock.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CTProductsInStockSoap12" binding="tns:CTProductsInStockSoap12">
+      <soap12:address location="http://www.ct4partners.com/ws/ctproductsinstock.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

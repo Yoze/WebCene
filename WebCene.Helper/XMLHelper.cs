@@ -11,9 +11,9 @@ using WebCene.Model.B2B;
 using WebCene.Helper;
 using System.IO;
 using System.Xml.Schema;
-
+using WebCene.Model.PIN_ServiceReference;
+using WebCene.Model.CT_ServiceReference;
 using extendedNamespace = WebCene.Model.B2B.extendNameSpace;
-
 
 namespace WebCene.Helper
 {
@@ -476,31 +476,76 @@ namespace WebCene.Helper
         }
 
 
-        public List<XmlRezultat> UcitajXmlZaDobavljaca(KonfigDobavljaca konfigDobavljaca)
+        public List<XmlRezultat> UcitajXmlRezultatZaDobavljaca(KonfigDobavljaca konfigDobavljaca)
         {
             // učutavanje xml podataka za dobavljača
 
-            List<XmlRezultat> result = new List<XmlRezultat>();
+            List<XmlRezultat> results = new List<XmlRezultat>();
 
             switch (konfigDobavljaca.WebProtokol.TrimEnd())
             {
                 case "ftp":
                     {
                         XmlDocument xmlResult = FTPHelper.Instance.GetXmlFileFromFtp(konfigDobavljaca);
-                        result = XMLHelper.Instance.DeserializeXmlResult(konfigDobavljaca, xmlResult);
-                        return result;
+                        results = XMLHelper.Instance.DeserializeXmlResult(konfigDobavljaca, xmlResult);
+                        return results;
                     }
 
                 case "http":
                     {
                         XmlDocument xmlResult = HTTPSHelper.Instance.GetXmlFromHttpRequest(konfigDobavljaca);
-                        result = XMLHelper.Instance.DeserializeXmlResult(konfigDobavljaca, xmlResult);
-                        return result;
+                        results = XMLHelper.Instance.DeserializeXmlResult(konfigDobavljaca, xmlResult);
+                        return results;
                     }
 
 
                 case "webservice":
-                    // TO DO
+                    {
+                        switch (konfigDobavljaca.ExtraData)
+                        {
+                            case "PIN":
+                                {
+                                    /** PIN CLient */
+                                    StockWebserviceClient pinServiceClient = new StockWebserviceClient("StockWebservicePort");
+
+                                    b2BWebServiceDAO pinResults = pinServiceClient.getAllItems("c794398a-732c-4d5e-b6a4-783eb1a268c0", 4, false);
+                                    pinServiceClient.Close();
+
+                                    /** PIN Items*/
+                                    List<item> pinItems = pinResults.item.ToList();                                    
+
+                                    if (pinItems.Count != 0)
+                                    {
+                                        for (int i = 0; i < pinItems.Count; i++)
+                                        {
+                                            XmlRezultat xmlRezultat = new XmlRezultat()
+                                            {
+                                                Barcode = pinItems[i].ean,
+                                                Kolicina = (int)pinItems[i].stock,
+                                                Cena = (decimal)pinItems[i].price_with_discounts,
+                                                PMC = (decimal)pinItems[i].retail_price,
+                                                DatumUlistavanja = DateTime.Today,
+                                                PrimarniDobavljac = konfigDobavljaca.Naziv
+                                            };
+                                            results.Add(xmlRezultat);
+                                        }
+                                        return results;
+                                    }                                    
+                                }
+                                break;
+
+                            case "COMTRADE":
+                                {
+                                    // TO DO comtrade web service
+                                }
+                                break;
+
+                            default:
+                                break;
+                        }
+
+                    }
+
                     break;
 
                 default:
@@ -509,7 +554,7 @@ namespace WebCene.Helper
 
 
 
-            return result;
+            return results;
         }
 
 

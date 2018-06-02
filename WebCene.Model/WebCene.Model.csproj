@@ -67,6 +67,11 @@
     <Compile Include="B2B\model_ZOM.cs" />
     <Compile Include="B2B\StatusXmlUcitavanja.cs" />
     <Compile Include="B2B\XmlRezultat.cs" />
+    <Compile Include="Connected Services\CT_ServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Connected Services\PIN_ServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -93,7 +98,28 @@
     <Compile Include="B2B\DARTIKLI.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\CT_ServiceReference\ctproductsinstock.wsdl" />
+    <None Include="Connected Services\CT_ServiceReference\WebCene.Model.CT_ServiceReference.CTPRODUCT.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\CT_ServiceReference\WebCene.Model.CT_ServiceReference.GetCTProductGroupsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\CT_ServiceReference\WebCene.Model.CT_ServiceReference.GetCTProductGroups_WithAttributesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\CT_ServiceReference\WebCene.Model.CT_ServiceReference.GetCTProductsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\CT_ServiceReference\WebCene.Model.CT_ServiceReference.GetCTProducts_WithAttributesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\CT_ServiceReference\WebCene.Model.CT_ServiceReference.ProductGroup.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\PIN_ServiceReference\StockWebservice.wsdl" />
     <None Include="Connected Services\PIN_ServiceReference\StockWebservice.xsd">
       <SubType>Designer</SubType>
@@ -123,12 +149,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="tmp\" />
+    <None Include="Connected Services\CT_ServiceReference\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\CT_ServiceReference\" />
     <WCFMetadataStorage Include="Connected Services\PIN_ServiceReference\" />
   </ItemGroup>
   <ItemGroup>
@@ -144,6 +171,18 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CT_ServiceReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CT_ServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="tmp\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

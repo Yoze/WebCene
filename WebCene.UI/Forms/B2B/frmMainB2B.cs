@@ -13,8 +13,10 @@ using WebCene.Helper;
 using System.Xml;
 using System.Threading;
 using WebCene.Model.PIN_ServiceReference;
+using WebCene.Model.CT_ServiceReference;
 using System.ServiceModel;
 using System.ServiceModel.Description;
+using System.Xml.Serialization;
 
 namespace WebCene.UI.Forms.B2B
 {
@@ -58,26 +60,28 @@ namespace WebCene.UI.Forms.B2B
 
             // web service
 
-            //KimTecWebServiceClient.Instance.CallWebService();
+       
+            ///** PIN */
+            //StockWebserviceClient pinServiceClient = new StockWebserviceClient("StockWebservicePort");
+
+            ////var allItems = pinServiceClient.getAllItems("c794398a-732c-4d5e-b6a4-783eb1a268c0", 4, false);
+
+            //b2BWebServiceDAO pinResults = pinServiceClient.getAllItems("c794398a-732c-4d5e-b6a4-783eb1a268c0", 4, false);
 
 
-            //StockWebserviceClient pinServiceClient = new StockWebserviceClient("StockWebservicePort", "https://partner.pinsoft.com/StockWebservice/StockWebservice");
+            //List<item> pinItems = pinResults.item.ToList();
 
 
-            StockWebserviceClient pinServiceClient = new StockWebserviceClient();
-
-            var allItems = pinServiceClient.getAllItems("c794398a-732c-4d5e-b6a4-783eb1a268c0", 4, true);
-
-            pinServiceClient.Close();
 
 
-            /**
-            'How to: Configure a Basic Windows Communication Foundation Client'
-            https://docs.microsoft.com/en-us/dotnet/framework/wcf/how-to-configure-a-basic-wcf-client
+            //pinServiceClient.Close();
 
-             'How to: Use a Windows Communication Foundation Client'
-             https://docs.microsoft.com/en-us/dotnet/framework/wcf/how-to-use-a-wcf-client
-             */
+
+
+
+            
+
+            
 
         }
 
@@ -118,7 +122,7 @@ namespace WebCene.UI.Forms.B2B
                 {
                     SetStatusLabel("Učitavanje podataka " + item.Naziv, true);
 
-                    pojedinacniXml = XMLHelper.Instance.UcitajXmlZaDobavljaca(item);
+                    pojedinacniXml = XMLHelper.Instance.UcitajXmlRezultatZaDobavljaca(item);
                     status = SetStatusUcitavanja(redniBroj, item.Naziv, item.URL, true);
 
                     //bool isLoaded = pojedinacniXml.Count > 0 ? true : false;
