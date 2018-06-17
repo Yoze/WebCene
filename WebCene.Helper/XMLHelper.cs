@@ -531,7 +531,7 @@ namespace WebCene.Helper
                     {
                         //RezultatZaPrikaz xmlResult = HTTPSHelper.Instance.PreuzmiXml_HttpRequest(konfigDobavljaca);
                         //podaciZaPrikaz = XMLHelper.Instance.XmlDocumentUPodaciZaPrikaz(konfigDobavljaca, xmlResult);
-                        //return podaciZaPrikaz;
+                        return podaciZaPrikaz;
                     }
 
                 case "webservice":
