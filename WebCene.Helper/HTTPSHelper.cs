@@ -39,49 +39,49 @@ namespace WebCene.Helper
         
 
 
-        public RezultatZaPrikaz PreuzmiXml_HttpRequest(KonfigDobavljaca konfigDobavljaca)
-        {
+        //public RezultatZaPrikaz PreuzmiXml_HttpRequest(KonfigDobavljaca konfigDobavljaca)
+        //{
 
-            RezultatZaPrikaz rezultatHttpZahteva = new RezultatZaPrikaz();
+        //    RezultatZaPrikaz rezultatHttpZahteva = new RezultatZaPrikaz();
 
-            var xmlPath = konfigDobavljaca.URL;
+        //    var xmlPath = konfigDobavljaca.URL;
 
-            string downloadResult;
+        //    string downloadResult;
 
-            // Get XML from http request
-            using (var webClient = new WebClient())
-            {
-                downloadResult = webClient.DownloadString(xmlPath);
+        //    // Get XML from http request
+        //    using (var webClient = new WebClient())
+        //    {
+        //        downloadResult = webClient.DownloadString(xmlPath);
 
-                //XmlDocument xmlResult = new XmlDocument();
+        //        //XmlDocument xmlResult = new XmlDocument();
 
-                switch (konfigDobavljaca.ModelCenovnik)
-                {
-                    case "ZOMIMPEX":                  
-                        { 
-                            Stream stream = webClient.OpenRead(xmlPath);
+        //        switch (konfigDobavljaca.ModelCenovnik)
+        //        {
+        //            case "ZOMIMPEX":                  
+        //                { 
+        //                    Stream stream = webClient.OpenRead(xmlPath);
 
-                            using (StreamReader reader = new StreamReader(stream, Encoding.UTF8, true))
-                            {
-                                //XmlSerializer serializer = new XmlSerializer(typeof(Artikl));
+        //                    using (StreamReader reader = new StreamReader(stream, Encoding.UTF8, true))
+        //                    {
+        //                        //XmlSerializer serializer = new XmlSerializer(typeof(Artikl));
 
-                                //object result = serializer.Deserialize(reader);
+        //                        //object result = serializer.Deserialize(reader);
 
-                                //xmlResult.Load(reader);
+        //                        //xmlResult.Load(reader);
 
-                                rezultatHttpZahteva.UcitaniXmlDocument.Load(reader);
-                            }                            
-                        }
-                        return rezultatHttpZahteva;
+        //                        rezultatHttpZahteva.UcitaniXmlDocument.Load(reader);
+        //                    }                            
+        //                }
+        //                return rezultatHttpZahteva;
 
-                    default:
-                        rezultatHttpZahteva.UcitaniXmlDocument.LoadXml(downloadResult);
-                        return rezultatHttpZahteva;
-                }
+        //            default:
+        //                rezultatHttpZahteva.UcitaniXmlDocument.LoadXml(downloadResult);
+        //                return rezultatHttpZahteva;
+        //        }
 
-            }
+        //    }
             
-        }
+        //}
 
 
 

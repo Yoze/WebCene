@@ -24,6 +24,7 @@ namespace WebCene.Model.B2B.erg
             GenerisiPodatkeZaPrikaz(konfigDobavljaca, ucitaniXmlDocument);
         }
 
+
         private void GenerisiPodatkeZaPrikaz(KonfigDobavljaca konfigDobavljaca, XmlDocument ucitaniXmlDocument)
         {
             List<PodaciZaPrikaz> podaciZaPrikaz = new List<PodaciZaPrikaz>();
@@ -41,16 +42,8 @@ namespace WebCene.Model.B2B.erg
                 if (!(string.IsNullOrWhiteSpace(item.barcode)))
                 {
 
-                    //decimal cena = decimal.Zero;
-                    //bool isCena = decimal.TryParse(item.price, System.Globalization.NumberStyles.Any, new CultureInfo("en-US"), out cena);
-
-
-                    //decimal pmc = decimal.Zero;
-                    //bool isPmc = decimal.TryParse(item.recommended_retail_price, out pmc);
-
                     int kolicina = 0;
                     bool isKolicina = Int32.TryParse(item.stock, out kolicina);
-
 
                     PodaciZaPrikaz podatakZaPrikaz = new PodaciZaPrikaz()
                     {
@@ -66,10 +59,8 @@ namespace WebCene.Model.B2B.erg
             }
             PodaciZaPrikaz = podaciZaPrikaz;
         }
-
-
-
     }
+
 
     // NOTE: Generated code may require at least .NET Framework 4.5 or .NET Core/Standard 2.0.
     /// <remarks/>

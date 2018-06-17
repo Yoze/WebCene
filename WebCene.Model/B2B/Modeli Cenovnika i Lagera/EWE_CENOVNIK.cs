@@ -41,19 +41,37 @@ namespace WebCene.Model.B2B.ewe
             {
                 if (!(string.IsNullOrWhiteSpace(item.ean)))
                 {
+                    /*
+                     4. EWE
+	                    - price_rebate (NNC)
+	                    - recommended_retail_price -> 
+	
+		                    if (recommended_retail_price) PMC == recommended_retail_price
+		                    else {
+			                    PMC = price_rebate *1.2 * profile.koefMarze;
+		                    }
+	                    Ewe.koefMarze = 1.1;
+                     */
 
-                    decimal cena = decimal.Zero;
-                    bool isCena = decimal.TryParse(item.price_rebate, System.Globalization.NumberStyles.Any, new CultureInfo("en-US"), out cena);
+                    //  Kolicina
+                    int kolicina = 1;
+
+                    // NNC
+                    decimal nnc = decimal.Zero;
+                    bool isCena = decimal.TryParse(item.price_rebate, System.Globalization.NumberStyles.Any, new CultureInfo("en-US"), out nnc);
 
 
+                    // PMC
                     decimal pmc = decimal.Zero;
                     bool isPmc = decimal.TryParse(item.recommended_retail_price, out pmc);
+                    pmc = ( isPmc && pmc > 0 ) ? pmc : nnc * decimal.Multiply( 1.2m, konfigDobavljaca.KeoficijentMarze );
+
 
                     PodaciZaPrikaz podatakZaPrikaz = new PodaciZaPrikaz()
                     {
                         Barcode = item.ean,
-                        Kolicina = 1,
-                        Cena = cena * konfigDobavljaca.KeoficijentMarze,
+                        Kolicina = kolicina,
+                        Cena = nnc,
                         PMC = pmc,
                         DatumUlistavanja = DateTime.Today,
                         PrimarniDobavljac = konfigDobavljaca.Naziv
