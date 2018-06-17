@@ -18,14 +18,6 @@ namespace WebCene.Helper
 
         // C# Singleton pattern
         // https://www.dotnetperls.com/singleton
-        //
-
-
-        // VOX
-        // ftp://elbraco@ftp.elbraco.rs/elvoxerg/erg.xml
-        // elbraco
-        // Jeev1oju
-
 
         static readonly FTPHelper _instance = new FTPHelper();
 
@@ -49,39 +41,35 @@ namespace WebCene.Helper
         }
 
 
-        public string CreateRequestUri(KonfigDobavljaca konfigDobavljaca)
+        public string KreirajRequestUri(KonfigDobavljaca konfigDobavljaca, string fileName)
         {
-            // Create supplier specific request Uri string
             string requestUriString = string.Empty;
 
             if (konfigDobavljaca != null)
             {
-                // konfigDobavljaca.Username == ftp supplier folder name
-                requestUriString =
-                    konfigDobavljaca.URL + "/" +
-                    //konfigDobavljaca.Username + "/" +
-                    konfigDobavljaca.Filename;
+                requestUriString = konfigDobavljaca.URL + "/" + fileName;
             }
 
             return requestUriString;
         }
+        
 
 
-        public XmlDocument GetXmlFileFromFtp(KonfigDobavljaca konfigDobavljaca)
+        public RezultatSaFtp UcitajXmlZaDobavljaca(KonfigDobavljaca konfigDobavljaca, string requestUriParam)
         {
-            // https://www.c-sharpcorner.com/UploadFile/0d5b44/ftp-using-C-Sharp-net/
+
+            //RezultatZaPrikaz rezultatUcitavanja = new RezultatZaPrikaz();
+            RezultatSaFtp rezultatSaFtp = new RezultatSaFtp();
 
             XmlDocument xmlResult = new XmlDocument();
+            StreamReader reader = null;
 
-            // requestUriString
-            string requestUriString = CreateRequestUri(konfigDobavljaca);
-            if (string.IsNullOrEmpty(requestUriString)) return null;
+            string requestUri = KreirajRequestUri(konfigDobavljaca, requestUriParam);
 
             try
             {
                 // FTP request
-                FtpWebRequest request = (FtpWebRequest)WebRequest.Create(requestUriString);
-
+                FtpWebRequest request = (FtpWebRequest)WebRequest.Create(requestUri);
                 request.Credentials = new NetworkCredential(konfigDobavljaca.Username, konfigDobavljaca.Password);
                 request.KeepAlive = false;
                 request.UseBinary = true;
@@ -89,84 +77,172 @@ namespace WebCene.Helper
                 request.Method = WebRequestMethods.Ftp.DownloadFile;
 
                 // FTP response
-                FtpWebResponse response = (FtpWebResponse)request.GetResponse();
+                FtpWebResponse ftpResponse = (FtpWebResponse)request.GetResponse();
+                Stream responseStream = ftpResponse.GetResponseStream();                
 
-                string responseStatus = response.StatusDescription;
-
-                Stream responseStream = response.GetResponseStream();
-
-                StreamReader reader = null;
-                //StreamReader reader = new StreamReader(responseStream);
-                //string readerResult = reader.ReadToEnd();
-
-                // Dispose resources
-                //if (reader != null) reader.Close();
-                //if (response != null) response.Close();
-
-
-                switch (konfigDobavljaca.ExtraData)
+                // Učitavanje XMLa
+                string readerResult;
+                using (reader = new StreamReader(responseStream))
                 {
-                    //case "GORENJE":
-                    //    {
-                    //        using (reader = new StreamReader(responseStream, Encoding.UTF8, true))
-                    //        {
-
-                    //            Root gorenje = new Root();
-                    //            var serializer = new XmlSerializer(typeof(Root));
-
-                    //            XmlReaderSettings xmlReaderSettings = new XmlReaderSettings();
-                    //            xmlReaderSettings.ValidationType = ValidationType.DTD;
-                    //            //xmlReaderSettings.ValidationEventHandler += new ValidationEventHandler(ValidationCallback);
-
-
-                    //            XmlTextReader xmlNodeReader = new XmlTextReader(reader);
-
-
-                    //            using (XmlReader xmlReader = XmlReader.Create(xmlNodeReader, xmlReaderSettings))
-                    //            {
-
-                    //                gorenje = (Root)serializer.Deserialize(xmlReader);
-                    //            }
-
-
-
-
-
-                    //            xmlResult.Load(reader);
-                    //        }
-                    //        if (response != null) response.Close();
-                    //    }
-                    //    return xmlResult;
-
-                    default:
-                        {
-                            string readerResult; 
-
-                            using (reader = new StreamReader(responseStream))
-                            {
-                                readerResult = reader.ReadToEnd();
-                            }
-
-                            xmlResult.LoadXml(readerResult);
-                            if (response != null) response.Close();
-                        }                       
-                        return xmlResult;
+                    readerResult = reader.ReadToEnd();
                 }
- 
-               
 
+                xmlResult.LoadXml(readerResult);
+                //rezultatUcitavanja.UcitaniXmlDocument.LoadXml(readerResult);
+                //rezultatUcitavanja.LastModifiedDate = ftpResponse.LastModified;
+                rezultatSaFtp.UcitaniXmlDocument.LoadXml(readerResult);
+                rezultatSaFtp.LastModified = ftpResponse.LastModified;
 
-                
+                if (ftpResponse != null) ftpResponse.Close();
+
+                return rezultatSaFtp;
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                throw new Exception("Greška: GetXmlFileFromFtp()\r\n" + e.Message);
+
+                throw;
             }
+
+
         }
 
 
+      
+      
+
+
+
+
+
+        //    #region old
+        //    //try
+        //    //{
+        //    //    // FTP request
+        //    //    FtpWebRequest request = (FtpWebRequest)WebRequest.Create(requestUriString);
+
+        //    //    request.Credentials = new NetworkCredential(konfigDobavljaca.Username, konfigDobavljaca.Password);
+        //    //    request.KeepAlive = false;
+        //    //    request.UseBinary = true;
+        //    //    request.UsePassive = true;
+        //    //    request.Method = WebRequestMethods.Ftp.DownloadFile;
+
+        //    //    // FTP response
+        //    //    FtpWebResponse response = (FtpWebResponse)request.GetResponse();
+
+        //    //    Stream responseStream = response.GetResponseStream();
+
+        //    //    StreamReader reader = null;
+
+        //    //    #region obs
+        //    //    //StreamReader reader = new StreamReader(responseStream);
+        //    //    //string readerResult = reader.ReadToEnd();
+
+        //    //    // Dispose resources
+        //    //    //if (reader != null) reader.Close();
+        //    //    //if (response != null) response.Close();
+        //    //    #endregion
+
+        //    //    string readerResult;
+
+        //    //    using (reader = new StreamReader(responseStream))
+        //    //    {
+        //    //        readerResult = reader.ReadToEnd();
+        //    //    }
+
+        //    //    xmlResult.LoadXml(readerResult);
+        //    //    rezultatFtpUcitavanja.UcitaniXmlDocument.LoadXml(readerResult);
+        //    //    rezultatFtpUcitavanja.LastModifiedDate = response.LastModified;
+
+
+        //    //    if (response != null) response.Close();
+
+        //    //    return rezultatFtpUcitavanja;
+
+        //    //   
+
+
+
+
+        //    //    //    default:
+        //    //    //        {
+        //    //    //            //string readerResult; 
+
+        //    //    //            //using (reader = new StreamReader(responseStream))
+        //    //    //            //{
+        //    //    //            //    readerResult = reader.ReadToEnd();
+        //    //    //            //}
+
+        //    //    //            //xmlResult.LoadXml(readerResult);
+        //    //    //            //rezultatFtpUcitavanja.UcitaniXmlDocument.LoadXml(readerResult);
+
+        //    //    //            //if (response != null) response.Close();
+        //    //    //        }                       
+        //    //    //        //return xmlResult;
+        //    //    //        //return rezultatFtpUcitavanja;
+        //    //    //}
+
+        //    //    #endregion
+
+
+        //    //}
+        //    //catch (Exception e)
+        //    //{
+        //    //    throw new Exception("Greška: GetXmlFileFromFtp()\r\n" + e.Message);
+        //    //}
+
+        //    #endregion
+        //}
+
+        //private void UcitajXmlDocumentSaFtp()
+        //{
+
+        //    try
+        //    {
+                
+        //        // FTP request
+        //        FtpWebRequest request = (FtpWebRequest)WebRequest.Create(requestUriString);
+
+        //        request.Credentials = new NetworkCredential(konfigDobavljaca.Username, konfigDobavljaca.Password);
+        //        request.KeepAlive = false;
+        //        request.UseBinary = true;
+        //        request.UsePassive = true;
+        //        request.Method = WebRequestMethods.Ftp.DownloadFile;
+
+        //        // FTP response
+        //        FtpWebResponse response = (FtpWebResponse)request.GetResponse();
+
+        //        Stream responseStream = response.GetResponseStream();
+
+        //        StreamReader reader = null;
+
+        //        string readerResult;
+
+        //        using (reader = new StreamReader(responseStream))
+        //        {
+        //            readerResult = reader.ReadToEnd();
+        //        }
+
+        //        xmlResult.LoadXml(readerResult);
+        //        rezultatFtpUcitavanja.UcitaniXmlDocument.LoadXml(readerResult);
+        //        rezultatFtpUcitavanja.LastModifiedDate = response.LastModified;
+
+
+        //        if (response != null) response.Close();
+
+        //        return rezultatFtpUcitavanja;
+
+
+
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        throw new Exception("Greška: GetXmlFileFromFtp()\r\n" + e.Message);
+        //    }
+        //}
 
 
 
     }
 }
+
+

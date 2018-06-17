@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WebCene.Model.B2B
+namespace WebCene.Model.B2B.zomimpex
 {
    
         // NOTE: Generated code may require at least .NET Framework 4.5 or .NET Core/Standard 2.0.

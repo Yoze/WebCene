@@ -4,25 +4,31 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WebCene.Model.B2B
+namespace WebCene.Model.B2B.orbico
 {
 
 
+
+    // NOTE: Generated code may require at least .NET Framework 4.5 or .NET Core/Standard 2.0.
+    /// <remarks/>
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
     [System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
-    public partial class products
+    public partial class Items
     {
 
-        [System.Xml.Serialization.XmlElementAttribute("product")]
-        public productsProduct[] product { get; set; }
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("Item")]
+        public ItemsItem[] Item { get; set; }
+
     }
 
+    /// <remarks/>
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class productsProduct
+    public partial class ItemsItem
     {
 
         public string id { get; set; }
@@ -41,10 +47,12 @@ namespace WebCene.Model.B2B
 
         public string vat { get; set; }
 
-        public string ean { get; set; }
+        public ushort qty { get; set; }
 
-        public string recommended_retail_price { get; set; }
+        public ulong ean { get; set; }
     }
+
+
 
 
 

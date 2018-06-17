@@ -30,16 +30,19 @@ namespace WebCene.Helper
             // initialize here
         }
 
-
-
+        
         /** Public methods */
         public string Test()
         {
             return "Hello from HTTP Singleton";
         }
         
-        public XmlDocument GetXmlFromHttpRequest(KonfigDobavljaca konfigDobavljaca)
+
+
+        public RezultatZaPrikaz PreuzmiXml_HttpRequest(KonfigDobavljaca konfigDobavljaca)
         {
+
+            RezultatZaPrikaz rezultatHttpZahteva = new RezultatZaPrikaz();
 
             var xmlPath = konfigDobavljaca.URL;
 
@@ -50,9 +53,9 @@ namespace WebCene.Helper
             {
                 downloadResult = webClient.DownloadString(xmlPath);
 
-                XmlDocument xmlResult = new XmlDocument();
+                //XmlDocument xmlResult = new XmlDocument();
 
-                switch (konfigDobavljaca.ExtraData)
+                switch (konfigDobavljaca.ModelCenovnik)
                 {
                     case "ZOMIMPEX":                  
                         { 
@@ -64,14 +67,16 @@ namespace WebCene.Helper
 
                                 //object result = serializer.Deserialize(reader);
 
-                                xmlResult.Load(reader);
-                            }
+                                //xmlResult.Load(reader);
+
+                                rezultatHttpZahteva.UcitaniXmlDocument.Load(reader);
+                            }                            
                         }
-                        return xmlResult;
+                        return rezultatHttpZahteva;
 
                     default:
-                        xmlResult.LoadXml(downloadResult);
-                        return xmlResult;
+                        rezultatHttpZahteva.UcitaniXmlDocument.LoadXml(downloadResult);
+                        return rezultatHttpZahteva;
                 }
 
             }

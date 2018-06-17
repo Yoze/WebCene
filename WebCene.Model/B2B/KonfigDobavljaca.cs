@@ -21,7 +21,10 @@ namespace WebCene.Model.B2B
         public string URL { get; set; }
 
         [StringLength(50)]
-        public string Filename { get; set; }
+        public string CenovnikFilename { get; set; }
+
+        [StringLength(50)]
+        public string LagerFilename { get; set; }
 
         [StringLength(50)]
         public string Username { get; set; }
@@ -29,7 +32,13 @@ namespace WebCene.Model.B2B
         [StringLength(50)]
         public string Password { get; set; }
 
-        [StringLength(500)]
-        public string ExtraData { get; set; }
+        [StringLength(50)]
+        public string ModelCenovnik { get; set; }
+
+        [StringLength(50)]
+        public string ModelLager { get; set; }
+
+        public decimal KeoficijentMarze { get; set; }
+
     }
 }

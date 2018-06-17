@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WebCene.Model.B2B
+namespace WebCene.Model.B2B.bosch
 {
    
     [System.SerializableAttribute()]

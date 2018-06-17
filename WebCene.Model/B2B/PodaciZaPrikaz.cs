@@ -6,24 +6,27 @@ using System.Threading.Tasks;
 
 namespace WebCene.Model.B2B
 {
-    public class XmlRezultat
+    public class PodaciZaPrikaz
     {
 
-        public List<XmlRezultat> XmlRezultati { get; set; }
+        public List<PodaciZaPrikaz> podaciZaPrikaz { get; set; }
 
 
         public string Barcode { get; set; }
 
         public int Kolicina { get; set; }
 
+        public DateTime KolicinaDatum { get; set; }
+
         public decimal Cena { get; set; }
+
+        public DateTime CenaDatum { get; set; }
 
         public decimal PMC { get; set; }
 
         public DateTime DatumUlistavanja { get; set; }
 
-        public string PrimarniDobavljac { get; set; }
-        
+        public string PrimarniDobavljac { get; set; }      
 
 
     }

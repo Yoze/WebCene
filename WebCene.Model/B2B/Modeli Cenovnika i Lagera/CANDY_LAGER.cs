@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WebCene.Model.B2B.extendNameSpace.mison
+namespace WebCene.Model.B2B.candyLager
 {
+
 
 
     // NOTE: Generated code may require at least .NET Framework 4.5 or .NET Core/Standard 2.0.
@@ -17,9 +18,21 @@ namespace WebCene.Model.B2B.extendNameSpace.mison
     public partial class Root
     {
 
+        private RootRow[] rowField;
+
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("Row")]
-        public RootRow[] Row { get; set; }
+        public RootRow[] Row
+        {
+            get
+            {
+                return this.rowField;
+            }
+            set
+            {
+                this.rowField = value;
+            }
+        }
     }
 
     /// <remarks/>
@@ -29,18 +42,40 @@ namespace WebCene.Model.B2B.extendNameSpace.mison
     public partial class RootRow
     {
 
-        /// <remarks/>
-        public ulong barcod { get; set; }
+        private ushort kolicinaField;
+
+        private ulong barkodField;
 
         /// <remarks/>
-        public byte kolicina { get; set; }
+        public ushort Kolicina
+        {
+            get
+            {
+                return this.kolicinaField;
+            }
+            set
+            {
+                this.kolicinaField = value;
+            }
+        }
 
         /// <remarks/>
-        public decimal VP__Cena_u_DIN { get; set; }
-
-        /// <remarks/>
-        public uint PREPORU_ENA_MP_CENA { get; set; }
+        public ulong barkod
+        {
+            get
+            {
+                return this.barkodField;
+            }
+            set
+            {
+                this.barkodField = value;
+            }
+        }
     }
+
+
+
+
 
 
 

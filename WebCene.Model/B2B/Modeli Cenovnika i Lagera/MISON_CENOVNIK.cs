@@ -4,9 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WebCene.Model.B2B.extendNameSpace.gorenje
+namespace WebCene.Model.B2B.mison
 {
-
 
 
     // NOTE: Generated code may require at least .NET Framework 4.5 or .NET Core/Standard 2.0.
@@ -31,21 +30,17 @@ namespace WebCene.Model.B2B.extendNameSpace.gorenje
     {
 
         /// <remarks/>
-        public ulong EAN { get; set; }
+        public ulong barcod { get; set; }
 
         /// <remarks/>
-        public decimal Neto_prodajna_cena { get; set; }
+        public byte kolicina { get; set; }
 
         /// <remarks/>
-        public uint PREP_MPC { get; set; }
+        public decimal VP__Cena_u_DIN { get; set; }
+
+        /// <remarks/>
+        public uint PREPORU_ENA_MP_CENA { get; set; }
     }
-
-
-
-
-   
-
-
 
 
 

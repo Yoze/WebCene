@@ -30,15 +30,15 @@ namespace WebCene.Helper
 
 
         /** Public methods */
-        public KonfigDobavljaca GetKonfigDobavljaca(int id)
+        public KonfigDobavljaca PreuzmiKonfiguracijuDobavljaca(int id)
         {
-            KonfigDobavljaca konfigDobavljaca = new KonfigDobavljaca();
+            KonfigDobavljaca konfiguracijaDobavljaca = new KonfigDobavljaca();
 
             try
             {
                 using (KrolerContext db = new KrolerContext())
                 {
-                    konfigDobavljaca = db.KonfigDobavljaca
+                    konfiguracijaDobavljaca = db.KonfigDobavljaca
                         .Where(d => d.Id == id)
                         .FirstOrDefault();
                 }
@@ -48,20 +48,20 @@ namespace WebCene.Helper
                 throw new Exception("Greška: GetKonfigDobavljaca()\r\n" + e.Message);
             }
 
-            return konfigDobavljaca;
+            return konfiguracijaDobavljaca;
         } 
            
 
-        public List<KonfigDobavljaca> GetKonfigDobavljacaList()
+        public List<KonfigDobavljaca> PreuzmiSveKonfiguracijeDobavljaca()
         {
-            List<KonfigDobavljaca> listaKonfigDobavljaca = new List<KonfigDobavljaca>();
+            List<KonfigDobavljaca> konfiguracijeDobavljaca = new List<KonfigDobavljaca>();
 
             using (KrolerContext db = new KrolerContext())
             {
-                listaKonfigDobavljaca = db.KonfigDobavljaca.ToList();
+                konfiguracijeDobavljaca = db.KonfigDobavljaca.ToList();
             }
 
-            return listaKonfigDobavljaca;
+            return konfiguracijeDobavljaca;
         }
 
 

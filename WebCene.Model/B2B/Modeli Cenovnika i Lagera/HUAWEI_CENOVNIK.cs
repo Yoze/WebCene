@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WebCene.Model.B2B.extendNameSpace.alca
+namespace WebCene.Model.B2B.huawei
 {
 
 
@@ -36,10 +36,13 @@ namespace WebCene.Model.B2B.extendNameSpace.alca
         public byte kolicina { get; set; }
 
         /// <remarks/>
-        public uint Prodajna_cena { get; set; }
+        public decimal Neto_VP_za_valutu { get; set; }
 
         /// <remarks/>
-        public uint Prodajna_cena_s_PDVom { get; set; }
+        public decimal Neto_VP_za_avans { get; set; }
+
+        /// <remarks/>
+        public uint RRP { get; set; }
     }
 
 

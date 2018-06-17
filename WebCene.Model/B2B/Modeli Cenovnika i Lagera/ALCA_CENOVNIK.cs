@@ -4,9 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WebCene.Model.B2B.extendNameSpace.orbico
+namespace WebCene.Model.B2B.alca
 {
-
 
 
     // NOTE: Generated code may require at least .NET Framework 4.5 or .NET Core/Standard 2.0.
@@ -15,43 +14,33 @@ namespace WebCene.Model.B2B.extendNameSpace.orbico
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
     [System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
-    public partial class Items
+    public partial class Root
     {
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("Item")]
-        public ItemsItem[] Item { get; set; }
-
+        [System.Xml.Serialization.XmlElementAttribute("Row")]
+        public RootRow[] Row { get; set; }
     }
 
     /// <remarks/>
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class ItemsItem
+    public partial class RootRow
     {
 
-        public string id { get; set; }
+        /// <remarks/>
+        public ulong barcod { get; set; }
 
-        public string manufacturer { get; set; }
+        /// <remarks/>
+        public byte kolicina { get; set; }
 
-        public string name { get; set; }
+        /// <remarks/>
+        public uint Prodajna_cena { get; set; }
 
-        public string category { get; set; }
-
-        public string subcategory { get; set; }
-
-        public string price { get; set; }
-
-        public string price_rebate { get; set; }
-
-        public string vat { get; set; }
-
-        public ushort qty { get; set; }
-
-        public ulong ean { get; set; }
+        /// <remarks/>
+        public uint Prodajna_cena_s_PDVom { get; set; }
     }
-
 
 
 

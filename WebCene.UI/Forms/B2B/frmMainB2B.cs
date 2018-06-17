@@ -22,37 +22,18 @@ namespace WebCene.UI.Forms.B2B
 {
     public partial class frmMainB2B : Form
     {
-
-        private List<XmlRezultat> zbirniXml;
+        // podaci koji se prikazuju u datagrid-u
+        private List<PodaciZaPrikaz> SviPodaciZaPrikaz;
 
 
         public frmMainB2B()
         {
             InitializeComponent();
 
-            SetStatusLabel("", true);
+            SviPodaciZaPrikaz = new List<PodaciZaPrikaz>();
+            PrikaziStatusUcitavanja("", true);
         }
-
-
-        //public static void Configure(ServiceConfiguration config)
-        //{
-
-        //    // Configuring WCF Services in Code
-
-        //    ServiceEndpoint se = new ServiceEndpoint(new ContractDescription("PIN_ServiceReference.StockWebservice"), new BasicHttpsBinding(), new EndpointAddress("https://partner.pinsoft.com/StockWebservice/StockWebservice"));
-
-        //    /*  ServiceModel Metadata Utility Tool (Svcutil.exe) 
-        //     *  
-        //     *  https://docs.microsoft.com/en-us/dotnet/framework/wcf/servicemodel-metadata-utility-tool-svcutil-exe
-        //     *  */
-
-
-
-
-
-        //  }
-
-
+        
 
 
         private void btnWebService_Click(object sender, EventArgs e)
@@ -71,88 +52,72 @@ namespace WebCene.UI.Forms.B2B
 
             //List<item> pinItems = pinResults.item.ToList();
 
-
-
-
+            
             //pinServiceClient.Close();
-
-
-
-
-            
-
-            
+                        
 
         }
 
+
+
         private void btnLoadXmls_Click(object sender, EventArgs e)
         {
-            ClearAll();
-
-
-            SetStatusLabel("Učitavanje konfiguracija ", true);
-
-
-            // zbirni Xml rezultati za sve dobavljače
-            zbirniXml = new List<XmlRezultat>();
-
-            // clear dgb
-            PrikaziSveUcitanePodatke(zbirniXml);
-
             // Xml rezultat za jednog dobavljača
-            List<XmlRezultat> pojedinacniXml;
-
-            List<KonfigDobavljaca> listaKonfigDobavljaca = DBHelper.Instance.GetKonfigDobavljacaList();
-
-            ///** T E S T  ===>  učitava listaKonfigDobavljaca.Count - x dobavljača */
-            //listaKonfigDobavljaca.RemoveRange(0, listaKonfigDobavljaca.Count - 7);
-
-
+            List<PodaciZaPrikaz> podatakZaPrikaz;
+            List<KonfigDobavljaca> konfiguracijeDobavljaca = DBHelper.Instance.PreuzmiSveKonfiguracijeDobavljaca();
             int redniBroj = 1;
 
-            foreach (KonfigDobavljaca item in listaKonfigDobavljaca)
-            {
-                pojedinacniXml = new List<XmlRezultat>();
 
-                SetStatusLabel("Povezivanje na server ", true);
+            ObrisiPrikazStatusaUcitavanja();
+            PrikaziStatusUcitavanja("Učitavanje konfiguracija ", true);
+            //PrikaziPodatke(SviPodaciZaPrikaz);            
+
+           
+            
+
+            foreach (KonfigDobavljaca konfiguracijaDobavljaca in konfiguracijeDobavljaca)
+            {
+                podatakZaPrikaz = new List<PodaciZaPrikaz>();
 
                 // učitavanje podataka
-                StatusXmlUcitavanja status = new StatusXmlUcitavanja();
+                StatusUcitavanja statusUcitavanja = new StatusUcitavanja();
                 try
                 {
-                    SetStatusLabel("Učitavanje podataka " + item.Naziv, true);
+                    PrikaziStatusUcitavanja("Učitavanje podataka " + konfiguracijaDobavljaca.Naziv, true);
 
-                    pojedinacniXml = XMLHelper.Instance.UcitajXmlRezultatZaDobavljaca(item);
-                    status = SetStatusUcitavanja(redniBroj, item.Naziv, item.URL, true);
+                    podatakZaPrikaz = XMLHelper.Instance.UcitajPodatkeZaPrikazIzXmlDocumentaZaDobavljaca(konfiguracijaDobavljaca);
 
-                    //bool isLoaded = pojedinacniXml.Count > 0 ? true : false;
+
+
+                    statusUcitavanja = SetStatusUcitavanja(redniBroj, konfiguracijaDobavljaca.Naziv, konfiguracijaDobavljaca.URL, true);
+
                 }
                 catch (Exception)
                 {
-                    SetStatusLabel("Greška " + item.Naziv, true);
+                    PrikaziStatusUcitavanja("Greška " + konfiguracijaDobavljaca.Naziv, true);
 
-                    status = SetStatusUcitavanja(redniBroj, item.Naziv, item.URL, false);
-                    PrikaziStatusUcitavanja(status);
+                    statusUcitavanja = SetStatusUcitavanja(redniBroj, konfiguracijaDobavljaca.Naziv, konfiguracijaDobavljaca.URL, false);
+                    PrikaziStatusUcitavanja(statusUcitavanja);
                     redniBroj++;
                     continue;
                 }
 
-                PrikaziStatusUcitavanja(status);
+                PrikaziStatusUcitavanja(statusUcitavanja);
                 redniBroj++;
 
 
                 // dodavanje u listu rezultata učitavanja
-                zbirniXml.AddRange(pojedinacniXml);
+                SviPodaciZaPrikaz.AddRange(podatakZaPrikaz);
             }
 
             // prikaz svih rezultata učitavanja
-            PrikaziSveUcitanePodatke(zbirniXml);
+            PrikaziPodatke(SviPodaciZaPrikaz);
 
-            SetStatusLabel("Završeno.", true);
+            PrikaziStatusUcitavanja("Završeno.", true);
         }
 
 
-        public void SetStatusLabel(string text, bool visibility)
+        public void PrikaziStatusUcitavanja(string text, bool visibility)
         {
             lblStatus.Text = text + " ...";
             lblStatus.Refresh();
@@ -161,10 +126,10 @@ namespace WebCene.UI.Forms.B2B
 
         }
 
-        private void ClearAll()
+        private void ObrisiPrikazStatusaUcitavanja()
         {
             // status label
-            SetStatusLabel("", true);
+            PrikaziStatusUcitavanja("", true);
 
             // status tabela
             dgvStatus.Rows.Clear();
@@ -172,10 +137,10 @@ namespace WebCene.UI.Forms.B2B
 
         }
 
-        private StatusXmlUcitavanja SetStatusUcitavanja(int redniBroj, string nazivDobavljaca, string url, bool isLoaded)
+        private StatusUcitavanja SetStatusUcitavanja(int redniBroj, string nazivDobavljaca, string url, bool isLoaded)
         {
             // status učitavanja
-            StatusXmlUcitavanja status = new StatusXmlUcitavanja()
+            StatusUcitavanja status = new StatusUcitavanja()
             {
                 Number = redniBroj,
                 Naziv = nazivDobavljaca,
@@ -186,16 +151,16 @@ namespace WebCene.UI.Forms.B2B
         }
 
 
-        private void PrikaziSveUcitanePodatke(List<XmlRezultat> zbirniXml)
+        private void PrikaziPodatke(List<PodaciZaPrikaz> podaciZaPrikaz)
         {
             // prikaz podataka
 
-            DataTable dt = Helpers.Instance.ListToDataTable<XmlRezultat>(zbirniXml);
+            DataTable dt = Helpers.Instance.ListToDataTable<PodaciZaPrikaz>(podaciZaPrikaz);
             dgvZbirniXml.DataSource = dt;
         }
 
 
-        private void PrikaziStatusUcitavanja(StatusXmlUcitavanja status)
+        private void PrikaziStatusUcitavanja(StatusUcitavanja status)
         {
             // prikaz statusa učitavanja 
 

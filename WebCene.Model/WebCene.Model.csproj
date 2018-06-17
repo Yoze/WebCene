@@ -52,21 +52,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="B2B\extendNameSpace\model_ALCA.cs" />
-    <Compile Include="B2B\extendNameSpace\model_HUAWEI.cs" />
-    <Compile Include="B2B\extendNameSpace\model_MISON.cs" />
+    <Compile Include="B2B\Modeli Cenovnika i Lagera\CANDY_CENOVNIK.cs" />
+    <Compile Include="B2B\Modeli Cenovnika i Lagera\ALCA_CENOVNIK.cs" />
+    <Compile Include="B2B\Modeli Cenovnika i Lagera\GORENJE_LAGER.cs" />
+    <Compile Include="B2B\Modeli Cenovnika i Lagera\HUAWEI_CENOVNIK.cs" />
+    <Compile Include="B2B\Modeli Cenovnika i Lagera\MISON_CENOVNIK.cs" />
     <Compile Include="B2B\KonfigDobavljaca.cs" />
-    <Compile Include="B2B\extendNameSpace\model_ACRMOBILE.cs" />
-    <Compile Include="B2B\model_BOSCH.cs" />
-    <Compile Include="B2B\extendNameSpace\model_CANDY.cs" />
-    <Compile Include="B2B\model_ERG.cs" />
-    <Compile Include="B2B\model_EWE.cs" />
+    <Compile Include="B2B\Modeli Cenovnika i Lagera\ACRMOBILE_CENOVNIK.cs" />
+    <Compile Include="B2B\Modeli Cenovnika i Lagera\BOSCH_CENOVNIK.cs" />
+    <Compile Include="B2B\Modeli Cenovnika i Lagera\CANDY_LAGER.cs" />
+    <Compile Include="B2B\Modeli Cenovnika i Lagera\ERG_CENOVNIK.cs" />
+    <Compile Include="B2B\Modeli Cenovnika i Lagera\EWE_CENOVNIK.cs" />
     <Compile Include="B2B\model_GAMAGROUP.cs" />
-    <Compile Include="B2B\extendNameSpace\model_GORENJE.cs" />
-    <Compile Include="B2B\model_MKA.cs" />
-    <Compile Include="B2B\model_ZOM.cs" />
-    <Compile Include="B2B\StatusXmlUcitavanja.cs" />
-    <Compile Include="B2B\XmlRezultat.cs" />
+    <Compile Include="B2B\Modeli Cenovnika i Lagera\GORENJE_CENOVNIK.cs" />
+    <Compile Include="B2B\Modeli Cenovnika i Lagera\MKA_CENOVNIK.cs" />
+    <Compile Include="B2B\Modeli Cenovnika i Lagera\TANDEM_CENOVNIK.cs" />
+    <Compile Include="B2B\Modeli Cenovnika i Lagera\TANDEM_LAGER.cs" />
+    <Compile Include="B2B\Modeli Cenovnika i Lagera\ZOMIMPEX_CENOVNIK.cs" />
+    <Compile Include="B2B\RezultatSaFtp.cs" />
+    <Compile Include="B2B\RezultatZaPrikaz.cs" />
+    <Compile Include="B2B\StatusUcitavanja.cs" />
+    <Compile Include="B2B\PodaciZaPrikaz.cs" />
     <Compile Include="Connected Services\CT_ServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -81,7 +87,7 @@
     <Compile Include="Kroler\KrolStavke.cs" />
     <Compile Include="Kroler\Prodavci.cs" />
     <Compile Include="Kroler\Proizvod.cs" />
-    <Compile Include="B2B\extendNameSpace\model_ORBICO.cs" />
+    <Compile Include="B2B\Modeli Cenovnika i Lagera\ORBICO_CENOVNIK.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Kroler\BRAND.cs" />
     <Compile Include="Kroler\C099_pravi.cs" />

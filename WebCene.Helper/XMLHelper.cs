@@ -13,7 +13,7 @@ using System.IO;
 using System.Xml.Schema;
 using WebCene.Model.PIN_ServiceReference;
 using WebCene.Model.CT_ServiceReference;
-using extendedNamespace = WebCene.Model.B2B.extendNameSpace;
+using extNS = WebCene.Model.B2B;
 
 namespace WebCene.Helper
 {
@@ -37,478 +37,524 @@ namespace WebCene.Helper
         }
 
 
-
-
-        /** Public methods */
-
-        public bool ValidateLoadedXml(XmlDocument xmlToValidate)
+        
+        
+        public List<PodaciZaPrikaz> XmlDocumentUPodatkeZaPrikaz(KonfigDobavljaca konfigDobavljaca, string model, XmlDocument ucitaniXmlDocument)
         {
-            // TO DO
-            try
+            List<PodaciZaPrikaz> podaciZaPrikaz = new List<PodaciZaPrikaz>();
+
+            switch (model)
             {
-
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-
-            return true;
-        }
-
-        /** KONFIGURACIJE DOBAVLJAČA ZA DESERIJALIZACIJU PODATAKA */
-        /// <param name="konfigDobavljaca"> kofiguracija dobavljača iz tabele KonfigDobavljaca</param>
-        /// <param name="loadedXmlDocument"> učitani XML dokument (http, ftp,) </param>
-        /// <returns> </returns>
-        public List<XmlRezultat> DeserializeXmlResult(KonfigDobavljaca konfigDobavljaca, XmlDocument loadedXmlDocument)
-        {
-            // deserijalizacija učitanih xml podataka u odgovarajući .NET objekat
-
-            // result object
-            //dynamic result = null;
-            List<XmlRezultat> xmlRezultats = new List<XmlRezultat>();
-
-            switch (konfigDobavljaca.ExtraData)
-            {
-                case "EWE":
-                    {
-                        products ewe = new products();
-                        var serializer = new XmlSerializer(typeof(products));
-
-                        using (XmlReader reader = new XmlNodeReader(loadedXmlDocument))
-                        {
-                            ewe = (products)serializer.Deserialize(reader);
-                        }
-
-                        foreach (var item in ewe.product)
-                        {
-                            if (!(string.IsNullOrWhiteSpace(item.ean)))
-                            {
-
-                                decimal cena = decimal.Zero;
-                                bool isCena = decimal.TryParse(item.price_rebate, System.Globalization.NumberStyles.Any, new CultureInfo("en-US"), out cena);
-
-
-                                decimal pmc = decimal.Zero;
-                                bool isPmc = decimal.TryParse(item.recommended_retail_price, out pmc);
-
-                                XmlRezultat xmlRezultat = new XmlRezultat()
-                                {
-                                    Barcode = item.ean,
-                                    Kolicina = 1,
-                                    Cena = cena,
-                                    PMC = pmc,
-                                    DatumUlistavanja = DateTime.Today,
-                                    PrimarniDobavljac = konfigDobavljaca.Naziv
-                                };
-                                xmlRezultats.Add(xmlRezultat);
-                            }
-                        }
-                    }
-                    return xmlRezultats;
-
-                case "ERG":
-                    {
-                        var serializer = new XmlSerializer(typeof(ITEMS));
-                        ITEMS erg = new ITEMS();
-
-                        using (XmlReader reader = new XmlNodeReader(loadedXmlDocument))
-                        {
-                            erg = (ITEMS)serializer.Deserialize(reader);
-                        }
-
-                        foreach (var item in erg.ITEM)
-                        {
-                            string barcodeTrimmed = item.barcode.TrimEnd();
-
-                            if (!(string.IsNullOrWhiteSpace(barcodeTrimmed)))
-                            {
-
-                                // kolicina
-                                int kolicina = 0;
-                                bool isKolicina;
-
-                                if (item.stock.Contains(">")) kolicina = 10;
-                                else isKolicina = Int32.TryParse(item.stock.ToString(), out kolicina);
-
-                                //cena
-                                //decimal cena = decimal.Zero;
-
-                                //cena = item.price;
-
-                                //bool isCena = decimal.TryParse(price, out cena);
-
-                              
-
-                                XmlRezultat xmlRezultat = new XmlRezultat()
-                                {
-                                    Barcode = item.barcode.TrimEnd(),
-                                    Kolicina = kolicina,
-                                    Cena = item.price,
-                                    PMC = 0,
-                                    DatumUlistavanja = DateTime.Today,
-                                    PrimarniDobavljac = konfigDobavljaca.Naziv
-                                };
-
-                                xmlRezultats.Add(xmlRezultat);
-                            }
-                        }
-                    }
-                    return xmlRezultats;
-
-                case "BOSCH":
-                    {
-                        izdelki bsh = new izdelki();
-                        var serializer = new XmlSerializer(typeof(izdelki));
-
-                        using (XmlReader reader = new XmlNodeReader(loadedXmlDocument))
-                        {
-                            bsh = (izdelki)serializer.Deserialize(reader);
-                        }
-
-                        foreach (var item in bsh.izdelek)
-                        {
-                            if (item.ean > 0)
-                            {
-                                // cena
-                                decimal cena = decimal.Zero;
-                                bool isCena = decimal.TryParse(item.cena, out cena);
-
-                                // PMC
-                                decimal pmc = decimal.Zero;
-                                bool isPmc = decimal.TryParse(item.ppc, out pmc);
-
-                                XmlRezultat xmlRezultat= new XmlRezultat()
-                                {
-                                    Barcode = item.ean.ToString(),
-                                    Kolicina = item.zaloga,
-                                    Cena = cena,
-                                    PMC = pmc,
-                                    DatumUlistavanja = DateTime.Today,
-                                    PrimarniDobavljac = konfigDobavljaca.Naziv
-                                };
-                                xmlRezultats.Add(xmlRezultat);
-                            }
-                        }
-                    }
-                    return xmlRezultats;
-
-                case "GORENJE":
-                    {
-                        extendedNamespace.gorenje.Root gorenje = new extendedNamespace.gorenje.Root();
-                        var serializer = new XmlSerializer(typeof(extendedNamespace.gorenje.Root));
-
-                        using (XmlReader reader = new XmlNodeReader(loadedXmlDocument))
-                        {
-                            gorenje = (extendedNamespace.gorenje.Root)serializer.Deserialize(reader); // throw exception here !!!
-                        }
-
-                        foreach (var item in gorenje.Row)
-                        {
-                            XmlRezultat xmlRezultat = new XmlRezultat()
-                            {
-                                Barcode = item.EAN.ToString(),
-                                Kolicina = 0,
-                                Cena = item.Neto_prodajna_cena,
-                                PMC = item.PREP_MPC,
-                                DatumUlistavanja = DateTime.Today,
-                                PrimarniDobavljac = konfigDobavljaca.Naziv
-                            };
-                            xmlRezultats.Add(xmlRezultat);
-                        }
-                    }
-                    return xmlRezultats;
-
-                case "ZOMIMPEX":
-                    {
-                        Artikl zomImpex = new Artikl();
-                        var serializer = new XmlSerializer(typeof(Artikl));
-                       
-                        using (XmlReader reader = new XmlNodeReader(loadedXmlDocument))
-                        {                           
-                            zomImpex = (Artikl)serializer.Deserialize(reader);
-                        }
-
-                        foreach (var item in zomImpex.InformacijeArtikla)
-                        {
-
-                            // količina
-                            int kolicina = 0;
-                            bool isKolicina = Int32.TryParse(item.Količina, out kolicina);
-
-                            // cena
-
-
-                            XmlRezultat xmlRezultat = new XmlRezultat()
-                            {
-                                Barcode = item.Bar_kod,
-                                Kolicina = kolicina,
-                                Cena = item.Cena,
-                                PMC = 0,
-                                DatumUlistavanja = DateTime.Today,
-                                PrimarniDobavljac = konfigDobavljaca.Naziv
-                            };
-
-                            xmlRezultats.Add(xmlRezultat);
-                        }
-
-                    }
-                    return xmlRezultats;
-
-                case "MKA":
-                    {
-                        Dokument mka = new Dokument();
-                        var serializer = new XmlSerializer(typeof(Dokument));
-
-                        using (XmlReader reader = new XmlNodeReader(loadedXmlDocument))
-                        {
-                            mka = (Dokument)serializer.Deserialize(reader);
-                        }
-
-
-                        foreach (var item in mka.Stavke)
-                        {
-                            // konverzije ... ako treba
-
-
-                            XmlRezultat xmlRezultat = new XmlRezultat()
-                            {
-                                Barcode = item.BarKod.ToString(),
-                                Kolicina = Convert.ToInt32(item.Kolicina),
-                                Cena = item.CenaVP,
-                                PMC = item.CenaMP,
-                                DatumUlistavanja = DateTime.Today,
-                                PrimarniDobavljac = konfigDobavljaca.Naziv
-                            };
-                            xmlRezultats.Add(xmlRezultat);
-                        }
-
-                    }
-                    return xmlRezultats;
-
-                case "CANDY":
-                    {
-                        extendedNamespace.candy.Root candy = new extendedNamespace.candy.Root();
-                        var serializer = new XmlSerializer(typeof(extendedNamespace.candy.Root));
-
-                        using (XmlReader reader = new XmlNodeReader(loadedXmlDocument))
-                        {
-                            candy = (extendedNamespace.candy.Root)serializer.Deserialize(reader);
-                        }
-
-
-                        foreach (var item in candy.Row)
-                        {
-                            XmlRezultat xmlRezultat = new XmlRezultat()
-                            {
-                                Barcode = item.barkod.ToString(),
-                                Kolicina = item.Kolicina,
-                                Cena = decimal.Zero,
-                                PMC = decimal.Zero,
-                                DatumUlistavanja = DateTime.Today,
-                                PrimarniDobavljac = konfigDobavljaca.Naziv
-                            };
-                            xmlRezultats.Add(xmlRezultat);
-                        }
-
-                    }
-                    return xmlRezultats;
-
-                case "ORBICO":
-                    {
-                        extendedNamespace.orbico.Items orbico = new extendedNamespace.orbico.Items();
-                        var serializer = new XmlSerializer(typeof(extendedNamespace.orbico.Items));
-
-                        using (XmlReader reader = new XmlNodeReader(loadedXmlDocument))
-                        {
-                            orbico = (extendedNamespace.orbico.Items)serializer.Deserialize(reader);
-                        }
-
-                        foreach (var item in orbico.Item)
-                        {
-                            // cena sa popustom (price_rebate)
-                            decimal cena = decimal.Zero;
-                            bool isParsedPriceRebate = decimal.TryParse(item.price_rebate, out cena);
-
-                            // PMC
-                            decimal pmc = decimal.Zero;
-                            bool isParsedPrice = decimal.TryParse(item.price, out pmc);
-
-
-                            XmlRezultat xmlRezultat = new XmlRezultat()
-                            {
-                                Barcode = item.ean.ToString(),
-                                Kolicina = item.qty,
-                                Cena = cena,
-                                PMC = pmc,
-                                DatumUlistavanja = DateTime.Today,
-                                PrimarniDobavljac = konfigDobavljaca.Naziv
-                            };
-                            xmlRezultats.Add(xmlRezultat);
-                        }
-
-                    }
-                    return xmlRezultats;
-
-                case "ACRMOBILE":
-                    {
-                        extendedNamespace.acrmobile.Root acrmobile = new extendedNamespace.acrmobile.Root();
-                        var serializer = new XmlSerializer(typeof(extendedNamespace.acrmobile.Root));
-
-                        using (XmlReader reader = new XmlNodeReader(loadedXmlDocument))
-                        {
-                            acrmobile = (extendedNamespace.acrmobile.Root)serializer.Deserialize(reader);
-                        }
-
-                        foreach (var item in acrmobile.Row)
-                        {
-                            XmlRezultat xmlRezultat = new XmlRezultat()
-                            {
-                                Barcode = item.barcod,
-                                Kolicina = item.kolicina,
-                                Cena = item.VP_cena,
-                                PMC = 0,
-                                DatumUlistavanja = DateTime.Today,
-                                PrimarniDobavljac = konfigDobavljaca.Naziv
-                            };
-                            xmlRezultats.Add(xmlRezultat);
-                        }
-                    }
-                    return xmlRezultats;
-
-                case "ALCA":
-                    {
-                        extendedNamespace.alca.Root alcatrgovina = new extendedNamespace.alca.Root();
-                        var serializer = new XmlSerializer(typeof(extendedNamespace.alca.Root));
-
-
-                        using (XmlReader reader = new XmlNodeReader(loadedXmlDocument))
-                        {
-                            alcatrgovina = (extendedNamespace.alca.Root)serializer.Deserialize(reader);
-                        }
-
-                        foreach (var item in alcatrgovina.Row)
-                        {
-                            XmlRezultat xmlRezultat = new XmlRezultat()
-                            {
-                                Barcode = item.barcod.ToString(),
-                                Kolicina = item.kolicina,
-                                Cena = item.Prodajna_cena,
-                                PMC = item.Prodajna_cena_s_PDVom,
-                                DatumUlistavanja = DateTime.Today,
-                                PrimarniDobavljac = konfigDobavljaca.Naziv
-                            };
-                            xmlRezultats.Add(xmlRezultat);
-                        }
-                    }
-                    return xmlRezultats;
-
-                case "MISON":
-                    {
-                        extendedNamespace.mison.Root mison = new extendedNamespace.mison.Root();
-                        var serializer = new XmlSerializer(typeof(extendedNamespace.mison.Root));
-
-                        using (XmlReader reader = new XmlNodeReader(loadedXmlDocument))
-                        {
-                            mison = (extendedNamespace.mison.Root)serializer.Deserialize(reader);
-                        }
-
-                        foreach (var item in mison.Row)
-                        {
-                            XmlRezultat xmlRezultat = new XmlRezultat()
-                            {
-                                Barcode = item.barcod.ToString(),
-                                Kolicina = item.kolicina,
-                                Cena = item.VP__Cena_u_DIN,
-                                PMC = item.PREPORU_ENA_MP_CENA,
-                                DatumUlistavanja = DateTime.Today,
-                                PrimarniDobavljac = konfigDobavljaca.Naziv
-                            };
-                            xmlRezultats.Add(xmlRezultat);
-                        }
-                    }
-                    return xmlRezultats;
-
-                case "HUAWEI":
-                    {
-                        extendedNamespace.huawei.Root huawei = new extendedNamespace.huawei.Root();
-                        var serializer = new XmlSerializer(typeof(extendedNamespace.huawei.Root));
-
-                        using (XmlReader reader = new XmlNodeReader(loadedXmlDocument))
-                        {
-                            huawei = (extendedNamespace.huawei.Root)serializer.Deserialize(reader);
-                        }
-
-                        foreach (var item in huawei.Row)
-                        {
-                            XmlRezultat xmlRezultat = new XmlRezultat()
-                            {
-                                Barcode = item.barcod.ToString(),
-                                Kolicina = item.kolicina,
-                                Cena = item.Neto_VP_za_valutu,
-                                PMC = item.RRP,
-                                DatumUlistavanja = DateTime.Today,
-                                PrimarniDobavljac = konfigDobavljaca.Naziv
-                            };
-                            xmlRezultats.Add(xmlRezultat);
-                        }
-                    }
-                    return xmlRezultats;
-
-
+                case "EWE_CENOVNIK":
+                    extNS.ewe.EWE_CENOVNIK eweCenovnik = new extNS.ewe.EWE_CENOVNIK(konfigDobavljaca, ucitaniXmlDocument);
+                    return podaciZaPrikaz = eweCenovnik.PodaciZaPrikaz;
 
 
                 default:
-                    return xmlRezultats;
+                    return podaciZaPrikaz;
             }
 
 
 
+            #region oldCode
 
+
+            // switch (konfigDobavljaca.ModelCenovnik)
+            //{
+            //case "EWE":
+            //    {
+            //        extNS.ewe.products ewe = new extNS.ewe.products();
+            //        var serializer = new XmlSerializer(typeof(extNS.ewe.products));
+
+            //        using (XmlReader reader = new XmlNodeReader(ucitaniXmlDocument))
+            //        {
+            //            ewe = (extNS.ewe.products)serializer.Deserialize(reader);
+            //        }
+
+            //        foreach (var item in ewe.product)
+            //        {
+            //            if (!(string.IsNullOrWhiteSpace(item.ean)))
+            //            {
+
+            //                decimal cena = decimal.Zero;
+            //                bool isCena = decimal.TryParse(item.price_rebate, System.Globalization.NumberStyles.Any, new CultureInfo("en-US"), out cena);
+
+
+            //                decimal pmc = decimal.Zero;
+            //                bool isPmc = decimal.TryParse(item.recommended_retail_price, out pmc);
+
+            //                PodaciZaPrikaz podatakZaPrikaz = new PodaciZaPrikaz()
+            //                {
+            //                    Barcode = item.ean,
+            //                    Kolicina = 1,
+            //                    Cena = cena,
+            //                    PMC = pmc,
+            //                    DatumUlistavanja = DateTime.Today,
+            //                    PrimarniDobavljac = konfigDobavljaca.Naziv
+            //                };
+            //                podaciZaPrikaz.Add(podatakZaPrikaz);
+            //            }
+            //        }
+            //    }
+            //    return podaciZaPrikaz;
+
+            //case "ERG":
+            //    {
+            //        var serializer = new XmlSerializer(typeof(ITEMS));
+            //        ITEMS erg = new ITEMS();
+
+            //        using (XmlReader reader = new XmlNodeReader(ucitaniXmlDocument))
+            //        {
+            //            erg = (ITEMS)serializer.Deserialize(reader);
+            //        }
+
+            //        foreach (var item in erg.ITEM)
+            //        {
+            //            string barcodeTrimmed = item.barcode.TrimEnd();
+
+            //            if (!(string.IsNullOrWhiteSpace(barcodeTrimmed)))
+            //            {
+
+            //                // kolicina
+            //                int kolicina = 0;
+            //                bool isKolicina;
+
+            //                if (item.stock.Contains(">")) kolicina = 10;
+            //                else isKolicina = Int32.TryParse(item.stock.ToString(), out kolicina);
+
+            //                //cena
+            //                //decimal cena = decimal.Zero;
+
+            //                //cena = item.price;
+
+            //                //bool isCena = decimal.TryParse(price, out cena);
+
+
+
+            //                PodaciZaPrikaz podatakZaPrikaz = new PodaciZaPrikaz()
+            //                {
+            //                    Barcode = item.barcode.TrimEnd(),
+            //                    Kolicina = kolicina,
+            //                    Cena = item.price,
+            //                    PMC = 0,
+            //                    DatumUlistavanja = DateTime.Today,
+            //                    PrimarniDobavljac = konfigDobavljaca.Naziv
+            //                };
+
+            //                podaciZaPrikaz.Add(podatakZaPrikaz);
+            //            }
+            //        }
+            //    }
+            //    return podaciZaPrikaz;
+
+            //case "BOSCH":
+            //    {
+            //        izdelki bsh = new izdelki();
+            //        var serializer = new XmlSerializer(typeof(izdelki));
+
+            //        using (XmlReader reader = new XmlNodeReader(ucitaniXmlDocument))
+            //        {
+            //            bsh = (izdelki)serializer.Deserialize(reader);
+            //        }
+
+            //        foreach (var item in bsh.izdelek)
+            //        {
+            //            if (item.ean > 0)
+            //            {
+            //                // cena
+            //                decimal cena = decimal.Zero;
+            //                bool isCena = decimal.TryParse(item.cena, out cena);
+
+            //                // PMC
+            //                decimal pmc = decimal.Zero;
+            //                bool isPmc = decimal.TryParse(item.ppc, out pmc);
+
+            //                PodaciZaPrikaz podatakZaPrikaz = new PodaciZaPrikaz()
+            //                {
+            //                    Barcode = item.ean.ToString(),
+            //                    Kolicina = item.zaloga,
+            //                    Cena = cena,
+            //                    PMC = pmc,
+            //                    DatumUlistavanja = DateTime.Today,
+            //                    PrimarniDobavljac = konfigDobavljaca.Naziv
+            //                };
+            //                podaciZaPrikaz.Add(podatakZaPrikaz);
+            //            }
+            //        }
+            //    }
+            //    return podaciZaPrikaz;
+
+            //case "GORENJE":
+            //    {
+            //        extendedNamespace.gorenje.Root gorenje = new extendedNamespace.gorenje.Root();
+            //        var serializer = new XmlSerializer(typeof(extendedNamespace.gorenje.Root));
+
+            //        using (XmlReader reader = new XmlNodeReader(ucitaniXmlDocument))
+            //        {
+            //            gorenje = (extendedNamespace.gorenje.Root)serializer.Deserialize(reader); // throw exception here !!!
+            //        }
+
+            //        foreach (var item in gorenje.Row)
+            //        {
+            //            PodaciZaPrikaz podatakZaPrikaz = new PodaciZaPrikaz()
+            //            {
+            //                Barcode = item.EAN.ToString(),
+            //                Kolicina = 0,
+            //                Cena = item.Neto_prodajna_cena,
+            //                PMC = item.PREP_MPC,
+            //                DatumUlistavanja = DateTime.Today,
+            //                PrimarniDobavljac = konfigDobavljaca.Naziv
+            //            };
+            //            podaciZaPrikaz.Add(podatakZaPrikaz);
+            //        }
+            //    }
+            //    return podaciZaPrikaz;
+
+            //case "GORENJELAGER":
+            //    {
+            //        extendedNamespace.gorenje.lager.model_GORENJE_LAGER.Root gorenjeLager = new extendedNamespace.gorenje.lager.model_GORENJE_LAGER.Root();
+            //        var serializer = new XmlSerializer(typeof(extendedNamespace.gorenje.lager.model_GORENJE_LAGER.Root));
+
+            //        using (XmlReader reader = new XmlNodeReader(ucitaniXmlDocument))
+            //        {
+            //            gorenjeLager = (extendedNamespace.gorenje.lager.model_GORENJE_LAGER.Root)serializer.Deserialize(reader);
+            //        }
+
+            //        foreach (var item in gorenjeLager.Row)
+            //        {
+            //            PodaciZaPrikaz podatakZaPrikaz = new PodaciZaPrikaz()
+            //            {
+            //                Barcode = item.barcod,
+            //                Kolicina = item.kolicina
+            //            };
+            //            podaciZaPrikaz.Add(podatakZaPrikaz);
+            //        }
+            //    }
+            //    return podaciZaPrikaz;
+
+            //case "ZOMIMPEX":
+            //    {
+            //        Artikl zomImpex = new Artikl();
+            //        var serializer = new XmlSerializer(typeof(Artikl));
+
+            //        using (XmlReader reader = new XmlNodeReader(ucitaniXmlDocument))
+            //        {                           
+            //            zomImpex = (Artikl)serializer.Deserialize(reader);
+            //        }
+
+            //        foreach (var item in zomImpex.InformacijeArtikla)
+            //        {
+
+            //            // količina
+            //            int kolicina = 0;
+            //            bool isKolicina = Int32.TryParse(item.Količina, out kolicina);
+
+            //            // cena
+
+
+            //            PodaciZaPrikaz podatakZaPrikaz = new PodaciZaPrikaz()
+            //            {
+            //                Barcode = item.Bar_kod,
+            //                Kolicina = kolicina,
+            //                Cena = item.Cena,
+            //                PMC = 0,
+            //                DatumUlistavanja = DateTime.Today,
+            //                PrimarniDobavljac = konfigDobavljaca.Naziv
+            //            };
+
+            //            podaciZaPrikaz.Add(podatakZaPrikaz);
+            //        }
+
+            //    }
+            //    return podaciZaPrikaz;
+
+            //case "MKA":
+            //    {
+            //        Dokument mka = new Dokument();
+            //        var serializer = new XmlSerializer(typeof(Dokument));
+
+            //        using (XmlReader reader = new XmlNodeReader(ucitaniXmlDocument))
+            //        {
+            //            mka = (Dokument)serializer.Deserialize(reader);
+            //        }
+
+
+            //        foreach (var item in mka.Stavke)
+            //        {
+            //            // konverzije ... ako treba
+
+
+            //            PodaciZaPrikaz podatakZaPrikaz = new PodaciZaPrikaz()
+            //            {
+            //                Barcode = item.BarKod.ToString(),
+            //                Kolicina = Convert.ToInt32(item.Kolicina),
+            //                Cena = item.CenaVP,
+            //                PMC = item.CenaMP,
+            //                DatumUlistavanja = DateTime.Today,
+            //                PrimarniDobavljac = konfigDobavljaca.Naziv
+            //            };
+            //            podaciZaPrikaz.Add(podatakZaPrikaz);
+            //        }
+
+            //    }
+            //    return podaciZaPrikaz;
+
+            //case "CANDY":
+            //    {
+            //        extendedNamespace.candy.Root candy = new extendedNamespace.candy.Root();
+            //        var serializer = new XmlSerializer(typeof(extendedNamespace.candy.Root));
+
+            //        using (XmlReader reader = new XmlNodeReader(ucitaniXmlDocument))
+            //        {
+            //            candy = (extendedNamespace.candy.Root)serializer.Deserialize(reader);
+            //        }
+
+
+            //        foreach (var item in candy.Row)
+            //        {
+            //            PodaciZaPrikaz podatakZaPrikaz = new PodaciZaPrikaz()
+            //            {
+            //                Barcode = item.barkod.ToString(),
+            //                Kolicina = item.Kolicina,
+            //                Cena = decimal.Zero,
+            //                PMC = decimal.Zero,
+            //                DatumUlistavanja = DateTime.Today,
+            //                PrimarniDobavljac = konfigDobavljaca.Naziv
+            //            };
+            //            podaciZaPrikaz.Add(podatakZaPrikaz);
+            //        }
+
+            //    }
+            //    return podaciZaPrikaz;
+
+            //case "ORBICO":
+            //    {
+            //        extendedNamespace.orbico.Items orbico = new extendedNamespace.orbico.Items();
+            //        var serializer = new XmlSerializer(typeof(extendedNamespace.orbico.Items));
+
+            //        using (XmlReader reader = new XmlNodeReader(ucitaniXmlDocument))
+            //        {
+            //            orbico = (extendedNamespace.orbico.Items)serializer.Deserialize(reader);
+            //        }
+
+            //        foreach (var item in orbico.Item)
+            //        {
+            //            // cena sa popustom (price_rebate)
+            //            decimal cena = decimal.Zero;
+            //            bool isParsedPriceRebate = decimal.TryParse(item.price_rebate, out cena);
+
+            //            // PMC
+            //            decimal pmc = decimal.Zero;
+            //            bool isParsedPrice = decimal.TryParse(item.price, out pmc);
+
+
+            //            PodaciZaPrikaz podatakZaPrikaz = new PodaciZaPrikaz()
+            //            {
+            //                Barcode = item.ean.ToString(),
+            //                Kolicina = item.qty,
+            //                Cena = cena,
+            //                PMC = pmc,
+            //                DatumUlistavanja = DateTime.Today,
+            //                PrimarniDobavljac = konfigDobavljaca.Naziv
+            //            };
+            //            podaciZaPrikaz.Add(podatakZaPrikaz);
+            //        }
+
+            //    }
+            //    return podaciZaPrikaz;
+
+            //case "ACRMOBILE":
+            //    {
+            //        extendedNamespace.acrmobile.Root acrmobile = new extendedNamespace.acrmobile.Root();
+            //        var serializer = new XmlSerializer(typeof(extendedNamespace.acrmobile.Root));
+
+            //        using (XmlReader reader = new XmlNodeReader(ucitaniXmlDocument))
+            //        {
+            //            acrmobile = (extendedNamespace.acrmobile.Root)serializer.Deserialize(reader);
+            //        }
+
+            //        foreach (var item in acrmobile.Row)
+            //        {
+            //            PodaciZaPrikaz podatakZaPrikaz = new PodaciZaPrikaz()
+            //            {
+            //                Barcode = item.barcod,
+            //                Kolicina = item.kolicina,
+            //                Cena = item.VP_cena,
+            //                PMC = 0,
+            //                DatumUlistavanja = DateTime.Today,
+            //                PrimarniDobavljac = konfigDobavljaca.Naziv
+            //            };
+            //            podaciZaPrikaz.Add(podatakZaPrikaz);
+            //        }
+            //    }
+            //    return podaciZaPrikaz;
+
+            //case "ALCA":
+            //    {
+            //        extendedNamespace.alca.Root alcatrgovina = new extendedNamespace.alca.Root();
+            //        var serializer = new XmlSerializer(typeof(extendedNamespace.alca.Root));
+
+
+            //        using (XmlReader reader = new XmlNodeReader(ucitaniXmlDocument))
+            //        {
+            //            alcatrgovina = (extendedNamespace.alca.Root)serializer.Deserialize(reader);
+            //        }
+
+            //        foreach (var item in alcatrgovina.Row)
+            //        {
+            //            PodaciZaPrikaz podatakZaPrikaz = new PodaciZaPrikaz()
+            //            {
+            //                Barcode = item.barcod.ToString(),
+            //                Kolicina = item.kolicina,
+            //                Cena = item.Prodajna_cena,
+            //                PMC = item.Prodajna_cena_s_PDVom,
+            //                DatumUlistavanja = DateTime.Today,
+            //                PrimarniDobavljac = konfigDobavljaca.Naziv
+            //            };
+            //            podaciZaPrikaz.Add(podatakZaPrikaz);
+            //        }
+            //    }
+            //    return podaciZaPrikaz;
+
+            //case "MISON":
+            //    {
+            //        extendedNamespace.mison.Root mison = new extendedNamespace.mison.Root();
+            //        var serializer = new XmlSerializer(typeof(extendedNamespace.mison.Root));
+
+            //        using (XmlReader reader = new XmlNodeReader(ucitaniXmlDocument))
+            //        {
+            //            mison = (extendedNamespace.mison.Root)serializer.Deserialize(reader);
+            //        }
+
+            //        foreach (var item in mison.Row)
+            //        {
+            //            PodaciZaPrikaz podatakZaPrikaz = new PodaciZaPrikaz()
+            //            {
+            //                Barcode = item.barcod.ToString(),
+            //                Kolicina = item.kolicina,
+            //                Cena = item.VP__Cena_u_DIN,
+            //                PMC = item.PREPORU_ENA_MP_CENA,
+            //                DatumUlistavanja = DateTime.Today,
+            //                PrimarniDobavljac = konfigDobavljaca.Naziv
+            //            };
+            //            podaciZaPrikaz.Add(podatakZaPrikaz);
+            //        }
+            //    }
+            //    return podaciZaPrikaz;
+
+            //case "HUAWEI":
+            //    {
+            //        extendedNamespace.huawei.Root huawei = new extendedNamespace.huawei.Root();
+            //        var serializer = new XmlSerializer(typeof(extendedNamespace.huawei.Root));
+
+            //        using (XmlReader reader = new XmlNodeReader(ucitaniXmlDocument))
+            //        {
+            //            huawei = (extendedNamespace.huawei.Root)serializer.Deserialize(reader);
+            //        }
+
+            //        foreach (var item in huawei.Row)
+            //        {
+            //            PodaciZaPrikaz podatakZaPrikaz = new PodaciZaPrikaz()
+            //            {
+            //                Barcode = item.barcod.ToString(),
+            //                Kolicina = item.kolicina,
+            //                Cena = item.Neto_VP_za_valutu,
+            //                PMC = item.RRP,
+            //                DatumUlistavanja = DateTime.Today,
+            //                PrimarniDobavljac = konfigDobavljaca.Naziv
+            //            };
+            //            podaciZaPrikaz.Add(podatakZaPrikaz);
+            //        }
+            //    }
+            //    return podaciZaPrikaz;
+
+            //default:
+            //    return podaciZaPrikaz;
+            // }
+
+            #endregion
         }
 
 
-        private void DeserializeXmlToClass(XmlDocument loadedXmlDocument, Type targetClass )
+
+        public List<PodaciZaPrikaz> UcitajPodatkeZaPrikazIzXmlDocumentaZaDobavljaca(KonfigDobavljaca konfigDobavljaca)
         {
-            // TO DO: 
-            
-        }
+            // učitavanje xml podataka za dobavljača
 
+            List<PodaciZaPrikaz> podaciZaPrikaz = new List<PodaciZaPrikaz>();
 
-        public List<XmlRezultat> UcitajXmlRezultatZaDobavljaca(KonfigDobavljaca konfigDobavljaca)
-        {
-            // učutavanje xml podataka za dobavljača
-
-            List<XmlRezultat> results = new List<XmlRezultat>();
+            //RezultatUcitavanja rezultatUcitavanja = new RezultatUcitavanja();
 
             switch (konfigDobavljaca.WebProtokol.TrimEnd())
             {
                 case "ftp":
                     {
-                        XmlDocument xmlResult = FTPHelper.Instance.GetXmlFileFromFtp(konfigDobavljaca);
-                        results = XMLHelper.Instance.DeserializeXmlResult(konfigDobavljaca, xmlResult);
-                        return results;
+                        RezultatSaFtp rezultatSaFtp = new RezultatSaFtp();
+
+                        // Cenovnik
+                        List<PodaciZaPrikaz> cenovnik = null;
+                        if (!(string.IsNullOrWhiteSpace(konfigDobavljaca.CenovnikFilename)))
+                        {
+                            cenovnik = new List<PodaciZaPrikaz>();
+
+                            rezultatSaFtp = FTPHelper.Instance.UcitajXmlZaDobavljaca(konfigDobavljaca, konfigDobavljaca.ModelCenovnik);
+                            cenovnik = XMLHelper.Instance.XmlDocumentUPodatkeZaPrikaz(konfigDobavljaca, konfigDobavljaca.ModelCenovnik, rezultatSaFtp.UcitaniXmlDocument);
+
+
+                            podaciZaPrikaz = cenovnik;
+                        }
+
+
+                        // Lager
+                        List<PodaciZaPrikaz> lager = null;
+                        if (!(string.IsNullOrWhiteSpace(konfigDobavljaca.LagerFilename)))
+                        {
+                            lager = new List<PodaciZaPrikaz>();
+
+                            rezultatSaFtp = FTPHelper.Instance.UcitajXmlZaDobavljaca(konfigDobavljaca, konfigDobavljaca.ModelLager);
+                            lager = XMLHelper.Instance.XmlDocumentUPodatkeZaPrikaz(konfigDobavljaca, konfigDobavljaca.ModelCenovnik, rezultatSaFtp.UcitaniXmlDocument);
+                            
+                        }
+
+                        // Povezivanje Cenovnika sa lagerom u jednu listu
+                        if (cenovnik != null && lager != null)
+                        {
+                            podaciZaPrikaz = PoveziCenovnikSaLagerom(cenovnik, lager);
+                        }
+
+                        
+                        return podaciZaPrikaz;
                     }
+
 
                 case "http":
                     {
-                        XmlDocument xmlResult = HTTPSHelper.Instance.GetXmlFromHttpRequest(konfigDobavljaca);
-                        results = XMLHelper.Instance.DeserializeXmlResult(konfigDobavljaca, xmlResult);
-                        return results;
+                        //RezultatZaPrikaz xmlResult = HTTPSHelper.Instance.PreuzmiXml_HttpRequest(konfigDobavljaca);
+                        //podaciZaPrikaz = XMLHelper.Instance.XmlDocumentUPodaciZaPrikaz(konfigDobavljaca, xmlResult);
+                        //return podaciZaPrikaz;
                     }
-
 
                 case "webservice":
                     {
-                        switch (konfigDobavljaca.ExtraData)
+                        switch (konfigDobavljaca.ModelCenovnik)
                         {
                             case "PIN":
                                 {
                                     /** PIN CLient */
                                     StockWebserviceClient pinServiceClient = new StockWebserviceClient("StockWebservicePort");
 
-                                    b2BWebServiceDAO pinResults = pinServiceClient.getAllItems("c794398a-732c-4d5e-b6a4-783eb1a268c0", 4, false);
+                                    UInt32 password = 0;
+                                    try
+                                    {
+                                        password = Convert.ToUInt32(konfigDobavljaca.Password);
+                                    }
+                                    catch (Exception e)
+                                    {
+                                        throw new Exception("Greška u parametru za pristup servisu!\r\n" + e.Message );
+                                    }
+
+                                    //b2BWebServiceDAO pinResults = pinServiceClient.getAllItems("c794398a-732c-4d5e-b6a4-783eb1a268c0", 4, false); // proveriti zasto true param izbacuje error !
+                                    b2BWebServiceDAO pinResults = pinServiceClient.getAllItems(konfigDobavljaca.Username, password, false); // proveriti zasto true param izbacuje error !
                                     pinServiceClient.Close();
 
                                     /** PIN Items*/
@@ -518,7 +564,7 @@ namespace WebCene.Helper
                                     {
                                         for (int i = 0; i < pinItems.Count; i++)
                                         {
-                                            XmlRezultat xmlRezultat = new XmlRezultat()
+                                            PodaciZaPrikaz xmlRezultat = new PodaciZaPrikaz()
                                             {
                                                 Barcode = pinItems[i].ean,
                                                 Kolicina = (int)pinItems[i].stock,
@@ -527,9 +573,9 @@ namespace WebCene.Helper
                                                 DatumUlistavanja = DateTime.Today,
                                                 PrimarniDobavljac = konfigDobavljaca.Naziv
                                             };
-                                            results.Add(xmlRezultat);
+                                            podaciZaPrikaz.Add(xmlRezultat);
                                         }
-                                        return results;
+                                        return podaciZaPrikaz;
                                     }                                    
                                 }
                                 break;
@@ -552,17 +598,22 @@ namespace WebCene.Helper
                     break;
             }
 
-
-
-            return results;
+            
+            return podaciZaPrikaz;
         }
 
 
-
-        private static void ValidationCallback(object sender, ValidationEventArgs e)
+        private List<PodaciZaPrikaz> PoveziCenovnikSaLagerom(List<PodaciZaPrikaz> cenovnik, List<PodaciZaPrikaz> lager)
         {
-            Debug.WriteLine(e.Message);
-            //throw new NotImplementedException();
+            List<PodaciZaPrikaz> cenovnikSaLagerom = new List<PodaciZaPrikaz>();
+
+
+
+
+
+            return cenovnikSaLagerom;
         }
+
+     
     }
 }
