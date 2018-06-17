@@ -49,6 +49,9 @@ namespace WebCene.Helper
                     extNS.ewe.EWE_CENOVNIK eweCenovnik = new extNS.ewe.EWE_CENOVNIK(konfigDobavljaca, ucitaniXmlDocument);
                     return podaciZaPrikaz = eweCenovnik.PodaciZaPrikaz;
 
+                case "ERG_CENOVNIK":
+                    extNS.erg.ERG_CENOVNIK ergCenovnik = new extNS.erg.ERG_CENOVNIK(konfigDobavljaca, ucitaniXmlDocument);
+                    return podaciZaPrikaz = ergCenovnik.PodaciZaPrikaz;
 
                 default:
                     return podaciZaPrikaz;
