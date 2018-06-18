@@ -53,6 +53,10 @@ namespace WebCene.Helper
                     extNS.erg.ERG_CENOVNIK ergCenovnik = new extNS.erg.ERG_CENOVNIK(konfigDobavljaca, ucitaniXmlDocument);
                     return podaciZaPrikaz = ergCenovnik.PodaciZaPrikaz;
 
+                case "ZOMIMPEX_CENOVNIK":
+                    extNS.zomimpex.ZOMIMPEX_CENOVNIK zomCenovnik = new extNS.zomimpex.ZOMIMPEX_CENOVNIK(konfigDobavljaca, ucitaniXmlDocument);
+                    return podaciZaPrikaz = zomCenovnik.PodaciZaPrikaz;
+
                 default:
                     return podaciZaPrikaz;
             }
@@ -500,7 +504,7 @@ namespace WebCene.Helper
                         {
                             cenovnik = new List<PodaciZaPrikaz>();
 
-                            rezultatSaFtp = FTPHelper.Instance.UcitajXmlZaDobavljaca(konfigDobavljaca, konfigDobavljaca.ModelCenovnik);
+                            rezultatSaFtp = FTPHelper.Instance.UcitajXmlZaDobavljaca(konfigDobavljaca, konfigDobavljaca.CenovnikFilename);
                             cenovnik = XMLHelper.Instance.XmlDocumentUPodatkeZaPrikaz(konfigDobavljaca, konfigDobavljaca.ModelCenovnik, rezultatSaFtp.UcitaniXmlDocument);
 
 
@@ -514,7 +518,7 @@ namespace WebCene.Helper
                         {
                             lager = new List<PodaciZaPrikaz>();
 
-                            rezultatSaFtp = FTPHelper.Instance.UcitajXmlZaDobavljaca(konfigDobavljaca, konfigDobavljaca.ModelLager);
+                            rezultatSaFtp = FTPHelper.Instance.UcitajXmlZaDobavljaca(konfigDobavljaca, konfigDobavljaca.LagerFilename);
                             lager = XMLHelper.Instance.XmlDocumentUPodatkeZaPrikaz(konfigDobavljaca, konfigDobavljaca.ModelCenovnik, rezultatSaFtp.UcitaniXmlDocument);
                             
                         }
@@ -532,6 +536,8 @@ namespace WebCene.Helper
 
                 case "http":
                     {
+
+
                         //RezultatZaPrikaz xmlResult = HTTPSHelper.Instance.PreuzmiXml_HttpRequest(konfigDobavljaca);
                         //podaciZaPrikaz = XMLHelper.Instance.XmlDocumentUPodaciZaPrikaz(konfigDobavljaca, xmlResult);
                         return podaciZaPrikaz;

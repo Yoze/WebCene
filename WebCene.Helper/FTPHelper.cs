@@ -78,31 +78,30 @@ namespace WebCene.Helper
 
                 // FTP response
                 FtpWebResponse ftpResponse = (FtpWebResponse)request.GetResponse();
-                Stream responseStream = ftpResponse.GetResponseStream();                
+                Stream responseStream = ftpResponse.GetResponseStream(); ;
 
-                // Učitavanje XMLa
                 string readerResult;
                 using (reader = new StreamReader(responseStream))
                 {
                     readerResult = reader.ReadToEnd();
                 }
 
+                // Xml
                 xmlResult.LoadXml(readerResult);
-                //rezultatUcitavanja.UcitaniXmlDocument.LoadXml(readerResult);
-                //rezultatUcitavanja.LastModifiedDate = ftpResponse.LastModified;
                 rezultatSaFtp.UcitaniXmlDocument.LoadXml(readerResult);
                 rezultatSaFtp.LastModified = ftpResponse.LastModified;
+
 
                 if (ftpResponse != null) ftpResponse.Close();
 
                 return rezultatSaFtp;
+
             }
-            catch (Exception)
+            catch (Exception xcp)
             {
-
-                throw;
+                var msg = xcp.Message;
             }
-
+            return rezultatSaFtp;
 
         }
 
