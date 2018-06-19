@@ -69,10 +69,10 @@
     <Compile Include="B2B\Modeli Cenovnika i Lagera\TANDEM_CENOVNIK.cs" />
     <Compile Include="B2B\Modeli Cenovnika i Lagera\TANDEM_LAGER.cs" />
     <Compile Include="B2B\Modeli Cenovnika i Lagera\ZOMIMPEX_CENOVNIK.cs" />
-    <Compile Include="B2B\RezultatSaFtp.cs" />
-    <Compile Include="B2B\RezultatZaPrikaz.cs" />
-    <Compile Include="B2B\StatusUcitavanja.cs" />
-    <Compile Include="B2B\PodaciZaPrikaz.cs" />
+    <Compile Include="B2B\LoadedXmlDocument.cs" />
+    <Compile Include="B2B\B2B_Results_RowsItems.cs" />
+    <Compile Include="B2B\LoadedXmlStatus.cs" />
+    <Compile Include="B2B\B2B_Results_RowItem.cs" />
     <Compile Include="Connected Services\CT_ServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -30,7 +30,7 @@ namespace WebCene.Helper
 
 
         /** Public methods */
-        public KonfigDobavljaca PreuzmiKonfiguracijuDobavljaca(int id)
+        public KonfigDobavljaca GetSingleSupplierConfiguration(int id)
         {
             KonfigDobavljaca konfiguracijaDobavljaca = new KonfigDobavljaca();
 
@@ -52,7 +52,7 @@ namespace WebCene.Helper
         } 
            
 
-        public List<KonfigDobavljaca> PreuzmiSveKonfiguracijeDobavljaca()
+        public List<KonfigDobavljaca> GetAllSupplierConfigurations()
         {
             List<KonfigDobavljaca> konfiguracijeDobavljaca = new List<KonfigDobavljaca>();
 

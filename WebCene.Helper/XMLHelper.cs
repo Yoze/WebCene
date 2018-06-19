@@ -31,34 +31,156 @@ namespace WebCene.Helper
             get { return _instance; }
         }
 
-        XMLHelper()
+        //XMLHelper()
+        //{
+        //    // initialize here
+        //}
+
+
+        public List<B2B_Results_RowItem> UcitajPodatkeZaPrikazIzXmlDocumentaZaDobavljaca(KonfigDobavljaca konfigDobavljaca)
         {
-            // initialize here
+            // učitavanje xml podataka za dobavljača
+
+            List<B2B_Results_RowItem> b2B_Results_RowItems = new List<B2B_Results_RowItem>();
+
+
+            switch (konfigDobavljaca.WebProtokol.TrimEnd())
+            {
+
+                case "ftp":
+                    {
+                        LoadedXmlDocument supplierXmlDocument = new LoadedXmlDocument();
+
+                        // Cenovnik
+                        List<B2B_Results_RowItem> priceList = null;
+                        if (!(string.IsNullOrWhiteSpace(konfigDobavljaca.CenovnikFilename)))
+                        {
+                            priceList = new List<B2B_Results_RowItem>();
+
+                            supplierXmlDocument = FTPHelper.Instance.LoadXmlDocumentForSupplier(konfigDobavljaca, konfigDobavljaca.CenovnikFilename);
+                            priceList = XMLHelper.Instance.GetB2B_ResultsFromXmlDocument(konfigDobavljaca, konfigDobavljaca.ModelCenovnik, supplierXmlDocument.LoadedXmlDocumentItem);
+
+
+                            b2B_Results_RowItems = priceList;
+                        }
+
+
+                        // Lager
+                        List<B2B_Results_RowItem> stockList = null;
+                        if (!(string.IsNullOrWhiteSpace(konfigDobavljaca.LagerFilename)))
+                        {
+                            stockList = new List<B2B_Results_RowItem>();
+
+                            supplierXmlDocument = FTPHelper.Instance.LoadXmlDocumentForSupplier(konfigDobavljaca, konfigDobavljaca.LagerFilename);
+                            stockList = XMLHelper.Instance.GetB2B_ResultsFromXmlDocument(konfigDobavljaca, konfigDobavljaca.ModelCenovnik, supplierXmlDocument.LoadedXmlDocumentItem);
+
+                        }
+
+                        // Povezivanje Cenovnika sa lagerom u jednu listu
+                        if (priceList != null && stockList != null)
+                        {
+                            b2B_Results_RowItems = PoveziCenovnikSaLagerom(priceList, stockList);
+                        }
+
+
+                        return b2B_Results_RowItems;
+                    }
+
+
+                case "http":
+                    {
+
+
+                        //RezultatZaPrikaz xmlResult = HTTPSHelper.Instance.PreuzmiXml_HttpRequest(konfigDobavljaca);
+                        //podaciZaPrikaz = XMLHelper.Instance.XmlDocumentUPodaciZaPrikaz(konfigDobavljaca, xmlResult);
+                        return b2B_Results_RowItems;
+                    }
+
+                case "webservice":
+                    {
+                        switch (konfigDobavljaca.ModelCenovnik)
+                        {
+                            case "PIN":
+                                {
+                                    /** PIN CLient */
+                                    StockWebserviceClient pinServiceClient = new StockWebserviceClient("StockWebservicePort");
+
+                                    UInt32 password = 0;
+                                    try
+                                    {
+                                        password = Convert.ToUInt32(konfigDobavljaca.Password);
+                                    }
+                                    catch (Exception e)
+                                    {
+                                        throw new Exception("Greška u parametru za pristup servisu!\r\n" + e.Message);
+                                    }
+
+                                    //b2BWebServiceDAO pinResults = pinServiceClient.getAllItems("c794398a-732c-4d5e-b6a4-783eb1a268c0", 4, false); // proveriti zasto true param izbacuje error !
+                                    b2BWebServiceDAO pinResults = pinServiceClient.getAllItems(konfigDobavljaca.Username, password, false); // proveriti zasto true param izbacuje error !
+                                    pinServiceClient.Close();
+
+                                    /** PIN Items*/
+                                    List<item> pinItems = pinResults.item.ToList();
+
+                                    if (pinItems.Count != 0)
+                                    {
+                                        for (int i = 0; i < pinItems.Count; i++)
+                                        {
+                                            B2B_Results_RowItem xmlRezultat = new B2B_Results_RowItem()
+                                            {
+                                                Barcode = pinItems[i].ean,
+                                                Kolicina = (int)pinItems[i].stock,
+                                                Cena = (decimal)pinItems[i].price_with_discounts,
+                                                PMC = (decimal)pinItems[i].retail_price,
+                                                DatumUlistavanja = DateTime.Today,
+                                                PrimarniDobavljac = konfigDobavljaca.Naziv
+                                            };
+                                            b2B_Results_RowItems.Add(xmlRezultat);
+                                        }
+                                        return b2B_Results_RowItems;
+                                    }
+                                }
+                                break;
+
+                            case "COMTRADE":
+                                {
+                                    // TO DO comtrade web service
+                                }
+                                break;
+
+                            default:
+                                break;
+                        }
+                    }
+                    break;
+
+                default:
+                    break;
+            }
+            return b2B_Results_RowItems;
         }
 
 
-        
-        
-        public List<PodaciZaPrikaz> XmlDocumentUPodatkeZaPrikaz(KonfigDobavljaca konfigDobavljaca, string model, XmlDocument ucitaniXmlDocument)
+        public List<B2B_Results_RowItem> GetB2B_ResultsFromXmlDocument(KonfigDobavljaca konfigDobavljaca, string model, XmlDocument ucitaniXmlDocument)
         {
-            List<PodaciZaPrikaz> podaciZaPrikaz = new List<PodaciZaPrikaz>();
+            List<B2B_Results_RowItem> b2B_Results_RowItems = new List<B2B_Results_RowItem>();
 
             switch (model)
             {
                 case "EWE_CENOVNIK":
                     extNS.ewe.EWE_CENOVNIK eweCenovnik = new extNS.ewe.EWE_CENOVNIK(konfigDobavljaca, ucitaniXmlDocument);
-                    return podaciZaPrikaz = eweCenovnik.PodaciZaPrikaz;
+                    return b2B_Results_RowItems = eweCenovnik.b2B_Results_RowItems;
 
                 case "ERG_CENOVNIK":
                     extNS.erg.ERG_CENOVNIK ergCenovnik = new extNS.erg.ERG_CENOVNIK(konfigDobavljaca, ucitaniXmlDocument);
-                    return podaciZaPrikaz = ergCenovnik.PodaciZaPrikaz;
+                    return b2B_Results_RowItems = ergCenovnik.b2B_Results_RowItems;
 
                 case "ZOMIMPEX_CENOVNIK":
                     extNS.zomimpex.ZOMIMPEX_CENOVNIK zomCenovnik = new extNS.zomimpex.ZOMIMPEX_CENOVNIK(konfigDobavljaca, ucitaniXmlDocument);
-                    return podaciZaPrikaz = zomCenovnik.PodaciZaPrikaz;
+                    return b2B_Results_RowItems = zomCenovnik.b2B_Results_RowItems;
 
                 default:
-                    return podaciZaPrikaz;
+                    return b2B_Results_RowItems;
             }
 
 
@@ -484,137 +606,12 @@ namespace WebCene.Helper
 
 
 
-        public List<PodaciZaPrikaz> UcitajPodatkeZaPrikazIzXmlDocumentaZaDobavljaca(KonfigDobavljaca konfigDobavljaca)
+       
+
+
+        private List<B2B_Results_RowItem> PoveziCenovnikSaLagerom(List<B2B_Results_RowItem> cenovnik, List<B2B_Results_RowItem> lager)
         {
-            // učitavanje xml podataka za dobavljača
-
-            List<PodaciZaPrikaz> podaciZaPrikaz = new List<PodaciZaPrikaz>();
-
-            //RezultatUcitavanja rezultatUcitavanja = new RezultatUcitavanja();
-
-            switch (konfigDobavljaca.WebProtokol.TrimEnd())
-            {
-                case "ftp":
-                    {
-                        RezultatSaFtp rezultatSaFtp = new RezultatSaFtp();
-
-                        // Cenovnik
-                        List<PodaciZaPrikaz> cenovnik = null;
-                        if (!(string.IsNullOrWhiteSpace(konfigDobavljaca.CenovnikFilename)))
-                        {
-                            cenovnik = new List<PodaciZaPrikaz>();
-
-                            rezultatSaFtp = FTPHelper.Instance.UcitajXmlZaDobavljaca(konfigDobavljaca, konfigDobavljaca.CenovnikFilename);
-                            cenovnik = XMLHelper.Instance.XmlDocumentUPodatkeZaPrikaz(konfigDobavljaca, konfigDobavljaca.ModelCenovnik, rezultatSaFtp.UcitaniXmlDocument);
-
-
-                            podaciZaPrikaz = cenovnik;
-                        }
-
-
-                        // Lager
-                        List<PodaciZaPrikaz> lager = null;
-                        if (!(string.IsNullOrWhiteSpace(konfigDobavljaca.LagerFilename)))
-                        {
-                            lager = new List<PodaciZaPrikaz>();
-
-                            rezultatSaFtp = FTPHelper.Instance.UcitajXmlZaDobavljaca(konfigDobavljaca, konfigDobavljaca.LagerFilename);
-                            lager = XMLHelper.Instance.XmlDocumentUPodatkeZaPrikaz(konfigDobavljaca, konfigDobavljaca.ModelCenovnik, rezultatSaFtp.UcitaniXmlDocument);
-                            
-                        }
-
-                        // Povezivanje Cenovnika sa lagerom u jednu listu
-                        if (cenovnik != null && lager != null)
-                        {
-                            podaciZaPrikaz = PoveziCenovnikSaLagerom(cenovnik, lager);
-                        }
-
-                        
-                        return podaciZaPrikaz;
-                    }
-
-
-                case "http":
-                    {
-
-
-                        //RezultatZaPrikaz xmlResult = HTTPSHelper.Instance.PreuzmiXml_HttpRequest(konfigDobavljaca);
-                        //podaciZaPrikaz = XMLHelper.Instance.XmlDocumentUPodaciZaPrikaz(konfigDobavljaca, xmlResult);
-                        return podaciZaPrikaz;
-                    }
-
-                case "webservice":
-                    {
-                        switch (konfigDobavljaca.ModelCenovnik)
-                        {
-                            case "PIN":
-                                {
-                                    /** PIN CLient */
-                                    StockWebserviceClient pinServiceClient = new StockWebserviceClient("StockWebservicePort");
-
-                                    UInt32 password = 0;
-                                    try
-                                    {
-                                        password = Convert.ToUInt32(konfigDobavljaca.Password);
-                                    }
-                                    catch (Exception e)
-                                    {
-                                        throw new Exception("Greška u parametru za pristup servisu!\r\n" + e.Message );
-                                    }
-
-                                    //b2BWebServiceDAO pinResults = pinServiceClient.getAllItems("c794398a-732c-4d5e-b6a4-783eb1a268c0", 4, false); // proveriti zasto true param izbacuje error !
-                                    b2BWebServiceDAO pinResults = pinServiceClient.getAllItems(konfigDobavljaca.Username, password, false); // proveriti zasto true param izbacuje error !
-                                    pinServiceClient.Close();
-
-                                    /** PIN Items*/
-                                    List<item> pinItems = pinResults.item.ToList();                                    
-
-                                    if (pinItems.Count != 0)
-                                    {
-                                        for (int i = 0; i < pinItems.Count; i++)
-                                        {
-                                            PodaciZaPrikaz xmlRezultat = new PodaciZaPrikaz()
-                                            {
-                                                Barcode = pinItems[i].ean,
-                                                Kolicina = (int)pinItems[i].stock,
-                                                Cena = (decimal)pinItems[i].price_with_discounts,
-                                                PMC = (decimal)pinItems[i].retail_price,
-                                                DatumUlistavanja = DateTime.Today,
-                                                PrimarniDobavljac = konfigDobavljaca.Naziv
-                                            };
-                                            podaciZaPrikaz.Add(xmlRezultat);
-                                        }
-                                        return podaciZaPrikaz;
-                                    }                                    
-                                }
-                                break;
-
-                            case "COMTRADE":
-                                {
-                                    // TO DO comtrade web service
-                                }
-                                break;
-
-                            default:
-                                break;
-                        }
-
-                    }
-
-                    break;
-
-                default:
-                    break;
-            }
-
-            
-            return podaciZaPrikaz;
-        }
-
-
-        private List<PodaciZaPrikaz> PoveziCenovnikSaLagerom(List<PodaciZaPrikaz> cenovnik, List<PodaciZaPrikaz> lager)
-        {
-            List<PodaciZaPrikaz> cenovnikSaLagerom = new List<PodaciZaPrikaz>();
+            List<B2B_Results_RowItem> cenovnikSaLagerom = new List<B2B_Results_RowItem>();
 
 
 

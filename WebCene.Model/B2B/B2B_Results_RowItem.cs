@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace WebCene.Model.B2B
 {
-    public class PodaciZaPrikaz
+    public class B2B_Results_RowItem
     {
 
-        public List<PodaciZaPrikaz> podaciZaPrikaz { get; set; }
+        public List<B2B_Results_RowItem> Results_RowItems { get; set; }
 
 
         public string Barcode { get; set; }

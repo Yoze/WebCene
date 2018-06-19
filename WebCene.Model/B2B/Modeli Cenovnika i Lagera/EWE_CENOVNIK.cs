@@ -14,11 +14,11 @@ namespace WebCene.Model.B2B.ewe
     public class EWE_CENOVNIK
     {
 
-        public List<PodaciZaPrikaz> PodaciZaPrikaz { get; set; }
+        public List<B2B_Results_RowItem> b2B_Results_RowItems { get; set; }
 
         public EWE_CENOVNIK(KonfigDobavljaca konfigDobavljaca, XmlDocument ucitaniXmlDocument)
         {
-            PodaciZaPrikaz = new List<PodaciZaPrikaz>();
+            b2B_Results_RowItems = new List<B2B_Results_RowItem>();
 
             GenerisiPodatkeZaPrikaz(konfigDobavljaca, ucitaniXmlDocument);
         }
@@ -27,7 +27,7 @@ namespace WebCene.Model.B2B.ewe
     
         private void GenerisiPodatkeZaPrikaz(KonfigDobavljaca konfigDobavljaca, XmlDocument ucitaniXmlDocument)
         {
-            List<PodaciZaPrikaz> podaciZaPrikaz = new List<PodaciZaPrikaz>();
+            List<B2B_Results_RowItem> podaciZaPrikaz = new List<B2B_Results_RowItem>();
            
             extNS.ewe.products ewe = new extNS.ewe.products();
             var serializer = new XmlSerializer(typeof(extNS.ewe.products));
@@ -67,7 +67,7 @@ namespace WebCene.Model.B2B.ewe
                     pmc = ( isPmc && pmc > 0 ) ? pmc : nnc * decimal.Multiply( 1.2m, konfigDobavljaca.KeoficijentMarze );
 
 
-                    PodaciZaPrikaz podatakZaPrikaz = new PodaciZaPrikaz()
+                    B2B_Results_RowItem podatakZaPrikaz = new B2B_Results_RowItem()
                     {
                         Barcode = item.ean,
                         Kolicina = kolicina,
@@ -79,7 +79,7 @@ namespace WebCene.Model.B2B.ewe
                     podaciZaPrikaz.Add(podatakZaPrikaz);
                 }
             }
-            PodaciZaPrikaz = podaciZaPrikaz;
+            b2B_Results_RowItems = podaciZaPrikaz;
         }
 
     }

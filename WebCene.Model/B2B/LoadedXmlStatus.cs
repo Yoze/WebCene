@@ -10,7 +10,7 @@ namespace WebCene.Model.B2B
 {
 
     [NotMapped]
-    public class StatusUcitavanja : KonfigDobavljaca
+    public class LoadedXmlStatus : KonfigDobavljaca
     {
         public int Number { get; set; }
 

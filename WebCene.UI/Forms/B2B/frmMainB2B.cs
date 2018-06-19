@@ -23,15 +23,15 @@ namespace WebCene.UI.Forms.B2B
     public partial class frmMainB2B : Form
     {
         // podaci koji se prikazuju u datagrid-u
-        private List<PodaciZaPrikaz> SviPodaciZaPrikaz;
+        private List<B2B_Results_RowItem> SviPodaciZaPrikaz;
 
 
         public frmMainB2B()
         {
             InitializeComponent();
 
-            SviPodaciZaPrikaz = new List<PodaciZaPrikaz>();
-            PrikaziStatusUcitavanja("", true);
+            SviPodaciZaPrikaz = new List<B2B_Results_RowItem>();
+            SetXmlLoadingStatusMessage("", true);
         }
         
 
@@ -63,61 +63,59 @@ namespace WebCene.UI.Forms.B2B
         private void btnLoadXmls_Click(object sender, EventArgs e)
         {
             // Xml rezultat za jednog dobavljača
-            List<PodaciZaPrikaz> podatakZaPrikaz;
-            List<KonfigDobavljaca> konfiguracijeDobavljaca = DBHelper.Instance.PreuzmiSveKonfiguracijeDobavljaca();
-            int redniBroj = 1;
+            List<B2B_Results_RowItem> b2B_Results_RowItems;
+            List<KonfigDobavljaca> suppliersConfigurations = DBHelper.Instance.GetAllSupplierConfigurations();
+            int itemNumber = 1;
 
 
-            ObrisiPrikazStatusaUcitavanja();
-            PrikaziStatusUcitavanja("Učitavanje konfiguracija ", true);
-            //PrikaziPodatke(SviPodaciZaPrikaz);            
-
+            ClearXmlLoadingStatuses();
+            SetXmlLoadingStatusMessage("Učitavanje konfiguracija ", true);
            
             
 
-            foreach (KonfigDobavljaca konfiguracijaDobavljaca in konfiguracijeDobavljaca)
+            foreach (KonfigDobavljaca supplierConfiguration in suppliersConfigurations)
             {
-                podatakZaPrikaz = new List<PodaciZaPrikaz>();
+                b2B_Results_RowItems = new List<B2B_Results_RowItem>();
 
                 // učitavanje podataka
-                StatusUcitavanja statusUcitavanja = new StatusUcitavanja();
+                LoadedXmlStatus loadedXmlStatus = new LoadedXmlStatus();
                 try
                 {
-                    PrikaziStatusUcitavanja("Učitavanje podataka " + konfiguracijaDobavljaca.Naziv, true);
+                    SetXmlLoadingStatusMessage("Učitavanje podataka " + supplierConfiguration.Naziv, true);
 
-                    podatakZaPrikaz = XMLHelper.Instance.UcitajPodatkeZaPrikazIzXmlDocumentaZaDobavljaca(konfiguracijaDobavljaca);
+                    b2B_Results_RowItems = XMLHelper.Instance.UcitajPodatkeZaPrikazIzXmlDocumentaZaDobavljaca(supplierConfiguration);
 
 
 
-                    statusUcitavanja = SetStatusUcitavanja(redniBroj, konfiguracijaDobavljaca.Naziv, konfiguracijaDobavljaca.URL, true);
+                    loadedXmlStatus = SetXmlLoadingStatus(itemNumber, supplierConfiguration.Naziv, supplierConfiguration.URL, true);
 
                 }
                 catch (Exception)
                 {
-                    PrikaziStatusUcitavanja("Greška " + konfiguracijaDobavljaca.Naziv, true);
+                    SetXmlLoadingStatusMessage("Greška " + supplierConfiguration.Naziv, true);
 
-                    statusUcitavanja = SetStatusUcitavanja(redniBroj, konfiguracijaDobavljaca.Naziv, konfiguracijaDobavljaca.URL, false);
-                    PrikaziStatusUcitavanja(statusUcitavanja);
-                    redniBroj++;
+                    loadedXmlStatus = SetXmlLoadingStatus(itemNumber, supplierConfiguration.Naziv, supplierConfiguration.URL, false);
+                    DisplayXmlLoadingStatusMessageRow(loadedXmlStatus);
+                    itemNumber++;
                     continue;
                 }
 
-                PrikaziStatusUcitavanja(statusUcitavanja);
-                redniBroj++;
+                DisplayXmlLoadingStatusMessageRow(loadedXmlStatus);
+                itemNumber++;
 
 
                 // dodavanje u listu rezultata učitavanja
-                SviPodaciZaPrikaz.AddRange(podatakZaPrikaz);
+                SviPodaciZaPrikaz.AddRange(b2B_Results_RowItems);
             }
 
             // prikaz svih rezultata učitavanja
-            PrikaziPodatke(SviPodaciZaPrikaz);
+            DisplayB2B_Results_Rows(SviPodaciZaPrikaz);
 
-            PrikaziStatusUcitavanja("Završeno.", true);
+            SetXmlLoadingStatusMessage("Završeno.", true);
         }
 
 
-        public void PrikaziStatusUcitavanja(string text, bool visibility)
+        public void SetXmlLoadingStatusMessage(string text, bool visibility)
         {
             lblStatus.Text = text + " ...";
             lblStatus.Refresh();
@@ -126,10 +124,10 @@ namespace WebCene.UI.Forms.B2B
 
         }
 
-        private void ObrisiPrikazStatusaUcitavanja()
+        private void ClearXmlLoadingStatuses()
         {
             // status label
-            PrikaziStatusUcitavanja("", true);
+            SetXmlLoadingStatusMessage("", true);
 
             // status tabela
             dgvStatus.Rows.Clear();
@@ -137,10 +135,10 @@ namespace WebCene.UI.Forms.B2B
 
         }
 
-        private StatusUcitavanja SetStatusUcitavanja(int redniBroj, string nazivDobavljaca, string url, bool isLoaded)
+        private LoadedXmlStatus SetXmlLoadingStatus(int redniBroj, string nazivDobavljaca, string url, bool isLoaded)
         {
             // status učitavanja
-            StatusUcitavanja status = new StatusUcitavanja()
+            LoadedXmlStatus status = new LoadedXmlStatus()
             {
                 Number = redniBroj,
                 Naziv = nazivDobavljaca,
@@ -151,16 +149,16 @@ namespace WebCene.UI.Forms.B2B
         }
 
 
-        private void PrikaziPodatke(List<PodaciZaPrikaz> podaciZaPrikaz)
+        private void DisplayB2B_Results_Rows(List<B2B_Results_RowItem> podaciZaPrikaz)
         {
             // prikaz podataka
 
-            DataTable dt = Helpers.Instance.ListToDataTable<PodaciZaPrikaz>(podaciZaPrikaz);
+            DataTable dt = Helpers.Instance.ListToDataTable<B2B_Results_RowItem>(podaciZaPrikaz);
             dgvZbirniXml.DataSource = dt;
         }
 
 
-        private void PrikaziStatusUcitavanja(StatusUcitavanja status)
+        private void DisplayXmlLoadingStatusMessageRow(LoadedXmlStatus status)
         {
             // prikaz statusa učitavanja 
 

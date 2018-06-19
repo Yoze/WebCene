@@ -41,8 +41,10 @@ namespace WebCene.Helper
         }
 
 
-        public string KreirajRequestUri(KonfigDobavljaca konfigDobavljaca, string fileName)
+        public string CreateRequestUri(KonfigDobavljaca konfigDobavljaca, string fileName)
         {
+            // requestUriString = URL + CenovnikFilename / LagerFilename
+
             string requestUriString = string.Empty;
 
             if (konfigDobavljaca != null)
@@ -55,16 +57,15 @@ namespace WebCene.Helper
         
 
 
-        public RezultatSaFtp UcitajXmlZaDobavljaca(KonfigDobavljaca konfigDobavljaca, string requestUriParam)
+        public LoadedXmlDocument LoadXmlDocumentForSupplier(KonfigDobavljaca konfigDobavljaca, string requestUriParam)
         {
 
-            //RezultatZaPrikaz rezultatUcitavanja = new RezultatZaPrikaz();
-            RezultatSaFtp rezultatSaFtp = new RezultatSaFtp();
+            LoadedXmlDocument loadedXmlDocument = new LoadedXmlDocument();
 
-            XmlDocument xmlResult = new XmlDocument();
+            XmlDocument xmlDocument = new XmlDocument();
             StreamReader reader = null;
 
-            string requestUri = KreirajRequestUri(konfigDobavljaca, requestUriParam);
+            string requestUri = CreateRequestUri(konfigDobavljaca, requestUriParam);
 
             try
             {
@@ -80,6 +81,7 @@ namespace WebCene.Helper
                 FtpWebResponse ftpResponse = (FtpWebResponse)request.GetResponse();
                 Stream responseStream = ftpResponse.GetResponseStream(); ;
 
+                // Stream Reader
                 string readerResult;
                 using (reader = new StreamReader(responseStream))
                 {
@@ -87,21 +89,21 @@ namespace WebCene.Helper
                 }
 
                 // Xml
-                xmlResult.LoadXml(readerResult);
-                rezultatSaFtp.UcitaniXmlDocument.LoadXml(readerResult);
-                rezultatSaFtp.LastModified = ftpResponse.LastModified;
+                xmlDocument.LoadXml(readerResult);
+                loadedXmlDocument.LoadedXmlDocumentItem.LoadXml(readerResult);
+                loadedXmlDocument.XmlLastModified = ftpResponse.LastModified;
 
 
                 if (ftpResponse != null) ftpResponse.Close();
 
-                return rezultatSaFtp;
+                return loadedXmlDocument;
 
             }
             catch (Exception xcp)
             {
                 var msg = xcp.Message;
             }
-            return rezultatSaFtp;
+            return loadedXmlDocument;
 
         }
 

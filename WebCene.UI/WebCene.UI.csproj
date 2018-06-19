@@ -219,6 +219,7 @@
     <EmbeddedResource Include="Forms\Kroler\frmStartKrol.resx">
       <DependentUpon>frmStartKrol.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\WebCene.Model.Proizvod.datasource" />
     <None Include="Properties\Settings.settings">

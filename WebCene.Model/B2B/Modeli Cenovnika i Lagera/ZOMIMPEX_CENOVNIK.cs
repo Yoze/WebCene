@@ -14,17 +14,17 @@ namespace WebCene.Model.B2B.zomimpex
 
     public class ZOMIMPEX_CENOVNIK
     {
-        public List<PodaciZaPrikaz> PodaciZaPrikaz { get; set; }
+        public List<B2B_Results_RowItem> b2B_Results_RowItems { get; set; }
 
         public ZOMIMPEX_CENOVNIK(KonfigDobavljaca konfigDobavljaca, XmlDocument ucitaniXmlDocument)
         {
-            PodaciZaPrikaz = new List<PodaciZaPrikaz>();
+            b2B_Results_RowItems = new List<B2B_Results_RowItem>();
 
         }
 
         private void GenerisiPodatkeZaPrikaz(KonfigDobavljaca konfigDobavljaca, XmlDocument ucitaniXmlDocument)
         {
-            List<PodaciZaPrikaz> podaciZaPrikaz = new List<PodaciZaPrikaz>();
+            List<B2B_Results_RowItem> podaciZaPrikaz = new List<B2B_Results_RowItem>();
 
             extNS.zomimpex.Artikl zomImpex = new extNS.zomimpex.Artikl();
             var serializer = new XmlSerializer(typeof(extNS.zomimpex.Artikl));
@@ -62,7 +62,7 @@ namespace WebCene.Model.B2B.zomimpex
                     pmc =  nnc * decimal.Multiply( 1.2m, konfigDobavljaca.KeoficijentMarze);
 
 
-                    PodaciZaPrikaz podatakZaPrikaz = new PodaciZaPrikaz()
+                    B2B_Results_RowItem podatakZaPrikaz = new B2B_Results_RowItem()
                     {
                         Barcode = item.Bar_kod,
                         Kolicina = kolicina,
@@ -74,7 +74,7 @@ namespace WebCene.Model.B2B.zomimpex
                     podaciZaPrikaz.Add(podatakZaPrikaz);
                 }
             }
-            PodaciZaPrikaz = podaciZaPrikaz;
+            b2B_Results_RowItems = podaciZaPrikaz;
         }
 
 

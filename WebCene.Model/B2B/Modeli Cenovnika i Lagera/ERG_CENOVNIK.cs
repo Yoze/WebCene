@@ -14,12 +14,12 @@ namespace WebCene.Model.B2B.erg
     public class ERG_CENOVNIK
     {
 
-        public List<PodaciZaPrikaz> PodaciZaPrikaz { get; set; }
+        public List<B2B_Results_RowItem> b2B_Results_RowItems { get; set; }
 
 
         public ERG_CENOVNIK(KonfigDobavljaca konfigDobavljaca, XmlDocument ucitaniXmlDocument)
         {
-            PodaciZaPrikaz = new List<PodaciZaPrikaz>();
+            b2B_Results_RowItems = new List<B2B_Results_RowItem>();
 
             GenerisiPodatkeZaPrikaz(konfigDobavljaca, ucitaniXmlDocument);
         }
@@ -27,7 +27,7 @@ namespace WebCene.Model.B2B.erg
 
         private void GenerisiPodatkeZaPrikaz(KonfigDobavljaca konfigDobavljaca, XmlDocument ucitaniXmlDocument)
         {
-            List<PodaciZaPrikaz> podaciZaPrikaz = new List<PodaciZaPrikaz>();
+            List<B2B_Results_RowItem> podaciZaPrikaz = new List<B2B_Results_RowItem>();
 
             extNS.erg.ITEMS erg = new extNS.erg.ITEMS();
             var serializer = new XmlSerializer(typeof(extNS.ewe.products));
@@ -45,7 +45,7 @@ namespace WebCene.Model.B2B.erg
                     int kolicina = 0;
                     bool isKolicina = Int32.TryParse(item.stock, out kolicina);
 
-                    PodaciZaPrikaz podatakZaPrikaz = new PodaciZaPrikaz()
+                    B2B_Results_RowItem podatakZaPrikaz = new B2B_Results_RowItem()
                     {
                         Barcode = item.barcode,
                         Kolicina = kolicina,
@@ -57,7 +57,7 @@ namespace WebCene.Model.B2B.erg
                     podaciZaPrikaz.Add(podatakZaPrikaz);
                 }
             }
-            PodaciZaPrikaz = podaciZaPrikaz;
+            b2B_Results_RowItems = podaciZaPrikaz;
         }
     }
 
