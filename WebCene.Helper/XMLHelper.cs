@@ -37,14 +37,14 @@ namespace WebCene.Helper
         //}
 
 
-        public List<B2B_Results_RowItem> UcitajPodatkeZaPrikazIzXmlDocumentaZaDobavljaca(KonfigDobavljaca konfigDobavljaca)
+        public List<B2B_Results_RowItem> GetB2B_Results_RowItems_PerSupplier(KonfigDobavljaca konfigDobavljaca)
         {
             // učitavanje xml podataka za dobavljača
 
             List<B2B_Results_RowItem> b2B_Results_RowItems = new List<B2B_Results_RowItem>();
 
 
-            switch (konfigDobavljaca.WebProtokol.TrimEnd())
+            switch (konfigDobavljaca.WebProtokol.TrimEnd().ToLower())
             {
 
                 case "ftp":

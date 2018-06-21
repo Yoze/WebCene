@@ -34,7 +34,7 @@ namespace WebCene.Model.B2B.erg
 
             using (XmlReader reader = new XmlNodeReader(ucitaniXmlDocument))
             {
-                erg = (extNS.erg.ITEMS)serializer.Deserialize(reader);
+                erg = (ITEMS)serializer.Deserialize(reader); // throw exception here
             }
 
             foreach (var item in erg.ITEM)

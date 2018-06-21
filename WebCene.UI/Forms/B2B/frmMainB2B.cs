@@ -23,14 +23,14 @@ namespace WebCene.UI.Forms.B2B
     public partial class frmMainB2B : Form
     {
         // podaci koji se prikazuju u datagrid-u
-        private List<B2B_Results_RowItem> SviPodaciZaPrikaz;
+        private List<B2B_Results_RowItem> B2B_Results_Rows_AllSuppliers;
 
 
         public frmMainB2B()
         {
             InitializeComponent();
 
-            SviPodaciZaPrikaz = new List<B2B_Results_RowItem>();
+            B2B_Results_Rows_AllSuppliers = new List<B2B_Results_RowItem>();
             SetXmlLoadingStatusMessage("", true);
         }
         
@@ -83,7 +83,7 @@ namespace WebCene.UI.Forms.B2B
                 {
                     SetXmlLoadingStatusMessage("Učitavanje podataka " + supplierConfiguration.Naziv, true);
 
-                    b2B_Results_RowItems = XMLHelper.Instance.UcitajPodatkeZaPrikazIzXmlDocumentaZaDobavljaca(supplierConfiguration);
+                    b2B_Results_RowItems = XMLHelper.Instance.GetB2B_Results_RowItems_PerSupplier(supplierConfiguration);
 
 
 
@@ -105,11 +105,11 @@ namespace WebCene.UI.Forms.B2B
 
 
                 // dodavanje u listu rezultata učitavanja
-                SviPodaciZaPrikaz.AddRange(b2B_Results_RowItems);
+                B2B_Results_Rows_AllSuppliers.AddRange(b2B_Results_RowItems);
             }
 
             // prikaz svih rezultata učitavanja
-            DisplayB2B_Results_Rows(SviPodaciZaPrikaz);
+            DisplayB2B_Results_Rows(B2B_Results_Rows_AllSuppliers);
 
             SetXmlLoadingStatusMessage("Završeno.", true);
         }

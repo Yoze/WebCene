@@ -91,6 +91,12 @@ namespace WebCene.Helper
                 // Xml
                 xmlDocument.LoadXml(readerResult);
                 loadedXmlDocument.LoadedXmlDocumentItem.LoadXml(readerResult);
+
+                var exitMessage = ftpResponse.ExitMessage;
+                var statusDescription = ftpResponse.StatusDescription; // transfer completed
+                var lastModified = ftpResponse.LastModified;
+
+
                 loadedXmlDocument.XmlLastModified = ftpResponse.LastModified;
 
 
