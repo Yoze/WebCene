@@ -90,8 +90,10 @@ namespace WebCene.UI.Forms.B2B
                     loadedXmlStatus = SetXmlLoadingStatus(itemNumber, supplierConfiguration.Naziv, supplierConfiguration.URL, true);
 
                 }
-                catch (Exception)
+                catch (Exception xcp)
                 {
+                    
+
                     SetXmlLoadingStatusMessage("Greška " + supplierConfiguration.Naziv, true);
 
                     loadedXmlStatus = SetXmlLoadingStatus(itemNumber, supplierConfiguration.Naziv, supplierConfiguration.URL, false);

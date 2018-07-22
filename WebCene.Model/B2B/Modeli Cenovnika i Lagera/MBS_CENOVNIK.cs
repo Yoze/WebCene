@@ -7,15 +7,16 @@ using System.Xml;
 using System.Xml.Serialization;
 using extNS = WebCene.Model.B2B;
 
-namespace WebCene.Model.B2B.acrmobile
-{
 
-    public class ACRMOBILE_CENOVNIK
+namespace WebCene.Model.B2B.MbsCenovnik
+{
+    public class MBS_CENOVNIK
     {
 
         public List<B2B_Results_RowItem> b2B_Results_RowItems { get; set; }
 
-        public ACRMOBILE_CENOVNIK(KonfigDobavljaca konfigDobavljaca, XmlDocument ucitaniXmlDocument)
+
+        public MBS_CENOVNIK(KonfigDobavljaca konfigDobavljaca, XmlDocument ucitaniXmlDocument)
         {
             b2B_Results_RowItems = new List<B2B_Results_RowItem>();
 
@@ -27,24 +28,24 @@ namespace WebCene.Model.B2B.acrmobile
         {
             List<B2B_Results_RowItem> podaciZaPrikaz = new List<B2B_Results_RowItem>();
 
-            extNS.acrmobile.Root acrMobileCenovnik = new Root();
+            extNS.MbsCenovnik.Root MbsCenovnik = new Root();
 
 
-            var serializer = new XmlSerializer(typeof(extNS.acrmobile.Root));
+            var serializer = new XmlSerializer(typeof(extNS.MbsCenovnik.Root));
             using (XmlReader reader = new XmlNodeReader(ucitaniXmlDocument))
             {
-                acrMobileCenovnik = (Root)serializer.Deserialize(reader);
+                MbsCenovnik = (Root)serializer.Deserialize(reader);
             }
 
 
-            foreach (var item in acrMobileCenovnik.Row)
+            foreach (var item in  MbsCenovnik.Row)
             {
-                if (!(string.IsNullOrWhiteSpace(item.barcode.ToString().TrimEnd())))
+                if (!(string.IsNullOrWhiteSpace(item.barcod.ToString().TrimEnd())))
                 {
 
                     B2B_Results_RowItem podatakZaPrikaz = new B2B_Results_RowItem()
                     {
-                        Barcode = item.barcode.ToString().TrimEnd(),
+                        Barcode = item.barcod.ToString().TrimEnd(),
                         Kolicina = item.kolicina,
                         Cena = item.NNC,
                         PMC = item.PMC,
@@ -59,6 +60,7 @@ namespace WebCene.Model.B2B.acrmobile
 
     }
 
+    
 
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -77,14 +79,15 @@ namespace WebCene.Model.B2B.acrmobile
     public partial class RootRow
     {
 
-        public string barcode { get; set; }
+        public string barcod { get; set; }
 
         public byte kolicina { get; set; }
 
-        public decimal NNC { get; set; }
+        public uint NNC { get; set; }
 
-        public decimal PMC { get; set; }
+        public uint PMC { get; set; }
     }
+
 
 
 

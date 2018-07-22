@@ -70,9 +70,10 @@ namespace WebCene.Helper
                         if (!(string.IsNullOrWhiteSpace(konfigDobavljaca.ModelLager)))
                         {
                             stockList = new List<B2B_Results_RowItem>();
+                            LoadedXmlDocument loadedStockList = new LoadedXmlDocument();
 
-                            supplierXmlDocument = FTPHelper.Instance.LoadXmlDocumentForSupplier(konfigDobavljaca, konfigDobavljaca.LagerFilename);
-                            stockList = XMLHelper.Instance.GetB2B_ResultsFromXmlDocument(konfigDobavljaca, konfigDobavljaca.ModelLager, supplierXmlDocument.LoadedXmlDocumentItem);
+                            loadedStockList = FTPHelper.Instance.LoadXmlDocumentForSupplier(konfigDobavljaca, konfigDobavljaca.LagerFilename);
+                            stockList = XMLHelper.Instance.GetB2B_ResultsFromXmlDocument(konfigDobavljaca, konfigDobavljaca.ModelLager, loadedStockList.LoadedXmlDocumentItem);
 
                         }
 
@@ -163,6 +164,8 @@ namespace WebCene.Helper
 
         public List<B2B_Results_RowItem> GetB2B_ResultsFromXmlDocument(KonfigDobavljaca konfigDobavljaca, string model, XmlDocument ucitaniXmlDocument)
         {
+            /** Instance  */
+
             List<B2B_Results_RowItem> b2B_Results_RowItems = new List<B2B_Results_RowItem>();
 
             switch (model)
@@ -191,6 +194,17 @@ namespace WebCene.Helper
                     extNS.gorenjeLager.GORENJE_LAGER gorenjeLager = new extNS.gorenjeLager.GORENJE_LAGER(konfigDobavljaca, ucitaniXmlDocument);
                     return b2B_Results_RowItems = gorenjeLager.b2B_Results_RowItems;
 
+                case "ALFAPLAM_CENOVNIK":
+                    extNS.AlfaPlamCenovnik.ALFAPLAM_CENOVNIK alfaPlamCenovnik = new extNS.AlfaPlamCenovnik.ALFAPLAM_CENOVNIK(konfigDobavljaca, ucitaniXmlDocument);
+                    return b2B_Results_RowItems = alfaPlamCenovnik.b2B_Results_RowItems;
+
+                case "MBS_CENOVNIK":
+                    extNS.MbsCenovnik.MBS_CENOVNIK mbsCenovnik = new extNS.MbsCenovnik.MBS_CENOVNIK(konfigDobavljaca, ucitaniXmlDocument);
+                    return b2B_Results_RowItems = mbsCenovnik.b2B_Results_RowItems;
+
+                case "ACRMOBILE_CENOVNIK":
+                    extNS.acrmobile.ACRMOBILE_CENOVNIK acrMobileCenovnik = new extNS.acrmobile.ACRMOBILE_CENOVNIK(konfigDobavljaca, ucitaniXmlDocument);
+                    return b2B_Results_RowItems = acrMobileCenovnik.b2B_Results_RowItems;
 
                 default:
                     return b2B_Results_RowItems;
@@ -643,9 +657,6 @@ namespace WebCene.Helper
                 }
 
             }
-
-
-
             return mergedPriceAndStockLists;
         }
 

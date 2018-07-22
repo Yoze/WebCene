@@ -52,10 +52,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="B2B\Modeli Cenovnika i Lagera\ALFAPLAM_CENOVNIK.cs" />
     <Compile Include="B2B\Modeli Cenovnika i Lagera\CANDY_CENOVNIK.cs" />
     <Compile Include="B2B\Modeli Cenovnika i Lagera\ALCA_CENOVNIK.cs" />
     <Compile Include="B2B\Modeli Cenovnika i Lagera\GORENJE_LAGER.cs" />
     <Compile Include="B2B\Modeli Cenovnika i Lagera\HUAWEI_CENOVNIK.cs" />
+    <Compile Include="B2B\Modeli Cenovnika i Lagera\MBS_CENOVNIK.cs" />
     <Compile Include="B2B\Modeli Cenovnika i Lagera\MISON_CENOVNIK.cs" />
     <Compile Include="B2B\KonfigDobavljaca.cs" />
     <Compile Include="B2B\Modeli Cenovnika i Lagera\ACRMOBILE_CENOVNIK.cs" />

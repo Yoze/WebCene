@@ -33,7 +33,7 @@ namespace WebCene.Model.B2B.gorenjeLager
             var serializer = new XmlSerializer(typeof(extNS.gorenjeLager.Root));
             using (XmlReader reader = new XmlNodeReader(ucitaniXmlDocument))
             {
-                gorenjeLager = (Root)serializer.Deserialize(reader);
+                gorenjeLager = (Root)serializer.Deserialize(reader); 
             }
 
 
@@ -77,7 +77,7 @@ namespace WebCene.Model.B2B.gorenjeLager
     public partial class RootRow
     {
 
-        public ulong barcode { get; set; }
+        public string barcode { get; set; }
 
         public int kolicina { get; set; }
     }
