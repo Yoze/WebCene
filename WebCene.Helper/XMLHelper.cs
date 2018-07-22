@@ -206,6 +206,35 @@ namespace WebCene.Helper
                     extNS.acrmobile.ACRMOBILE_CENOVNIK acrMobileCenovnik = new extNS.acrmobile.ACRMOBILE_CENOVNIK(konfigDobavljaca, ucitaniXmlDocument);
                     return b2B_Results_RowItems = acrMobileCenovnik.b2B_Results_RowItems;
 
+                case "ALCA_CENOVNIK":
+                    extNS.alca.ALCA_CENOVNIK alcaCenovnik = new extNS.alca.ALCA_CENOVNIK(konfigDobavljaca, ucitaniXmlDocument);
+                    return b2B_Results_RowItems = alcaCenovnik.b2B_Results_RowItems;
+
+                case "CANDY_CENOVNIK":
+                    extNS.candy.CANDY_CENOVNIK candyCenovnik = new extNS.candy.CANDY_CENOVNIK(konfigDobavljaca, ucitaniXmlDocument);
+                    return b2B_Results_RowItems = candyCenovnik.b2B_Results_RowItems;
+
+                case "CANDY_LAGER":
+                    extNS.candyLager.CANDY_LAGER candyLager = new extNS.candyLager.CANDY_LAGER(konfigDobavljaca, ucitaniXmlDocument);
+                    return b2B_Results_RowItems = candyLager.b2B_Results_RowItems;
+
+                case "220B_CENOVNIK":
+                    extNS._220BCenovnik._220B_CENOVNIK _220BCenovnik = new extNS._220BCenovnik._220B_CENOVNIK(konfigDobavljaca, ucitaniXmlDocument);
+                    return b2B_Results_RowItems = _220BCenovnik.b2B_Results_RowItems;
+
+                case "220B_LAGER":
+                    extNS._220BLager._220B_LAGER _220BLager = new extNS._220BLager._220B_LAGER(konfigDobavljaca, ucitaniXmlDocument);
+                    return b2B_Results_RowItems = _220BLager.b2B_Results_RowItems;
+
+                case "MKA_CENOVNIK":
+                    extNS.mkaCenovnik.MKA_CENOVNIK mkaCenovnik = new extNS.mkaCenovnik.MKA_CENOVNIK(konfigDobavljaca, ucitaniXmlDocument);
+                    return b2B_Results_RowItems = mkaCenovnik.b2B_Results_RowItems;
+
+                case "MISON_CENOVNIK":
+                    extNS.mison.MISON_CENOVNIK misonCenovnik = new extNS.mison.MISON_CENOVNIK(konfigDobavljaca, ucitaniXmlDocument);
+                    return b2B_Results_RowItems = misonCenovnik.b2B_Results_RowItems;
+
+
                 default:
                     return b2B_Results_RowItems;
             }

@@ -7,14 +7,14 @@ using System.Xml;
 using System.Xml.Serialization;
 using extNS = WebCene.Model.B2B;
 
-namespace WebCene.Model.B2B.alca
+namespace WebCene.Model.B2B._220BLager
 {
-
-    public class ALCA_CENOVNIK
+    public class _220B_LAGER
     {
+
         public List<B2B_Results_RowItem> b2B_Results_RowItems { get; set; }
 
-        public ALCA_CENOVNIK(KonfigDobavljaca konfigDobavljaca, XmlDocument ucitaniXmlDocument)
+        public _220B_LAGER(KonfigDobavljaca konfigDobavljaca, XmlDocument ucitaniXmlDocument)
         {
             b2B_Results_RowItems = new List<B2B_Results_RowItem>();
 
@@ -26,27 +26,27 @@ namespace WebCene.Model.B2B.alca
         {
             List<B2B_Results_RowItem> podaciZaPrikaz = new List<B2B_Results_RowItem>();
 
-            extNS.alca.Root alcaCenovnik = new Root();
+            extNS._220BLager.Root _220BLager = new Root();
 
 
-            var serializer = new XmlSerializer(typeof(extNS.alca.Root));
+            var serializer = new XmlSerializer(typeof(extNS._220BLager.Root));
             using (XmlReader reader = new XmlNodeReader(ucitaniXmlDocument))
             {
-                alcaCenovnik = (Root)serializer.Deserialize(reader);
+                _220BLager = (Root)serializer.Deserialize(reader);
             }
 
 
-            foreach (var item in alcaCenovnik.Row)
+            foreach (var item in _220BLager.Row)
             {
-                if (!(string.IsNullOrWhiteSpace(item.barcod.ToString().TrimEnd())))
+                if (!(string.IsNullOrWhiteSpace(item.barcode.ToString().TrimEnd())))
                 {
 
                     B2B_Results_RowItem podatakZaPrikaz = new B2B_Results_RowItem()
                     {
-                        Barcode = item.barcod.ToString().TrimEnd(),
+                        Barcode = item.barcode.ToString().TrimEnd(),
                         Kolicina = item.kolicina,
-                        Cena = 0, // TO DO: proveriti koja je nabavana cena
-                        PMC = item.Prodajna_cena_s_PDVom,
+                        Cena = 0, // postoji cenovnik
+                        PMC = 0, // postoji cenonvnik
                         DatumUlistavanja = DateTime.Today,
                         PrimarniDobavljac = konfigDobavljaca.Naziv
                     };
@@ -55,7 +55,10 @@ namespace WebCene.Model.B2B.alca
             }
             b2B_Results_RowItems = podaciZaPrikaz;
         }
+
+
     }
+
 
 
     [System.SerializableAttribute()]
@@ -69,22 +72,17 @@ namespace WebCene.Model.B2B.alca
         public RootRow[] Row { get; set; }
     }
 
+
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
     public partial class RootRow
     {
 
-        public string barcod { get; set; }
+        public ulong barcode { get; set; }
 
         public byte kolicina { get; set; }
-
-        public uint Prodajna_cena { get; set; }
-
-        public uint Prodajna_cena_s_PDVom { get; set; }
     }
-
-
 
 
 
