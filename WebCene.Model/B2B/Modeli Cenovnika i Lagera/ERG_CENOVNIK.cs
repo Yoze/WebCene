@@ -30,11 +30,11 @@ namespace WebCene.Model.B2B.erg
             List<B2B_Results_RowItem> podaciZaPrikaz = new List<B2B_Results_RowItem>();
 
             extNS.erg.ITEMS erg = new extNS.erg.ITEMS();
-            var serializer = new XmlSerializer(typeof(extNS.ewe.products));
+            var serializer = new XmlSerializer(typeof(extNS.erg.ITEMS));
 
             using (XmlReader reader = new XmlNodeReader(ucitaniXmlDocument))
             {
-                erg = (ITEMS)serializer.Deserialize(reader); // throw exception here
+                erg = (ITEMS)serializer.Deserialize(reader);
             }
 
             foreach (var item in erg.ITEM)
@@ -47,7 +47,7 @@ namespace WebCene.Model.B2B.erg
 
                     B2B_Results_RowItem podatakZaPrikaz = new B2B_Results_RowItem()
                     {
-                        Barcode = item.barcode,
+                        Barcode = item.barcode.TrimEnd(),
                         Kolicina = kolicina,
                         Cena = item.price * konfigDobavljaca.KeoficijentMarze, // da li je ovo nabavna cena ?
                         PMC = 0, //TO DO: kalkulacija PMC

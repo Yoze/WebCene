@@ -53,7 +53,7 @@ namespace WebCene.Helper
 
                         // Cenovnik
                         List<B2B_Results_RowItem> priceList = null;
-                        if (!(string.IsNullOrWhiteSpace(konfigDobavljaca.CenovnikFilename)))
+                        if (!(string.IsNullOrWhiteSpace(konfigDobavljaca.ModelCenovnik)))
                         {
                             priceList = new List<B2B_Results_RowItem>();
 
@@ -67,19 +67,19 @@ namespace WebCene.Helper
 
                         // Lager
                         List<B2B_Results_RowItem> stockList = null;
-                        if (!(string.IsNullOrWhiteSpace(konfigDobavljaca.LagerFilename)))
+                        if (!(string.IsNullOrWhiteSpace(konfigDobavljaca.ModelLager)))
                         {
                             stockList = new List<B2B_Results_RowItem>();
 
                             supplierXmlDocument = FTPHelper.Instance.LoadXmlDocumentForSupplier(konfigDobavljaca, konfigDobavljaca.LagerFilename);
-                            stockList = XMLHelper.Instance.GetB2B_ResultsFromXmlDocument(konfigDobavljaca, konfigDobavljaca.ModelCenovnik, supplierXmlDocument.LoadedXmlDocumentItem);
+                            stockList = XMLHelper.Instance.GetB2B_ResultsFromXmlDocument(konfigDobavljaca, konfigDobavljaca.ModelLager, supplierXmlDocument.LoadedXmlDocumentItem);
 
                         }
 
-                        // Povezivanje Cenovnika sa lagerom u jednu listu
+                        // Povezivanje Cenovnika sa lagerom u jedinstvenu listu
                         if (priceList != null && stockList != null)
                         {
-                            b2B_Results_RowItems = PoveziCenovnikSaLagerom(priceList, stockList);
+                            b2B_Results_RowItems = MergePriceListAndStockList(priceList, stockList);
                         }
 
 
@@ -178,6 +178,19 @@ namespace WebCene.Helper
                 case "ZOMIMPEX_CENOVNIK":
                     extNS.zomimpex.ZOMIMPEX_CENOVNIK zomCenovnik = new extNS.zomimpex.ZOMIMPEX_CENOVNIK(konfigDobavljaca, ucitaniXmlDocument);
                     return b2B_Results_RowItems = zomCenovnik.b2B_Results_RowItems;
+
+                case "BOSCH_CENOVNIK":
+                    extNS.bosch.BOSCH_CENOVNIK boschCenovnik = new extNS.bosch.BOSCH_CENOVNIK(konfigDobavljaca, ucitaniXmlDocument);
+                    return b2B_Results_RowItems = boschCenovnik.b2B_Results_RowItems;
+
+                case "GORENJE_CENOVNIK":
+                    extNS.gorenje.GORENJE_CENOVNIK gorenjeCenovnik = new extNS.gorenje.GORENJE_CENOVNIK(konfigDobavljaca, ucitaniXmlDocument);
+                    return b2B_Results_RowItems = gorenjeCenovnik.b2B_Results_RowItems;
+
+                case "GORENJE_LAGER":
+                    extNS.gorenjeLager.GORENJE_LAGER gorenjeLager = new extNS.gorenjeLager.GORENJE_LAGER(konfigDobavljaca, ucitaniXmlDocument);
+                    return b2B_Results_RowItems = gorenjeLager.b2B_Results_RowItems;
+
 
                 default:
                     return b2B_Results_RowItems;
@@ -609,15 +622,31 @@ namespace WebCene.Helper
        
 
 
-        private List<B2B_Results_RowItem> PoveziCenovnikSaLagerom(List<B2B_Results_RowItem> cenovnik, List<B2B_Results_RowItem> lager)
+        private List<B2B_Results_RowItem> MergePriceListAndStockList(List<B2B_Results_RowItem> priceList, List<B2B_Results_RowItem> stockList)
         {
-            List<B2B_Results_RowItem> cenovnikSaLagerom = new List<B2B_Results_RowItem>();
+            List<B2B_Results_RowItem> mergedPriceAndStockLists = new List<B2B_Results_RowItem>();
+            mergedPriceAndStockLists = priceList;
+
+            for (int i = 0; i < priceList.Count; i++)
+            {
+
+                B2B_Results_RowItem equalRow = stockList.Find(ean => ean.Barcode.Equals(priceList[i].Barcode));
+
+                if (equalRow != null)
+                {
+
+                    priceList[i].Kolicina = equalRow.Kolicina;
+                }
+                else
+                {
+                    priceList[i].Kolicina = 0;
+                }
+
+            }
 
 
 
-
-
-            return cenovnikSaLagerom;
+            return mergedPriceAndStockLists;
         }
 
      
