@@ -55,11 +55,7 @@ namespace WebCene.Model.B2B.AlfaPlamCenovnik
                 }
             }
             b2B_Results_RowItems = podaciZaPrikaz;
-
-
         }
-
-
     }
 
 

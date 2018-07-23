@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="B2B\Modeli Cenovnika i Lagera\ROAMING_CENOVNIK.cs" />
     <Compile Include="B2B\Modeli Cenovnika i Lagera\_220B_CENOVNIK.cs" />
     <Compile Include="B2B\Modeli Cenovnika i Lagera\ALFAPLAM_CENOVNIK.cs" />
     <Compile Include="B2B\Modeli Cenovnika i Lagera\CANDY_CENOVNIK.cs" />
@@ -67,7 +68,6 @@
     <Compile Include="B2B\Modeli Cenovnika i Lagera\ERG_CENOVNIK.cs" />
     <Compile Include="B2B\Modeli Cenovnika i Lagera\EWE_CENOVNIK.cs" />
     <Compile Include="B2B\Modeli Cenovnika i Lagera\_220B_LAGER.cs" />
-    <Compile Include="B2B\model_GAMAGROUP.cs" />
     <Compile Include="B2B\Modeli Cenovnika i Lagera\GORENJE_CENOVNIK.cs" />
     <Compile Include="B2B\Modeli Cenovnika i Lagera\MKA_CENOVNIK.cs" />
     <Compile Include="B2B\Modeli Cenovnika i Lagera\TANDEM_CENOVNIK.cs" />

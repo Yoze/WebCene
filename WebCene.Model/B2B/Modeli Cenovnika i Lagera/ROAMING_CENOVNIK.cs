@@ -7,19 +7,15 @@ using System.Xml;
 using System.Xml.Serialization;
 using extNS = WebCene.Model.B2B;
 
-namespace WebCene.Model.B2B.tandemLager
+
+namespace WebCene.Model.B2B.roaming
 {
-
-   
-
-
-    public class TANDEM_LAGER
+    public class ROAMING_CENOVNIK
     {
 
         public List<B2B_Results_RowItem> b2B_Results_RowItems { get; set; }
 
-
-        public TANDEM_LAGER(KonfigDobavljaca konfigDobavljaca, XmlDocument ucitaniXmlDocument)
+        public ROAMING_CENOVNIK(KonfigDobavljaca konfigDobavljaca, XmlDocument ucitaniXmlDocument)
         {
             b2B_Results_RowItems = new List<B2B_Results_RowItem>();
 
@@ -27,21 +23,22 @@ namespace WebCene.Model.B2B.tandemLager
         }
 
 
+
         private void GenerisiPodatkeZaPrikaz(KonfigDobavljaca konfigDobavljaca, XmlDocument ucitaniXmlDocument)
         {
             List<B2B_Results_RowItem> podaciZaPrikaz = new List<B2B_Results_RowItem>();
 
-            extNS.tandemLager.Root tandemLager = new Root();
+            extNS.roaming.Root roamingCenovnik = new Root();
 
 
-            var serializer = new XmlSerializer(typeof(extNS.tandemLager.Root));
+            var serializer = new XmlSerializer(typeof(extNS.roaming.Root));
             using (XmlReader reader = new XmlNodeReader(ucitaniXmlDocument))
             {
-                tandemLager = (Root)serializer.Deserialize(reader);
+                roamingCenovnik = (Root)serializer.Deserialize(reader);
             }
 
 
-            foreach (var item in tandemLager.Row)
+            foreach (var item in roamingCenovnik.Row)
             {
                 if (!(string.IsNullOrWhiteSpace(item.barcode.ToString().TrimEnd())))
                 {
@@ -49,9 +46,9 @@ namespace WebCene.Model.B2B.tandemLager
                     B2B_Results_RowItem podatakZaPrikaz = new B2B_Results_RowItem()
                     {
                         Barcode = item.barcode.ToString().TrimEnd(),
-                        Kolicina = item.kolicina,
-                        Cena = 0, // xml ne sadrži cene
-                        PMC = 0, // xml ne sadrži cene
+                        Kolicina = 0, // količina ne postoji u xmlu
+                        Cena = item.NNC,
+                        PMC = item.PMC,
                         DatumUlistavanja = DateTime.Today,
                         PrimarniDobavljac = konfigDobavljaca.Naziv
                     };
@@ -60,23 +57,19 @@ namespace WebCene.Model.B2B.tandemLager
             }
             b2B_Results_RowItems = podaciZaPrikaz;
         }
-
     }
 
 
-
-
+    // Podaci se učitavaju iz RoamingLager.xml iako je u pitanju cenovnik!
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
     [System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
     public partial class Root
     {
-
         [System.Xml.Serialization.XmlElementAttribute("Row")]
         public RootRow[] Row { get; set; }
     }
-
 
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -84,13 +77,12 @@ namespace WebCene.Model.B2B.tandemLager
     public partial class RootRow
     {
 
-        /// <remarks/>
-        public string barcode { get; set; }
+        public ulong barcode { get; set; }
 
-        /// <remarks/>
-        public byte kolicina { get; set; }
+        public decimal NNC { get; set; }
+
+        public uint PMC { get; set; }
     }
-
 
 
 

@@ -234,6 +234,21 @@ namespace WebCene.Helper
                     extNS.mison.MISON_CENOVNIK misonCenovnik = new extNS.mison.MISON_CENOVNIK(konfigDobavljaca, ucitaniXmlDocument);
                     return b2B_Results_RowItems = misonCenovnik.b2B_Results_RowItems;
 
+                case "HUAWEI_CENOVNIK":
+                    extNS.huawei.HUAWEI_CENOVNIK huaweiCenovnik = new extNS.huawei.HUAWEI_CENOVNIK(konfigDobavljaca, ucitaniXmlDocument);
+                    return b2B_Results_RowItems = huaweiCenovnik.b2B_Results_RowItems;
+
+                case "ROAMING_CENOVNIK":
+                    extNS.roaming.ROAMING_CENOVNIK roamingCenovnik = new extNS.roaming.ROAMING_CENOVNIK(konfigDobavljaca, ucitaniXmlDocument);
+                    return b2B_Results_RowItems = roamingCenovnik.b2B_Results_RowItems;
+
+                case "TANDEM_CENOVNIK":
+                    extNS.tandem.TANDEM_CENOVNIK tandemCenovnik = new extNS.tandem.TANDEM_CENOVNIK(konfigDobavljaca, ucitaniXmlDocument);
+                    return b2B_Results_RowItems = tandemCenovnik.b2B_Results_RowItems;
+
+                case "TANDEM_LAGER":
+                    extNS.tandemLager.TANDEM_LAGER tandemLager = new extNS.tandemLager.TANDEM_LAGER(konfigDobavljaca, ucitaniXmlDocument);
+                    return b2B_Results_RowItems = tandemLager.b2B_Results_RowItems;
 
                 default:
                     return b2B_Results_RowItems;
