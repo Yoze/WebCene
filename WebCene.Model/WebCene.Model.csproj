@@ -53,6 +53,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="B2B\Modeli Cenovnika i Lagera\ROAMING_CENOVNIK.cs" />
+    <Compile Include="B2B\Modeli Cenovnika i Lagera\WHIRLPOOL_CENOVNIK.cs" />
+    <Compile Include="B2B\Modeli Cenovnika i Lagera\WHIRLPOOL_LAGER.cs" />
     <Compile Include="B2B\Modeli Cenovnika i Lagera\_220B_CENOVNIK.cs" />
     <Compile Include="B2B\Modeli Cenovnika i Lagera\ALFAPLAM_CENOVNIK.cs" />
     <Compile Include="B2B\Modeli Cenovnika i Lagera\CANDY_CENOVNIK.cs" />

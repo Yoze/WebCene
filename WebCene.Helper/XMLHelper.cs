@@ -250,6 +250,15 @@ namespace WebCene.Helper
                     extNS.tandemLager.TANDEM_LAGER tandemLager = new extNS.tandemLager.TANDEM_LAGER(konfigDobavljaca, ucitaniXmlDocument);
                     return b2B_Results_RowItems = tandemLager.b2B_Results_RowItems;
 
+                case "WHIRLPOOL_CENOVNIK":
+                    extNS.whirlpoolCenovnik.WHIRLPOOL_CENOVNIK whirlpoolCenovnik = new extNS.whirlpoolCenovnik.WHIRLPOOL_CENOVNIK(konfigDobavljaca, ucitaniXmlDocument);
+                    return b2B_Results_RowItems = whirlpoolCenovnik.b2B_Results_RowItems;
+
+                case "WHIRLPOOL_LAGER":
+                    extNS.whirlpoolLager.WHIRLPOOL_LAGER whirlpoolLager = new extNS.whirlpoolLager.WHIRLPOOL_LAGER(konfigDobavljaca, ucitaniXmlDocument);
+                    return b2B_Results_RowItems = whirlpoolLager.b2B_Results_RowItems;
+
+
                 default:
                     return b2B_Results_RowItems;
             }

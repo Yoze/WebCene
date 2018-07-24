@@ -9,10 +9,7 @@ using extNS = WebCene.Model.B2B;
 
 namespace WebCene.Model.B2B.tandemLager
 {
-
-   
-
-
+    
     public class TANDEM_LAGER
     {
 
@@ -64,8 +61,6 @@ namespace WebCene.Model.B2B.tandemLager
     }
 
 
-
-
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
@@ -77,19 +72,19 @@ namespace WebCene.Model.B2B.tandemLager
         public RootRow[] Row { get; set; }
     }
 
-
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
     public partial class RootRow
     {
 
-        /// <remarks/>
-        public string barcode { get; set; }
+        public ulong barcode { get; set; }
 
-        /// <remarks/>
-        public byte kolicina { get; set; }
+
+        public ushort kolicina { get; set; }
     }
+
+
 
 
 

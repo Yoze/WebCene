@@ -8,48 +8,47 @@ using System.Xml.Serialization;
 using extNS = WebCene.Model.B2B;
 
 
-namespace WebCene.Model.B2B.tandem
+namespace WebCene.Model.B2B.whirlpoolCenovnik
 {
-    
-    public class TANDEM_CENOVNIK
+    public class WHIRLPOOL_CENOVNIK
     {
 
         public List<B2B_Results_RowItem> b2B_Results_RowItems { get; set; }
 
 
-        public TANDEM_CENOVNIK(KonfigDobavljaca konfigDobavljaca, XmlDocument ucitaniXmlDocument)
+        public WHIRLPOOL_CENOVNIK(KonfigDobavljaca konfigDobavljaca, XmlDocument ucitaniXmlDocument)
         {
             b2B_Results_RowItems = new List<B2B_Results_RowItem>();
 
             GenerisiPodatkeZaPrikaz(konfigDobavljaca, ucitaniXmlDocument);
-
         }
+
 
         private void GenerisiPodatkeZaPrikaz(KonfigDobavljaca konfigDobavljaca, XmlDocument ucitaniXmlDocument)
         {
             List<B2B_Results_RowItem> podaciZaPrikaz = new List<B2B_Results_RowItem>();
 
-            extNS.tandem.Root tandemCenovnik = new Root();
+            extNS.whirlpoolCenovnik.Root whirlpoolCenovnik = new Root();
 
 
-            var serializer = new XmlSerializer(typeof(extNS.tandem.Root));
+            var serializer = new XmlSerializer(typeof(extNS.whirlpoolCenovnik.Root));
             using (XmlReader reader = new XmlNodeReader(ucitaniXmlDocument))
             {
-                tandemCenovnik = (Root)serializer.Deserialize(reader);
+                whirlpoolCenovnik = (Root)serializer.Deserialize(reader);
             }
 
 
-            foreach (var item in tandemCenovnik.Row)
+            foreach (var item in whirlpoolCenovnik.Row)
             {
-                if (!(string.IsNullOrWhiteSpace(item.barcode.ToString().TrimEnd())))
+                if (!(string.IsNullOrWhiteSpace(item.barcod.ToString().TrimEnd())))
                 {
 
                     B2B_Results_RowItem podatakZaPrikaz = new B2B_Results_RowItem()
                     {
-                        Barcode = item.barcode.ToString().TrimEnd(),
-                        Kolicina = 0, // xml ne sadrži količinu
+                        Barcode = item.barcod.ToString().TrimEnd(),
+                        Kolicina = 0, // xml ne sadrži količine
                         Cena = item.NNC,
-                        PMC = item.PMC,
+                        PMC = item.PMC, 
                         DatumUlistavanja = DateTime.Today,
                         PrimarniDobavljac = konfigDobavljaca.Naziv
                     };
@@ -62,8 +61,6 @@ namespace WebCene.Model.B2B.tandem
     }
 
 
-
- 
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
@@ -81,13 +78,21 @@ namespace WebCene.Model.B2B.tandem
     public partial class RootRow
     {
 
-        public string barcode { get; set; }
+        public string barcod { get; set; }
+
+        public ushort VP_CENA { get; set; }
 
         public uint PMC { get; set; }
 
-        public ushort NNC { get; set; }
-    }
+        public decimal Osnovni_rabat { get; set; }
 
+        public decimal Dodatni_rabat { get; set; }
+
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool Dodatni_rabatSpecified { get; set; }
+
+        public decimal NNC { get; set; }
+    }
 
 
 
