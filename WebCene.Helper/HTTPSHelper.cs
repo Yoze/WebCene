@@ -36,52 +36,52 @@ namespace WebCene.Helper
         {
             return "Hello from HTTP Singleton";
         }
-        
 
 
-        //public RezultatZaPrikaz PreuzmiXml_HttpRequest(KonfigDobavljaca konfigDobavljaca)
-        //{
 
-        //    RezultatZaPrikaz rezultatHttpZahteva = new RezultatZaPrikaz();
+        public LoadedXmlDocument PreuzmiXml_HttpRequest(KonfigDobavljaca konfigDobavljaca)
+        {
 
-        //    var xmlPath = konfigDobavljaca.URL;
+            LoadedXmlDocument rezultatHttpZahteva = new LoadedXmlDocument();
 
-        //    string downloadResult;
+            var xmlPath = konfigDobavljaca.URL;
 
-        //    // Get XML from http request
-        //    using (var webClient = new WebClient())
-        //    {
-        //        downloadResult = webClient.DownloadString(xmlPath);
+            string downloadResult;
 
-        //        //XmlDocument xmlResult = new XmlDocument();
+            // Get XML from http request
+            using (var webClient = new WebClient())
+            {
+                downloadResult = webClient.DownloadString(xmlPath);
 
-        //        switch (konfigDobavljaca.ModelCenovnik)
-        //        {
-        //            case "ZOMIMPEX":                  
-        //                { 
-        //                    Stream stream = webClient.OpenRead(xmlPath);
+                //XmlDocument xmlResult = new XmlDocument();
 
-        //                    using (StreamReader reader = new StreamReader(stream, Encoding.UTF8, true))
-        //                    {
-        //                        //XmlSerializer serializer = new XmlSerializer(typeof(Artikl));
+                switch (konfigDobavljaca.ModelCenovnik)
+                {
+                    case "ZOMIMPEX":
+                        {
+                            Stream stream = webClient.OpenRead(xmlPath);
 
-        //                        //object result = serializer.Deserialize(reader);
+                            using (StreamReader reader = new StreamReader(stream, Encoding.UTF8, true))
+                            {
+                                //XmlSerializer serializer = new XmlSerializer(typeof(Artikl));
 
-        //                        //xmlResult.Load(reader);
+                                //object result = serializer.Deserialize(reader);
 
-        //                        rezultatHttpZahteva.UcitaniXmlDocument.Load(reader);
-        //                    }                            
-        //                }
-        //                return rezultatHttpZahteva;
+                                //xmlResult.Load(reader);
 
-        //            default:
-        //                rezultatHttpZahteva.UcitaniXmlDocument.LoadXml(downloadResult);
-        //                return rezultatHttpZahteva;
-        //        }
+                                rezultatHttpZahteva.LoadedXmlDocumentItem.Load(reader);
+                            }
+                        }
+                        return rezultatHttpZahteva;
 
-        //    }
-            
-        //}
+                    default:
+                        rezultatHttpZahteva.LoadedXmlDocumentItem.LoadXml(downloadResult);
+                        return rezultatHttpZahteva;
+                }
+
+            }
+
+        }
 
 
 

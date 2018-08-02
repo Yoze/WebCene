@@ -344,7 +344,7 @@ namespace WebCene.UI.Forms.Kroler
 
         private void KreirajListuZaPregledRezultataKrola()
         {
-           
+
             int brojRezultataKrola = KrolStavkePreciscenaLista.Count;
             RezultatKrolaZaPrikaz stavkaZaPrikaz;
 
@@ -355,12 +355,12 @@ namespace WebCene.UI.Forms.Kroler
 
                 List<Prodavci> elbracoRowsFromProdavciTable = GetElbracoRowsFromProdavciTable();
 
-                foreach (KrolStavke item in KrolStavkePreciscenaLista) 
+                foreach (KrolStavke item in KrolStavkePreciscenaLista)
                 {
                     string nazivProizvoda;
                     string nazivProdavca;
 
-                    if(elbracoRowsFromProdavciTable.Exists(p => p.Id == item.ProdavciId))
+                    if (elbracoRowsFromProdavciTable.Exists(p => p.Id == item.ProdavciId))
                     {
                         nazivProizvoda = ListaProizvoda.Find(p => p.Id.Equals(item.ProizvodId)).Naziv;
                         nazivProdavca = elbracoRowsFromProdavciTable.Find(p => p.Id.Equals(item.ProdavciId)).NazivProdavca;
@@ -447,7 +447,7 @@ namespace WebCene.UI.Forms.Kroler
                 string prodavac = string.Empty;
                 // Cena
                 string cena = string.Empty;
-              
+
 
                 try
                 {
@@ -514,7 +514,7 @@ namespace WebCene.UI.Forms.Kroler
 
 
                     /** Kolona CENAMALO * 0.9 iz tabele ARTPROD -> za svaki proizvod i za svaku prodavnicu */
-                    for ( int shpro = 1; shpro <= 5; shpro ++ )
+                    for (int shpro = 1; shpro <= 5; shpro++)
                     {
                         // loop kroz sve prodavnice i pretraga po šifri proizvoda za vrednošću kolone CENAMALO
                         decimal CENAMALOx09zaProdavnicu = PronadjiCenaMaloFromArtProd(_proizvodZaKrol, "00" + shpro.ToString());
@@ -567,7 +567,7 @@ namespace WebCene.UI.Forms.Kroler
         {
             List<Prodavci> result = new List<Prodavci>();
 
-            using(KrolerContext db = new KrolerContext())
+            using (KrolerContext db = new KrolerContext())
             {
                 Prodavci elbsRow = new Prodavci();
 
@@ -683,12 +683,12 @@ namespace WebCene.UI.Forms.Kroler
                     {
                         MessageBox.Show("Greška SQLDataReader: PronadjiNncIzDartikliZaProizvod()\r\nErr: " + err.Message, "Greška");
                     }
-                                        
+
                 }
                 else throw new Exception("Greška u komunikaciji sa ELBS serverom.\r\nFunkcija: PronadjiNncIzDartikliZaProizvod()");
             }
 
-            return NNC;            
+            return NNC;
         }
 
 
@@ -876,7 +876,7 @@ namespace WebCene.UI.Forms.Kroler
             }
             return listaPodesavanjaProizvodaJSON;
         }
-        
+
         private void SnimiPodesavanjaKrola()
         {
             // snimanje generisanih podešavanja krola o odabranim artiklima
@@ -911,7 +911,7 @@ namespace WebCene.UI.Forms.Kroler
                         db.Podesavanja.Add(podesavanja);
                         db.SaveChanges();
                         PuniListuPodesavanjaKrola();
-                        PrikaziListuPodesavanjaKrola(ListaPodesavanjaKrola.Count -1);
+                        PrikaziListuPodesavanjaKrola(ListaPodesavanjaKrola.Count - 1);
                     }
                 }
                 catch (Exception)
@@ -920,7 +920,7 @@ namespace WebCene.UI.Forms.Kroler
                 }
             }
         }
-        
+
         private void PuniListuPodesavanjaKrola()
         {
             using (KrolerContext db = new KrolerContext())
@@ -956,26 +956,36 @@ namespace WebCene.UI.Forms.Kroler
             using (KrolerContext db = new KrolerContext())
             {
 
-                    // pražnjenje postojeće liste odabranih proizvoda za krol
-                    ListaOdabranihProizvodaZaKrol.Clear();
+                // pražnjenje postojeće liste odabranih proizvoda za krol
+                ListaOdabranihProizvodaZaKrol.Clear();
 
-                    // kreiranje nove list odabranih proizvoda za krol
-                    foreach (int item in setovanjaProizvoda)
+                // kreiranje nove list odabranih proizvoda za krol
+                foreach (int item in setovanjaProizvoda)
+                {
+                    try
                     {
                         Proizvod p = db.Proizvod
                             .Where(x => x.Id == item)
-                            .First();
+                            .FirstOrDefault();
+
                         if (p != null) ListaOdabranihProizvodaZaKrol.Add(p);
                     }
-                    PrikaziListuOdabranihArtikalaZaKrol();
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Proizvod id " + item.ToString() + " više ne postoji u bazi!\r\nUčitavanje ostalih proizvoda će biti nastavljeno.", "Greška u učitavanju");
+                        continue;
+                    }
+
+                }
+                PrikaziListuOdabranihArtikalaZaKrol();
             }
         }
-        
+
         private void comboPodesavanjaKrola_SelectionChangeCommitted(object sender, EventArgs e)
         {
             ComboBox cmb = (ComboBox)sender;
             int selectedIndex = cmb.SelectedIndex;
-     
+
             Podesavanja p = (Podesavanja)cmb.SelectedItem;
             int podesavanjaId;
             string podesavanjaJSON;
@@ -994,18 +1004,18 @@ namespace WebCene.UI.Forms.Kroler
         {
             SnimiPodesavanjaKrola();
         }
-        
+
         private void btnObrisiPodesavanjaKrola_Click(object sender, EventArgs e)
         {
             if (comboPodesavanjaKrola.SelectedIndex > -1)
             {
                 Podesavanja p = (Podesavanja)comboPodesavanjaKrola.SelectedItem;
-                if(p != null)
+                if (p != null)
                 {
                     DialogResult dr = MessageBox.Show("Odabrano podešavanje će biti obrisano.\r\nDa li želiš da nastaviš?", "Brisanje podešavanja", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
                     switch (dr)
-                    {                        
+                    {
                         case DialogResult.Yes:
                             using (KrolerContext db = new KrolerContext())
                             {
@@ -1018,7 +1028,7 @@ namespace WebCene.UI.Forms.Kroler
                                     // lista odabranih proizvoda
                                     ListaOdabranihProizvodaZaKrol.Clear();
                                     PrikaziListuOdabranihArtikalaZaKrol();
-                                    
+
                                     // lista podešavanja krola
                                     PuniListuPodesavanjaKrola();
                                     PrikaziListuPodesavanjaKrola(-1);
@@ -1048,7 +1058,7 @@ namespace WebCene.UI.Forms.Kroler
             cancelWorker = true;
         }
 
-        
+
         private static int GetRandomTimerInterval()
         {
             Random rnd = new Random();
@@ -1440,7 +1450,7 @@ namespace WebCene.UI.Forms.Kroler
             PrikaziListuProizvoda(ListaProizvoda);
         }
 
-        
+
     }
 
 

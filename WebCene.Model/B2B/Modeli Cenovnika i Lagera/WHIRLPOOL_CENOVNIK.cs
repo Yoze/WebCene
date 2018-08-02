@@ -37,9 +37,15 @@ namespace WebCene.Model.B2B.whirlpoolCenovnik
                 whirlpoolCenovnik = (Root)serializer.Deserialize(reader);
             }
 
-
             foreach (var item in whirlpoolCenovnik.Row)
             {
+
+                //if (item == null)
+                //{
+                //    continue;
+                //}
+
+
                 if (!(string.IsNullOrWhiteSpace(item.barcod.ToString().TrimEnd())))
                 {
 
@@ -48,7 +54,7 @@ namespace WebCene.Model.B2B.whirlpoolCenovnik
                         Barcode = item.barcod.ToString().TrimEnd(),
                         Kolicina = 0, // xml ne sadrži količine
                         Cena = item.NNC,
-                        PMC = item.PMC, 
+                        PMC = item.PMC,
                         DatumUlistavanja = DateTime.Today,
                         PrimarniDobavljac = konfigDobavljaca.Naziv
                     };
@@ -56,6 +62,7 @@ namespace WebCene.Model.B2B.whirlpoolCenovnik
                 }
             }
             b2B_Results_RowItems = podaciZaPrikaz;
+
         }
 
     }

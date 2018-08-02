@@ -90,11 +90,17 @@ namespace WebCene.Helper
 
                 case "http":
                     {
+                        //LoadedXmlDocument supplierXmlDocument = new LoadedXmlDocument();
+
+                        //// Cenovnik i lager
+                        //List<B2B_Results_RowItem> priceList = new List<B2B_Results_RowItem>();
 
 
-                        //RezultatZaPrikaz xmlResult = HTTPSHelper.Instance.PreuzmiXml_HttpRequest(konfigDobavljaca);
-                        //podaciZaPrikaz = XMLHelper.Instance.XmlDocumentUPodaciZaPrikaz(konfigDobavljaca, xmlResult);
-                        return b2B_Results_RowItems;
+                        //supplierXmlDocument = HTTPSHelper.Instance.PreuzmiXml_HttpRequest(konfigDobavljaca);
+                        //priceList = XMLHelper.Instance.XmlDocumentUPodaciZaPrikaz(konfigDobavljaca, konfigDobavljaca.ModelCenovnik, supplierXmlDocument);
+                        //return b2B_Results_RowItems;
+
+                        break;
                     }
 
                 case "webservice":

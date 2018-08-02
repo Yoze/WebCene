@@ -61,7 +61,16 @@ namespace WebCene.UI.Forms.B2B
 
 
         private void btnLoadXmls_Click(object sender, EventArgs e)
-        {
+        {            
+
+            // lista učitanih rezultata - clear
+            B2B_Results_Rows_AllSuppliers.Clear();
+
+            // prikaz svih rezultata - clear
+            DisplayB2B_Results_Rows(B2B_Results_Rows_AllSuppliers);
+
+
+
             // Xml rezultat za jednog dobavljača
             List<B2B_Results_RowItem> b2B_Results_RowItems;
             List<KonfigDobavljaca> suppliersConfigurations = DBHelper.Instance.GetAllSupplierConfigurations();
@@ -114,6 +123,8 @@ namespace WebCene.UI.Forms.B2B
             DisplayB2B_Results_Rows(B2B_Results_Rows_AllSuppliers);
 
             SetXmlLoadingStatusMessage("Završeno.", true);
+
+            SetXmlLoadingStatusMessage("Učitano je " + B2B_Results_Rows_AllSuppliers.Count.ToString() + " zapisa", true);
         }
 
 
@@ -147,6 +158,9 @@ namespace WebCene.UI.Forms.B2B
                 URL = url,
                 isLoaded = isLoaded
             };
+
+
+
             return status;
         }
 
@@ -164,7 +178,24 @@ namespace WebCene.UI.Forms.B2B
         {
             // prikaz statusa učitavanja 
 
-            dgvStatus.Rows.Add(status.Number, status.Naziv, status.isLoaded);
+            DataGridViewRow row = new DataGridViewRow();
+
+            string isLoaded = status.isLoaded ? "OK" : "Greška";
+
+            row.CreateCells(dgvStatus);
+            row.SetValues(status.Number, status.Naziv, isLoaded);
+
+            // if isLoaded == false then row is marked
+            if (!status.isLoaded)
+            {
+                DataGridViewCellStyle style = new DataGridViewCellStyle();
+                style.BackColor = Color.OrangeRed;
+                style.ForeColor = Color.WhiteSmoke;
+                row.DefaultCellStyle = style;
+            }
+
+            dgvStatus.Rows.Add(row);
+
             dgvStatus.ClearSelection();
             dgvStatus.Refresh();
         }
