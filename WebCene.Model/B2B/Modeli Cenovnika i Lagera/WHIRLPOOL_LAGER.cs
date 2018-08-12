@@ -39,12 +39,12 @@ namespace WebCene.Model.B2B.whirlpoolLager
 
             foreach (var item in whirlpoolLager.Row)
             {
-                if (!(string.IsNullOrWhiteSpace(item.barcode.ToString().TrimEnd())))
+                if (!(string.IsNullOrWhiteSpace(item.barcod.ToString().TrimEnd())))
                 {
 
                     B2B_Results_RowItem podatakZaPrikaz = new B2B_Results_RowItem()
                     {
-                        Barcode = item.barcode.ToString().TrimEnd(),
+                        Barcode = item.barcod.ToString().TrimEnd(),
                         Kolicina = item.kolicina,
                         Cena = 0, // xml ne sadrži cene
                         PMC = 0, // xml ne sadrži cene
@@ -77,7 +77,7 @@ namespace WebCene.Model.B2B.whirlpoolLager
     public partial class RootRow
     {
 
-        public string barcode { get; set; }
+        public string barcod { get; set; }
 
         public byte kolicina { get; set; }
     }

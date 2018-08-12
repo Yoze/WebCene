@@ -38,14 +38,14 @@ namespace WebCene.Model.B2B.gorenje
 
             foreach (var item in gorenjeCenovnik.Row)
             {
-                if (!(string.IsNullOrWhiteSpace(item.barcod.ToString())))
+                if (!(string.IsNullOrWhiteSpace(item.barcode.ToString())))
                 {
 
                     int kolicina = 0;                   
 
                     B2B_Results_RowItem podatakZaPrikaz = new B2B_Results_RowItem()
                     {
-                        Barcode = item.barcod.ToString().TrimEnd(),
+                        Barcode = item.barcode.ToString().TrimEnd(),
                         Kolicina = kolicina,
                         Cena = item.NNC,
                         PMC = item.PMC,
@@ -63,28 +63,68 @@ namespace WebCene.Model.B2B.gorenje
 
 
 
+    //[System.SerializableAttribute()]
+    //[System.ComponentModel.DesignerCategoryAttribute("code")]
+    //[System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    //[System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
+    //public partial class Root
+    //{
+    //    [System.Xml.Serialization.XmlElementAttribute("Row")]
+    //    public RootRow[] Row { get; set; }
+    //}
+
+    //[System.SerializableAttribute()]
+    //[System.ComponentModel.DesignerCategoryAttribute("code")]
+    //[System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    //public partial class RootRow
+    //{
+
+    //    public string barcod { get; set; }
+
+    //    public decimal NNC { get; set; }
+
+    //    public uint PMC { get; set; }
+    //}
+
+
+
+
+
+
+    // NOTE: Generated code may require at least .NET Framework 4.5 or .NET Core/Standard 2.0.
+    /// <remarks/>
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
     [System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
     public partial class Root
     {
+
+        /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("Row")]
         public RootRow[] Row { get; set; }
     }
 
+    /// <remarks/>
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
     public partial class RootRow
     {
 
-        public ulong barcod { get; set; }
+        /// <remarks/>
+        public ulong barcode { get; set; }
 
-        public decimal NNC { get; set; }
+        /// <remarks/>
+        public uint NNC { get; set; }
 
+        /// <remarks/>
         public uint PMC { get; set; }
     }
+
+
+
+
 
 
 

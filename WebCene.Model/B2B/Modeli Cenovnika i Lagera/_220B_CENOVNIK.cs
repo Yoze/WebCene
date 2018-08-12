@@ -38,12 +38,12 @@ namespace WebCene.Model.B2B._220BCenovnik
 
             foreach (var item in _220bCenovnik.Row)
             {
-                if (!(string.IsNullOrWhiteSpace(item.barcod.ToString().TrimEnd())))
+                if (!(string.IsNullOrWhiteSpace(item.barcode.ToString().TrimEnd())))
                 {
 
                     B2B_Results_RowItem podatakZaPrikaz = new B2B_Results_RowItem()
                     {
-                        Barcode = item.barcod.ToString().TrimEnd(),
+                        Barcode = item.barcode.ToString().TrimEnd(),
                         Kolicina = 0, // postoji lager
                         Cena = item.NNC,
                         PMC = item.PMC,
@@ -62,6 +62,8 @@ namespace WebCene.Model.B2B._220BCenovnik
 
 
 
+    // NOTE: Generated code may require at least .NET Framework 4.5 or .NET Core/Standard 2.0.
+    /// <remarks/>
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
@@ -69,27 +71,27 @@ namespace WebCene.Model.B2B._220BCenovnik
     public partial class Root
     {
 
+        /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("Row")]
         public RootRow[] Row { get; set; }
     }
 
-
+    /// <remarks/>
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
     public partial class RootRow
     {
 
-        public ulong barcod { get; set; }
+        /// <remarks/>
+        public ulong barcode { get; set; }
 
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool barcodSpecified { get; set; }
-
+        /// <remarks/>
         public decimal NNC { get; set; }
 
+        /// <remarks/>
         public uint PMC { get; set; }
     }
-
 
 
 

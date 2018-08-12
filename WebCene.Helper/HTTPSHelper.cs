@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
 using WebCene.Model.B2B;
+using extNS = WebCene.Model.B2B;
 
 namespace WebCene.Helper
 {
@@ -39,10 +40,10 @@ namespace WebCene.Helper
 
 
 
-        public LoadedXmlDocument PreuzmiXml_HttpRequest(KonfigDobavljaca konfigDobavljaca)
+        public LoadedXmlDocument LoadXmlDocWithHttpRequest(KonfigDobavljaca konfigDobavljaca)
         {
 
-            LoadedXmlDocument rezultatHttpZahteva = new LoadedXmlDocument();
+            LoadedXmlDocument loadedxmlFromHttpRequst = new LoadedXmlDocument();
 
             var xmlPath = konfigDobavljaca.URL;
 
@@ -53,30 +54,38 @@ namespace WebCene.Helper
             {
                 downloadResult = webClient.DownloadString(xmlPath);
 
-                //XmlDocument xmlResult = new XmlDocument();
+                XmlDocument loadedXmlDocFromHttpRequest = new XmlDocument();
 
                 switch (konfigDobavljaca.ModelCenovnik)
                 {
-                    case "ZOMIMPEX":
+                    case "ZOMIMPEX_CENOVNIK":
                         {
                             Stream stream = webClient.OpenRead(xmlPath);
 
-                            using (StreamReader reader = new StreamReader(stream, Encoding.UTF8, true))
-                            {
-                                //XmlSerializer serializer = new XmlSerializer(typeof(Artikl));
+                            //using (StreamReader reader = new StreamReader(stream, Encoding.UTF8, true))
+                            //{
 
-                                //object result = serializer.Deserialize(reader);
+                            //    //extNS.zomimpex.ZOMIMPEX_CENOVNIK zomImpexCenovnikCenovnik = new extNS.zomimpex.ZOMIMPEX_CENOVNIK(konfigDobavljaca, ucitaniXmlDocument);
+                            //    //return b2B_Results_RowItems = gorenjeCenovnik.b2B_Results_RowItems;
 
-                                //xmlResult.Load(reader);
+                            //    XmlSerializer serializer = new XmlSerializer(typeof(extNS.zomimpex.Artikl));
 
-                                rezultatHttpZahteva.LoadedXmlDocumentItem.Load(reader);
-                            }
+                            //    object result = serializer.Deserialize(reader); // exception here!
+
+                            //    loadedXmlDocFromHttpRequest.Load(reader);
+
+                            //    loadedxmlFromHttpRequst.LoadedXmlDocumentItem.Load(reader);
+                            //}
                         }
-                        return rezultatHttpZahteva;
+                        return loadedxmlFromHttpRequst;
+
+
+
+
 
                     default:
-                        rezultatHttpZahteva.LoadedXmlDocumentItem.LoadXml(downloadResult);
-                        return rezultatHttpZahteva;
+                        loadedxmlFromHttpRequst.LoadedXmlDocumentItem.LoadXml(downloadResult);
+                        return loadedxmlFromHttpRequst;
                 }
 
             }

@@ -46,7 +46,7 @@ namespace WebCene.Model.B2B.roaming
                     B2B_Results_RowItem podatakZaPrikaz = new B2B_Results_RowItem()
                     {
                         Barcode = item.barcode.ToString().TrimEnd(),
-                        Kolicina = 0, // količina ne postoji u xmlu
+                        Kolicina = (int)item.kolicina,
                         Cena = item.NNC,
                         PMC = item.PMC,
                         DatumUlistavanja = DateTime.Today,
@@ -82,6 +82,8 @@ namespace WebCene.Model.B2B.roaming
         public decimal NNC { get; set; }
 
         public uint PMC { get; set; }
+
+        public decimal kolicina { get; set; }
     }
 
 
