@@ -20,6 +20,7 @@ namespace WebCene.Model.B2B.zomimpex
         {
             b2B_Results_RowItems = new List<B2B_Results_RowItem>();
 
+            GenerisiPodatkeZaPrikaz(konfigDobavljaca, ucitaniXmlDocument);
         }
 
         private void GenerisiPodatkeZaPrikaz(KonfigDobavljaca konfigDobavljaca, XmlDocument ucitaniXmlDocument)

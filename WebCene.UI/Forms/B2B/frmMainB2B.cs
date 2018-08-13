@@ -61,7 +61,7 @@ namespace WebCene.UI.Forms.B2B
 
 
         private void btnLoadXmls_Click(object sender, EventArgs e)
-        {            
+        {           
 
             // lista učitanih rezultata - clear
             B2B_Results_Rows_AllSuppliers.Clear();
@@ -70,16 +70,13 @@ namespace WebCene.UI.Forms.B2B
             DisplayB2B_Results_Rows(B2B_Results_Rows_AllSuppliers);
 
 
-
             // Xml rezultat za jednog dobavljača
             List<B2B_Results_RowItem> b2B_Results_RowItems;
             List<KonfigDobavljaca> suppliersConfigurations = DBHelper.Instance.GetAllSupplierConfigurations();
             int itemNumber = 1;
 
-
             ClearXmlLoadingStatuses();
-            SetXmlLoadingStatusMessage("Učitavanje konfiguracija ", true);
-           
+            SetXmlLoadingStatusMessage("Učitavanje konfiguracija ", true);           
             
 
             foreach (KonfigDobavljaca supplierConfiguration in suppliersConfigurations)
@@ -94,14 +91,10 @@ namespace WebCene.UI.Forms.B2B
 
                     b2B_Results_RowItems = XMLHelper.Instance.GetB2B_Results_RowItems_PerSupplier(supplierConfiguration);
 
-
-
                     loadedXmlStatus = SetXmlLoadingStatus(itemNumber, supplierConfiguration.Naziv, supplierConfiguration.URL, true);
-
                 }
                 catch (Exception xcp)
-                {
-                    
+                {                    
 
                     SetXmlLoadingStatusMessage("Greška " + supplierConfiguration.Naziv, true);
 
@@ -113,7 +106,6 @@ namespace WebCene.UI.Forms.B2B
 
                 DisplayXmlLoadingStatusMessageRow(loadedXmlStatus);
                 itemNumber++;
-
 
                 // dodavanje u listu rezultata učitavanja
                 B2B_Results_Rows_AllSuppliers.AddRange(b2B_Results_RowItems);

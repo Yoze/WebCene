@@ -97,10 +97,13 @@ namespace WebCene.Helper
 
 
                         supplierXmlDocument = HTTPSHelper.Instance.LoadXmlDocWithHttpRequest(konfigDobavljaca);
-                        //priceList = XMLHelper.Instance.XmlDocumentUPodaciZaPrikaz(konfigDobavljaca, konfigDobavljaca.ModelCenovnik, supplierXmlDocument);
-                        //return b2B_Results_RowItems;
 
-                        break;
+
+                        priceList = Instance.GetB2B_ResultsFromXmlDocument(konfigDobavljaca, konfigDobavljaca.ModelCenovnik, supplierXmlDocument.LoadedXmlDocumentItem);
+                        b2B_Results_RowItems = priceList;
+
+                        return b2B_Results_RowItems;
+
                     }
 
 
@@ -171,7 +174,7 @@ namespace WebCene.Helper
 
         public List<B2B_Results_RowItem> GetB2B_ResultsFromXmlDocument(KonfigDobavljaca konfigDobavljaca, string model, XmlDocument ucitaniXmlDocument)
         {
-            /** Instance  */
+            /** Dodavanje xml u jedinstvenu listu rezultata učitanih sa FTP  */
 
             List<B2B_Results_RowItem> b2B_Results_RowItems = new List<B2B_Results_RowItem>();
 
@@ -264,6 +267,8 @@ namespace WebCene.Helper
                 case "WHIRLPOOL_LAGER":
                     extNS.whirlpoolLager.WHIRLPOOL_LAGER whirlpoolLager = new extNS.whirlpoolLager.WHIRLPOOL_LAGER(konfigDobavljaca, ucitaniXmlDocument);
                     return b2B_Results_RowItems = whirlpoolLager.b2B_Results_RowItems;
+
+                
 
 
                 default:

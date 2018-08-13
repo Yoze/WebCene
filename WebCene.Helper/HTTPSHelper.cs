@@ -25,13 +25,13 @@ namespace WebCene.Helper
         {
             get { return _instance; }
         }
-        
+
         HTTPSHelper()
         {
             // initialize here
         }
 
-        
+
         /** Public methods */
         public string Test()
         {
@@ -39,58 +39,54 @@ namespace WebCene.Helper
         }
 
 
-
         public LoadedXmlDocument LoadXmlDocWithHttpRequest(KonfigDobavljaca konfigDobavljaca)
         {
+            // xml document u koji se deserijalizuju učitani podaci
+            XmlDocument xmlDocument = new XmlDocument();
 
-            LoadedXmlDocument loadedxmlFromHttpRequst = new LoadedXmlDocument();
+            // model u koji se smeštaju deserijaliovani xml document i ostali detalji transfera
+            LoadedXmlDocument loadedXmlDocFromHttpRequest = new LoadedXmlDocument();
 
+            // http putanja sa koje se učitavaju podaci
             var xmlPath = konfigDobavljaca.URL;
-
-            string downloadResult;
+                       
 
             // Get XML from http request
             using (var webClient = new WebClient())
             {
+                // download xml-a kao stringa
+                string downloadResult;
                 downloadResult = webClient.DownloadString(xmlPath);
+               
+                // rezultat učitavanja strema reader-a 
+                string readerResults = string.Empty;
 
-                XmlDocument loadedXmlDocFromHttpRequest = new XmlDocument();
-
-                switch (konfigDobavljaca.ModelCenovnik)
+                try
                 {
-                    case "ZOMIMPEX_CENOVNIK":
+                    using (Stream stream = webClient.OpenRead(xmlPath))
+                    {
+                        using (StreamReader reader = new StreamReader(stream))
                         {
-                            Stream stream = webClient.OpenRead(xmlPath);
 
-                            //using (StreamReader reader = new StreamReader(stream, Encoding.UTF8, true))
-                            //{
+                            readerResults = reader.ReadToEnd();
 
-                            //    //extNS.zomimpex.ZOMIMPEX_CENOVNIK zomImpexCenovnikCenovnik = new extNS.zomimpex.ZOMIMPEX_CENOVNIK(konfigDobavljaca, ucitaniXmlDocument);
-                            //    //return b2B_Results_RowItems = gorenjeCenovnik.b2B_Results_RowItems;
+                            xmlDocument.LoadXml(readerResults);
 
-                            //    XmlSerializer serializer = new XmlSerializer(typeof(extNS.zomimpex.Artikl));
+                            loadedXmlDocFromHttpRequest.LoadedXmlDocumentItem.LoadXml(readerResults);
 
-                            //    object result = serializer.Deserialize(reader); // exception here!
-
-                            //    loadedXmlDocFromHttpRequest.Load(reader);
-
-                            //    loadedxmlFromHttpRequst.LoadedXmlDocumentItem.Load(reader);
-                            //}
+                            return loadedXmlDocFromHttpRequest;
                         }
-                        return loadedxmlFromHttpRequst;
-
-
-
-
-
-                    default:
-                        loadedxmlFromHttpRequst.LoadedXmlDocumentItem.LoadXml(downloadResult);
-                        return loadedxmlFromHttpRequst;
+                    }
                 }
+                catch (Exception)
+                {
 
+                    throw;
+                }
             }
-
         }
+
+
 
 
 
