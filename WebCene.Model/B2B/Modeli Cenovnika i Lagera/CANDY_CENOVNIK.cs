@@ -40,12 +40,12 @@ namespace WebCene.Model.B2B.candy
 
             foreach (var item in candyCenovnik.Row)
             {
-                if (!(string.IsNullOrWhiteSpace(item.barcode.ToString().TrimEnd())))
+                if (!(string.IsNullOrWhiteSpace(item.barcod.ToString().TrimEnd())))
                 {
 
                     B2B_Results_RowItem podatakZaPrikaz = new B2B_Results_RowItem()
                     {
-                        Barcode = item.barcode.ToString().TrimEnd(),
+                        Barcode = item.barcod.ToString().TrimEnd(),
                         Kolicina = 0, // postoji odvojen lager
                         NNC = item.NNC,
                         PMC = item.PMC,
@@ -78,7 +78,7 @@ namespace WebCene.Model.B2B.candy
     public partial class RootRow
     {
 
-        public string barcode { get; set; }
+        public string barcod { get; set; }
 
         public uint VP_cena { get; set; }
 

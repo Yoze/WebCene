@@ -42,6 +42,7 @@
             this.rbr = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dobavljac = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.isLoaded = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.numberOfRecords = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvZbirniXml)).BeginInit();
@@ -60,7 +61,6 @@
             this.button1.Text = "ftp";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Visible = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -72,7 +72,6 @@
             this.button2.Text = "http";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Visible = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // btnWebService
             // 
@@ -109,6 +108,7 @@
             this.rbr,
             this.dobavljac,
             this.isLoaded,
+            this.numberOfRecords,
             this.statusDesc});
             this.dgvStatus.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvStatus.Enabled = false;
@@ -119,7 +119,7 @@
             this.dgvStatus.RowHeadersVisible = false;
             this.dgvStatus.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dgvStatus.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvStatus.Size = new System.Drawing.Size(474, 515);
+            this.dgvStatus.Size = new System.Drawing.Size(484, 515);
             this.dgvStatus.TabIndex = 5;
             // 
             // dgvZbirniXml
@@ -128,19 +128,19 @@
             this.dgvZbirniXml.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgvZbirniXml.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvZbirniXml.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvZbirniXml.Location = new System.Drawing.Point(510, 90);
+            this.dgvZbirniXml.Location = new System.Drawing.Point(520, 90);
             this.dgvZbirniXml.Margin = new System.Windows.Forms.Padding(10);
             this.dgvZbirniXml.MultiSelect = false;
             this.dgvZbirniXml.Name = "dgvZbirniXml";
             this.dgvZbirniXml.ReadOnly = true;
             this.dgvZbirniXml.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.dgvZbirniXml.Size = new System.Drawing.Size(733, 581);
+            this.dgvZbirniXml.Size = new System.Drawing.Size(723, 581);
             this.dgvZbirniXml.TabIndex = 6;
             // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 500F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 510F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 1, 2);
@@ -162,7 +162,7 @@
             this.flowLayoutPanel1.Controls.Add(this.button1);
             this.flowLayoutPanel1.Controls.Add(this.button2);
             this.flowLayoutPanel1.Controls.Add(this.btnWebService);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(503, 684);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(513, 684);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(384, 44);
             this.flowLayoutPanel1.TabIndex = 8;
@@ -183,7 +183,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(480, 581);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(490, 581);
             this.tableLayoutPanel2.TabIndex = 9;
             // 
             // lblStatus
@@ -194,7 +194,7 @@
             this.lblStatus.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.lblStatus.Location = new System.Drawing.Point(3, 30);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(474, 17);
+            this.lblStatus.Size = new System.Drawing.Size(484, 17);
             this.lblStatus.TabIndex = 6;
             this.lblStatus.Text = "status label";
             // 
@@ -226,20 +226,27 @@
             // 
             // isLoaded
             // 
-            this.isLoaded.HeaderText = "Učitan XML";
+            this.isLoaded.HeaderText = "Xml u objekat";
             this.isLoaded.Name = "isLoaded";
             this.isLoaded.ReadOnly = true;
             this.isLoaded.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.isLoaded.Width = 50;
+            this.isLoaded.Width = 80;
+            // 
+            // numberOfRecords
+            // 
+            this.numberOfRecords.HeaderText = "Ukupno zapisa";
+            this.numberOfRecords.Name = "numberOfRecords";
+            this.numberOfRecords.ReadOnly = true;
+            this.numberOfRecords.Width = 80;
             // 
             // statusDesc
             // 
-            this.statusDesc.HeaderText = "FTP Status";
+            this.statusDesc.HeaderText = "Opis statusa";
             this.statusDesc.MinimumWidth = 50;
             this.statusDesc.Name = "statusDesc";
             this.statusDesc.ReadOnly = true;
             this.statusDesc.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.statusDesc.Width = 200;
+            this.statusDesc.Width = 160;
             // 
             // frmMainB2B
             // 
@@ -280,6 +287,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn rbr;
         private System.Windows.Forms.DataGridViewTextBoxColumn dobavljac;
         private System.Windows.Forms.DataGridViewTextBoxColumn isLoaded;
+        private System.Windows.Forms.DataGridViewTextBoxColumn numberOfRecords;
         private System.Windows.Forms.DataGridViewTextBoxColumn statusDesc;
     }
 }

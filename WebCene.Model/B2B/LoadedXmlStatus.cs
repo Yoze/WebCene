@@ -16,11 +16,9 @@ namespace WebCene.Model.B2B
 
         public DateTime Date { get; set; }
 
-        public bool isLoaded { get; set; }
+        public bool IsLoaded { get; set; }
 
-        public bool isParsed { get; set; }
-
-        public bool isValidated { get; set; }
+        public int NumberOfRecords { get; set; }       
         
         public string StatusDescription { get; set; }
 

@@ -70,21 +70,31 @@ namespace WebCene.UI.Forms.B2B
 
                 // učitavanje podataka
                 LoadedXmlStatus loadedXmlStatus = new LoadedXmlStatus();
+                bool isLoaded = true;
+                int numberOfRecords = 0;
+
                 try
                 {
                     SetXmlLoadingStatusMessage("Učitavanje podataka " + supplierConfiguration.Naziv, true);
 
                     b2B_Results_RowItems = XMLHelper.Instance.GetB2B_Results_RowItems_PerSupplier(supplierConfiguration);
 
-                    loadedXmlStatus = SetXmlLoadingStatus(itemNumber, supplierConfiguration.Naziv, supplierConfiguration.URL, true, XMLHelper.StatusDescription);
+                    // set loading status
+                    numberOfRecords = b2B_Results_RowItems.Count;
+
+                    if (numberOfRecords == 0) isLoaded = false;
+                    loadedXmlStatus = SetXmlLoadingStatus(itemNumber, supplierConfiguration.Naziv, supplierConfiguration.URL, isLoaded, numberOfRecords, XMLHelper.StatusDescription);
                 }
                 catch (Exception xcp)
                 {                    
 
                     SetXmlLoadingStatusMessage("Greška " + supplierConfiguration.Naziv, true);
 
-                    loadedXmlStatus = SetXmlLoadingStatus(itemNumber, supplierConfiguration.Naziv, supplierConfiguration.URL, false, XMLHelper.StatusDescription);
+                    // set loading status
+                    isLoaded = false;
+                    loadedXmlStatus = SetXmlLoadingStatus(itemNumber, supplierConfiguration.Naziv, supplierConfiguration.URL, isLoaded, numberOfRecords, XMLHelper.StatusDescription);
                     DisplayXmlLoadingStatusMessageRow(loadedXmlStatus);
+
                     itemNumber++;
                     continue;
                 }
@@ -125,7 +135,7 @@ namespace WebCene.UI.Forms.B2B
 
         }
 
-        private LoadedXmlStatus SetXmlLoadingStatus(int redniBroj, string nazivDobavljaca, string url, bool isLoaded, string statusDescription)
+        private LoadedXmlStatus SetXmlLoadingStatus(int redniBroj, string nazivDobavljaca, string url, bool isLoaded, int numberOfRecords, string statusDescription)
         {
             // status učitavanja
             LoadedXmlStatus status = new LoadedXmlStatus()
@@ -133,7 +143,8 @@ namespace WebCene.UI.Forms.B2B
                 Number = redniBroj,
                 Naziv = nazivDobavljaca,
                 URL = url,
-                isLoaded = isLoaded,
+                NumberOfRecords = numberOfRecords,
+                IsLoaded = isLoaded,
                 StatusDescription = statusDescription
             };
 
@@ -156,13 +167,22 @@ namespace WebCene.UI.Forms.B2B
 
             DataGridViewRow row = new DataGridViewRow();
 
-            string isLoaded = status.isLoaded ? "OK" : "Greška";
+            string isLoaded = status.IsLoaded ? "OK" : "Greška";
 
             row.CreateCells(dgvStatus);
-            row.SetValues(status.Number, status.Naziv, isLoaded, status.StatusDescription);
+
+            // prkaz kolona u prikazu statusa učitavanja
+            row.SetValues
+                (
+                status.Number, 
+                status.Naziv, 
+                isLoaded, 
+                status.NumberOfRecords,
+                status.StatusDescription
+                );
 
             // if isLoaded == false then row is marked
-            if (!status.isLoaded)
+            if (!status.IsLoaded)
             {
                 DataGridViewCellStyle style = new DataGridViewCellStyle();
                 style.BackColor = Color.OrangeRed;
@@ -180,83 +200,6 @@ namespace WebCene.UI.Forms.B2B
 
 
 
-
-        #region OBSOLETE
-
-        //private List<XmlRezultat> UcitajXmlZaDobavljaca(KonfigDobavljaca konfigDobavljaca)
-        //{
-        //    // učutavanje xml podataka za dobavljača
-
-        //    List<XmlRezultat> result = new List<XmlRezultat>();
-
-        //    switch (konfigDobavljaca.WebProtokol.TrimEnd())
-        //    {
-        //        case "ftp":
-        //            {
-        //                XmlDocument xmlResult = FTPHelper.Instance.GetXmlFileFromFtp(konfigDobavljaca);
-        //                result = XMLHelper.Instance.DeserializeXmlResult(konfigDobavljaca, xmlResult);
-        //                return result;
-        //            }                    
-
-        //        case "http":
-        //            {
-        //                XmlDocument xmlResult = HTTPSHelper.Instance.GetXmlFromHttpRequest(konfigDobavljaca);
-        //                result = XMLHelper.Instance.DeserializeXmlResult(konfigDobavljaca, xmlResult);
-        //                return result;
-        //            }
-
-
-        //        case "webservice":
-        //            // TO DO
-        //            break;
-
-        //        default:
-        //            break;
-        //    }
-
-
-
-        //    return result;
-        //}
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            //int idDobavljaca = 3; 
-
-            //KonfigDobavljaca konfigDobavljaca = DBHelper.Instance.GetKonfigDobavljaca(idDobavljaca);
-
-            //XmlDocument xmlResult = FTPHelper.Instance.GetXmlFileFromFtp(konfigDobavljaca);
-
-            //// Error reading xml file from Ftp
-            //if (xmlResult == null) return;
-
-
-            //List<XmlRezultat> result = XMLHelper.Instance.DeserializeXmlResult(konfigDobavljaca, xmlResult);
-
-
-            //MessageBox.Show(FTPHelper.Instance.Test());
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-            //int idDobavljaca = 1; // Ewe
-
-            //KonfigDobavljaca konfigDobavljaca = DBHelper.Instance.GetKonfigDobavljaca(idDobavljaca);
-
-            //XmlDocument xmlResult = HTTPSHelper.Instance.GetXmlFromHttpRequest(konfigDobavljaca);
-
-            //// Error reading xml file from Ftp
-            //if (xmlResult == null) return;
-
-            //List<XmlRezultat> result = XMLHelper.Instance.DeserializeXmlResult(konfigDobavljaca, xmlResult);
-
-            //MessageBox.Show(HTTPSHelper.Instance.Test());
-        }
-
-
-        #endregion
 
     }
 }

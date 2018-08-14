@@ -78,11 +78,13 @@ namespace WebCene.Helper
                             // last modifid date is set to current date
                             loadedXmlDocFromHttpRequest.XmlLastModified = DateTime.Now.Date;
 
+
                             // Status Description is set to Loaded if loaded xml has child nodes
                             if (loadedXmlDocFromHttpRequest.LoadedXmlDocumentItem.HasChildNodes)
                             {
                                 loadedXmlDocFromHttpRequest.StatusDescription = "Transfer completed";
                             }
+
 
                             return loadedXmlDocFromHttpRequest;
                         }
