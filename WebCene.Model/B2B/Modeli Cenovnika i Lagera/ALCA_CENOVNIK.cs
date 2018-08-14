@@ -14,7 +14,7 @@ namespace WebCene.Model.B2B.alca
     {
         public List<B2B_Results_RowItem> b2B_Results_RowItems { get; set; }
 
-        public ALCA_CENOVNIK(KonfigDobavljaca konfigDobavljaca, XmlDocument ucitaniXmlDocument)
+        public ALCA_CENOVNIK(KonfigDobavljaca konfigDobavljaca, LoadedXmlDocument ucitaniXmlDocument)
         {
             b2B_Results_RowItems = new List<B2B_Results_RowItem>();
 
@@ -22,7 +22,7 @@ namespace WebCene.Model.B2B.alca
         }
 
 
-        private void GenerisiPodatkeZaPrikaz(KonfigDobavljaca konfigDobavljaca, XmlDocument ucitaniXmlDocument)
+        private void GenerisiPodatkeZaPrikaz(KonfigDobavljaca konfigDobavljaca, LoadedXmlDocument ucitaniXmlDocument)
         {
             List<B2B_Results_RowItem> podaciZaPrikaz = new List<B2B_Results_RowItem>();
 
@@ -30,7 +30,7 @@ namespace WebCene.Model.B2B.alca
 
 
             var serializer = new XmlSerializer(typeof(extNS.alca.Root));
-            using (XmlReader reader = new XmlNodeReader(ucitaniXmlDocument))
+            using (XmlReader reader = new XmlNodeReader(ucitaniXmlDocument.LoadedXmlDocumentItem))
             {
                 alcaCenovnik = (Root)serializer.Deserialize(reader);
             }
@@ -45,10 +45,12 @@ namespace WebCene.Model.B2B.alca
                     {
                         Barcode = item.barcode.ToString().TrimEnd(),
                         Kolicina = item.kolicina,
-                        Cena = 0, // TO DO: proveriti koja je nabavana cena
+                        NNC = 0, // TO DO: proveriti koja je nabavana cena
                         PMC = item.Prodajna_cena_s_PDVom,
                         DatumUlistavanja = DateTime.Today,
-                        PrimarniDobavljac = konfigDobavljaca.Naziv
+                        PrimarniDobavljac = konfigDobavljaca.Naziv,
+                        CenovnikDatum = ucitaniXmlDocument.XmlLastModified,
+                        LagerDatum = ucitaniXmlDocument.XmlLastModified
                     };
                     podaciZaPrikaz.Add(podatakZaPrikaz);
                 }

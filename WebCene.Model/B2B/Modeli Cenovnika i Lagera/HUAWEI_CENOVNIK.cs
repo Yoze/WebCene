@@ -15,7 +15,7 @@ namespace WebCene.Model.B2B.huawei
 
         public List<B2B_Results_RowItem> b2B_Results_RowItems { get; set; }
 
-        public HUAWEI_CENOVNIK(KonfigDobavljaca konfigDobavljaca, XmlDocument ucitaniXmlDocument)
+        public HUAWEI_CENOVNIK(KonfigDobavljaca konfigDobavljaca, LoadedXmlDocument ucitaniXmlDocument)
         {
             b2B_Results_RowItems = new List<B2B_Results_RowItem>();
 
@@ -23,7 +23,7 @@ namespace WebCene.Model.B2B.huawei
         }
 
 
-        private void GenerisiPodatkeZaPrikaz(KonfigDobavljaca konfigDobavljaca, XmlDocument ucitaniXmlDocument)
+        private void GenerisiPodatkeZaPrikaz(KonfigDobavljaca konfigDobavljaca, LoadedXmlDocument ucitaniXmlDocument)
         {
             List<B2B_Results_RowItem> podaciZaPrikaz = new List<B2B_Results_RowItem>();
 
@@ -31,7 +31,7 @@ namespace WebCene.Model.B2B.huawei
 
 
             var serializer = new XmlSerializer(typeof(extNS.huawei.Root));
-            using (XmlReader reader = new XmlNodeReader(ucitaniXmlDocument))
+            using (XmlReader reader = new XmlNodeReader(ucitaniXmlDocument.LoadedXmlDocumentItem))
             {
                 huaweiCenovnik = (Root)serializer.Deserialize(reader);
             }
@@ -46,10 +46,12 @@ namespace WebCene.Model.B2B.huawei
                     {
                         Barcode = item.barcode.ToString().TrimEnd(),
                         Kolicina = 0, // ne postoji u količina u xmlu
-                        Cena = item.NNC,
+                        NNC = item.NNC,
                         PMC = item.PMC,
                         DatumUlistavanja = DateTime.Today,
-                        PrimarniDobavljac = konfigDobavljaca.Naziv
+                        PrimarniDobavljac = konfigDobavljaca.Naziv,
+                        CenovnikDatum = ucitaniXmlDocument.XmlLastModified,
+                        LagerDatum = ucitaniXmlDocument.XmlLastModified
                     };
                     podaciZaPrikaz.Add(podatakZaPrikaz);
                 }

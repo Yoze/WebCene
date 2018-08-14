@@ -14,7 +14,7 @@ namespace WebCene.Model.B2B._220BCenovnik
 
         public List<B2B_Results_RowItem> b2B_Results_RowItems { get; set; }
 
-        public _220B_CENOVNIK(KonfigDobavljaca konfigDobavljaca, XmlDocument ucitaniXmlDocument)
+        public _220B_CENOVNIK(KonfigDobavljaca konfigDobavljaca, LoadedXmlDocument ucitaniXmlDocument)
         {
             b2B_Results_RowItems = new List<B2B_Results_RowItem>();
 
@@ -22,7 +22,7 @@ namespace WebCene.Model.B2B._220BCenovnik
         }
 
 
-        private void GenerisiPodatkeZaPrikaz(KonfigDobavljaca konfigDobavljaca, XmlDocument ucitaniXmlDocument)
+        private void GenerisiPodatkeZaPrikaz(KonfigDobavljaca konfigDobavljaca, LoadedXmlDocument ucitaniXmlDocument)
         {
             List<B2B_Results_RowItem> podaciZaPrikaz = new List<B2B_Results_RowItem>();
 
@@ -30,7 +30,7 @@ namespace WebCene.Model.B2B._220BCenovnik
 
 
             var serializer = new XmlSerializer(typeof(extNS._220BCenovnik.Root));
-            using (XmlReader reader = new XmlNodeReader(ucitaniXmlDocument))
+            using (XmlReader reader = new XmlNodeReader(ucitaniXmlDocument.LoadedXmlDocumentItem))
             {
                 _220bCenovnik = (Root)serializer.Deserialize(reader);
             }
@@ -45,10 +45,11 @@ namespace WebCene.Model.B2B._220BCenovnik
                     {
                         Barcode = item.barcode.ToString().TrimEnd(),
                         Kolicina = 0, // postoji lager
-                        Cena = item.NNC,
+                        NNC = item.NNC,
                         PMC = item.PMC,
                         DatumUlistavanja = DateTime.Today,
-                        PrimarniDobavljac = konfigDobavljaca.Naziv
+                        PrimarniDobavljac = konfigDobavljaca.Naziv,
+                        CenovnikDatum = ucitaniXmlDocument.XmlLastModified
                     };
                     podaciZaPrikaz.Add(podatakZaPrikaz);
                 }

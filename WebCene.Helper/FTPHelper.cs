@@ -69,7 +69,8 @@ namespace WebCene.Helper
 
             try
             {
-                // FTP request
+                /** FTP request - get xml file */
+
                 FtpWebRequest request = (FtpWebRequest)WebRequest.Create(requestUri);
                 request.Credentials = new NetworkCredential(konfigDobavljaca.Username, konfigDobavljaca.Password);
                 request.KeepAlive = false;
@@ -79,29 +80,51 @@ namespace WebCene.Helper
 
                 // FTP response
                 FtpWebResponse ftpResponse = (FtpWebResponse)request.GetResponse();
-                Stream responseStream = ftpResponse.GetResponseStream(); ;
 
-                // Stream Reader
+                // Stream and Stream Reader
+                Stream responseStream = ftpResponse.GetResponseStream(); ;
+                
                 string readerResult;
                 using (reader = new StreamReader(responseStream))
                 {
                     readerResult = reader.ReadToEnd();
                 }
 
-                // Xml
+                // Loaded Xml document from xml file
                 xmlDocument.LoadXml(readerResult);
+
+                // output object - xml document and status description
                 loadedXmlDocument.LoadedXmlDocumentItem.LoadXml(readerResult);
+                loadedXmlDocument.StatusDescription = ftpResponse.StatusDescription; // transfer completed
 
-                var exitMessage = ftpResponse.ExitMessage;
-                var statusDescription = ftpResponse.StatusDescription; // transfer completed
-                var lastModified = ftpResponse.LastModified;
-
-
-                loadedXmlDocument.XmlLastModified = ftpResponse.LastModified;
-
-
+                //var exitMessage = ftpResponse.ExitMessage;
+               
+                
+                // dispose ftp reponse
                 if (ftpResponse != null) ftpResponse.Close();
 
+
+
+                /** Ftp request - get xml file details */
+
+                FtpWebRequest requestFileDetails = (FtpWebRequest)WebRequest.Create(requestUri);
+                requestFileDetails.Credentials = new NetworkCredential(konfigDobavljaca.Username, konfigDobavljaca.Password);
+                requestFileDetails.KeepAlive = false;
+                requestFileDetails.UseBinary = true;
+                requestFileDetails.UsePassive = true;
+                requestFileDetails.Method = WebRequestMethods.Ftp.GetDateTimestamp;
+
+                FtpWebResponse ftpFileDetailsResponse = (FtpWebResponse)requestFileDetails.GetResponse();
+                
+                // output object - loaded xml file details 
+                loadedXmlDocument.XmlLastModified = ftpFileDetailsResponse.LastModified;
+
+                // dispose ftp response object
+                if (ftpFileDetailsResponse != null) ftpFileDetailsResponse.Close();
+
+
+
+                // output result 
                 return loadedXmlDocument;
 
             }

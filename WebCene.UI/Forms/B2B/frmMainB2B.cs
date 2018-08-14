@@ -39,22 +39,7 @@ namespace WebCene.UI.Forms.B2B
         private void btnWebService_Click(object sender, EventArgs e)
         {
 
-            // web service
-
-       
-            ///** PIN */
-            //StockWebserviceClient pinServiceClient = new StockWebserviceClient("StockWebservicePort");
-
-            ////var allItems = pinServiceClient.getAllItems("c794398a-732c-4d5e-b6a4-783eb1a268c0", 4, false);
-
-            //b2BWebServiceDAO pinResults = pinServiceClient.getAllItems("c794398a-732c-4d5e-b6a4-783eb1a268c0", 4, false);
-
-
-            //List<item> pinItems = pinResults.item.ToList();
-
-            
-            //pinServiceClient.Close();
-                        
+                                  
 
         }
 
@@ -91,14 +76,14 @@ namespace WebCene.UI.Forms.B2B
 
                     b2B_Results_RowItems = XMLHelper.Instance.GetB2B_Results_RowItems_PerSupplier(supplierConfiguration);
 
-                    loadedXmlStatus = SetXmlLoadingStatus(itemNumber, supplierConfiguration.Naziv, supplierConfiguration.URL, true);
+                    loadedXmlStatus = SetXmlLoadingStatus(itemNumber, supplierConfiguration.Naziv, supplierConfiguration.URL, true, XMLHelper.StatusDescription);
                 }
                 catch (Exception xcp)
                 {                    
 
                     SetXmlLoadingStatusMessage("Greška " + supplierConfiguration.Naziv, true);
 
-                    loadedXmlStatus = SetXmlLoadingStatus(itemNumber, supplierConfiguration.Naziv, supplierConfiguration.URL, false);
+                    loadedXmlStatus = SetXmlLoadingStatus(itemNumber, supplierConfiguration.Naziv, supplierConfiguration.URL, false, XMLHelper.StatusDescription);
                     DisplayXmlLoadingStatusMessageRow(loadedXmlStatus);
                     itemNumber++;
                     continue;
@@ -140,7 +125,7 @@ namespace WebCene.UI.Forms.B2B
 
         }
 
-        private LoadedXmlStatus SetXmlLoadingStatus(int redniBroj, string nazivDobavljaca, string url, bool isLoaded)
+        private LoadedXmlStatus SetXmlLoadingStatus(int redniBroj, string nazivDobavljaca, string url, bool isLoaded, string statusDescription)
         {
             // status učitavanja
             LoadedXmlStatus status = new LoadedXmlStatus()
@@ -148,10 +133,9 @@ namespace WebCene.UI.Forms.B2B
                 Number = redniBroj,
                 Naziv = nazivDobavljaca,
                 URL = url,
-                isLoaded = isLoaded
+                isLoaded = isLoaded,
+                StatusDescription = statusDescription
             };
-
-
 
             return status;
         }
@@ -175,7 +159,7 @@ namespace WebCene.UI.Forms.B2B
             string isLoaded = status.isLoaded ? "OK" : "Greška";
 
             row.CreateCells(dgvStatus);
-            row.SetValues(status.Number, status.Naziv, isLoaded);
+            row.SetValues(status.Number, status.Naziv, isLoaded, status.StatusDescription);
 
             // if isLoaded == false then row is marked
             if (!status.isLoaded)

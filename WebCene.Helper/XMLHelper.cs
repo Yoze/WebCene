@@ -20,21 +20,18 @@ namespace WebCene.Helper
     public sealed class XMLHelper
     {
 
-        // C# Singleton pattern
-        // https://www.dotnetperls.com/singleton
-        //
 
-        static readonly XMLHelper _instance = new XMLHelper();
+        public static string StatusDescription { get; set; } // status description sa ftp-a
 
-        public static XMLHelper Instance
-        {
-            get { return _instance; }
-        }
+
+
+        public static XMLHelper Instance { get; } = new XMLHelper();
 
         //XMLHelper()
         //{
         //    // initialize here
         //}
+
 
 
         public List<B2B_Results_RowItem> GetB2B_Results_RowItems_PerSupplier(KonfigDobavljaca konfigDobavljaca)
@@ -58,7 +55,10 @@ namespace WebCene.Helper
                             priceList = new List<B2B_Results_RowItem>();
 
                             supplierXmlDocument = FTPHelper.Instance.LoadXmlDocumentForSupplier(konfigDobavljaca, konfigDobavljaca.CenovnikFilename);
-                            priceList = XMLHelper.Instance.GetB2B_ResultsFromXmlDocument(konfigDobavljaca, konfigDobavljaca.ModelCenovnik, supplierXmlDocument.LoadedXmlDocumentItem);
+                            // ovo koristi glavna forma da bi imali Status Description u statusima
+                            StatusDescription = supplierXmlDocument.StatusDescription;
+
+                            priceList = XMLHelper.Instance.GetB2B_ResultsFromXmlDocument(konfigDobavljaca, konfigDobavljaca.ModelCenovnik, supplierXmlDocument);
 
 
                             b2B_Results_RowItems = priceList;
@@ -73,7 +73,10 @@ namespace WebCene.Helper
                             LoadedXmlDocument loadedStockList = new LoadedXmlDocument();
 
                             loadedStockList = FTPHelper.Instance.LoadXmlDocumentForSupplier(konfigDobavljaca, konfigDobavljaca.LagerFilename);
-                            stockList = XMLHelper.Instance.GetB2B_ResultsFromXmlDocument(konfigDobavljaca, konfigDobavljaca.ModelLager, loadedStockList.LoadedXmlDocumentItem);
+                            // ovo koristi glavna forma da bi imali Status Description u statusima
+                            StatusDescription = loadedStockList.StatusDescription;
+
+                            stockList = XMLHelper.Instance.GetB2B_ResultsFromXmlDocument(konfigDobavljaca, konfigDobavljaca.ModelLager, loadedStockList);
 
                         }
 
@@ -99,7 +102,7 @@ namespace WebCene.Helper
                         supplierXmlDocument = HTTPSHelper.Instance.LoadXmlDocWithHttpRequest(konfigDobavljaca);
 
 
-                        priceList = Instance.GetB2B_ResultsFromXmlDocument(konfigDobavljaca, konfigDobavljaca.ModelCenovnik, supplierXmlDocument.LoadedXmlDocumentItem);
+                        priceList = Instance.GetB2B_ResultsFromXmlDocument(konfigDobavljaca, konfigDobavljaca.ModelCenovnik, supplierXmlDocument);
                         b2B_Results_RowItems = priceList;
 
                         return b2B_Results_RowItems;
@@ -141,7 +144,7 @@ namespace WebCene.Helper
                                             {
                                                 Barcode = pinItems[i].ean,
                                                 Kolicina = (int)pinItems[i].stock,
-                                                Cena = (decimal)pinItems[i].price_with_discounts,
+                                                NNC = (decimal)pinItems[i].price_with_discounts,
                                                 PMC = (decimal)pinItems[i].retail_price,
                                                 DatumUlistavanja = DateTime.Today,
                                                 PrimarniDobavljac = konfigDobavljaca.Naziv
@@ -172,7 +175,7 @@ namespace WebCene.Helper
         }
 
 
-        public List<B2B_Results_RowItem> GetB2B_ResultsFromXmlDocument(KonfigDobavljaca konfigDobavljaca, string model, XmlDocument ucitaniXmlDocument)
+        public List<B2B_Results_RowItem> GetB2B_ResultsFromXmlDocument(KonfigDobavljaca konfigDobavljaca, string model, LoadedXmlDocument ucitaniXmlDocument)
         {
             /** Dodavanje xml u jedinstvenu listu rezultata učitanih sa FTP  */
 
@@ -268,7 +271,7 @@ namespace WebCene.Helper
                     extNS.whirlpoolLager.WHIRLPOOL_LAGER whirlpoolLager = new extNS.whirlpoolLager.WHIRLPOOL_LAGER(konfigDobavljaca, ucitaniXmlDocument);
                     return b2B_Results_RowItems = whirlpoolLager.b2B_Results_RowItems;
 
-                
+
 
 
                 default:
@@ -715,10 +718,12 @@ namespace WebCene.Helper
                 {
 
                     priceList[i].Kolicina = equalRow.Kolicina;
+                    priceList[i].LagerDatum = equalRow.LagerDatum.Date;
                 }
                 else
                 {
                     priceList[i].Kolicina = 0;
+                    priceList[i].LagerDatum = DateTime.MinValue.Date;
                 }
 
             }

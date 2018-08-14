@@ -19,5 +19,7 @@ namespace WebCene.Model.B2B
 
         public DateTime XmlLastModified { get; set; }
 
+        public string StatusDescription { get; set; }
+
     }
 }

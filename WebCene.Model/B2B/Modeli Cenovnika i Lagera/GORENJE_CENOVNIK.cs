@@ -15,7 +15,7 @@ namespace WebCene.Model.B2B.gorenje
         public List<B2B_Results_RowItem> b2B_Results_RowItems { get; set; }
 
 
-        public GORENJE_CENOVNIK(KonfigDobavljaca konfigDobavljaca, XmlDocument ucitaniXmlDocument)
+        public GORENJE_CENOVNIK(KonfigDobavljaca konfigDobavljaca, LoadedXmlDocument ucitaniXmlDocument)
         {
             b2B_Results_RowItems = new List<B2B_Results_RowItem>();
 
@@ -23,7 +23,7 @@ namespace WebCene.Model.B2B.gorenje
         }
 
 
-        private void GenerisiPodatkeZaPrikaz(KonfigDobavljaca konfigDobavljaca, XmlDocument ucitaniXmlDocument)
+        private void GenerisiPodatkeZaPrikaz(KonfigDobavljaca konfigDobavljaca, LoadedXmlDocument ucitaniXmlDocument)
         {
             List<B2B_Results_RowItem> podaciZaPrikaz = new List<B2B_Results_RowItem>();
 
@@ -31,7 +31,7 @@ namespace WebCene.Model.B2B.gorenje
 
 
             var serializer = new XmlSerializer(typeof(extNS.gorenje.Root));
-            using (XmlReader reader = new XmlNodeReader(ucitaniXmlDocument))
+            using (XmlReader reader = new XmlNodeReader(ucitaniXmlDocument.LoadedXmlDocumentItem))
             {
                 gorenjeCenovnik = (Root)serializer.Deserialize(reader);
             }
@@ -47,10 +47,11 @@ namespace WebCene.Model.B2B.gorenje
                     {
                         Barcode = item.barcode.ToString().TrimEnd(),
                         Kolicina = kolicina,
-                        Cena = item.NNC,
+                        NNC = item.NNC,
                         PMC = item.PMC,
                         DatumUlistavanja = DateTime.Today,
-                        PrimarniDobavljac = konfigDobavljaca.Naziv
+                        PrimarniDobavljac = konfigDobavljaca.Naziv,
+                        CenovnikDatum = ucitaniXmlDocument.XmlLastModified
                     };
                     podaciZaPrikaz.Add(podatakZaPrikaz);
                 }

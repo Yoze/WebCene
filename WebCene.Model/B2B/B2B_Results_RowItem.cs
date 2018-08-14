@@ -16,11 +16,11 @@ namespace WebCene.Model.B2B
 
         public int Kolicina { get; set; }
 
-        public DateTime KolicinaDatum { get; set; }
+        public DateTime LagerDatum { get; set; }
 
-        public decimal Cena { get; set; }
+        public decimal NNC { get; set; }
 
-        public DateTime CenaDatum { get; set; }
+        public DateTime CenovnikDatum { get; set; }
 
         public decimal PMC { get; set; }
 

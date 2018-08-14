@@ -14,7 +14,7 @@ namespace WebCene.Model.B2B.bosch
     {
         public List<B2B_Results_RowItem> b2B_Results_RowItems { get; set; }
 
-        public BOSCH_CENOVNIK(KonfigDobavljaca konfigDobavljaca, XmlDocument ucitaniXmlDocument)
+        public BOSCH_CENOVNIK(KonfigDobavljaca konfigDobavljaca, LoadedXmlDocument ucitaniXmlDocument)
         {
             b2B_Results_RowItems = new List<B2B_Results_RowItem>();
 
@@ -22,14 +22,14 @@ namespace WebCene.Model.B2B.bosch
         }
 
 
-        private void GenerisiPodatkeZaPrikaz(KonfigDobavljaca konfigDobavljaca, XmlDocument ucitaniXmlDocument)
+        private void GenerisiPodatkeZaPrikaz(KonfigDobavljaca konfigDobavljaca, LoadedXmlDocument ucitaniXmlDocument)
         {
             List<B2B_Results_RowItem> podaciZaPrikaz = new List<B2B_Results_RowItem>();
 
             extNS.bosch.izdelki bosch = new extNS.bosch.izdelki();
             var serializer = new XmlSerializer(typeof(extNS.bosch.izdelki));
 
-            using (XmlReader reader = new XmlNodeReader(ucitaniXmlDocument))
+            using (XmlReader reader = new XmlNodeReader(ucitaniXmlDocument.LoadedXmlDocumentItem))
             {
                 bosch = (izdelki)serializer.Deserialize(reader);
             }
@@ -55,10 +55,12 @@ namespace WebCene.Model.B2B.bosch
                     {
                         Barcode = item.ean.ToString().TrimEnd(),
                         Kolicina = item.zaloga,
-                        Cena = nabavnaCena * konfigDobavljaca.KeoficijentMarze, 
+                        NNC = nabavnaCena * konfigDobavljaca.KeoficijentMarze, 
                         PMC = ppc, 
                         DatumUlistavanja = DateTime.Today,
-                        PrimarniDobavljac = konfigDobavljaca.Naziv
+                        PrimarniDobavljac = konfigDobavljaca.Naziv,
+                        CenovnikDatum = ucitaniXmlDocument.XmlLastModified,
+                        LagerDatum = ucitaniXmlDocument.XmlLastModified
                     };
                     podaciZaPrikaz.Add(podatakZaPrikaz);
                 }

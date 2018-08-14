@@ -21,6 +21,8 @@ namespace WebCene.Model.B2B
         public bool isParsed { get; set; }
 
         public bool isValidated { get; set; }
+        
+        public string StatusDescription { get; set; }
 
 
     }

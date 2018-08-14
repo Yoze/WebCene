@@ -16,21 +16,21 @@ namespace WebCene.Model.B2B.zomimpex
     {
         public List<B2B_Results_RowItem> b2B_Results_RowItems { get; set; }
 
-        public ZOMIMPEX_CENOVNIK(KonfigDobavljaca konfigDobavljaca, XmlDocument ucitaniXmlDocument)
+        public ZOMIMPEX_CENOVNIK(KonfigDobavljaca konfigDobavljaca, LoadedXmlDocument ucitaniXmlDocument)
         {
             b2B_Results_RowItems = new List<B2B_Results_RowItem>();
 
             GenerisiPodatkeZaPrikaz(konfigDobavljaca, ucitaniXmlDocument);
         }
 
-        private void GenerisiPodatkeZaPrikaz(KonfigDobavljaca konfigDobavljaca, XmlDocument ucitaniXmlDocument)
+        private void GenerisiPodatkeZaPrikaz(KonfigDobavljaca konfigDobavljaca, LoadedXmlDocument ucitaniXmlDocument)
         {
             List<B2B_Results_RowItem> podaciZaPrikaz = new List<B2B_Results_RowItem>();
 
             extNS.zomimpex.Artikl zomImpex = new extNS.zomimpex.Artikl();
             var serializer = new XmlSerializer(typeof(extNS.zomimpex.Artikl));
 
-            using (XmlReader reader = new XmlNodeReader(ucitaniXmlDocument))
+            using (XmlReader reader = new XmlNodeReader(ucitaniXmlDocument.LoadedXmlDocumentItem))
             {
                 zomImpex = (extNS.zomimpex.Artikl)serializer.Deserialize(reader);
             }
@@ -67,10 +67,12 @@ namespace WebCene.Model.B2B.zomimpex
                     {
                         Barcode = item.Bar_kod,
                         Kolicina = kolicina,
-                        Cena = nnc,
+                        NNC = nnc,
                         PMC = pmc,
                         DatumUlistavanja = DateTime.Today,
-                        PrimarniDobavljac = konfigDobavljaca.Naziv
+                        PrimarniDobavljac = konfigDobavljaca.Naziv,
+                        CenovnikDatum = ucitaniXmlDocument.XmlLastModified,
+                        LagerDatum = ucitaniXmlDocument.XmlLastModified
                     };
                     podaciZaPrikaz.Add(podatakZaPrikaz);
                 }

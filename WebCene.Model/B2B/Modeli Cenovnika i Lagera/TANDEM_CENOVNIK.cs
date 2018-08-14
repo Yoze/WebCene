@@ -17,7 +17,7 @@ namespace WebCene.Model.B2B.tandem
         public List<B2B_Results_RowItem> b2B_Results_RowItems { get; set; }
 
 
-        public TANDEM_CENOVNIK(KonfigDobavljaca konfigDobavljaca, XmlDocument ucitaniXmlDocument)
+        public TANDEM_CENOVNIK(KonfigDobavljaca konfigDobavljaca, LoadedXmlDocument ucitaniXmlDocument)
         {
             b2B_Results_RowItems = new List<B2B_Results_RowItem>();
 
@@ -25,7 +25,7 @@ namespace WebCene.Model.B2B.tandem
 
         }
 
-        private void GenerisiPodatkeZaPrikaz(KonfigDobavljaca konfigDobavljaca, XmlDocument ucitaniXmlDocument)
+        private void GenerisiPodatkeZaPrikaz(KonfigDobavljaca konfigDobavljaca, LoadedXmlDocument ucitaniXmlDocument)
         {
             List<B2B_Results_RowItem> podaciZaPrikaz = new List<B2B_Results_RowItem>();
 
@@ -33,7 +33,7 @@ namespace WebCene.Model.B2B.tandem
 
 
             var serializer = new XmlSerializer(typeof(extNS.tandem.Root));
-            using (XmlReader reader = new XmlNodeReader(ucitaniXmlDocument))
+            using (XmlReader reader = new XmlNodeReader(ucitaniXmlDocument.LoadedXmlDocumentItem))
             {
                 tandemCenovnik = (Root)serializer.Deserialize(reader);
             }
@@ -48,10 +48,11 @@ namespace WebCene.Model.B2B.tandem
                     {
                         Barcode = item.barcode.ToString().TrimEnd(),
                         Kolicina = 0, // xml ne sadrži količinu
-                        Cena = item.NNC,
+                        NNC = item.NNC,
                         PMC = item.PMC,
                         DatumUlistavanja = DateTime.Today,
-                        PrimarniDobavljac = konfigDobavljaca.Naziv
+                        PrimarniDobavljac = konfigDobavljaca.Naziv,
+                        CenovnikDatum = ucitaniXmlDocument.XmlLastModified
                     };
                     podaciZaPrikaz.Add(podatakZaPrikaz);
                 }

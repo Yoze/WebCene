@@ -16,7 +16,7 @@ namespace WebCene.Model.B2B.ewe
 
         public List<B2B_Results_RowItem> b2B_Results_RowItems { get; set; }
 
-        public EWE_CENOVNIK(KonfigDobavljaca konfigDobavljaca, XmlDocument ucitaniXmlDocument)
+        public EWE_CENOVNIK(KonfigDobavljaca konfigDobavljaca, LoadedXmlDocument ucitaniXmlDocument)
         {
             b2B_Results_RowItems = new List<B2B_Results_RowItem>();
 
@@ -25,14 +25,14 @@ namespace WebCene.Model.B2B.ewe
 
 
     
-        private void GenerisiPodatkeZaPrikaz(KonfigDobavljaca konfigDobavljaca, XmlDocument ucitaniXmlDocument)
+        private void GenerisiPodatkeZaPrikaz(KonfigDobavljaca konfigDobavljaca, LoadedXmlDocument ucitaniXmlDocument)
         {
             List<B2B_Results_RowItem> podaciZaPrikaz = new List<B2B_Results_RowItem>();
            
             extNS.ewe.products ewe = new extNS.ewe.products();
             var serializer = new XmlSerializer(typeof(extNS.ewe.products));
 
-            using (XmlReader reader = new XmlNodeReader(ucitaniXmlDocument))
+            using (XmlReader reader = new XmlNodeReader(ucitaniXmlDocument.LoadedXmlDocumentItem))
             {
                 ewe = (extNS.ewe.products)serializer.Deserialize(reader);
             }
@@ -71,10 +71,13 @@ namespace WebCene.Model.B2B.ewe
                     {
                         Barcode = item.ean,
                         Kolicina = kolicina,
-                        Cena = nnc,
+                        NNC = nnc,
                         PMC = pmc,
                         DatumUlistavanja = DateTime.Today,
-                        PrimarniDobavljac = konfigDobavljaca.Naziv
+                        PrimarniDobavljac = konfigDobavljaca.Naziv,
+                        CenovnikDatum = ucitaniXmlDocument.XmlLastModified,
+                        LagerDatum = ucitaniXmlDocument.XmlLastModified
+                        
                     };
                     podaciZaPrikaz.Add(podatakZaPrikaz);
                 }

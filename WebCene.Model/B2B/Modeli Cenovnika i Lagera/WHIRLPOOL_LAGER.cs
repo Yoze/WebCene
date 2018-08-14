@@ -16,14 +16,14 @@ namespace WebCene.Model.B2B.whirlpoolLager
         public List<B2B_Results_RowItem> b2B_Results_RowItems { get; set; }
 
 
-        public WHIRLPOOL_LAGER(KonfigDobavljaca konfigDobavljaca, XmlDocument ucitaniXmlDocument)
+        public WHIRLPOOL_LAGER(KonfigDobavljaca konfigDobavljaca, LoadedXmlDocument ucitaniXmlDocument)
         {
             b2B_Results_RowItems = new List<B2B_Results_RowItem>();
 
             GenerisiPodatkeZaPrikaz(konfigDobavljaca, ucitaniXmlDocument);
         }
 
-        private void GenerisiPodatkeZaPrikaz(KonfigDobavljaca konfigDobavljaca, XmlDocument ucitaniXmlDocument)
+        private void GenerisiPodatkeZaPrikaz(KonfigDobavljaca konfigDobavljaca, LoadedXmlDocument ucitaniXmlDocument)
         {
             List<B2B_Results_RowItem> podaciZaPrikaz = new List<B2B_Results_RowItem>();
 
@@ -31,7 +31,7 @@ namespace WebCene.Model.B2B.whirlpoolLager
 
 
             var serializer = new XmlSerializer(typeof(extNS.whirlpoolLager.Root));
-            using (XmlReader reader = new XmlNodeReader(ucitaniXmlDocument))
+            using (XmlReader reader = new XmlNodeReader(ucitaniXmlDocument.LoadedXmlDocumentItem))
             {
                 whirlpoolLager = (Root)serializer.Deserialize(reader);
             }
@@ -46,10 +46,11 @@ namespace WebCene.Model.B2B.whirlpoolLager
                     {
                         Barcode = item.barcod.ToString().TrimEnd(),
                         Kolicina = item.kolicina,
-                        Cena = 0, // xml ne sadrži cene
+                        NNC = 0, // xml ne sadrži cene
                         PMC = 0, // xml ne sadrži cene
                         DatumUlistavanja = DateTime.Today,
-                        PrimarniDobavljac = konfigDobavljaca.Naziv
+                        PrimarniDobavljac = konfigDobavljaca.Naziv,
+                        LagerDatum = ucitaniXmlDocument.XmlLastModified
                     };
                     podaciZaPrikaz.Add(podatakZaPrikaz);
                 }

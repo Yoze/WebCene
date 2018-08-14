@@ -16,7 +16,7 @@ namespace WebCene.Model.B2B.whirlpoolCenovnik
         public List<B2B_Results_RowItem> b2B_Results_RowItems { get; set; }
 
 
-        public WHIRLPOOL_CENOVNIK(KonfigDobavljaca konfigDobavljaca, XmlDocument ucitaniXmlDocument)
+        public WHIRLPOOL_CENOVNIK(KonfigDobavljaca konfigDobavljaca, LoadedXmlDocument ucitaniXmlDocument)
         {
             b2B_Results_RowItems = new List<B2B_Results_RowItem>();
 
@@ -24,7 +24,7 @@ namespace WebCene.Model.B2B.whirlpoolCenovnik
         }
 
 
-        private void GenerisiPodatkeZaPrikaz(KonfigDobavljaca konfigDobavljaca, XmlDocument ucitaniXmlDocument)
+        private void GenerisiPodatkeZaPrikaz(KonfigDobavljaca konfigDobavljaca, LoadedXmlDocument ucitaniXmlDocument)
         {
             List<B2B_Results_RowItem> podaciZaPrikaz = new List<B2B_Results_RowItem>();
 
@@ -32,7 +32,7 @@ namespace WebCene.Model.B2B.whirlpoolCenovnik
 
 
             var serializer = new XmlSerializer(typeof(extNS.whirlpoolCenovnik.Root));
-            using (XmlReader reader = new XmlNodeReader(ucitaniXmlDocument))
+            using (XmlReader reader = new XmlNodeReader(ucitaniXmlDocument.LoadedXmlDocumentItem))
             {
                 whirlpoolCenovnik = (Root)serializer.Deserialize(reader);
             }
@@ -53,10 +53,11 @@ namespace WebCene.Model.B2B.whirlpoolCenovnik
                     {
                         Barcode = item.barcode.ToString().TrimEnd(),
                         Kolicina = 0, // xml ne sadrži količine
-                        Cena = item.NNC,
+                        NNC = item.NNC,
                         PMC = item.PMC,
                         DatumUlistavanja = DateTime.Today,
-                        PrimarniDobavljac = konfigDobavljaca.Naziv
+                        PrimarniDobavljac = konfigDobavljaca.Naziv,
+                        CenovnikDatum = ucitaniXmlDocument.XmlLastModified
                     };
                     podaciZaPrikaz.Add(podatakZaPrikaz);
                 }

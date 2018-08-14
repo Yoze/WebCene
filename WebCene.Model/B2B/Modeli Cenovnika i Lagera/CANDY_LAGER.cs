@@ -14,7 +14,7 @@ namespace WebCene.Model.B2B.candyLager
     {
         public List<B2B_Results_RowItem> b2B_Results_RowItems { get; set; }
 
-        public CANDY_LAGER(KonfigDobavljaca konfigDobavljaca, XmlDocument ucitaniXmlDocument)
+        public CANDY_LAGER(KonfigDobavljaca konfigDobavljaca, LoadedXmlDocument ucitaniXmlDocument)
         {
             b2B_Results_RowItems = new List<B2B_Results_RowItem>();
 
@@ -23,7 +23,7 @@ namespace WebCene.Model.B2B.candyLager
 
 
 
-        private void GenerisiPodatkeZaPrikaz(KonfigDobavljaca konfigDobavljaca, XmlDocument ucitaniXmlDocument)
+        private void GenerisiPodatkeZaPrikaz(KonfigDobavljaca konfigDobavljaca, LoadedXmlDocument ucitaniXmlDocument)
         {
             List<B2B_Results_RowItem> podaciZaPrikaz = new List<B2B_Results_RowItem>();
 
@@ -31,7 +31,7 @@ namespace WebCene.Model.B2B.candyLager
 
 
             var serializer = new XmlSerializer(typeof(extNS.candyLager.Root));
-            using (XmlReader reader = new XmlNodeReader(ucitaniXmlDocument))
+            using (XmlReader reader = new XmlNodeReader(ucitaniXmlDocument.LoadedXmlDocumentItem))
             {
                 candyLager = (Root)serializer.Deserialize(reader);
             }
@@ -46,10 +46,11 @@ namespace WebCene.Model.B2B.candyLager
                     {
                         Barcode = item.barcode.ToString().TrimEnd(),
                         Kolicina = item.kolicina,
-                        Cena = 0, // postoji cenovnik
+                        NNC = 0, // postoji cenovnik
                         PMC = 0, // postoji cenovnik
                         DatumUlistavanja = DateTime.Today,
-                        PrimarniDobavljac = konfigDobavljaca.Naziv
+                        PrimarniDobavljac = konfigDobavljaca.Naziv,
+                        LagerDatum = ucitaniXmlDocument.XmlLastModified
                     };
                     podaciZaPrikaz.Add(podatakZaPrikaz);
                 }

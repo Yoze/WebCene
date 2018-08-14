@@ -15,7 +15,7 @@ namespace WebCene.Model.B2B.mkaCenovnik
 
         public List<B2B_Results_RowItem> b2B_Results_RowItems { get; set; }
 
-        public MKA_CENOVNIK(KonfigDobavljaca konfigDobavljaca, XmlDocument ucitaniXmlDocument)
+        public MKA_CENOVNIK(KonfigDobavljaca konfigDobavljaca, LoadedXmlDocument ucitaniXmlDocument)
         {
             b2B_Results_RowItems = new List<B2B_Results_RowItem>();
 
@@ -23,7 +23,7 @@ namespace WebCene.Model.B2B.mkaCenovnik
         }
 
 
-        private void GenerisiPodatkeZaPrikaz(KonfigDobavljaca konfigDobavljaca, XmlDocument ucitaniXmlDocument)
+        private void GenerisiPodatkeZaPrikaz(KonfigDobavljaca konfigDobavljaca, LoadedXmlDocument ucitaniXmlDocument)
         {
             List<B2B_Results_RowItem> podaciZaPrikaz = new List<B2B_Results_RowItem>();
 
@@ -31,7 +31,7 @@ namespace WebCene.Model.B2B.mkaCenovnik
 
 
             var serializer = new XmlSerializer(typeof(extNS.mkaCenovnik.Dokument));
-            using (XmlReader reader = new XmlNodeReader(ucitaniXmlDocument))
+            using (XmlReader reader = new XmlNodeReader(ucitaniXmlDocument.LoadedXmlDocumentItem))
             {
                 mkaCenovnik = (Dokument)serializer.Deserialize(reader);
             }
@@ -46,10 +46,12 @@ namespace WebCene.Model.B2B.mkaCenovnik
                     {
                         Barcode = item.BarKod.ToString().TrimEnd(),
                         Kolicina = (int)item.Kolicina,
-                        Cena = item.CenaVP, // pomnožiti VP cenu sa kursom evra 
+                        NNC = item.CenaVP, // pomnožiti VP cenu sa kursom evra 
                         PMC = item.CenaMP,
                         DatumUlistavanja = DateTime.Today,
-                        PrimarniDobavljac = konfigDobavljaca.Naziv
+                        PrimarniDobavljac = konfigDobavljaca.Naziv,
+                        CenovnikDatum = ucitaniXmlDocument.XmlLastModified,
+                        LagerDatum = ucitaniXmlDocument.XmlLastModified
                     };
                     podaciZaPrikaz.Add(podatakZaPrikaz);
                 }

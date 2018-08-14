@@ -15,7 +15,7 @@ namespace WebCene.Model.B2B.mison
 
         public List<B2B_Results_RowItem> b2B_Results_RowItems { get; set; }
 
-        public MISON_CENOVNIK(KonfigDobavljaca konfigDobavljaca, XmlDocument ucitaniXmlDocument)
+        public MISON_CENOVNIK(KonfigDobavljaca konfigDobavljaca, LoadedXmlDocument ucitaniXmlDocument)
         {
             b2B_Results_RowItems = new List<B2B_Results_RowItem>();
 
@@ -23,7 +23,7 @@ namespace WebCene.Model.B2B.mison
         }
 
 
-        private void GenerisiPodatkeZaPrikaz(KonfigDobavljaca konfigDobavljaca, XmlDocument ucitaniXmlDocument)
+        private void GenerisiPodatkeZaPrikaz(KonfigDobavljaca konfigDobavljaca, LoadedXmlDocument ucitaniXmlDocument)
         {
             List<B2B_Results_RowItem> podaciZaPrikaz = new List<B2B_Results_RowItem>();
 
@@ -31,7 +31,7 @@ namespace WebCene.Model.B2B.mison
 
 
             var serializer = new XmlSerializer(typeof(extNS.mison.Root));
-            using (XmlReader reader = new XmlNodeReader(ucitaniXmlDocument))
+            using (XmlReader reader = new XmlNodeReader(ucitaniXmlDocument.LoadedXmlDocumentItem))
             {
                 misonCenovnik = (Root)serializer.Deserialize(reader);
             }
@@ -46,10 +46,12 @@ namespace WebCene.Model.B2B.mison
                     {
                         Barcode = item.barcod.ToString().TrimEnd(),
                         Kolicina = item.kolicina,
-                        Cena = item.VP__Cena_u_DIN,
+                        NNC = item.VP__Cena_u_DIN,
                         PMC = item.PREPORU_ENA_MP_CENA,
                         DatumUlistavanja = DateTime.Today,
-                        PrimarniDobavljac = konfigDobavljaca.Naziv
+                        PrimarniDobavljac = konfigDobavljaca.Naziv,
+                        CenovnikDatum = ucitaniXmlDocument.XmlLastModified,
+                        LagerDatum = ucitaniXmlDocument.XmlLastModified
                     };
                     podaciZaPrikaz.Add(podatakZaPrikaz);
                 }

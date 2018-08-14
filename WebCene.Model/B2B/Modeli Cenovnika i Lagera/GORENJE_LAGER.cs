@@ -15,7 +15,7 @@ namespace WebCene.Model.B2B.gorenjeLager
         public List<B2B_Results_RowItem> b2B_Results_RowItems { get; set; }
 
 
-        public GORENJE_LAGER(KonfigDobavljaca konfigDobavljaca, XmlDocument ucitaniXmlDocument)
+        public GORENJE_LAGER(KonfigDobavljaca konfigDobavljaca, LoadedXmlDocument ucitaniXmlDocument)
         {
             b2B_Results_RowItems = new List<B2B_Results_RowItem>();
 
@@ -23,7 +23,7 @@ namespace WebCene.Model.B2B.gorenjeLager
         }
 
 
-        private void GenerisiPodatkeZaPrikaz(KonfigDobavljaca konfigDobavljaca, XmlDocument ucitaniXmlDocument)
+        private void GenerisiPodatkeZaPrikaz(KonfigDobavljaca konfigDobavljaca, LoadedXmlDocument ucitaniXmlDocument)
         {
             List<B2B_Results_RowItem> podaciZaPrikaz = new List<B2B_Results_RowItem>();
 
@@ -31,7 +31,7 @@ namespace WebCene.Model.B2B.gorenjeLager
 
 
             var serializer = new XmlSerializer(typeof(extNS.gorenjeLager.Root));
-            using (XmlReader reader = new XmlNodeReader(ucitaniXmlDocument))
+            using (XmlReader reader = new XmlNodeReader(ucitaniXmlDocument.LoadedXmlDocumentItem))
             {
                 gorenjeLager = (Root)serializer.Deserialize(reader); 
             }
@@ -49,7 +49,8 @@ namespace WebCene.Model.B2B.gorenjeLager
                         //Cena = item.price * konfigDobavljaca.KeoficijentMarze, 
                         //PMC = 0, //TO DO: kalkulacija PMC
                         DatumUlistavanja = DateTime.Today,
-                        PrimarniDobavljac = konfigDobavljaca.Naziv
+                        PrimarniDobavljac = konfigDobavljaca.Naziv,
+                        LagerDatum = ucitaniXmlDocument.XmlLastModified
                     };
                     podaciZaPrikaz.Add(podatakZaPrikaz);
                 }
