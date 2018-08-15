@@ -83,7 +83,7 @@ namespace WebCene.UI.Forms.B2B
                     numberOfRecords = b2B_Results_RowItems.Count;
 
                     if (numberOfRecords == 0) isLoaded = false;
-                    loadedXmlStatus = SetXmlLoadingStatus(itemNumber, supplierConfiguration.Naziv, supplierConfiguration.URL, isLoaded, numberOfRecords, XMLHelper.StatusDescription);
+                    loadedXmlStatus = SetXmlLoadingStatus(itemNumber, supplierConfiguration.Naziv, supplierConfiguration.URL, isLoaded, numberOfRecords, XMLHelper.StatusDescription, supplierConfiguration);
                 }
                 catch (Exception xcp)
                 {                    
@@ -92,7 +92,7 @@ namespace WebCene.UI.Forms.B2B
 
                     // set loading status
                     isLoaded = false;
-                    loadedXmlStatus = SetXmlLoadingStatus(itemNumber, supplierConfiguration.Naziv, supplierConfiguration.URL, isLoaded, numberOfRecords, XMLHelper.StatusDescription);
+                    loadedXmlStatus = SetXmlLoadingStatus(itemNumber, supplierConfiguration.Naziv, supplierConfiguration.URL, isLoaded, numberOfRecords, XMLHelper.StatusDescription, supplierConfiguration);
                     DisplayXmlLoadingStatusMessageRow(loadedXmlStatus);
 
                     itemNumber++;
@@ -111,7 +111,7 @@ namespace WebCene.UI.Forms.B2B
 
             SetXmlLoadingStatusMessage("Završeno.", true);
 
-            SetXmlLoadingStatusMessage("Učitano je " + B2B_Results_Rows_AllSuppliers.Count.ToString() + " zapisa", true);
+            SetXmlLoadingStatusMessage("Učitavanje je završeno. Učitano je " + B2B_Results_Rows_AllSuppliers.Count.ToString() + " zapisa", true);
         }
 
 
@@ -135,7 +135,7 @@ namespace WebCene.UI.Forms.B2B
 
         }
 
-        private LoadedXmlStatus SetXmlLoadingStatus(int redniBroj, string nazivDobavljaca, string url, bool isLoaded, int numberOfRecords, string statusDescription)
+        private LoadedXmlStatus SetXmlLoadingStatus(int redniBroj, string nazivDobavljaca, string url, bool isLoaded, int numberOfRecords, string statusDescription, KonfigDobavljaca konfigDobavljaca)
         {
             // status učitavanja
             LoadedXmlStatus status = new LoadedXmlStatus()
@@ -145,7 +145,9 @@ namespace WebCene.UI.Forms.B2B
                 URL = url,
                 NumberOfRecords = numberOfRecords,
                 IsLoaded = isLoaded,
-                StatusDescription = statusDescription
+                StatusDescription = statusDescription,
+                DataSource = konfigDobavljaca.WebProtokol
+                
             };
 
             return status;
@@ -178,7 +180,8 @@ namespace WebCene.UI.Forms.B2B
                 status.Naziv, 
                 isLoaded, 
                 status.NumberOfRecords,
-                status.StatusDescription
+                status.StatusDescription,
+                status.DataSource
                 );
 
             // if isLoaded == false then row is marked

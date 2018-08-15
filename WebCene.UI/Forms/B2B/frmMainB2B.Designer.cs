@@ -39,16 +39,20 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.lblStatus = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.label2 = new System.Windows.Forms.Label();
             this.rbr = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dobavljac = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.isLoaded = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.numberOfRecords = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataSource = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvZbirniXml)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
+            this.flowLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -81,15 +85,16 @@
             this.btnWebService.TabIndex = 2;
             this.btnWebService.Text = "web service";
             this.btnWebService.UseVisualStyleBackColor = true;
+            this.btnWebService.Visible = false;
             this.btnWebService.Click += new System.EventHandler(this.btnWebService_Click);
             // 
             // btnLoadXmls
             // 
             this.btnLoadXmls.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnLoadXmls.Location = new System.Drawing.Point(1107, 40);
-            this.btnLoadXmls.Margin = new System.Windows.Forms.Padding(10);
+            this.btnLoadXmls.Location = new System.Drawing.Point(5, 5);
+            this.btnLoadXmls.Margin = new System.Windows.Forms.Padding(5);
             this.btnLoadXmls.Name = "btnLoadXmls";
-            this.btnLoadXmls.Size = new System.Drawing.Size(136, 30);
+            this.btnLoadXmls.Size = new System.Drawing.Size(120, 30);
             this.btnLoadXmls.TabIndex = 3;
             this.btnLoadXmls.Text = "UČITAJ";
             this.btnLoadXmls.UseVisualStyleBackColor = true;
@@ -109,7 +114,8 @@
             this.dobavljac,
             this.isLoaded,
             this.numberOfRecords,
-            this.statusDesc});
+            this.statusDesc,
+            this.dataSource});
             this.dgvStatus.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvStatus.Enabled = false;
             this.dgvStatus.Location = new System.Drawing.Point(3, 63);
@@ -119,7 +125,7 @@
             this.dgvStatus.RowHeadersVisible = false;
             this.dgvStatus.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dgvStatus.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvStatus.Size = new System.Drawing.Size(484, 515);
+            this.dgvStatus.Size = new System.Drawing.Size(564, 515);
             this.dgvStatus.TabIndex = 5;
             // 
             // dgvZbirniXml
@@ -128,25 +134,27 @@
             this.dgvZbirniXml.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgvZbirniXml.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvZbirniXml.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvZbirniXml.Location = new System.Drawing.Point(520, 90);
+            this.dgvZbirniXml.Location = new System.Drawing.Point(600, 90);
             this.dgvZbirniXml.Margin = new System.Windows.Forms.Padding(10);
             this.dgvZbirniXml.MultiSelect = false;
             this.dgvZbirniXml.Name = "dgvZbirniXml";
             this.dgvZbirniXml.ReadOnly = true;
             this.dgvZbirniXml.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.dgvZbirniXml.Size = new System.Drawing.Size(723, 581);
+            this.dgvZbirniXml.Size = new System.Drawing.Size(503, 581);
             this.dgvZbirniXml.TabIndex = 6;
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 510F));
+            this.tableLayoutPanel1.ColumnCount = 4;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 590F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 140F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.dgvZbirniXml, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.btnLoadXmls, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel2, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -162,7 +170,7 @@
             this.flowLayoutPanel1.Controls.Add(this.button1);
             this.flowLayoutPanel1.Controls.Add(this.button2);
             this.flowLayoutPanel1.Controls.Add(this.btnWebService);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(513, 684);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(593, 684);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(384, 44);
             this.flowLayoutPanel1.TabIndex = 8;
@@ -183,7 +191,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(490, 581);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(570, 581);
             this.tableLayoutPanel2.TabIndex = 9;
             // 
             // lblStatus
@@ -194,7 +202,7 @@
             this.lblStatus.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.lblStatus.Location = new System.Drawing.Point(3, 30);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(484, 17);
+            this.lblStatus.Size = new System.Drawing.Size(564, 17);
             this.lblStatus.TabIndex = 6;
             this.lblStatus.Text = "status label";
             // 
@@ -207,6 +215,27 @@
             this.label1.Size = new System.Drawing.Size(55, 21);
             this.label1.TabIndex = 0;
             this.label1.Text = "Status";
+            // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.Controls.Add(this.btnLoadXmls);
+            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(1116, 83);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(134, 595);
+            this.flowLayoutPanel2.TabIndex = 10;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label2.ForeColor = System.Drawing.Color.MediumSlateBlue;
+            this.label2.Location = new System.Drawing.Point(20, 20);
+            this.label2.Margin = new System.Windows.Forms.Padding(20);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(301, 21);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "Učitavanje cenovnika i lagera dobavljača";
             // 
             // rbr
             // 
@@ -226,7 +255,7 @@
             // 
             // isLoaded
             // 
-            this.isLoaded.HeaderText = "Xml u objekat";
+            this.isLoaded.HeaderText = "Xml Deserijal.";
             this.isLoaded.Name = "isLoaded";
             this.isLoaded.ReadOnly = true;
             this.isLoaded.Resizable = System.Windows.Forms.DataGridViewTriState.False;
@@ -248,6 +277,13 @@
             this.statusDesc.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.statusDesc.Width = 160;
             // 
+            // dataSource
+            // 
+            this.dataSource.HeaderText = "Izvor podataka";
+            this.dataSource.Name = "dataSource";
+            this.dataSource.ReadOnly = true;
+            this.dataSource.Width = 80;
+            // 
             // frmMainB2B
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -259,14 +295,16 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmMainB2B";
+            this.Text = "B2B Cenovnici i lageri";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.dgvStatus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvZbirniXml)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
+            this.flowLayoutPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -284,10 +322,13 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Label label1;
         public System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridViewTextBoxColumn rbr;
         private System.Windows.Forms.DataGridViewTextBoxColumn dobavljac;
         private System.Windows.Forms.DataGridViewTextBoxColumn isLoaded;
         private System.Windows.Forms.DataGridViewTextBoxColumn numberOfRecords;
         private System.Windows.Forms.DataGridViewTextBoxColumn statusDesc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataSource;
     }
 }

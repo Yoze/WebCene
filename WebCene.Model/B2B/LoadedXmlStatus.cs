@@ -22,6 +22,7 @@ namespace WebCene.Model.B2B
         
         public string StatusDescription { get; set; }
 
+        public string DataSource { get; set; }
 
     }
 }

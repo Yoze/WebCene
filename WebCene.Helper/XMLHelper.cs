@@ -55,11 +55,11 @@ namespace WebCene.Helper
                             priceList = new List<B2B_Results_RowItem>();
 
                             supplierXmlDocument = FTPHelper.Instance.LoadXmlDocumentForSupplier(konfigDobavljaca, konfigDobavljaca.CenovnikFilename);
+
                             // ovo koristi glavna forma da bi imali Status Description u statusima
                             StatusDescription = supplierXmlDocument.StatusDescription;
 
                             priceList = XMLHelper.Instance.GetB2B_ResultsFromXmlDocument(konfigDobavljaca, konfigDobavljaca.ModelCenovnik, supplierXmlDocument);
-
 
                             b2B_Results_RowItems = priceList;
                         }
@@ -73,11 +73,11 @@ namespace WebCene.Helper
                             LoadedXmlDocument loadedStockList = new LoadedXmlDocument();
 
                             loadedStockList = FTPHelper.Instance.LoadXmlDocumentForSupplier(konfigDobavljaca, konfigDobavljaca.LagerFilename);
+
                             // ovo koristi glavna forma da bi imali Status Description u statusima
                             StatusDescription = loadedStockList.StatusDescription;
 
                             stockList = XMLHelper.Instance.GetB2B_ResultsFromXmlDocument(konfigDobavljaca, konfigDobavljaca.ModelLager, loadedStockList);
-
                         }
 
                         // Povezivanje Cenovnika sa lagerom u jedinstvenu listu
@@ -85,7 +85,6 @@ namespace WebCene.Helper
                         {
                             b2B_Results_RowItems = MergePriceListAndStockList(priceList, stockList);
                         }
-
 
                         return b2B_Results_RowItems;
                     }
@@ -98,15 +97,15 @@ namespace WebCene.Helper
                         // Cenovnik i lager
                         List<B2B_Results_RowItem> priceList = new List<B2B_Results_RowItem>();
 
-
                         supplierXmlDocument = HTTPSHelper.Instance.LoadXmlDocWithHttpRequest(konfigDobavljaca);
 
+                        // ovo koristi glavna forma da bi imali Status Description u statusima
+                        StatusDescription = supplierXmlDocument.StatusDescription;
 
                         priceList = Instance.GetB2B_ResultsFromXmlDocument(konfigDobavljaca, konfigDobavljaca.ModelCenovnik, supplierXmlDocument);
                         b2B_Results_RowItems = priceList;
 
                         return b2B_Results_RowItems;
-
                     }
 
 

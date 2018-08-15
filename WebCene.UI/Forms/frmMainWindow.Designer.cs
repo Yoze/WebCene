@@ -77,12 +77,12 @@
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(105, 6);
             // 
             // izlazToolStripMenuItem
             // 
             this.izlazToolStripMenuItem.Name = "izlazToolStripMenuItem";
-            this.izlazToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.izlazToolStripMenuItem.Size = new System.Drawing.Size(108, 24);
             this.izlazToolStripMenuItem.Text = "Izlaz";
             this.izlazToolStripMenuItem.Click += new System.EventHandler(this.izlazToolStripMenuItem_Click);
             // 
@@ -99,14 +99,14 @@
             // noviProizvodToolStripMenuItem
             // 
             this.noviProizvodToolStripMenuItem.Name = "noviProizvodToolStripMenuItem";
-            this.noviProizvodToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.noviProizvodToolStripMenuItem.Size = new System.Drawing.Size(161, 24);
             this.noviProizvodToolStripMenuItem.Text = "Novi artikal";
             this.noviProizvodToolStripMenuItem.Click += new System.EventHandler(this.noviProizvodToolStripMenuItem_Click);
             // 
             // listaProizvodaToolStripMenuItem
             // 
             this.listaProizvodaToolStripMenuItem.Name = "listaProizvodaToolStripMenuItem";
-            this.listaProizvodaToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.listaProizvodaToolStripMenuItem.Size = new System.Drawing.Size(161, 24);
             this.listaProizvodaToolStripMenuItem.Text = "Lista artikala";
             this.listaProizvodaToolStripMenuItem.Click += new System.EventHandler(this.listaProizvodaToolStripMenuItem_Click);
             // 
@@ -151,26 +151,26 @@
             // 
             this.noviKrolToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.noviKrolToolStripMenuItem.Name = "noviKrolToolStripMenuItem";
-            this.noviKrolToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.noviKrolToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
             this.noviKrolToolStripMenuItem.Text = "Novi krol";
             this.noviKrolToolStripMenuItem.Click += new System.EventHandler(this.noviKrolToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(172, 6);
             // 
             // toolStripCrosstab
             // 
             this.toolStripCrosstab.Name = "toolStripCrosstab";
-            this.toolStripCrosstab.Size = new System.Drawing.Size(180, 24);
+            this.toolStripCrosstab.Size = new System.Drawing.Size(175, 24);
             this.toolStripCrosstab.Text = "Crosstab lista";
             this.toolStripCrosstab.Click += new System.EventHandler(this.toolStripCrosstab_Click);
             // 
             // toolStripGrouped
             // 
             this.toolStripGrouped.Name = "toolStripGrouped";
-            this.toolStripGrouped.Size = new System.Drawing.Size(180, 24);
+            this.toolStripGrouped.Size = new System.Drawing.Size(175, 24);
             this.toolStripGrouped.Text = "Grupisana lista";
             this.toolStripGrouped.Click += new System.EventHandler(this.toolStripGrouped_Click);
             // 
@@ -180,14 +180,14 @@
             this.mainTestToolStripMenuItem});
             this.b2BToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.b2BToolStripMenuItem.Name = "b2BToolStripMenuItem";
-            this.b2BToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
-            this.b2BToolStripMenuItem.Text = "B2Bs";
+            this.b2BToolStripMenuItem.Size = new System.Drawing.Size(47, 24);
+            this.b2BToolStripMenuItem.Text = "B2B";
             // 
             // mainTestToolStripMenuItem
             // 
             this.mainTestToolStripMenuItem.Name = "mainTestToolStripMenuItem";
-            this.mainTestToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
-            this.mainTestToolStripMenuItem.Text = "Dev Form";
+            this.mainTestToolStripMenuItem.Size = new System.Drawing.Size(269, 24);
+            this.mainTestToolStripMenuItem.Text = "Cenovnici i lageri dobavljača";
             this.mainTestToolStripMenuItem.Click += new System.EventHandler(this.mainTestToolStripMenuItem_Click);
             // 
             // frmMainWindow

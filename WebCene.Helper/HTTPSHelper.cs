@@ -49,53 +49,66 @@ namespace WebCene.Helper
 
             // http putanja sa koje se učitavaju podaci
             var xmlPath = konfigDobavljaca.URL;
-                       
+
 
             // Get XML from http request
-            using (var webClient = new WebClient())
+            try
             {
-                // download xml-a kao stringa
-                string downloadResult;
-                downloadResult = webClient.DownloadString(xmlPath);
-               
-                // rezultat učitavanja strema reader-a 
-                string readerResults = string.Empty;
-
-                try
+                using (WebClient webClient = new WebClient())
                 {
-                    using (Stream stream = webClient.OpenRead(xmlPath))
+                    // download xml-a kao stringa
+                    string downloadResult;
+                    downloadResult = webClient.DownloadString(xmlPath);
+
+                    // rezultat učitavanja strema reader-a 
+                    string readerResults = string.Empty;
+
+                    try
                     {
-                        using (StreamReader reader = new StreamReader(stream))
+                        using (Stream stream = webClient.OpenRead(xmlPath))
                         {
-
-                            readerResults = reader.ReadToEnd();
-
-                            xmlDocument.LoadXml(readerResults);
-
-                            // loaded xml document
-                            loadedXmlDocFromHttpRequest.LoadedXmlDocumentItem.LoadXml(readerResults);
-
-                            // last modifid date is set to current date
-                            loadedXmlDocFromHttpRequest.XmlLastModified = DateTime.Now.Date;
-
-
-                            // Status Description is set to Loaded if loaded xml has child nodes
-                            if (loadedXmlDocFromHttpRequest.LoadedXmlDocumentItem.HasChildNodes)
+                            using (StreamReader reader = new StreamReader(stream))
                             {
-                                loadedXmlDocFromHttpRequest.StatusDescription = "Transfer completed";
+
+                                readerResults = reader.ReadToEnd();
+
+                                xmlDocument.LoadXml(readerResults);
+
+                                // loaded xml document
+                                loadedXmlDocFromHttpRequest.LoadedXmlDocumentItem.LoadXml(readerResults);
+
+                                // last modifid date is set to current date
+                                loadedXmlDocFromHttpRequest.XmlLastModified = DateTime.Now.Date;
+
+
+                                // Status Description is set to Loaded if loaded xml has child nodes
+                                if (loadedXmlDocFromHttpRequest.LoadedXmlDocumentItem.HasChildNodes)
+                                {
+                                    loadedXmlDocFromHttpRequest.StatusDescription = "Transfer completed.";
+                                }
+
+
+                                return loadedXmlDocFromHttpRequest;
                             }
-
-
-                            return loadedXmlDocFromHttpRequest;
                         }
                     }
-                }
-                catch (Exception)
-                {
+                    catch (Exception)
+                    {
 
-                    throw;
+                        throw;
+                    }
                 }
             }
+            catch (WebException ex)
+            {
+                var statusCode = ((HttpWebResponse)ex.Response).StatusCode;
+
+                loadedXmlDocFromHttpRequest.StatusDescription = statusCode.ToString();
+                return loadedXmlDocFromHttpRequest;
+            }
+
+
+            
         }
 
 
