@@ -270,7 +270,9 @@ namespace WebCene.Helper
                     extNS.whirlpoolLager.WHIRLPOOL_LAGER whirlpoolLager = new extNS.whirlpoolLager.WHIRLPOOL_LAGER(konfigDobavljaca, ucitaniXmlDocument);
                     return b2B_Results_RowItems = whirlpoolLager.b2B_Results_RowItems;
 
-
+                case "ORBICO_CENOVNIK":
+                    extNS.orbico.ORBICO_CENOVNIK orbicoCenovnik = new extNS.orbico.ORBICO_CENOVNIK(konfigDobavljaca, ucitaniXmlDocument);
+                    return b2B_Results_RowItems = orbicoCenovnik.b2B_Results_RowItems;
 
 
                 default:

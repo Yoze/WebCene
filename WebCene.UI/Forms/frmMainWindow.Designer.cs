@@ -32,7 +32,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.programToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.izlazToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripExitApp = new System.Windows.Forms.ToolStripMenuItem();
             this.prooizvodToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.noviProizvodToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listaProizvodaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,6 +46,7 @@
             this.toolStripGrouped = new System.Windows.Forms.ToolStripMenuItem();
             this.b2BToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainTestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -67,8 +68,9 @@
             // programToolStripMenuItem
             // 
             this.programToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripSettings,
             this.toolStripSeparator1,
-            this.izlazToolStripMenuItem});
+            this.toolStripExitApp});
             this.programToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.programToolStripMenuItem.Name = "programToolStripMenuItem";
             this.programToolStripMenuItem.Size = new System.Drawing.Size(78, 24);
@@ -77,14 +79,14 @@
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(105, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
-            // izlazToolStripMenuItem
+            // toolStripExitApp
             // 
-            this.izlazToolStripMenuItem.Name = "izlazToolStripMenuItem";
-            this.izlazToolStripMenuItem.Size = new System.Drawing.Size(108, 24);
-            this.izlazToolStripMenuItem.Text = "Izlaz";
-            this.izlazToolStripMenuItem.Click += new System.EventHandler(this.izlazToolStripMenuItem_Click);
+            this.toolStripExitApp.Name = "toolStripExitApp";
+            this.toolStripExitApp.Size = new System.Drawing.Size(180, 24);
+            this.toolStripExitApp.Text = "Izlaz";
+            this.toolStripExitApp.Click += new System.EventHandler(this.izlazToolStripMenuItem_Click);
             // 
             // prooizvodToolStripMenuItem
             // 
@@ -99,14 +101,14 @@
             // noviProizvodToolStripMenuItem
             // 
             this.noviProizvodToolStripMenuItem.Name = "noviProizvodToolStripMenuItem";
-            this.noviProizvodToolStripMenuItem.Size = new System.Drawing.Size(161, 24);
+            this.noviProizvodToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.noviProizvodToolStripMenuItem.Text = "Novi artikal";
             this.noviProizvodToolStripMenuItem.Click += new System.EventHandler(this.noviProizvodToolStripMenuItem_Click);
             // 
             // listaProizvodaToolStripMenuItem
             // 
             this.listaProizvodaToolStripMenuItem.Name = "listaProizvodaToolStripMenuItem";
-            this.listaProizvodaToolStripMenuItem.Size = new System.Drawing.Size(161, 24);
+            this.listaProizvodaToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.listaProizvodaToolStripMenuItem.Text = "Lista artikala";
             this.listaProizvodaToolStripMenuItem.Click += new System.EventHandler(this.listaProizvodaToolStripMenuItem_Click);
             // 
@@ -151,26 +153,26 @@
             // 
             this.noviKrolToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.noviKrolToolStripMenuItem.Name = "noviKrolToolStripMenuItem";
-            this.noviKrolToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
+            this.noviKrolToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.noviKrolToolStripMenuItem.Text = "Novi krol";
             this.noviKrolToolStripMenuItem.Click += new System.EventHandler(this.noviKrolToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(172, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
             // 
             // toolStripCrosstab
             // 
             this.toolStripCrosstab.Name = "toolStripCrosstab";
-            this.toolStripCrosstab.Size = new System.Drawing.Size(175, 24);
+            this.toolStripCrosstab.Size = new System.Drawing.Size(180, 24);
             this.toolStripCrosstab.Text = "Crosstab lista";
             this.toolStripCrosstab.Click += new System.EventHandler(this.toolStripCrosstab_Click);
             // 
             // toolStripGrouped
             // 
             this.toolStripGrouped.Name = "toolStripGrouped";
-            this.toolStripGrouped.Size = new System.Drawing.Size(175, 24);
+            this.toolStripGrouped.Size = new System.Drawing.Size(180, 24);
             this.toolStripGrouped.Text = "Grupisana lista";
             this.toolStripGrouped.Click += new System.EventHandler(this.toolStripGrouped_Click);
             // 
@@ -189,6 +191,12 @@
             this.mainTestToolStripMenuItem.Size = new System.Drawing.Size(269, 24);
             this.mainTestToolStripMenuItem.Text = "Cenovnici i lageri dobavljača";
             this.mainTestToolStripMenuItem.Click += new System.EventHandler(this.mainTestToolStripMenuItem_Click);
+            // 
+            // toolStripSettings
+            // 
+            this.toolStripSettings.Name = "toolStripSettings";
+            this.toolStripSettings.Size = new System.Drawing.Size(180, 24);
+            this.toolStripSettings.Text = "Podešavanja";
             // 
             // frmMainWindow
             // 
@@ -217,7 +225,7 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem programToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripMenuItem izlazToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripExitApp;
         private System.Windows.Forms.ToolStripMenuItem prooizvodToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem noviProizvodToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem listaProizvodaToolStripMenuItem;
@@ -231,6 +239,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripCrosstab;
         private System.Windows.Forms.ToolStripMenuItem b2BToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mainTestToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripSettings;
     }
 }
 

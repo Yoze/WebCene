@@ -255,7 +255,7 @@
             // 
             // isLoaded
             // 
-            this.isLoaded.HeaderText = "Xml Deserijal.";
+            this.isLoaded.HeaderText = "Deserialized";
             this.isLoaded.Name = "isLoaded";
             this.isLoaded.ReadOnly = true;
             this.isLoaded.Resizable = System.Windows.Forms.DataGridViewTriState.False;
@@ -263,7 +263,7 @@
             // 
             // numberOfRecords
             // 
-            this.numberOfRecords.HeaderText = "Ukupno zapisa";
+            this.numberOfRecords.HeaderText = "Uk.Zapisa";
             this.numberOfRecords.Name = "numberOfRecords";
             this.numberOfRecords.ReadOnly = true;
             this.numberOfRecords.Width = 80;
@@ -279,7 +279,7 @@
             // 
             // dataSource
             // 
-            this.dataSource.HeaderText = "Izvor podataka";
+            this.dataSource.HeaderText = "Izvor";
             this.dataSource.Name = "dataSource";
             this.dataSource.ReadOnly = true;
             this.dataSource.Width = 80;
