@@ -33,6 +33,12 @@
             this.btnWebService = new System.Windows.Forms.Button();
             this.btnLoadXmls = new System.Windows.Forms.Button();
             this.dgvStatus = new System.Windows.Forms.DataGridView();
+            this.rbr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dobavljac = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isLoaded = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.numberOfRecords = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.statusDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataSource = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvZbirniXml = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -41,12 +47,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
-            this.rbr = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dobavljac = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.isLoaded = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.numberOfRecords = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.statusDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataSource = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnCancelXmlLoading = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvZbirniXml)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
@@ -127,6 +128,53 @@
             this.dgvStatus.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvStatus.Size = new System.Drawing.Size(564, 515);
             this.dgvStatus.TabIndex = 5;
+            // 
+            // rbr
+            // 
+            this.rbr.HeaderText = "RB";
+            this.rbr.Name = "rbr";
+            this.rbr.ReadOnly = true;
+            this.rbr.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.rbr.Width = 40;
+            // 
+            // dobavljac
+            // 
+            this.dobavljac.HeaderText = "Dobavljač";
+            this.dobavljac.Name = "dobavljac";
+            this.dobavljac.ReadOnly = true;
+            this.dobavljac.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dobavljac.Width = 120;
+            // 
+            // isLoaded
+            // 
+            this.isLoaded.HeaderText = "Deserialized";
+            this.isLoaded.Name = "isLoaded";
+            this.isLoaded.ReadOnly = true;
+            this.isLoaded.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.isLoaded.Width = 80;
+            // 
+            // numberOfRecords
+            // 
+            this.numberOfRecords.HeaderText = "Uk.Zapisa";
+            this.numberOfRecords.Name = "numberOfRecords";
+            this.numberOfRecords.ReadOnly = true;
+            this.numberOfRecords.Width = 80;
+            // 
+            // statusDesc
+            // 
+            this.statusDesc.HeaderText = "Opis statusa";
+            this.statusDesc.MinimumWidth = 50;
+            this.statusDesc.Name = "statusDesc";
+            this.statusDesc.ReadOnly = true;
+            this.statusDesc.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.statusDesc.Width = 160;
+            // 
+            // dataSource
+            // 
+            this.dataSource.HeaderText = "Izvor";
+            this.dataSource.Name = "dataSource";
+            this.dataSource.ReadOnly = true;
+            this.dataSource.Width = 80;
             // 
             // dgvZbirniXml
             // 
@@ -219,6 +267,7 @@
             // flowLayoutPanel2
             // 
             this.flowLayoutPanel2.Controls.Add(this.btnLoadXmls);
+            this.flowLayoutPanel2.Controls.Add(this.btnCancelXmlLoading);
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel2.Location = new System.Drawing.Point(1116, 83);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
@@ -237,52 +286,17 @@
             this.label2.TabIndex = 11;
             this.label2.Text = "Učitavanje cenovnika i lagera dobavljača";
             // 
-            // rbr
+            // btnCancelXmlLoading
             // 
-            this.rbr.HeaderText = "RB";
-            this.rbr.Name = "rbr";
-            this.rbr.ReadOnly = true;
-            this.rbr.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.rbr.Width = 40;
-            // 
-            // dobavljac
-            // 
-            this.dobavljac.HeaderText = "Dobavljač";
-            this.dobavljac.Name = "dobavljac";
-            this.dobavljac.ReadOnly = true;
-            this.dobavljac.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dobavljac.Width = 120;
-            // 
-            // isLoaded
-            // 
-            this.isLoaded.HeaderText = "Deserialized";
-            this.isLoaded.Name = "isLoaded";
-            this.isLoaded.ReadOnly = true;
-            this.isLoaded.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.isLoaded.Width = 80;
-            // 
-            // numberOfRecords
-            // 
-            this.numberOfRecords.HeaderText = "Uk.Zapisa";
-            this.numberOfRecords.Name = "numberOfRecords";
-            this.numberOfRecords.ReadOnly = true;
-            this.numberOfRecords.Width = 80;
-            // 
-            // statusDesc
-            // 
-            this.statusDesc.HeaderText = "Opis statusa";
-            this.statusDesc.MinimumWidth = 50;
-            this.statusDesc.Name = "statusDesc";
-            this.statusDesc.ReadOnly = true;
-            this.statusDesc.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.statusDesc.Width = 160;
-            // 
-            // dataSource
-            // 
-            this.dataSource.HeaderText = "Izvor";
-            this.dataSource.Name = "dataSource";
-            this.dataSource.ReadOnly = true;
-            this.dataSource.Width = 80;
+            this.btnCancelXmlLoading.Enabled = false;
+            this.btnCancelXmlLoading.Location = new System.Drawing.Point(5, 45);
+            this.btnCancelXmlLoading.Margin = new System.Windows.Forms.Padding(5);
+            this.btnCancelXmlLoading.Name = "btnCancelXmlLoading";
+            this.btnCancelXmlLoading.Size = new System.Drawing.Size(120, 30);
+            this.btnCancelXmlLoading.TabIndex = 4;
+            this.btnCancelXmlLoading.Text = "Prekini";
+            this.btnCancelXmlLoading.UseVisualStyleBackColor = true;
+            this.btnCancelXmlLoading.Click += new System.EventHandler(this.btnCancelXmlLoading_Click);
             // 
             // frmMainB2B
             // 
@@ -330,5 +344,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn numberOfRecords;
         private System.Windows.Forms.DataGridViewTextBoxColumn statusDesc;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataSource;
+        private System.Windows.Forms.Button btnCancelXmlLoading;
     }
 }
