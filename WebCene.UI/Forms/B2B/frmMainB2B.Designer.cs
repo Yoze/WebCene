@@ -46,8 +46,9 @@
             this.lblStatus = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
-            this.label2 = new System.Windows.Forms.Label();
             this.btnCancelXmlLoading = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvZbirniXml)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
@@ -274,6 +275,17 @@
             this.flowLayoutPanel2.Size = new System.Drawing.Size(134, 595);
             this.flowLayoutPanel2.TabIndex = 10;
             // 
+            // btnCancelXmlLoading
+            // 
+            this.btnCancelXmlLoading.Location = new System.Drawing.Point(5, 45);
+            this.btnCancelXmlLoading.Margin = new System.Windows.Forms.Padding(5);
+            this.btnCancelXmlLoading.Name = "btnCancelXmlLoading";
+            this.btnCancelXmlLoading.Size = new System.Drawing.Size(120, 30);
+            this.btnCancelXmlLoading.TabIndex = 4;
+            this.btnCancelXmlLoading.Text = "Prekini";
+            this.btnCancelXmlLoading.UseVisualStyleBackColor = true;
+            this.btnCancelXmlLoading.Click += new System.EventHandler(this.btnCancelXmlLoading_Click);
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -285,18 +297,6 @@
             this.label2.Size = new System.Drawing.Size(301, 21);
             this.label2.TabIndex = 11;
             this.label2.Text = "Učitavanje cenovnika i lagera dobavljača";
-            // 
-            // btnCancelXmlLoading
-            // 
-            this.btnCancelXmlLoading.Enabled = false;
-            this.btnCancelXmlLoading.Location = new System.Drawing.Point(5, 45);
-            this.btnCancelXmlLoading.Margin = new System.Windows.Forms.Padding(5);
-            this.btnCancelXmlLoading.Name = "btnCancelXmlLoading";
-            this.btnCancelXmlLoading.Size = new System.Drawing.Size(120, 30);
-            this.btnCancelXmlLoading.TabIndex = 4;
-            this.btnCancelXmlLoading.Text = "Prekini";
-            this.btnCancelXmlLoading.UseVisualStyleBackColor = true;
-            this.btnCancelXmlLoading.Click += new System.EventHandler(this.btnCancelXmlLoading_Click);
             // 
             // frmMainB2B
             // 
@@ -345,5 +345,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn statusDesc;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataSource;
         private System.Windows.Forms.Button btnCancelXmlLoading;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }

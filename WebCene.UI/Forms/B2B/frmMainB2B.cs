@@ -28,23 +28,36 @@ namespace WebCene.UI.Forms.B2B
         private List<B2B_Results_RowItem> B2B_Results_Rows_AllSuppliers;
 
         // Token source koji se koristi za cancel-ovanje taska koji učitava xml-ove
-        private CancellationTokenSource tokenSource;
+        //private CancellationTokenSource tokenSource;
 
         // Task koji učitava xml fajlove sa ftp. Deklarisan je ovde kako bi Cancel dugme moglo da prekine učitavanje
-        Task loadXmlFilesForAllSuppliers;
+        //Task loadXmlFilesForAllSuppliers;
 
 
+        //bool cancelXmlLoading = false;
+
+
+        
 
 
         public frmMainB2B()
         {
             InitializeComponent();
 
+            // background worker - učitava xml fajlove dobavljača
+            backgroundWorker1.WorkerReportsProgress = true;
+            backgroundWorker1.WorkerSupportsCancellation = true;
+
+            // Backgroundworker events
+            backgroundWorker1.DoWork += BackgroundWorker1_DoWork;
+            backgroundWorker1.ProgressChanged += BackgroundWorker1_ProgressChanged;
+            backgroundWorker1.RunWorkerCompleted += BackgroundWorker1_RunWorkerCompleted;
+
             B2B_Results_Rows_AllSuppliers = new List<B2B_Results_RowItem>();
             SetXmlLoadingStatusMessage("", true);
         }
-        
 
+        
 
         private void btnWebService_Click(object sender, EventArgs e)
         {
@@ -58,36 +71,43 @@ namespace WebCene.UI.Forms.B2B
         private void btnLoadXmls_Click(object sender, EventArgs e)
         {
 
-            // disable btn Ucitaj
-            btnLoadXmls.Enabled = false;
+            //// disable btn Ucitaj
+            //btnLoadXmls.Enabled = false;
 
-            
-
-
-
-            tokenSource = new CancellationTokenSource();
-
-            CancellationToken token = tokenSource.Token;
-
-            // enable cancel button
-            btnLoadXmls.Enabled = true;
-
-            loadXmlFilesForAllSuppliers = Task.Factory.StartNew(() =>
+            if (backgroundWorker1.IsBusy != true)
             {
-                while (!token.IsCancellationRequested)
-                {
-                    LoadXmlFilesForAllSuppliers();
-                }
-                if (token.IsCancellationRequested)
-                {
-                    token.ThrowIfCancellationRequested();
-                }
+                backgroundWorker1.RunWorkerAsync();
+            }
+
+          
+           // LoadXmlFilesForAllSuppliers();
 
 
-            }, token);
 
-            
 
+            //tokenSource = new CancellationTokenSource();
+
+            //CancellationToken token = tokenSource.Token;
+
+            //// enable cancel button
+            //btnLoadXmls.Enabled = true;
+
+            //loadXmlFilesForAllSuppliers = Task.Factory.StartNew(() =>
+            //{
+            //    while (!token.IsCancellationRequested)
+            //    {
+            //        LoadXmlFilesForAllSuppliers();
+            //    }
+            //    if (token.IsCancellationRequested)
+            //    {
+            //        token.ThrowIfCancellationRequested();
+            //    }
+
+
+            //}, token);
+
+
+            #region OBSOLETE
 
             //// lista učitanih rezultata - clear
             //B2B_Results_Rows_AllSuppliers.Clear();
@@ -155,15 +175,15 @@ namespace WebCene.UI.Forms.B2B
             //SetXmlLoadingStatusMessage("Učitavanje je završeno. Učitano je " + B2B_Results_Rows_AllSuppliers.Count.ToString() + " zapisa", true);
 
 
-            // enable btn Ucitaj
-            btnLoadXmls.Enabled = true;
+            #endregion
+
+            //// enable btn Ucitaj
+            //btnLoadXmls.Enabled = true;
 
         }
 
 
-
-
-        private void LoadXmlFilesForAllSuppliers()
+        private void ClearResultsControls()
         {
             // lista učitanih rezultata - clear
             B2B_Results_Rows_AllSuppliers.Clear();
@@ -171,18 +191,40 @@ namespace WebCene.UI.Forms.B2B
             // prikaz svih rezultata - clear
             DisplayB2B_Results_Rows(B2B_Results_Rows_AllSuppliers);
 
+            ClearXmlLoadingStatuses();
+
+            SetXmlLoadingStatusMessage("Učitavanje konfiguracija ", true);
+        }
+
+
+        private void LoadXmlFilesForAllSuppliers(object sender)
+        {
+            // lista učitanih rezultata - clear
+           // B2B_Results_Rows_AllSuppliers.Clear();
+
+            // prikaz svih rezultata - clear
+            //DisplayB2B_Results_Rows(B2B_Results_Rows_AllSuppliers);
+
 
             // Xml rezultat za jednog dobavljača
             List<B2B_Results_RowItem> b2B_Results_RowItems;
             List<KonfigDobavljaca> suppliersConfigurations = DBHelper.Instance.GetAllSupplierConfigurations();
             int itemNumber = 1;
 
-            ClearXmlLoadingStatuses();
-            SetXmlLoadingStatusMessage("Učitavanje konfiguracija ", true);
+            //ClearXmlLoadingStatuses();
+            //SetXmlLoadingStatusMessage("Učitavanje konfiguracija ", true);
 
+            BackgroundWorker worker = sender as BackgroundWorker;
 
-            foreach (KonfigDobavljaca supplierConfiguration in suppliersConfigurations)
+            int totalSuppliers = suppliersConfigurations.Count();
+
+            for ( int i = 0; i < totalSuppliers; i++)
             {
+
+                // report progress
+                //worker.ReportProgress(i / totalSuppliers * 100, suppliersConfigurations[i]);
+
+
                 b2B_Results_RowItems = new List<B2B_Results_RowItem>();
 
                 // učitavanje podataka
@@ -192,47 +234,50 @@ namespace WebCene.UI.Forms.B2B
 
                 try
                 {
-                    SetXmlLoadingStatusMessage("Učitavanje podataka " + supplierConfiguration.Naziv, true);
+                    //SetXmlLoadingStatusMessage("Učitavanje podataka " + supplierConfiguration.Naziv, true);
+                    worker.ReportProgress(i / totalSuppliers * 100, suppliersConfigurations[i]);
 
-                    b2B_Results_RowItems = XMLHelper.Instance.GetB2B_Results_RowItems_PerSupplier(supplierConfiguration);
+
+                    b2B_Results_RowItems = XMLHelper.Instance.GetB2B_Results_RowItems_PerSupplier(suppliersConfigurations[i]);
 
                     // set loading status
                     numberOfRecords = b2B_Results_RowItems.Count;
 
                     if (numberOfRecords == 0) isLoaded = false;
-                    loadedXmlStatus = SetXmlLoadingStatus(itemNumber, supplierConfiguration.Naziv, supplierConfiguration.URL, isLoaded, numberOfRecords, XMLHelper.StatusDescription, supplierConfiguration);
+                    loadedXmlStatus = SetXmlLoadingStatus(itemNumber, suppliersConfigurations[i].Naziv, suppliersConfigurations[i].URL, isLoaded, numberOfRecords, XMLHelper.StatusDescription, suppliersConfigurations[i]);
                 }
+
                 catch (Exception xcp)
                 {
 
-                    SetXmlLoadingStatusMessage("Greška " + supplierConfiguration.Naziv, true);
+                    // TO DO: podesiti prikaze statusa, razdvojiti 'SetXmlLoadingStatusMessage' na Success i Failure metode
+
+                    // SetXmlLoadingStatusMessage("Greška " + supplierConfiguration.Naziv, true);
 
                     // set loading status
                     isLoaded = false;
-                    loadedXmlStatus = SetXmlLoadingStatus(itemNumber, supplierConfiguration.Naziv, supplierConfiguration.URL, isLoaded, numberOfRecords, XMLHelper.StatusDescription, supplierConfiguration);
-                    DisplayXmlLoadingStatusMessageRow(loadedXmlStatus);
+                    loadedXmlStatus = SetXmlLoadingStatus(itemNumber, suppliersConfigurations[i].Naziv, suppliersConfigurations[i].URL, isLoaded, numberOfRecords, XMLHelper.StatusDescription, suppliersConfigurations[i]);
+                   // DisplayXmlLoadingStatusMessageRow(loadedXmlStatus);
 
                     itemNumber++;
                     continue;
                 }
 
-                DisplayXmlLoadingStatusMessageRow(loadedXmlStatus);
+                //DisplayXmlLoadingStatusMessageRow(loadedXmlStatus);
                 itemNumber++;
 
                 // dodavanje u listu rezultata učitavanja
                 B2B_Results_Rows_AllSuppliers.AddRange(b2B_Results_RowItems);
             }
 
-            // prikaz svih rezultata učitavanja
-            DisplayB2B_Results_Rows(B2B_Results_Rows_AllSuppliers);
+            //// prikaz svih rezultata učitavanja
+            //DisplayB2B_Results_Rows(B2B_Results_Rows_AllSuppliers);
 
-            SetXmlLoadingStatusMessage("Završeno.", true);
+            //SetXmlLoadingStatusMessage("Završeno.", true);
 
-            SetXmlLoadingStatusMessage("Učitavanje je završeno. Učitano je " + B2B_Results_Rows_AllSuppliers.Count.ToString() + " zapisa", true);
+            //SetXmlLoadingStatusMessage("Učitavanje je završeno. Učitano je " + B2B_Results_Rows_AllSuppliers.Count.ToString() + " zapisa", true);
         }
-
-
-
+               
 
         public void SetXmlLoadingStatusMessage(string text, bool visibility)
         {
@@ -240,8 +285,8 @@ namespace WebCene.UI.Forms.B2B
             lblStatus.Refresh();
 
             //lblStatus.Visible = visibility;
-
         }
+
 
         private void ClearXmlLoadingStatuses()
         {
@@ -251,8 +296,8 @@ namespace WebCene.UI.Forms.B2B
             // status tabela
             dgvStatus.Rows.Clear();
             dgvStatus.Refresh();
-
         }
+
 
         private LoadedXmlStatus SetXmlLoadingStatus(int redniBroj, string nazivDobavljaca, string url, bool isLoaded, int numberOfRecords, string statusDescription, KonfigDobavljaca konfigDobavljaca)
         {
@@ -293,8 +338,7 @@ namespace WebCene.UI.Forms.B2B
             row.CreateCells(dgvStatus);
 
             // prkaz kolona u prikazu statusa učitavanja
-            row.SetValues
-                (
+            row.SetValues (
                 status.Number, 
                 status.Naziv, 
                 isLoaded, 
@@ -303,7 +347,7 @@ namespace WebCene.UI.Forms.B2B
                 status.DataSource
                 );
 
-            // if isLoaded == false then row is marked
+            // markira kolonu u crveno ako deserijalizacija xml-a nije uspela 
             if (!status.IsLoaded)
             {
                 DataGridViewCellStyle style = new DataGridViewCellStyle();
@@ -318,27 +362,81 @@ namespace WebCene.UI.Forms.B2B
             dgvStatus.Refresh();
         }
 
+
         private void btnCancelXmlLoading_Click(object sender, EventArgs e)
         {
+            // Cancel xml loading dugme
 
-            try
+            if (backgroundWorker1.WorkerSupportsCancellation == true)
             {
-                tokenSource.Cancel();
-                loadXmlFilesForAllSuppliers.Wait();
-
-                btnLoadXmls.Enabled = true;
-
-                btnLoadXmls.Enabled = false;
+                backgroundWorker1.CancelAsync();
             }
-            catch (AggregateException xcp)
-            {
-                MessageBox.Show("Učitavanje Xml podataka", "Učitavanje je prekinuto.\r\n" + xcp.InnerExceptions[0].Message);
 
-                btnLoadXmls.Enabled = true;
 
-                btnLoadXmls.Enabled = false;
-            }
-           
+            //btnLoadXmls.Enabled = true;
+
+            //btnLoadXmls.Enabled = false;
         }
+
+
+
+        /** Background worker učitavanje xml fajlova dobavljača */
+
+        private void BackgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (e.Cancelled == true)
+            {
+                // resultLabel.Text = "Canceled!";
+                MessageBox.Show("Canceled");
+            }
+            else if (e.Error != null)
+            {
+                // resultLabel.Text = "Error: " + e.Error.Message;
+            }
+            else
+            {
+                // resultLabel.Text = "Done!";
+                MessageBox.Show("Done");
+            }
+        }
+
+
+        private void BackgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            // TO DO: refresh UI controls
+
+            KonfigDobavljaca supplierConfiguration = e.UserState as KonfigDobavljaca;
+
+            SetXmlLoadingStatusMessage("Učitavanje podataka " + supplierConfiguration.Naziv, true);
+
+          
+        }
+
+
+        private void BackgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+            BackgroundWorker worker = sender as BackgroundWorker;
+
+            if (worker.CancellationPending == true)
+            {
+                e.Cancel = true;
+            }
+            else
+            {
+                // brisanje sadržaja liste statusa i pregleda učitanih cenovnika 
+                ClearResultsControls();
+
+                // sender se šalje kao argument zbog prijavljivanja progress changed događaja
+                LoadXmlFilesForAllSuppliers(sender);
+            }
+        }
+
+
+
+
+      
+
+
+
     }
 }
