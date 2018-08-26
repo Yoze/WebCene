@@ -87,7 +87,6 @@ namespace WebCene.Helper
                                     loadedXmlDocFromHttpRequest.StatusDescription = "Transfer completed.";
                                 }
 
-
                                 return loadedXmlDocFromHttpRequest;
                             }
                         }

@@ -49,12 +49,16 @@
             this.btnCancelXmlLoading = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
+            this.progressBgWorker1 = new System.Windows.Forms.ProgressBar();
+            this.progressLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvZbirniXml)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
+            this.flowLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -106,6 +110,8 @@
             // 
             this.dgvStatus.AllowUserToAddRows = false;
             this.dgvStatus.AllowUserToDeleteRows = false;
+            this.dgvStatus.AllowUserToResizeColumns = false;
+            this.dgvStatus.AllowUserToResizeRows = false;
             this.dgvStatus.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgvStatus.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvStatus.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
@@ -119,13 +125,13 @@
             this.statusDesc,
             this.dataSource});
             this.dgvStatus.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvStatus.Enabled = false;
             this.dgvStatus.Location = new System.Drawing.Point(3, 63);
             this.dgvStatus.MultiSelect = false;
             this.dgvStatus.Name = "dgvStatus";
             this.dgvStatus.ReadOnly = true;
             this.dgvStatus.RowHeadersVisible = false;
             this.dgvStatus.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dgvStatus.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgvStatus.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvStatus.Size = new System.Drawing.Size(564, 515);
             this.dgvStatus.TabIndex = 5;
@@ -179,6 +185,10 @@
             // 
             // dgvZbirniXml
             // 
+            this.dgvZbirniXml.AllowUserToAddRows = false;
+            this.dgvZbirniXml.AllowUserToDeleteRows = false;
+            this.dgvZbirniXml.AllowUserToOrderColumns = true;
+            this.dgvZbirniXml.AllowUserToResizeRows = false;
             this.dgvZbirniXml.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.dgvZbirniXml.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgvZbirniXml.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -204,6 +214,7 @@
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel2, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel3, 0, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -298,6 +309,40 @@
             this.label2.TabIndex = 11;
             this.label2.Text = "Učitavanje cenovnika i lagera dobavljača";
             // 
+            // backgroundWorker1
+            // 
+            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.BackgroundWorker1_DoWork);
+            this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.BackgroundWorker1_ProgressChanged);
+            this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.BackgroundWorker1_RunWorkerCompleted);
+            // 
+            // flowLayoutPanel3
+            // 
+            this.flowLayoutPanel3.Controls.Add(this.progressBgWorker1);
+            this.flowLayoutPanel3.Controls.Add(this.progressLabel);
+            this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(3, 684);
+            this.flowLayoutPanel3.Name = "flowLayoutPanel3";
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(584, 44);
+            this.flowLayoutPanel3.TabIndex = 12;
+            // 
+            // progressBgWorker1
+            // 
+            this.progressBgWorker1.Location = new System.Drawing.Point(10, 10);
+            this.progressBgWorker1.Margin = new System.Windows.Forms.Padding(10);
+            this.progressBgWorker1.Name = "progressBgWorker1";
+            this.progressBgWorker1.Size = new System.Drawing.Size(163, 23);
+            this.progressBgWorker1.TabIndex = 0;
+            // 
+            // progressLabel
+            // 
+            this.progressLabel.AutoSize = true;
+            this.progressLabel.Location = new System.Drawing.Point(183, 15);
+            this.progressLabel.Margin = new System.Windows.Forms.Padding(0, 15, 15, 15);
+            this.progressLabel.Name = "progressLabel";
+            this.progressLabel.Size = new System.Drawing.Size(38, 13);
+            this.progressLabel.TabIndex = 1;
+            this.progressLabel.Text = "label3";
+            // 
             // frmMainB2B
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -319,6 +364,8 @@
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             this.flowLayoutPanel2.ResumeLayout(false);
+            this.flowLayoutPanel3.ResumeLayout(false);
+            this.flowLayoutPanel3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -346,5 +393,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataSource;
         private System.Windows.Forms.Button btnCancelXmlLoading;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
+        private System.Windows.Forms.ProgressBar progressBgWorker1;
+        private System.Windows.Forms.Label progressLabel;
     }
 }

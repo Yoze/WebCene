@@ -24,5 +24,7 @@ namespace WebCene.Model.B2B
 
         public string DataSource { get; set; }
 
+        public KonfigDobavljaca konfigDobavljaca { get; set; }
+
     }
 }
