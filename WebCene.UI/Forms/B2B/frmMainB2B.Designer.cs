@@ -48,10 +48,10 @@
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnCancelXmlLoading = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
             this.progressBgWorker1 = new System.Windows.Forms.ProgressBar();
             this.progressLabel = new System.Windows.Forms.Label();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvZbirniXml)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
@@ -309,12 +309,6 @@
             this.label2.TabIndex = 11;
             this.label2.Text = "Učitavanje cenovnika i lagera dobavljača";
             // 
-            // backgroundWorker1
-            // 
-            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.BackgroundWorker1_DoWork);
-            this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.BackgroundWorker1_ProgressChanged);
-            this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.BackgroundWorker1_RunWorkerCompleted);
-            // 
             // flowLayoutPanel3
             // 
             this.flowLayoutPanel3.Controls.Add(this.progressBgWorker1);
@@ -330,18 +324,26 @@
             this.progressBgWorker1.Location = new System.Drawing.Point(10, 10);
             this.progressBgWorker1.Margin = new System.Windows.Forms.Padding(10);
             this.progressBgWorker1.Name = "progressBgWorker1";
-            this.progressBgWorker1.Size = new System.Drawing.Size(163, 23);
+            this.progressBgWorker1.Size = new System.Drawing.Size(258, 23);
+            this.progressBgWorker1.Step = 1;
+            this.progressBgWorker1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.progressBgWorker1.TabIndex = 0;
             // 
             // progressLabel
             // 
             this.progressLabel.AutoSize = true;
-            this.progressLabel.Location = new System.Drawing.Point(183, 15);
+            this.progressLabel.Location = new System.Drawing.Point(278, 15);
             this.progressLabel.Margin = new System.Windows.Forms.Padding(0, 15, 15, 15);
             this.progressLabel.Name = "progressLabel";
             this.progressLabel.Size = new System.Drawing.Size(38, 13);
             this.progressLabel.TabIndex = 1;
             this.progressLabel.Text = "label3";
+            // 
+            // backgroundWorker1
+            // 
+            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.BackgroundWorker1_DoWork);
+            this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.BackgroundWorker1_ProgressChanged);
+            this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.BackgroundWorker1_RunWorkerCompleted);
             // 
             // frmMainB2B
             // 

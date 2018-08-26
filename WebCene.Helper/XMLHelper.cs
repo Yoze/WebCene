@@ -113,7 +113,7 @@ namespace WebCene.Helper
                     {
                         switch (konfigDobavljaca.ModelCenovnik)
                         {
-                            case "PIN":
+                            case "PIN_CENOVNIK":
                                 {
                                     /** PIN CLient */
                                     StockWebserviceClient pinServiceClient = new StockWebserviceClient("StockWebservicePort");
