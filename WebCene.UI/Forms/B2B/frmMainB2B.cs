@@ -136,7 +136,7 @@ namespace WebCene.UI.Forms.B2B
                 catch (Exception xcp)
                 { 
 
-                    SetXmlLoadingStatusMessage("Greška " + suppliersConfigurations[currentSupplierIndex].Naziv, true);
+                    //SetXmlLoadingStatusMessage("Greška " + suppliersConfigurations[currentSupplierIndex].Naziv, true);
 
                     // set loaded xmlStatuses
                     isLoaded = false;

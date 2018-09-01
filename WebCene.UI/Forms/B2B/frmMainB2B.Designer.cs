@@ -335,9 +335,9 @@
             this.progressLabel.Location = new System.Drawing.Point(278, 15);
             this.progressLabel.Margin = new System.Windows.Forms.Padding(0, 15, 15, 15);
             this.progressLabel.Name = "progressLabel";
-            this.progressLabel.Size = new System.Drawing.Size(38, 13);
+            this.progressLabel.Size = new System.Drawing.Size(16, 13);
             this.progressLabel.TabIndex = 1;
-            this.progressLabel.Text = "label3";
+            this.progressLabel.Text = "%";
             // 
             // backgroundWorker1
             // 
