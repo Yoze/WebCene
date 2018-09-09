@@ -41,6 +41,7 @@
             this.dataSource = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvZbirniXml = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.loaderPictureBox = new System.Windows.Forms.PictureBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.lblStatus = new System.Windows.Forms.Label();
@@ -49,12 +50,14 @@
             this.btnCancelXmlLoading = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
+            this.label3 = new System.Windows.Forms.Label();
             this.progressBgWorker1 = new System.Windows.Forms.ProgressBar();
             this.progressLabel = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvZbirniXml)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.loaderPictureBox)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
@@ -124,6 +127,7 @@
             this.numberOfRecords,
             this.statusDesc,
             this.dataSource});
+            this.tableLayoutPanel2.SetColumnSpan(this.dgvStatus, 2);
             this.dgvStatus.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvStatus.Location = new System.Drawing.Point(3, 63);
             this.dgvStatus.MultiSelect = false;
@@ -225,6 +229,22 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1273, 731);
             this.tableLayoutPanel1.TabIndex = 7;
             // 
+            // loaderPictureBox
+            // 
+            this.loaderPictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.loaderPictureBox.Image = global::WebCene.UI.Properties.Resources.loader_4;
+            this.loaderPictureBox.Location = new System.Drawing.Point(445, 15);
+            this.loaderPictureBox.Margin = new System.Windows.Forms.Padding(5, 15, 5, 5);
+            this.loaderPictureBox.MaximumSize = new System.Drawing.Size(120, 32);
+            this.loaderPictureBox.MinimumSize = new System.Drawing.Size(120, 32);
+            this.loaderPictureBox.Name = "loaderPictureBox";
+            this.tableLayoutPanel2.SetRowSpan(this.loaderPictureBox, 2);
+            this.loaderPictureBox.Size = new System.Drawing.Size(120, 32);
+            this.loaderPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.loaderPictureBox.TabIndex = 5;
+            this.loaderPictureBox.TabStop = false;
+            this.loaderPictureBox.Visible = false;
+            // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.button1);
@@ -237,9 +257,10 @@
             // 
             // tableLayoutPanel2
             // 
-            this.tableLayoutPanel2.ColumnCount = 1;
+            this.tableLayoutPanel2.ColumnCount = 2;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130F));
+            this.tableLayoutPanel2.Controls.Add(this.loaderPictureBox, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.lblStatus, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.dgvStatus, 0, 2);
@@ -256,23 +277,27 @@
             // 
             // lblStatus
             // 
-            this.lblStatus.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblStatus.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.lblStatus.AutoSize = true;
             this.lblStatus.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lblStatus.Location = new System.Drawing.Point(3, 30);
+            this.lblStatus.Location = new System.Drawing.Point(5, 35);
+            this.lblStatus.Margin = new System.Windows.Forms.Padding(5);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(564, 17);
+            this.lblStatus.Size = new System.Drawing.Size(70, 20);
             this.lblStatus.TabIndex = 6;
             this.lblStatus.Text = "status label";
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.Location = new System.Drawing.Point(3, 0);
+            this.label1.Location = new System.Drawing.Point(5, 5);
+            this.label1.Margin = new System.Windows.Forms.Padding(5);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(55, 21);
+            this.label1.Size = new System.Drawing.Size(55, 20);
             this.label1.TabIndex = 0;
             this.label1.Text = "Status";
             // 
@@ -311,6 +336,7 @@
             // 
             // flowLayoutPanel3
             // 
+            this.flowLayoutPanel3.Controls.Add(this.label3);
             this.flowLayoutPanel3.Controls.Add(this.progressBgWorker1);
             this.flowLayoutPanel3.Controls.Add(this.progressLabel);
             this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -319,9 +345,19 @@
             this.flowLayoutPanel3.Size = new System.Drawing.Size(584, 44);
             this.flowLayoutPanel3.TabIndex = 12;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(15, 15);
+            this.label3.Margin = new System.Windows.Forms.Padding(15, 15, 0, 15);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(46, 13);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Progres";
+            // 
             // progressBgWorker1
             // 
-            this.progressBgWorker1.Location = new System.Drawing.Point(10, 10);
+            this.progressBgWorker1.Location = new System.Drawing.Point(71, 10);
             this.progressBgWorker1.Margin = new System.Windows.Forms.Padding(10);
             this.progressBgWorker1.Name = "progressBgWorker1";
             this.progressBgWorker1.Size = new System.Drawing.Size(258, 23);
@@ -332,7 +368,7 @@
             // progressLabel
             // 
             this.progressLabel.AutoSize = true;
-            this.progressLabel.Location = new System.Drawing.Point(278, 15);
+            this.progressLabel.Location = new System.Drawing.Point(339, 15);
             this.progressLabel.Margin = new System.Windows.Forms.Padding(0, 15, 15, 15);
             this.progressLabel.Name = "progressLabel";
             this.progressLabel.Size = new System.Drawing.Size(16, 13);
@@ -362,6 +398,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvZbirniXml)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.loaderPictureBox)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
@@ -398,5 +435,7 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
         private System.Windows.Forms.ProgressBar progressBgWorker1;
         private System.Windows.Forms.Label progressLabel;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.PictureBox loaderPictureBox;
     }
 }

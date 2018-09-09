@@ -28,7 +28,7 @@
     <PublisherName>Elbraco</PublisherName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>WebKroler.htm</WebPage>
-    <ApplicationRevision>15</ApplicationRevision>
+    <ApplicationRevision>16</ApplicationRevision>
     <ApplicationVersion>1.6.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -286,6 +286,21 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\loader_1.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\loader_2.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\loader_2a.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\loader_2b.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\loader_4.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

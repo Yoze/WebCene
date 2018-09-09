@@ -55,7 +55,9 @@ namespace WebCene.UI.Forms.B2B
             {
                 // clear results and status views
                 ClearResultsControls();
-                
+
+                // run loader image
+                loaderPictureBox.Visible = true;
 
                 // run worker
                 backgroundWorker1.RunWorkerAsync();
@@ -243,6 +245,10 @@ namespace WebCene.UI.Forms.B2B
         {
             // Cancel xml loading dugme
 
+            // loader image
+            loaderPictureBox.Visible = false;
+
+            // bsackground worker
             if (backgroundWorker1.WorkerSupportsCancellation == true)
             {
                 backgroundWorker1.CancelAsync();
@@ -256,24 +262,36 @@ namespace WebCene.UI.Forms.B2B
         private void BackgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             if (e.Cancelled == true)
-            {               
+            {
+                // loader image
+                loaderPictureBox.Visible = false;
+
                 DisplayPopUpMessage("Korisnik je prekinuo učitavanje podataka!", "Učitavanje podataka", null);
 
                 // progress bar
                 progressBgWorker1.Value = 0;
-                progressLabel.Text = "0";
+                progressLabel.Text = "0";               
             }
 
             else if (e.Error != null)
-            {    
+            {
+                // loader image
+                loaderPictureBox.Visible = false;
+
                 DisplayPopUpMessage("Greška prilikom učitavanje podataka!\r\nPokušaj ponovo ili kontaktiraj podršku ukoliko se greška ponovi.\r\nErr: " + e.Error, "Učitavanje podataka", null);
+               
             }
 
             else
             {
+                // loader image
+                loaderPictureBox.Visible = false;
+
+                // status
                 DisplayB2B_Results_Rows(B2B_Results_Rows_AllSuppliers);
                 SetXmlLoadingStatusMessage("Učitavanje je završeno. Učitano je " + B2B_Results_Rows_AllSuppliers.Count.ToString() + " zapisa", true);
 
+                // message box
                 DisplayPopUpMessage("Učitavanje je završeno. Učitano je " + B2B_Results_Rows_AllSuppliers.Count.ToString() + " zapisa", "Učitavanje podataka", null);
             }
         }
