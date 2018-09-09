@@ -139,6 +139,10 @@ namespace WebCene.Helper
                                     {
                                         for (int i = 0; i < pinItems.Count; i++)
                                         {
+
+                                            // skip empty ean rows
+                                            if (string.IsNullOrEmpty(pinItems[i].ean)) continue;                                            
+
                                             B2B_Results_RowItem xmlRezultat = new B2B_Results_RowItem()
                                             {
                                                 Barcode = pinItems[i].ean,
@@ -157,7 +161,9 @@ namespace WebCene.Helper
 
                             case "COMTRADE":
                                 {
-                                    // TO DO comtrade web service
+                                    // Napravljen je poseban utility koji se nalazi na elbraco cloud-u.
+                                    // Ovaj utility preuzima podatke sa CT B2B i kopira generisani xml fajl na Elbraco Ftp 
+                                    // u folder 'ftp://ftp.elbraco.rs/elcomtradeCenovnik'
                                 }
                                 break;
 
@@ -274,6 +280,9 @@ namespace WebCene.Helper
                     extNS.orbico.ORBICO_CENOVNIK orbicoCenovnik = new extNS.orbico.ORBICO_CENOVNIK(konfigDobavljaca, ucitaniXmlDocument);
                     return b2B_Results_RowItems = orbicoCenovnik.b2B_Results_RowItems;
 
+                case "COMTRADE_CENOVNIK":
+                    extNS.comtrade.COMTRADE_CENOVNIK comtradeCenovnik = new extNS.comtrade.COMTRADE_CENOVNIK(konfigDobavljaca, ucitaniXmlDocument);
+                    return b2B_Results_RowItems = comtradeCenovnik.b2B_Results_RowItems;
 
                 default:
                     return b2B_Results_RowItems;
