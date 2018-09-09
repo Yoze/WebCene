@@ -71,8 +71,6 @@ namespace WebCene.Model.B2B.comtrade
 
 
 
-    // NOTE: Generated code may require at least .NET Framework 4.5 or .NET Core/Standard 2.0.
-    /// <remarks/>
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
@@ -80,83 +78,61 @@ namespace WebCene.Model.B2B.comtrade
     public partial class ArrayOfCTPRODUCT
     {
 
-        /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("CTPRODUCT")]
         public ArrayOfCTPRODUCTCTPRODUCT[] CTPRODUCT { get; set; }
     }
 
-    /// <remarks/>
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
     public partial class ArrayOfCTPRODUCTCTPRODUCT
     {
 
-        /// <remarks/>
         public object ExtensionData { get; set; }
 
-        /// <remarks/>
         public string CODE { get; set; }
 
-        /// <remarks/>
         public string PRODUCTGROUPCODE { get; set; }
 
-        /// <remarks/>
         public string NAME { get; set; }
 
-        /// <remarks/>
         public string MANUFACTURER { get; set; }
 
-        /// <remarks/>
         public string MANUFACTURERCODE { get; set; }
 
-        /// <remarks/>
         public byte QTTYINSTOCK { get; set; }
 
-        /// <remarks/>
         public byte TAX { get; set; }
 
-        /// <remarks/>
         public string PRICE { get; set; }
 
-        /// <remarks/>
         public string RETAILPRICE { get; set; }
 
-        /// <remarks/>
         public string SHORT_DESCRIPTION { get; set; }
 
-        /// <remarks/>
         public string WARRANTY { get; set; }
 
-        /// <remarks/>
         public string EUR_ExchangeRate { get; set; }
 
-        /// <remarks/>
         public string BARCODE { get; set; }
 
-        /// <remarks/>
         [System.Xml.Serialization.XmlArrayItemAttribute(IsNullable = false)]
         public string[] IMAGE_URLS { get; set; }
 
-        /// <remarks/>
         [System.Xml.Serialization.XmlArrayItemAttribute("ProductAttribute", IsNullable = false)]
         public ArrayOfCTPRODUCTCTPRODUCTProductAttribute[] ATTRIBUTES { get; set; }
     }
 
-    /// <remarks/>
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
     public partial class ArrayOfCTPRODUCTCTPRODUCTProductAttribute
     {
 
-        /// <remarks/>
         public object ExtensionData { get; set; }
 
-        /// <remarks/>
         public string AttributeValue { get; set; }
 
-        /// <remarks/>
         public string AttributeCode { get; set; }
     }
 
