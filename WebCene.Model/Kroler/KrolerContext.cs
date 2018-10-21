@@ -21,7 +21,7 @@ namespace WebCene.Model.Kroler
         public DbSet<Proizvod> Proizvod { get; set; }
         public DbSet<Podesavanja> Podesavanja { get; set; }
         public DbSet<KonfigDobavljaca> KonfigDobavljaca { get; set; }
-
+        public virtual DbSet<MarzeDobavljaca> MarzeDobavljaca { get; set; }
 
         // Views
         public virtual DbSet<viewKrolStavke> viewKrolStavke { get; set; }
@@ -41,6 +41,23 @@ namespace WebCene.Model.Kroler
             modelBuilder.Entity<KonfigDobavljaca>()
                .Property(e => e.WebProtokol)
                .IsFixedLength();
+
+            modelBuilder.Entity<KonfigDobavljaca>()
+                .Property(e => e.KeoficijentMarze)
+                .HasPrecision(5, 2);
+
+            modelBuilder.Entity<KonfigDobavljaca>()
+                .Property(e => e.KursEvra)
+                .HasPrecision(5, 2);
+
+            modelBuilder.Entity<KonfigDobavljaca>()
+                .HasMany(e => e.MarzeDobavljaca)
+                .WithRequired(e => e.KonfigDobavljaca)
+                .HasForeignKey(e => e.IdDobavljaca);
+
+            modelBuilder.Entity<MarzeDobavljaca>()
+                .Property(e => e.MarzaProc)
+                .HasPrecision(4, 2);
         }
     }
 }

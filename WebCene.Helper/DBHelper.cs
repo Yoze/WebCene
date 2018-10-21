@@ -30,7 +30,7 @@ namespace WebCene.Helper
 
 
         /** Public methods */
-        public KonfigDobavljaca GetSingleSupplierConfiguration(int id)
+        public KonfigDobavljaca GetSingleSupplierConfiguration(int supplierId)
         {
             KonfigDobavljaca konfiguracijaDobavljaca = new KonfigDobavljaca();
 
@@ -39,7 +39,7 @@ namespace WebCene.Helper
                 using (KrolerContext db = new KrolerContext())
                 {
                     konfiguracijaDobavljaca = db.KonfigDobavljaca
-                        .Where(d => d.Id == id)
+                        .Where(d => d.Id == supplierId)
                         .FirstOrDefault();
                 }
             }

@@ -80,6 +80,7 @@
     <Compile Include="B2B\B2B_Results_RowsItems.cs" />
     <Compile Include="B2B\LoadedXmlStatus.cs" />
     <Compile Include="B2B\B2B_Results_RowItem.cs" />
+    <Compile Include="B2B\MarzeDobavljaca.cs" />
     <Compile Include="Connected Services\CT_ServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

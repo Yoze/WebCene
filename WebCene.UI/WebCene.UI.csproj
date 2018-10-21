@@ -99,6 +99,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\B2B\frmKonfigDobavljaca.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\B2B\frmKonfigDobavljaca.Designer.cs">
+      <DependentUpon>frmKonfigDobavljaca.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\B2B\frmMainB2B.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -179,6 +185,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="RezultatKrolaZaPrikaz.cs" />
+    <EmbeddedResource Include="Forms\B2B\frmKonfigDobavljaca.resx">
+      <DependentUpon>frmKonfigDobavljaca.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\B2B\frmMainB2B.resx">
       <DependentUpon>frmMainB2B.cs</DependentUpon>
     </EmbeddedResource>

@@ -28,20 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.btnWebService = new System.Windows.Forms.Button();
             this.btnLoadXmls = new System.Windows.Forms.Button();
             this.dgvStatus = new System.Windows.Forms.DataGridView();
-            this.rbr = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dobavljac = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.isLoaded = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.numberOfRecords = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.statusDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataSource = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvZbirniXml = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.loaderPictureBox = new System.Windows.Forms.PictureBox();
             this.lblStatus = new System.Windows.Forms.Label();
@@ -53,49 +43,26 @@
             this.label3 = new System.Windows.Forms.Label();
             this.progressBgWorker1 = new System.Windows.Forms.ProgressBar();
             this.progressLabel = new System.Windows.Forms.Label();
+            this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.lblStopaPdv = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.rbr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dobavljac = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isLoaded = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.numberOfRecords = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.statusDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataSource = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdDobavljaca = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvZbirniXml)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.loaderPictureBox)).BeginInit();
             this.flowLayoutPanel2.SuspendLayout();
             this.flowLayoutPanel3.SuspendLayout();
+            this.flowLayoutPanel4.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // button1
-            // 
-            this.button1.Enabled = false;
-            this.button1.Location = new System.Drawing.Point(3, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(76, 32);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "ftp";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Visible = false;
-            // 
-            // button2
-            // 
-            this.button2.Enabled = false;
-            this.button2.Location = new System.Drawing.Point(85, 3);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(76, 32);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "http";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Visible = false;
-            // 
-            // btnWebService
-            // 
-            this.btnWebService.Location = new System.Drawing.Point(167, 3);
-            this.btnWebService.Name = "btnWebService";
-            this.btnWebService.Size = new System.Drawing.Size(76, 32);
-            this.btnWebService.TabIndex = 2;
-            this.btnWebService.Text = "web service";
-            this.btnWebService.UseVisualStyleBackColor = true;
-            this.btnWebService.Visible = false;
-            this.btnWebService.Click += new System.EventHandler(this.btnWebService_Click);
             // 
             // btnLoadXmls
             // 
@@ -119,14 +86,15 @@
             this.dgvStatus.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvStatus.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgvStatus.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            this.dgvStatus.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvStatus.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvStatus.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.rbr,
             this.dobavljac,
             this.isLoaded,
             this.numberOfRecords,
             this.statusDesc,
-            this.dataSource});
+            this.dataSource,
+            this.IdDobavljaca});
             this.tableLayoutPanel2.SetColumnSpan(this.dgvStatus, 2);
             this.dgvStatus.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvStatus.Location = new System.Drawing.Point(3, 63);
@@ -134,58 +102,11 @@
             this.dgvStatus.Name = "dgvStatus";
             this.dgvStatus.ReadOnly = true;
             this.dgvStatus.RowHeadersVisible = false;
-            this.dgvStatus.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dgvStatus.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgvStatus.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvStatus.Size = new System.Drawing.Size(564, 515);
             this.dgvStatus.TabIndex = 5;
-            // 
-            // rbr
-            // 
-            this.rbr.HeaderText = "RB";
-            this.rbr.Name = "rbr";
-            this.rbr.ReadOnly = true;
-            this.rbr.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.rbr.Width = 40;
-            // 
-            // dobavljac
-            // 
-            this.dobavljac.HeaderText = "Dobavljač";
-            this.dobavljac.Name = "dobavljac";
-            this.dobavljac.ReadOnly = true;
-            this.dobavljac.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dobavljac.Width = 120;
-            // 
-            // isLoaded
-            // 
-            this.isLoaded.HeaderText = "Deserialized";
-            this.isLoaded.Name = "isLoaded";
-            this.isLoaded.ReadOnly = true;
-            this.isLoaded.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.isLoaded.Width = 80;
-            // 
-            // numberOfRecords
-            // 
-            this.numberOfRecords.HeaderText = "Uk.Zapisa";
-            this.numberOfRecords.Name = "numberOfRecords";
-            this.numberOfRecords.ReadOnly = true;
-            this.numberOfRecords.Width = 80;
-            // 
-            // statusDesc
-            // 
-            this.statusDesc.HeaderText = "Opis statusa";
-            this.statusDesc.MinimumWidth = 50;
-            this.statusDesc.Name = "statusDesc";
-            this.statusDesc.ReadOnly = true;
-            this.statusDesc.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.statusDesc.Width = 160;
-            // 
-            // dataSource
-            // 
-            this.dataSource.HeaderText = "Izvor";
-            this.dataSource.Name = "dataSource";
-            this.dataSource.ReadOnly = true;
-            this.dataSource.Width = 80;
+            this.dgvStatus.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvStatus_CellMouseDoubleClick);
             // 
             // dgvZbirniXml
             // 
@@ -213,12 +134,12 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 140F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.dgvZbirniXml, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel2, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel3, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel4, 1, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -228,16 +149,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1273, 731);
             this.tableLayoutPanel1.TabIndex = 7;
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.Controls.Add(this.button1);
-            this.flowLayoutPanel1.Controls.Add(this.button2);
-            this.flowLayoutPanel1.Controls.Add(this.btnWebService);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(593, 684);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(384, 44);
-            this.flowLayoutPanel1.TabIndex = 8;
             // 
             // tableLayoutPanel2
             // 
@@ -375,11 +286,99 @@
             this.progressLabel.TabIndex = 1;
             this.progressLabel.Text = "%";
             // 
+            // flowLayoutPanel4
+            // 
+            this.flowLayoutPanel4.Controls.Add(this.label4);
+            this.flowLayoutPanel4.Controls.Add(this.lblStopaPdv);
+            this.flowLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel4.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel4.Location = new System.Drawing.Point(593, 684);
+            this.flowLayoutPanel4.Name = "flowLayoutPanel4";
+            this.flowLayoutPanel4.Padding = new System.Windows.Forms.Padding(5);
+            this.flowLayoutPanel4.Size = new System.Drawing.Size(517, 44);
+            this.flowLayoutPanel4.TabIndex = 14;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(8, 5);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(79, 13);
+            this.label4.TabIndex = 13;
+            this.label4.Text = "Stopa PDV (%)";
+            // 
+            // lblStopaPdv
+            // 
+            this.lblStopaPdv.AutoSize = true;
+            this.lblStopaPdv.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblStopaPdv.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lblStopaPdv.Location = new System.Drawing.Point(8, 18);
+            this.lblStopaPdv.Name = "lblStopaPdv";
+            this.lblStopaPdv.Size = new System.Drawing.Size(45, 17);
+            this.lblStopaPdv.TabIndex = 14;
+            this.lblStopaPdv.Text = "label5";
+            // 
             // backgroundWorker1
             // 
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.BackgroundWorker1_DoWork);
             this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.BackgroundWorker1_ProgressChanged);
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.BackgroundWorker1_RunWorkerCompleted);
+            // 
+            // rbr
+            // 
+            this.rbr.HeaderText = "RB";
+            this.rbr.Name = "rbr";
+            this.rbr.ReadOnly = true;
+            this.rbr.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.rbr.Width = 40;
+            // 
+            // dobavljac
+            // 
+            this.dobavljac.HeaderText = "Dobavljač";
+            this.dobavljac.Name = "dobavljac";
+            this.dobavljac.ReadOnly = true;
+            this.dobavljac.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dobavljac.Width = 120;
+            // 
+            // isLoaded
+            // 
+            this.isLoaded.HeaderText = "Deserialized";
+            this.isLoaded.Name = "isLoaded";
+            this.isLoaded.ReadOnly = true;
+            this.isLoaded.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.isLoaded.Width = 80;
+            // 
+            // numberOfRecords
+            // 
+            this.numberOfRecords.HeaderText = "Uk.Zapisa";
+            this.numberOfRecords.Name = "numberOfRecords";
+            this.numberOfRecords.ReadOnly = true;
+            this.numberOfRecords.Width = 80;
+            // 
+            // statusDesc
+            // 
+            this.statusDesc.HeaderText = "Opis statusa";
+            this.statusDesc.MinimumWidth = 50;
+            this.statusDesc.Name = "statusDesc";
+            this.statusDesc.ReadOnly = true;
+            this.statusDesc.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.statusDesc.Width = 160;
+            // 
+            // dataSource
+            // 
+            this.dataSource.HeaderText = "Izvor";
+            this.dataSource.Name = "dataSource";
+            this.dataSource.ReadOnly = true;
+            this.dataSource.Width = 80;
+            // 
+            // IdDobavljaca
+            // 
+            this.IdDobavljaca.HeaderText = "IdDobavljaca";
+            this.IdDobavljaca.Name = "IdDobavljaca";
+            this.IdDobavljaca.ReadOnly = true;
+            this.IdDobavljaca.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.IdDobavljaca.Visible = false;
+            this.IdDobavljaca.Width = 5;
             // 
             // frmMainB2B
             // 
@@ -398,38 +397,28 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvZbirniXml)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            this.flowLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.loaderPictureBox)).EndInit();
             this.flowLayoutPanel2.ResumeLayout(false);
             this.flowLayoutPanel3.ResumeLayout(false);
             this.flowLayoutPanel3.PerformLayout();
+            this.flowLayoutPanel4.ResumeLayout(false);
+            this.flowLayoutPanel4.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button btnWebService;
         private System.Windows.Forms.Button btnLoadXmls;
         private System.Windows.Forms.DataGridView dgvStatus;
         private System.Windows.Forms.DataGridView dgvZbirniXml;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Label label1;
         public System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn rbr;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dobavljac;
-        private System.Windows.Forms.DataGridViewTextBoxColumn isLoaded;
-        private System.Windows.Forms.DataGridViewTextBoxColumn numberOfRecords;
-        private System.Windows.Forms.DataGridViewTextBoxColumn statusDesc;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataSource;
         private System.Windows.Forms.Button btnCancelXmlLoading;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
@@ -437,5 +426,15 @@
         private System.Windows.Forms.Label progressLabel;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.PictureBox loaderPictureBox;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel4;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblStopaPdv;
+        private System.Windows.Forms.DataGridViewTextBoxColumn rbr;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dobavljac;
+        private System.Windows.Forms.DataGridViewTextBoxColumn isLoaded;
+        private System.Windows.Forms.DataGridViewTextBoxColumn numberOfRecords;
+        private System.Windows.Forms.DataGridViewTextBoxColumn statusDesc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdDobavljaca;
     }
 }
