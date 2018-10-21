@@ -27,7 +27,7 @@ namespace WebCene.Model.B2B.mkaCenovnik
         {
             List<B2B_Results_RowItem> podaciZaPrikaz = new List<B2B_Results_RowItem>();
 
-            extNS.mkaCenovnik.Dokument mkaCenovnik = new Dokument();
+            Dokument mkaCenovnik = new Dokument();
 
 
             var serializer = new XmlSerializer(typeof(extNS.mkaCenovnik.Dokument));
@@ -78,7 +78,6 @@ namespace WebCene.Model.B2B.mkaCenovnik
         public DokumentStavka[] Stavke { get; set; }
     }
 
-
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
@@ -91,7 +90,7 @@ namespace WebCene.Model.B2B.mkaCenovnik
 
         public string ArtID { get; set; }
 
-        public string BarKod { get; set; }
+        public decimal BarKod { get; set; }
 
         public string JM { get; set; }
 
@@ -107,10 +106,6 @@ namespace WebCene.Model.B2B.mkaCenovnik
 
         public string Proizvodjac { get; set; }
     }
-
-
-
-
 
 
 

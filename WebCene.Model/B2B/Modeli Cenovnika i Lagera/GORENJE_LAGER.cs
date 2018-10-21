@@ -30,7 +30,7 @@ namespace WebCene.Model.B2B.gorenjeLager
             extNS.gorenjeLager.Root gorenjeLager = new Root();
 
 
-            var serializer = new XmlSerializer(typeof(extNS.gorenjeLager.Root));
+            var serializer = new XmlSerializer(typeof(Root));
             using (XmlReader reader = new XmlNodeReader(ucitaniXmlDocument.LoadedXmlDocumentItem))
             {
                 gorenjeLager = (Root)serializer.Deserialize(reader); 
@@ -61,6 +61,32 @@ namespace WebCene.Model.B2B.gorenjeLager
         }
     }
 
+    //[System.SerializableAttribute()]
+    //[System.ComponentModel.DesignerCategoryAttribute("code")]
+    //[System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    //[System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
+    //public partial class Root
+    //{
+
+    //    [System.Xml.Serialization.XmlElementAttribute("Row")]
+    //    public RootRow[] Row { get; set; }
+    //}
+
+    //[System.SerializableAttribute()]
+    //[System.ComponentModel.DesignerCategoryAttribute("code")]
+    //[System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    //public partial class RootRow
+    //{
+
+    //    public string barcode { get; set; }
+
+    //    public int kolicina { get; set; }
+    //}
+
+
+
+    // NOTE: Generated code may require at least .NET Framework 4.5 or .NET Core/Standard 2.0.
+    /// <remarks/>
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
@@ -68,20 +94,28 @@ namespace WebCene.Model.B2B.gorenjeLager
     public partial class Root
     {
 
+        /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("Row")]
         public RootRow[] Row { get; set; }
     }
 
+    /// <remarks/>
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
     public partial class RootRow
     {
 
+        /// <remarks/>
         public string barcode { get; set; }
 
-        public int kolicina { get; set; }
+        /// <remarks/>
+        public byte kolicina { get; set; }
     }
+
+
+
+
 
 
 

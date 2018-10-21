@@ -61,33 +61,38 @@ namespace WebCene.Model.B2B.gorenje
 
     }
 
+    
 
-
-
+    //// NOTE: Generated code may require at least .NET Framework 4.5 or .NET Core/Standard 2.0.
+    ///// <remarks/>
     //[System.SerializableAttribute()]
     //[System.ComponentModel.DesignerCategoryAttribute("code")]
     //[System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
     //[System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
     //public partial class Root
     //{
+
+    //    /// <remarks/>
     //    [System.Xml.Serialization.XmlElementAttribute("Row")]
     //    public RootRow[] Row { get; set; }
     //}
 
+    ///// <remarks/>
     //[System.SerializableAttribute()]
     //[System.ComponentModel.DesignerCategoryAttribute("code")]
     //[System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
     //public partial class RootRow
     //{
 
-    //    public string barcod { get; set; }
+    //    /// <remarks/>
+    //    public ulong barcode { get; set; }
 
-    //    public decimal NNC { get; set; }
+    //    /// <remarks/>
+    //    public uint NNC { get; set; }
 
+    //    /// <remarks/>
     //    public uint PMC { get; set; }
     //}
-
-
 
 
 
@@ -117,12 +122,15 @@ namespace WebCene.Model.B2B.gorenje
         public ulong barcode { get; set; }
 
         /// <remarks/>
-        public uint NNC { get; set; }
+        public decimal NNC { get; set; }
 
         /// <remarks/>
         public uint PMC { get; set; }
-    }
 
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool PMCSpecified { get; set; }
+    }
 
 
 
