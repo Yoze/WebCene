@@ -41,9 +41,9 @@
             this.dataSource = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvZbirniXml = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.loaderPictureBox = new System.Windows.Forms.PictureBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.loaderPictureBox = new System.Windows.Forms.PictureBox();
             this.lblStatus = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
@@ -57,9 +57,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvZbirniXml)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.loaderPictureBox)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.loaderPictureBox)).BeginInit();
             this.flowLayoutPanel2.SuspendLayout();
             this.flowLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
@@ -229,22 +229,6 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1273, 731);
             this.tableLayoutPanel1.TabIndex = 7;
             // 
-            // loaderPictureBox
-            // 
-            this.loaderPictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.loaderPictureBox.Image = global::WebCene.UI.Properties.Resources.loader_4;
-            this.loaderPictureBox.Location = new System.Drawing.Point(445, 15);
-            this.loaderPictureBox.Margin = new System.Windows.Forms.Padding(5, 15, 5, 5);
-            this.loaderPictureBox.MaximumSize = new System.Drawing.Size(120, 32);
-            this.loaderPictureBox.MinimumSize = new System.Drawing.Size(120, 32);
-            this.loaderPictureBox.Name = "loaderPictureBox";
-            this.tableLayoutPanel2.SetRowSpan(this.loaderPictureBox, 2);
-            this.loaderPictureBox.Size = new System.Drawing.Size(120, 32);
-            this.loaderPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.loaderPictureBox.TabIndex = 5;
-            this.loaderPictureBox.TabStop = false;
-            this.loaderPictureBox.Visible = false;
-            // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.button1);
@@ -274,6 +258,22 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(570, 581);
             this.tableLayoutPanel2.TabIndex = 9;
+            // 
+            // loaderPictureBox
+            // 
+            this.loaderPictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.loaderPictureBox.Image = global::WebCene.UI.Properties.Resources.loader_4;
+            this.loaderPictureBox.Location = new System.Drawing.Point(445, 15);
+            this.loaderPictureBox.Margin = new System.Windows.Forms.Padding(5, 15, 5, 5);
+            this.loaderPictureBox.MaximumSize = new System.Drawing.Size(120, 32);
+            this.loaderPictureBox.MinimumSize = new System.Drawing.Size(120, 32);
+            this.loaderPictureBox.Name = "loaderPictureBox";
+            this.tableLayoutPanel2.SetRowSpan(this.loaderPictureBox, 2);
+            this.loaderPictureBox.Size = new System.Drawing.Size(120, 32);
+            this.loaderPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.loaderPictureBox.TabIndex = 5;
+            this.loaderPictureBox.TabStop = false;
+            this.loaderPictureBox.Visible = false;
             // 
             // lblStatus
             // 
@@ -398,10 +398,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvZbirniXml)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.loaderPictureBox)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.loaderPictureBox)).EndInit();
             this.flowLayoutPanel2.ResumeLayout(false);
             this.flowLayoutPanel3.ResumeLayout(false);
             this.flowLayoutPanel3.PerformLayout();
