@@ -30,47 +30,50 @@
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.lblNaziv = new System.Windows.Forms.Label();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.btnDodajMarzu = new System.Windows.Forms.Button();
+            this.flowLayoutPanelModelDetails = new System.Windows.Forms.FlowLayoutPanel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.lab = new System.Windows.Forms.Label();
+            this.txtCenovnikFilename = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtLagerFilename = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtWebProtokol = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtUrl = new System.Windows.Forms.TextBox();
+            this.flowLayoutPanelRebateDetails = new System.Windows.Forms.FlowLayoutPanel();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtKursEvra = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtkoeficijentMarze = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnSnimi = new System.Windows.Forms.Button();
             this.btnOdustani = new System.Windows.Forms.Button();
-            this.flowLayoutPanelMain = new System.Windows.Forms.FlowLayoutPanel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtNaziv = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.flowLayoutPanelModelDetails = new System.Windows.Forms.FlowLayoutPanel();
-            this.label6 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.flowLayoutPanelRebateDetails = new System.Windows.Forms.FlowLayoutPanel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel1.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
-            this.flowLayoutPanelMain.SuspendLayout();
-            this.flowLayoutPanelModelDetails.SuspendLayout();
-            this.flowLayoutPanelRebateDetails.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.flowLayoutPanelModelDetails.SuspendLayout();
+            this.flowLayoutPanelRebateDetails.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 5;
+            this.tableLayoutPanel1.ColumnCount = 4;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33332F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.99999F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.00002F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 22F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Controls.Add(this.lblNaziv, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 3, 4);
-            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanelMain, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanelModelDetails, 2, 2);
-            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanelRebateDetails, 3, 2);
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel2, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanelModelDetails, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanelRebateDetails, 2, 2);
+            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 2, 4);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -90,20 +93,236 @@
             this.lblNaziv.AutoSize = true;
             this.lblNaziv.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblNaziv.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNaziv.Location = new System.Drawing.Point(23, 20);
+            this.lblNaziv.Location = new System.Drawing.Point(25, 25);
+            this.lblNaziv.Margin = new System.Windows.Forms.Padding(5);
             this.lblNaziv.Name = "lblNaziv";
             this.lblNaziv.Size = new System.Drawing.Size(54, 21);
             this.lblNaziv.TabIndex = 0;
             this.lblNaziv.Text = "Naziv";
             // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.Controls.Add(this.label1);
+            this.flowLayoutPanel2.Controls.Add(this.dataGridView1);
+            this.flowLayoutPanel2.Controls.Add(this.btnDodajMarzu);
+            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(23, 403);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Padding = new System.Windows.Forms.Padding(5);
+            this.tableLayoutPanel1.SetRowSpan(this.flowLayoutPanel2, 2);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(497, 244);
+            this.flowLayoutPanel2.TabIndex = 8;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 0);
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(10, 10);
+            this.label1.Margin = new System.Windows.Forms.Padding(5);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(45, 17);
             this.label1.TabIndex = 1;
             this.label1.Text = "Marže";
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(8, 35);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(483, 150);
+            this.dataGridView1.TabIndex = 2;
+            // 
+            // btnDodajMarzu
+            // 
+            this.btnDodajMarzu.Location = new System.Drawing.Point(8, 191);
+            this.btnDodajMarzu.Name = "btnDodajMarzu";
+            this.btnDodajMarzu.Size = new System.Drawing.Size(105, 23);
+            this.btnDodajMarzu.TabIndex = 3;
+            this.btnDodajMarzu.Text = "Nova marža";
+            this.btnDodajMarzu.UseVisualStyleBackColor = true;
+            // 
+            // flowLayoutPanelModelDetails
+            // 
+            this.flowLayoutPanelModelDetails.Controls.Add(this.label6);
+            this.flowLayoutPanelModelDetails.Controls.Add(this.lab);
+            this.flowLayoutPanelModelDetails.Controls.Add(this.txtCenovnikFilename);
+            this.flowLayoutPanelModelDetails.Controls.Add(this.label7);
+            this.flowLayoutPanelModelDetails.Controls.Add(this.txtLagerFilename);
+            this.flowLayoutPanelModelDetails.Controls.Add(this.label3);
+            this.flowLayoutPanelModelDetails.Controls.Add(this.txtWebProtokol);
+            this.flowLayoutPanelModelDetails.Controls.Add(this.label8);
+            this.flowLayoutPanelModelDetails.Controls.Add(this.txtUrl);
+            this.flowLayoutPanelModelDetails.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanelModelDetails.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanelModelDetails.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.flowLayoutPanelModelDetails.Location = new System.Drawing.Point(23, 63);
+            this.flowLayoutPanelModelDetails.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
+            this.flowLayoutPanelModelDetails.Name = "flowLayoutPanelModelDetails";
+            this.flowLayoutPanelModelDetails.Padding = new System.Windows.Forms.Padding(5);
+            this.flowLayoutPanelModelDetails.Size = new System.Drawing.Size(497, 327);
+            this.flowLayoutPanelModelDetails.TabIndex = 6;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(10, 10);
+            this.label6.Margin = new System.Windows.Forms.Padding(5, 5, 5, 15);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(88, 17);
+            this.label6.TabIndex = 7;
+            this.label6.Text = "Xml/Ftp info";
+            // 
+            // lab
+            // 
+            this.lab.AutoSize = true;
+            this.lab.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lab.Location = new System.Drawing.Point(8, 45);
+            this.lab.Margin = new System.Windows.Forms.Padding(3);
+            this.lab.Name = "lab";
+            this.lab.Size = new System.Drawing.Size(109, 13);
+            this.lab.TabIndex = 4;
+            this.lab.Text = "Naziv xml cenovnika";
+            // 
+            // txtCenovnikFilename
+            // 
+            this.txtCenovnikFilename.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtCenovnikFilename.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCenovnikFilename.Location = new System.Drawing.Point(8, 64);
+            this.txtCenovnikFilename.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
+            this.txtCenovnikFilename.Name = "txtCenovnikFilename";
+            this.txtCenovnikFilename.ReadOnly = true;
+            this.txtCenovnikFilename.Size = new System.Drawing.Size(287, 23);
+            this.txtCenovnikFilename.TabIndex = 3;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(8, 93);
+            this.label7.Margin = new System.Windows.Forms.Padding(3);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(89, 13);
+            this.label7.TabIndex = 5;
+            this.label7.Text = "Naziv xml lagera";
+            // 
+            // txtLagerFilename
+            // 
+            this.txtLagerFilename.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtLagerFilename.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtLagerFilename.Location = new System.Drawing.Point(8, 112);
+            this.txtLagerFilename.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
+            this.txtLagerFilename.Name = "txtLagerFilename";
+            this.txtLagerFilename.ReadOnly = true;
+            this.txtLagerFilename.Size = new System.Drawing.Size(287, 23);
+            this.txtLagerFilename.TabIndex = 6;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(8, 141);
+            this.label3.Margin = new System.Windows.Forms.Padding(3);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(79, 13);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Web protokol";
+            // 
+            // txtWebProtokol
+            // 
+            this.txtWebProtokol.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtWebProtokol.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtWebProtokol.Location = new System.Drawing.Point(8, 160);
+            this.txtWebProtokol.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
+            this.txtWebProtokol.Name = "txtWebProtokol";
+            this.txtWebProtokol.ReadOnly = true;
+            this.txtWebProtokol.Size = new System.Drawing.Size(287, 23);
+            this.txtWebProtokol.TabIndex = 6;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(8, 189);
+            this.label8.Margin = new System.Windows.Forms.Padding(3);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(27, 13);
+            this.label8.TabIndex = 7;
+            this.label8.Text = "URL";
+            // 
+            // txtUrl
+            // 
+            this.txtUrl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtUrl.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUrl.Location = new System.Drawing.Point(8, 208);
+            this.txtUrl.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
+            this.txtUrl.Name = "txtUrl";
+            this.txtUrl.ReadOnly = true;
+            this.txtUrl.Size = new System.Drawing.Size(287, 23);
+            this.txtUrl.TabIndex = 8;
+            // 
+            // flowLayoutPanelRebateDetails
+            // 
+            this.flowLayoutPanelRebateDetails.Controls.Add(this.label9);
+            this.flowLayoutPanelRebateDetails.Controls.Add(this.label4);
+            this.flowLayoutPanelRebateDetails.Controls.Add(this.txtKursEvra);
+            this.flowLayoutPanelRebateDetails.Controls.Add(this.label5);
+            this.flowLayoutPanelRebateDetails.Controls.Add(this.txtkoeficijentMarze);
+            this.flowLayoutPanelRebateDetails.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanelRebateDetails.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanelRebateDetails.Location = new System.Drawing.Point(526, 63);
+            this.flowLayoutPanelRebateDetails.Name = "flowLayoutPanelRebateDetails";
+            this.flowLayoutPanelRebateDetails.Padding = new System.Windows.Forms.Padding(5);
+            this.flowLayoutPanelRebateDetails.Size = new System.Drawing.Size(498, 334);
+            this.flowLayoutPanelRebateDetails.TabIndex = 7;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(10, 10);
+            this.label9.Margin = new System.Windows.Forms.Padding(5, 5, 5, 15);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(137, 17);
+            this.label9.TabIndex = 9;
+            this.label9.Text = "Parametri kalkulacije";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(8, 42);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(53, 13);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "Kurs evra";
+            // 
+            // txtKursEvra
+            // 
+            this.txtKursEvra.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtKursEvra.Location = new System.Drawing.Point(8, 58);
+            this.txtKursEvra.Name = "txtKursEvra";
+            this.txtKursEvra.Size = new System.Drawing.Size(108, 25);
+            this.txtKursEvra.TabIndex = 3;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(8, 86);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(94, 13);
+            this.label5.TabIndex = 5;
+            this.label5.Text = "Koeficijent marže";
+            // 
+            // txtkoeficijentMarze
+            // 
+            this.txtkoeficijentMarze.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtkoeficijentMarze.Location = new System.Drawing.Point(8, 102);
+            this.txtkoeficijentMarze.Name = "txtkoeficijentMarze";
+            this.txtkoeficijentMarze.Size = new System.Drawing.Size(108, 25);
+            this.txtkoeficijentMarze.TabIndex = 6;
             // 
             // flowLayoutPanel1
             // 
@@ -111,14 +330,14 @@
             this.flowLayoutPanel1.Controls.Add(this.btnOdustani);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(693, 603);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(526, 603);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(329, 44);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(498, 44);
             this.flowLayoutPanel1.TabIndex = 2;
             // 
             // btnSnimi
             // 
-            this.btnSnimi.Location = new System.Drawing.Point(204, 5);
+            this.btnSnimi.Location = new System.Drawing.Point(373, 5);
             this.btnSnimi.Margin = new System.Windows.Forms.Padding(5);
             this.btnSnimi.Name = "btnSnimi";
             this.btnSnimi.Size = new System.Drawing.Size(120, 30);
@@ -128,7 +347,7 @@
             // 
             // btnOdustani
             // 
-            this.btnOdustani.Location = new System.Drawing.Point(74, 5);
+            this.btnOdustani.Location = new System.Drawing.Point(243, 5);
             this.btnOdustani.Margin = new System.Windows.Forms.Padding(5);
             this.btnOdustani.Name = "btnOdustani";
             this.btnOdustani.Size = new System.Drawing.Size(120, 30);
@@ -136,140 +355,6 @@
             this.btnOdustani.Text = "Odustani";
             this.btnOdustani.UseVisualStyleBackColor = true;
             this.btnOdustani.Click += new System.EventHandler(this.btnOdustani_Click);
-            // 
-            // flowLayoutPanelMain
-            // 
-            this.flowLayoutPanelMain.Controls.Add(this.label2);
-            this.flowLayoutPanelMain.Controls.Add(this.txtNaziv);
-            this.flowLayoutPanelMain.Controls.Add(this.label3);
-            this.flowLayoutPanelMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanelMain.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanelMain.Location = new System.Drawing.Point(23, 63);
-            this.flowLayoutPanelMain.Name = "flowLayoutPanelMain";
-            this.flowLayoutPanelMain.Size = new System.Drawing.Size(329, 334);
-            this.flowLayoutPanelMain.TabIndex = 4;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(40, 17);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Naziv";
-            // 
-            // txtNaziv
-            // 
-            this.txtNaziv.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtNaziv.Location = new System.Drawing.Point(3, 20);
-            this.txtNaziv.Name = "txtNaziv";
-            this.txtNaziv.Size = new System.Drawing.Size(100, 25);
-            this.txtNaziv.TabIndex = 3;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 48);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(43, 17);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "label3";
-            // 
-            // flowLayoutPanelModelDetails
-            // 
-            this.flowLayoutPanelModelDetails.Controls.Add(this.label6);
-            this.flowLayoutPanelModelDetails.Controls.Add(this.textBox2);
-            this.flowLayoutPanelModelDetails.Controls.Add(this.label7);
-            this.flowLayoutPanelModelDetails.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanelModelDetails.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanelModelDetails.Location = new System.Drawing.Point(358, 63);
-            this.flowLayoutPanelModelDetails.Name = "flowLayoutPanelModelDetails";
-            this.flowLayoutPanelModelDetails.Size = new System.Drawing.Size(329, 334);
-            this.flowLayoutPanelModelDetails.TabIndex = 6;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(3, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(40, 17);
-            this.label6.TabIndex = 4;
-            this.label6.Text = "Naziv";
-            // 
-            // textBox2
-            // 
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox2.Location = new System.Drawing.Point(3, 20);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 25);
-            this.textBox2.TabIndex = 3;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(3, 48);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(43, 17);
-            this.label7.TabIndex = 5;
-            this.label7.Text = "label7";
-            // 
-            // flowLayoutPanelRebateDetails
-            // 
-            this.flowLayoutPanelRebateDetails.Controls.Add(this.label4);
-            this.flowLayoutPanelRebateDetails.Controls.Add(this.textBox1);
-            this.flowLayoutPanelRebateDetails.Controls.Add(this.label5);
-            this.flowLayoutPanelRebateDetails.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanelRebateDetails.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanelRebateDetails.Location = new System.Drawing.Point(693, 63);
-            this.flowLayoutPanelRebateDetails.Name = "flowLayoutPanelRebateDetails";
-            this.flowLayoutPanelRebateDetails.Size = new System.Drawing.Size(329, 334);
-            this.flowLayoutPanelRebateDetails.TabIndex = 7;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(40, 17);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "Naziv";
-            // 
-            // textBox1
-            // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Location = new System.Drawing.Point(3, 20);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 25);
-            this.textBox1.TabIndex = 3;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 48);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(43, 17);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "label5";
-            // 
-            // flowLayoutPanel2
-            // 
-            this.tableLayoutPanel1.SetColumnSpan(this.flowLayoutPanel2, 3);
-            this.flowLayoutPanel2.Controls.Add(this.label1);
-            this.flowLayoutPanel2.Controls.Add(this.dataGridView1);
-            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(23, 403);
-            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(999, 194);
-            this.flowLayoutPanel2.TabIndex = 8;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 20);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(654, 150);
-            this.dataGridView1.TabIndex = 2;
             // 
             // frmKonfigDobavljaca
             // 
@@ -286,16 +371,14 @@
             this.Text = "Konfiguracija dobavljača";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            this.flowLayoutPanel1.ResumeLayout(false);
-            this.flowLayoutPanelMain.ResumeLayout(false);
-            this.flowLayoutPanelMain.PerformLayout();
+            this.flowLayoutPanel2.ResumeLayout(false);
+            this.flowLayoutPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.flowLayoutPanelModelDetails.ResumeLayout(false);
             this.flowLayoutPanelModelDetails.PerformLayout();
             this.flowLayoutPanelRebateDetails.ResumeLayout(false);
             this.flowLayoutPanelRebateDetails.PerformLayout();
-            this.flowLayoutPanel2.ResumeLayout(false);
-            this.flowLayoutPanel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -308,19 +391,24 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button btnSnimi;
         private System.Windows.Forms.Button btnOdustani;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelMain;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtNaziv;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelModelDetails;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label lab;
+        private System.Windows.Forms.TextBox txtCenovnikFilename;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelRebateDetails;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtKursEvra;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.TextBox txtWebProtokol;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox txtUrl;
+        private System.Windows.Forms.TextBox txtLagerFilename;
+        private System.Windows.Forms.TextBox txtkoeficijentMarze;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button btnDodajMarzu;
     }
 }

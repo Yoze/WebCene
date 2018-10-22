@@ -23,8 +23,26 @@ namespace WebCene.UI.Forms.B2B
             if (konfigDobavljaca != null)
             {
                 KonfigDobavljaca = konfigDobavljaca;
-                lblNaziv.Text = konfigDobavljaca.Naziv;
+                MapPropsToControls(KonfigDobavljaca);
             }            
+        }
+
+
+        private void MapPropsToControls(KonfigDobavljaca konfigDobavljaca)
+        {
+            lblNaziv.Text = konfigDobavljaca.Naziv;
+            txtCenovnikFilename.Text = konfigDobavljaca.CenovnikFilename;
+            txtLagerFilename.Text = konfigDobavljaca.LagerFilename;
+            txtUrl.Text = konfigDobavljaca.URL;
+            txtWebProtokol.Text = konfigDobavljaca.WebProtokol;
+            txtkoeficijentMarze.Text = konfigDobavljaca.KeoficijentMarze.ToString("F2");
+            txtKursEvra.Text = konfigDobavljaca.KursEvra.ToString("F2");
+        }
+
+
+        private void MapControlsToProps()
+        {
+
         }
 
 
@@ -33,5 +51,7 @@ namespace WebCene.UI.Forms.B2B
         {
             Close();
         }
+
+      
     }
 }
