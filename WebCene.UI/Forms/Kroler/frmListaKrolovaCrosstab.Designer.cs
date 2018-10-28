@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.comboKategorije = new System.Windows.Forms.ComboBox();
             this.comboBrendovi = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -58,13 +58,13 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.grpBoxCenaMaloPM = new System.Windows.Forms.GroupBox();
+            this.checNNCDartikli = new System.Windows.Forms.CheckBox();
             this.chkCenaM = new System.Windows.Forms.CheckBox();
             this.chkBPAL = new System.Windows.Forms.CheckBox();
             this.chkKULA = new System.Windows.Forms.CheckBox();
             this.chkODZ = new System.Windows.Forms.CheckBox();
             this.chkAPA = new System.Windows.Forms.CheckBox();
             this.chkSO = new System.Windows.Forms.CheckBox();
-            this.checNNCDartikli = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgViewKrolDetalj)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -140,14 +140,14 @@
             this.dgViewKrolDetalj.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgViewKrolDetalj.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
             this.dgViewKrolDetalj.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgViewKrolDetalj.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgViewKrolDetalj.DefaultCellStyle = dataGridViewCellStyle1;
             this.dgViewKrolDetalj.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgViewKrolDetalj.Location = new System.Drawing.Point(3, 21);
             this.dgViewKrolDetalj.Margin = new System.Windows.Forms.Padding(10);
@@ -273,6 +273,7 @@
             this.lstViewKrolGlava.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lstViewKrolGlava.FullRowSelect = true;
             this.lstViewKrolGlava.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.lstViewKrolGlava.HideSelection = false;
             this.lstViewKrolGlava.Location = new System.Drawing.Point(3, 21);
             this.lstViewKrolGlava.Margin = new System.Windows.Forms.Padding(10);
             this.lstViewKrolGlava.MultiSelect = false;
@@ -439,6 +440,21 @@
             this.grpBoxCenaMaloPM.TabStop = false;
             this.grpBoxCenaMaloPM.Text = "CENAMALO (ARTPROD) * 0.9";
             // 
+            // checNNCDartikli
+            // 
+            this.checNNCDartikli.AutoSize = true;
+            this.checNNCDartikli.Checked = true;
+            this.checNNCDartikli.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checNNCDartikli.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.checNNCDartikli.Location = new System.Drawing.Point(255, 63);
+            this.checNNCDartikli.Name = "checNNCDartikli";
+            this.checNNCDartikli.Size = new System.Drawing.Size(118, 21);
+            this.checNNCDartikli.TabIndex = 6;
+            this.checNNCDartikli.Tag = "NNC";
+            this.checNNCDartikli.Text = "NNC (DARTIKLI)";
+            this.checNNCDartikli.UseVisualStyleBackColor = true;
+            this.checNNCDartikli.CheckedChanged += new System.EventHandler(this.checNNCDartikli_CheckedChanged);
+            // 
             // chkCenaM
             // 
             this.chkCenaM.AutoSize = true;
@@ -518,21 +534,6 @@
             this.chkSO.Text = "Sombor";
             this.chkSO.UseVisualStyleBackColor = true;
             this.chkSO.CheckedChanged += new System.EventHandler(this.chkSO_CheckedChanged);
-            // 
-            // checNNCDartikli
-            // 
-            this.checNNCDartikli.AutoSize = true;
-            this.checNNCDartikli.Checked = true;
-            this.checNNCDartikli.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checNNCDartikli.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.checNNCDartikli.Location = new System.Drawing.Point(255, 63);
-            this.checNNCDartikli.Name = "checNNCDartikli";
-            this.checNNCDartikli.Size = new System.Drawing.Size(118, 21);
-            this.checNNCDartikli.TabIndex = 6;
-            this.checNNCDartikli.Tag = "NNC";
-            this.checNNCDartikli.Text = "NNC (DARTIKLI)";
-            this.checNNCDartikli.UseVisualStyleBackColor = true;
-            this.checNNCDartikli.CheckedChanged += new System.EventHandler(this.checNNCDartikli_CheckedChanged);
             // 
             // frmListaKrolovaCrosstab
             // 

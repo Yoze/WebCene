@@ -28,12 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.lblNaziv = new System.Windows.Forms.Label();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.lvMarzeDobavljaca = new System.Windows.Forms.ListView();
+            this.colNncDonjiLimit = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colNncGornjiLimit = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colMarzaProc = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnDodajMarzu = new System.Windows.Forms.Button();
+            this.btnIzmeniMarzu = new System.Windows.Forms.Button();
+            this.btniObrisiMarzu = new System.Windows.Forms.Button();
             this.flowLayoutPanelModelDetails = new System.Windows.Forms.FlowLayoutPanel();
             this.label6 = new System.Windows.Forms.Label();
             this.lab = new System.Windows.Forms.Label();
@@ -53,33 +59,37 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnSnimi = new System.Windows.Forms.Button();
             this.btnOdustani = new System.Windows.Forms.Button();
-            this.lvDobavljaci = new System.Windows.Forms.ListView();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
+            this.lvDobavljaci = new System.Windows.Forms.ListView();
             this.colNaziv = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lblNaziv = new System.Windows.Forms.Label();
+            this.marzeDobavljacaBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.colId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.flowLayoutPanel4.SuspendLayout();
             this.flowLayoutPanelModelDetails.SuspendLayout();
             this.flowLayoutPanelRebateDetails.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.marzeDobavljacaBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 5;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 24F));
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel2, 2, 3);
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanelModelDetails, 2, 2);
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanelRebateDetails, 3, 2);
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 3, 4);
-            this.tableLayoutPanel1.Controls.Add(this.lblNaziv, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel3, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.lblNaziv, 2, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -88,36 +98,23 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 200F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 250F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1194, 670);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // lblNaziv
-            // 
-            this.lblNaziv.AutoSize = true;
-            this.lblNaziv.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblNaziv.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNaziv.Location = new System.Drawing.Point(25, 25);
-            this.lblNaziv.Margin = new System.Windows.Forms.Padding(5);
-            this.lblNaziv.Name = "lblNaziv";
-            this.lblNaziv.Size = new System.Drawing.Size(54, 21);
-            this.lblNaziv.TabIndex = 0;
-            this.lblNaziv.Text = "Naziv";
-            // 
             // flowLayoutPanel2
             // 
             this.flowLayoutPanel2.Controls.Add(this.label1);
-            this.flowLayoutPanel2.Controls.Add(this.dataGridView1);
-            this.flowLayoutPanel2.Controls.Add(this.btnDodajMarzu);
+            this.flowLayoutPanel2.Controls.Add(this.lvMarzeDobavljaca);
+            this.flowLayoutPanel2.Controls.Add(this.flowLayoutPanel4);
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(483, 403);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(253, 353);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
             this.flowLayoutPanel2.Padding = new System.Windows.Forms.Padding(5);
-            this.tableLayoutPanel1.SetRowSpan(this.flowLayoutPanel2, 2);
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(339, 244);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(454, 244);
             this.flowLayoutPanel2.TabIndex = 8;
             // 
             // label1
@@ -131,22 +128,79 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Marže";
             // 
-            // dataGridView1
+            // lvMarzeDobavljaca
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(8, 35);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(483, 150);
-            this.dataGridView1.TabIndex = 2;
+            this.lvMarzeDobavljaca.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lvMarzeDobavljaca.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.colNncDonjiLimit,
+            this.colNncGornjiLimit,
+            this.colMarzaProc,
+            this.colId});
+            this.lvMarzeDobavljaca.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.lvMarzeDobavljaca.Location = new System.Drawing.Point(8, 35);
+            this.lvMarzeDobavljaca.MultiSelect = false;
+            this.lvMarzeDobavljaca.Name = "lvMarzeDobavljaca";
+            this.lvMarzeDobavljaca.Size = new System.Drawing.Size(439, 155);
+            this.lvMarzeDobavljaca.TabIndex = 4;
+            this.lvMarzeDobavljaca.UseCompatibleStateImageBehavior = false;
+            this.lvMarzeDobavljaca.ItemActivate += new System.EventHandler(this.lvMarzeDobavljaca_ItemActivate);
+            this.lvMarzeDobavljaca.SelectedIndexChanged += new System.EventHandler(this.lvMarzeDobavljaca_SelectedIndexChanged);
+            // 
+            // colNncDonjiLimit
+            // 
+            this.colNncDonjiLimit.Text = "NNC Donji Limit";
+            this.colNncDonjiLimit.Width = 120;
+            // 
+            // colNncGornjiLimit
+            // 
+            this.colNncGornjiLimit.Text = "NNC Gornji Limit";
+            this.colNncGornjiLimit.Width = 120;
+            // 
+            // colMarzaProc
+            // 
+            this.colMarzaProc.Text = "Marža (%)";
+            this.colMarzaProc.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.colMarzaProc.Width = 90;
+            // 
+            // flowLayoutPanel4
+            // 
+            this.flowLayoutPanel4.Controls.Add(this.btnDodajMarzu);
+            this.flowLayoutPanel4.Controls.Add(this.btnIzmeniMarzu);
+            this.flowLayoutPanel4.Controls.Add(this.btniObrisiMarzu);
+            this.flowLayoutPanel4.Location = new System.Drawing.Point(8, 196);
+            this.flowLayoutPanel4.Name = "flowLayoutPanel4";
+            this.flowLayoutPanel4.Size = new System.Drawing.Size(439, 38);
+            this.flowLayoutPanel4.TabIndex = 3;
             // 
             // btnDodajMarzu
             // 
-            this.btnDodajMarzu.Location = new System.Drawing.Point(8, 191);
+            this.btnDodajMarzu.Location = new System.Drawing.Point(3, 3);
             this.btnDodajMarzu.Name = "btnDodajMarzu";
-            this.btnDodajMarzu.Size = new System.Drawing.Size(105, 23);
+            this.btnDodajMarzu.Size = new System.Drawing.Size(105, 27);
             this.btnDodajMarzu.TabIndex = 3;
-            this.btnDodajMarzu.Text = "Nova marža";
+            this.btnDodajMarzu.Text = "Dodaj";
             this.btnDodajMarzu.UseVisualStyleBackColor = true;
+            this.btnDodajMarzu.Click += new System.EventHandler(this.btnDodajMarzu_Click);
+            // 
+            // btnIzmeniMarzu
+            // 
+            this.btnIzmeniMarzu.Location = new System.Drawing.Point(114, 3);
+            this.btnIzmeniMarzu.Name = "btnIzmeniMarzu";
+            this.btnIzmeniMarzu.Size = new System.Drawing.Size(105, 27);
+            this.btnIzmeniMarzu.TabIndex = 4;
+            this.btnIzmeniMarzu.Text = "Izmeni";
+            this.btnIzmeniMarzu.UseVisualStyleBackColor = true;
+            this.btnIzmeniMarzu.Click += new System.EventHandler(this.btnIzmeniMarzu_Click);
+            // 
+            // btniObrisiMarzu
+            // 
+            this.btniObrisiMarzu.Location = new System.Drawing.Point(225, 3);
+            this.btniObrisiMarzu.Name = "btniObrisiMarzu";
+            this.btniObrisiMarzu.Size = new System.Drawing.Size(105, 27);
+            this.btniObrisiMarzu.TabIndex = 5;
+            this.btniObrisiMarzu.Text = "Obriši";
+            this.btniObrisiMarzu.UseVisualStyleBackColor = true;
+            this.btniObrisiMarzu.Click += new System.EventHandler(this.btniObrisiMarzu_Click);
             // 
             // flowLayoutPanelModelDetails
             // 
@@ -162,11 +216,11 @@
             this.flowLayoutPanelModelDetails.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanelModelDetails.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanelModelDetails.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.flowLayoutPanelModelDetails.Location = new System.Drawing.Point(483, 63);
+            this.flowLayoutPanelModelDetails.Location = new System.Drawing.Point(253, 63);
             this.flowLayoutPanelModelDetails.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
             this.flowLayoutPanelModelDetails.Name = "flowLayoutPanelModelDetails";
             this.flowLayoutPanelModelDetails.Padding = new System.Windows.Forms.Padding(5);
-            this.flowLayoutPanelModelDetails.Size = new System.Drawing.Size(339, 327);
+            this.flowLayoutPanelModelDetails.Size = new System.Drawing.Size(454, 277);
             this.flowLayoutPanelModelDetails.TabIndex = 6;
             // 
             // label6
@@ -187,9 +241,9 @@
             this.lab.Location = new System.Drawing.Point(8, 45);
             this.lab.Margin = new System.Windows.Forms.Padding(3);
             this.lab.Name = "lab";
-            this.lab.Size = new System.Drawing.Size(109, 13);
+            this.lab.Size = new System.Drawing.Size(110, 13);
             this.lab.TabIndex = 4;
-            this.lab.Text = "Naziv xml cenovnika";
+            this.lab.Text = "Naziv Xml cenovnika";
             // 
             // txtCenovnikFilename
             // 
@@ -209,9 +263,9 @@
             this.label7.Location = new System.Drawing.Point(8, 100);
             this.label7.Margin = new System.Windows.Forms.Padding(3);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(89, 13);
+            this.label7.Size = new System.Drawing.Size(90, 13);
             this.label7.TabIndex = 5;
-            this.label7.Text = "Naziv xml lagera";
+            this.label7.Text = "Naziv Xml lagera";
             // 
             // txtLagerFilename
             // 
@@ -277,10 +331,10 @@
             this.flowLayoutPanelRebateDetails.Controls.Add(this.txtkoeficijentMarze);
             this.flowLayoutPanelRebateDetails.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanelRebateDetails.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanelRebateDetails.Location = new System.Drawing.Point(828, 63);
+            this.flowLayoutPanelRebateDetails.Location = new System.Drawing.Point(713, 63);
             this.flowLayoutPanelRebateDetails.Name = "flowLayoutPanelRebateDetails";
             this.flowLayoutPanelRebateDetails.Padding = new System.Windows.Forms.Padding(5);
-            this.flowLayoutPanelRebateDetails.Size = new System.Drawing.Size(339, 334);
+            this.flowLayoutPanelRebateDetails.Size = new System.Drawing.Size(454, 284);
             this.flowLayoutPanelRebateDetails.TabIndex = 7;
             // 
             // label9
@@ -338,14 +392,14 @@
             this.flowLayoutPanel1.Controls.Add(this.btnOdustani);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(828, 603);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(713, 603);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(339, 44);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(454, 44);
             this.flowLayoutPanel1.TabIndex = 2;
             // 
             // btnSnimi
             // 
-            this.btnSnimi.Location = new System.Drawing.Point(214, 5);
+            this.btnSnimi.Location = new System.Drawing.Point(329, 5);
             this.btnSnimi.Margin = new System.Windows.Forms.Padding(5);
             this.btnSnimi.Name = "btnSnimi";
             this.btnSnimi.Size = new System.Drawing.Size(120, 30);
@@ -356,7 +410,7 @@
             // 
             // btnOdustani
             // 
-            this.btnOdustani.Location = new System.Drawing.Point(84, 5);
+            this.btnOdustani.Location = new System.Drawing.Point(199, 5);
             this.btnOdustani.Margin = new System.Windows.Forms.Padding(5);
             this.btnOdustani.Name = "btnOdustani";
             this.btnOdustani.Size = new System.Drawing.Size(120, 30);
@@ -364,23 +418,6 @@
             this.btnOdustani.Text = "Odustani";
             this.btnOdustani.UseVisualStyleBackColor = true;
             this.btnOdustani.Click += new System.EventHandler(this.btnOdustani_Click);
-            // 
-            // lvDobavljaci
-            // 
-            this.lvDobavljaci.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lvDobavljaci.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.colNaziv});
-            this.lvDobavljaci.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.lvDobavljaci.Location = new System.Drawing.Point(3, 40);
-            this.lvDobavljaci.MultiSelect = false;
-            this.lvDobavljaci.Name = "lvDobavljaci";
-            this.lvDobavljaci.Size = new System.Drawing.Size(428, 485);
-            this.lvDobavljaci.Sorting = System.Windows.Forms.SortOrder.Ascending;
-            this.lvDobavljaci.TabIndex = 9;
-            this.lvDobavljaci.UseCompatibleStateImageBehavior = false;
-            this.lvDobavljaci.View = System.Windows.Forms.View.Details;
-            this.lvDobavljaci.ItemActivate += new System.EventHandler(this.lvDobavljaci_ItemActivate);
-            this.lvDobavljaci.SelectedIndexChanged += new System.EventHandler(this.lvDobavljaci_SelectedIndexChanged);
             // 
             // flowLayoutPanel3
             // 
@@ -391,7 +428,7 @@
             this.flowLayoutPanel3.Location = new System.Drawing.Point(23, 63);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
             this.tableLayoutPanel1.SetRowSpan(this.flowLayoutPanel3, 2);
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(454, 534);
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(224, 534);
             this.flowLayoutPanel3.TabIndex = 10;
             // 
             // label2
@@ -405,10 +442,50 @@
             this.label2.TabIndex = 10;
             this.label2.Text = "Dobavljači";
             // 
+            // lvDobavljaci
+            // 
+            this.lvDobavljaci.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lvDobavljaci.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.colNaziv});
+            this.lvDobavljaci.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.lvDobavljaci.HideSelection = false;
+            this.lvDobavljaci.Location = new System.Drawing.Point(3, 40);
+            this.lvDobavljaci.MultiSelect = false;
+            this.lvDobavljaci.Name = "lvDobavljaci";
+            this.lvDobavljaci.Size = new System.Drawing.Size(217, 485);
+            this.lvDobavljaci.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this.lvDobavljaci.TabIndex = 9;
+            this.lvDobavljaci.UseCompatibleStateImageBehavior = false;
+            this.lvDobavljaci.View = System.Windows.Forms.View.Details;
+            this.lvDobavljaci.ItemActivate += new System.EventHandler(this.lvDobavljaci_ItemActivate);
+            this.lvDobavljaci.SelectedIndexChanged += new System.EventHandler(this.lvDobavljaci_SelectedIndexChanged);
+            // 
             // colNaziv
             // 
             this.colNaziv.Text = "Naziv";
-            this.colNaziv.Width = 160;
+            this.colNaziv.Width = 189;
+            // 
+            // lblNaziv
+            // 
+            this.lblNaziv.AutoSize = true;
+            this.lblNaziv.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblNaziv.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNaziv.ForeColor = System.Drawing.Color.DarkOrchid;
+            this.lblNaziv.Location = new System.Drawing.Point(255, 25);
+            this.lblNaziv.Margin = new System.Windows.Forms.Padding(5);
+            this.lblNaziv.Name = "lblNaziv";
+            this.lblNaziv.Size = new System.Drawing.Size(54, 21);
+            this.lblNaziv.TabIndex = 0;
+            this.lblNaziv.Text = "Naziv";
+            // 
+            // marzeDobavljacaBindingSource
+            // 
+            this.marzeDobavljacaBindingSource.DataSource = typeof(WebCene.Model.B2B.MarzeDobavljaca);
+            // 
+            // colId
+            // 
+            this.colId.Text = "Id";
+            this.colId.Width = 0;
             // 
             // frmKonfigDobavljaca
             // 
@@ -418,16 +495,18 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmKonfigDobavljaca";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Konfiguracija dobavljača";
+            this.Text = "Konfiguracije dobavljača";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.flowLayoutPanel2.ResumeLayout(false);
             this.flowLayoutPanel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.flowLayoutPanel4.ResumeLayout(false);
             this.flowLayoutPanelModelDetails.ResumeLayout(false);
             this.flowLayoutPanelModelDetails.PerformLayout();
             this.flowLayoutPanelRebateDetails.ResumeLayout(false);
@@ -435,6 +514,7 @@
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel3.ResumeLayout(false);
             this.flowLayoutPanel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.marzeDobavljacaBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -457,7 +537,6 @@
         private System.Windows.Forms.TextBox txtKursEvra;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.TextBox txtWebProtokol;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtUrl;
@@ -470,5 +549,14 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ColumnHeader colNaziv;
+        private System.Windows.Forms.Button btnIzmeniMarzu;
+        private System.Windows.Forms.Button btniObrisiMarzu;
+        private System.Windows.Forms.BindingSource marzeDobavljacaBindingSource;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel4;
+        private System.Windows.Forms.ListView lvMarzeDobavljaca;
+        private System.Windows.Forms.ColumnHeader colNncDonjiLimit;
+        private System.Windows.Forms.ColumnHeader colNncGornjiLimit;
+        private System.Windows.Forms.ColumnHeader colMarzaProc;
+        private System.Windows.Forms.ColumnHeader colId;
     }
 }

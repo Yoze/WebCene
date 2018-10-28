@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WebCene.Model.B2B;
 using WebCene.Helper;
+using WebCene.Model.Kroler;
 
 namespace WebCene.UI.Forms.B2B
 {
@@ -16,6 +17,8 @@ namespace WebCene.UI.Forms.B2B
     {
         private KonfigDobavljaca KonfigDobavljacaProp { get; set; }
         private List<KonfigDobavljaca> SveKonfiguracijeDobavljaca { get; set; }
+        private string NazivOdabranogDobavljaca { get; set; }
+        private int IdOdabraneMarze { get; set; }
 
 
         public frmKonfigDobavljaca()
@@ -23,8 +26,6 @@ namespace WebCene.UI.Forms.B2B
             InitializeComponent();
 
             LoadAndDisplayListOfKonfigDobavljaca();
-
-
         }
 
 
@@ -66,9 +67,12 @@ namespace WebCene.UI.Forms.B2B
             KonfigDobavljacaProp.KursEvra = Convert.ToDecimal(txtKursEvra.Text);
         }
 
+
         private void LoadAndDisplayListOfKonfigDobavljaca()
         {
-            // set list config
+            /** Učitavanje liste dobavljača i prikaz u list view kontroli - levo*/
+
+            // konfiguracija
             lvDobavljaci.View = View.Details;
             lvDobavljaci.FullRowSelect = true;
             //lvDobavljaci.GridLines = true;
@@ -81,17 +85,12 @@ namespace WebCene.UI.Forms.B2B
 
             if (SveKonfiguracijeDobavljaca != null)
             {
-
-
                 foreach (var konfigItem in SveKonfiguracijeDobavljaca)
                 {
                     ListViewItem lvItem = new ListViewItem(konfigItem.Naziv);
-
                     lvDobavljaci.Items.Add(lvItem);
                 }
-
             }
-
         }
 
 
@@ -102,17 +101,15 @@ namespace WebCene.UI.Forms.B2B
 
         private void btnSnimi_Click(object sender, EventArgs e)
         {
+            // snimanje izmena u konfigu dobavljača
             MapControlsToProps();
-
 
             if (DBHelper.Instance.SaveSupplierConfigs(KonfigDobavljacaProp))
             {
                 MessageBox.Show("Snimljeno.");
                 return;
             }
-
             MessageBox.Show("Greška.");
-
         }
 
 
@@ -133,43 +130,143 @@ namespace WebCene.UI.Forms.B2B
                 e.Handled = true;
                 return;
             }
-
             if (!Char.IsDigit(ch) && ch != 8 && ch != 44)
             {
                 e.Handled = true;
             }
-
         }
 
 
         private void lvDobavljaci_ItemActivate(object sender, EventArgs e)
         {
+            // promena selektovanog dobavljača u list view dobavljači
             if (lvDobavljaci.SelectedItems.Count == 1)
             {
-                LoadKonfigDobavljacaForSelectedItem(lvDobavljaci.SelectedItems[0].Text);
+                NazivOdabranogDobavljaca = lvDobavljaci.SelectedItems[0].Text;
+
+                LoadKonfigDobavljacaForSelectedItem(NazivOdabranogDobavljaca);
+                DisplaySupplierMargins();
             }
         }
 
 
         private void lvDobavljaci_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // promena selektovanog dobavljača u list view dobavljači
             if (lvDobavljaci.SelectedItems.Count == 1)
             {
-                LoadKonfigDobavljacaForSelectedItem(lvDobavljaci.SelectedItems[0].Text);
+                NazivOdabranogDobavljaca = lvDobavljaci.SelectedItems[0].Text;
+
+                LoadKonfigDobavljacaForSelectedItem(NazivOdabranogDobavljaca);
+                DisplaySupplierMargins();
             }
         }
 
 
         private void LoadKonfigDobavljacaForSelectedItem(string nazivDobavljaca)
         {
-
-            lblNaziv.Text = nazivDobavljaca;
+            // učitavanje konfiguracije dobavljača i liste marži nakon promene selektovanog dobavljača u list view dobavljači
+            lblNaziv.Text = NazivOdabranogDobavljaca;
 
             KonfigDobavljacaProp = DBHelper.Instance.GetSingleSupplierConfigurationByName(nazivDobavljaca);
             MapPropsToControls();
+        }
+
+
+        /** MARŽE */
+        private void DisplaySupplierMargins()
+        {
+            // konfiguracija
+            lvMarzeDobavljaca.View = View.Details;
+            lvMarzeDobavljaca.FullRowSelect = true;
+            //lvMarzeDobavljaca.GridLines = true;
+            lvMarzeDobavljaca.Sorting = SortOrder.Ascending;
+            lvMarzeDobavljaca.LabelEdit = false;
+            lvMarzeDobavljaca.AllowColumnReorder = false;
+
+            // ispis podataka o maržama u list view
+            lvMarzeDobavljaca.Items.Clear();
+
+            List<MarzeDobavljaca> marzeDobavljaca = new List<MarzeDobavljaca>();
+            marzeDobavljaca = DBHelper.Instance.GetSupplierMarginsBySupplierName(NazivOdabranogDobavljaca);
+
+            if (marzeDobavljaca.Count > 0)
+            {
+                foreach (MarzeDobavljaca item in marzeDobavljaca)
+                {
+                    string[] lvItemRow =
+                        {                            
+                            item.NncDonjiLimit.ToString(),
+                            item.NncGornjiLimit.ToString(),
+                            item.MarzaProc.ToString(),
+                            item.Id.ToString()
+                        };
+
+                    ListViewItem lvMarzeItem = new ListViewItem(lvItemRow);
+
+                    lvMarzeDobavljaca.Items.Add(lvMarzeItem);
+                }
+
+                // set Id column to invisible
+                lvMarzeDobavljaca.Columns[3].Width = 0;
+            }
+        }
+
+        
+        private void btnDodajMarzu_Click(object sender, EventArgs e)
+        {
+
+            frmMarzaDobavljaca frmMarza = new frmMarzaDobavljaca(KonfigDobavljacaProp);
+            frmMarza.ShowDialog();
+
+            DisplaySupplierMargins();
+        }
+
+
+        private void btnIzmeniMarzu_Click(object sender, EventArgs e)
+        {
+            if (IdOdabraneMarze == 0) return;
+
+            frmMarzaDobavljaca frmMarza = new frmMarzaDobavljaca(KonfigDobavljacaProp, IdOdabraneMarze);
+            frmMarza.ShowDialog();
+
+            DisplaySupplierMargins();
 
         }
 
+
+        private void btniObrisiMarzu_Click(object sender, EventArgs e)
+        {
+            if (IdOdabraneMarze == 0) return;
+
+            MarzeDobavljaca marzaDobavljaca = DBHelper.Instance.GetSingleSupplierMarginByMarginId(IdOdabraneMarze);
+
+            if (DBHelper.Instance.DeleteSupplierMargin(marzaDobavljaca))
+            {
+                MessageBox.Show("Obrisano.");
+                DisplaySupplierMargins();
+                return;
+            }
+            MessageBox.Show("Greška.");
+        }
+
+
+        private void lvMarzeDobavljaca_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lvMarzeDobavljaca.SelectedItems.Count == 1)
+            {
+                IdOdabraneMarze = Convert.ToInt32(lvMarzeDobavljaca.SelectedItems[0].SubItems[3].Text); // Id odabrane marže se nalazi u 3. koloni
+            }
+        }
+
+
+        private void lvMarzeDobavljaca_ItemActivate(object sender, EventArgs e)
+        {
+            if (lvMarzeDobavljaca.SelectedItems.Count == 1)
+            {
+                IdOdabraneMarze = Convert.ToInt32(lvMarzeDobavljaca.SelectedItems[0].SubItems[3].Text); // Id odabrane marže se nalazi u 3. koloni
+            }
+        }
 
 
 

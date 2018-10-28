@@ -11,19 +11,26 @@ namespace WebCene.Model.B2B
     {
         [Key]
         [Column(Order = 0)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int IdDobavljaca { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
 
         [Key]
         [Column(Order = 1)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int NncDonjiLimit { get; set; }
+        public int IdDobavljaca { get; set; }
 
         [Key]
         [Column(Order = 2)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int NncDonjiLimit { get; set; }
+
+        [Key]
+        [Column(Order = 3)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int NncGornjiLimit { get; set; }
 
+        [Key]
+        [Column(Order = 4)]
         public decimal MarzaProc { get; set; }
 
         public virtual KonfigDobavljaca KonfigDobavljaca { get; set; }

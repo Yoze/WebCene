@@ -111,6 +111,12 @@
     <Compile Include="Forms\B2B\frmMainB2B.Designer.cs">
       <DependentUpon>frmMainB2B.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\B2B\frmMarzaDobavljaca.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\B2B\frmMarzaDobavljaca.Designer.cs">
+      <DependentUpon>frmMarzaDobavljaca.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\B2B\tempPwd.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -191,6 +197,9 @@
     <EmbeddedResource Include="Forms\B2B\frmMainB2B.resx">
       <DependentUpon>frmMainB2B.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\B2B\frmMarzaDobavljaca.resx">
+      <DependentUpon>frmMarzaDobavljaca.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\B2B\tempPwd.resx">
       <DependentUpon>tempPwd.cs</DependentUpon>
     </EmbeddedResource>
@@ -231,6 +240,7 @@
     </EmbeddedResource>
     <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\WebCene.Model.B2B.MarzeDobavljaca.datasource" />
     <None Include="Properties\DataSources\WebCene.Model.Proizvod.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

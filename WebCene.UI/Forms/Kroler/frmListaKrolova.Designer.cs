@@ -151,6 +151,7 @@
             this.lstViewKrolGlava.Font = new System.Drawing.Font("Segoe UI", 9.75F);
             this.lstViewKrolGlava.FullRowSelect = true;
             this.lstViewKrolGlava.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.lstViewKrolGlava.HideSelection = false;
             this.lstViewKrolGlava.Location = new System.Drawing.Point(15, 33);
             this.lstViewKrolGlava.Margin = new System.Windows.Forms.Padding(10);
             this.lstViewKrolGlava.MultiSelect = false;

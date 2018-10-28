@@ -53,9 +53,9 @@
             this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
             this.label4 = new System.Windows.Forms.Label();
             this.lblStopaPdv = new System.Windows.Forms.Label();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnKonfigDobavljaca = new System.Windows.Forms.Button();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvZbirniXml)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
@@ -199,7 +199,7 @@
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel3, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel4, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -378,31 +378,32 @@
             this.lblStopaPdv.TabIndex = 14;
             this.lblStopaPdv.Text = "label5";
             // 
-            // backgroundWorker1
-            // 
-            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.BackgroundWorker1_DoWork);
-            this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.BackgroundWorker1_ProgressChanged);
-            this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.BackgroundWorker1_RunWorkerCompleted);
-            // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.btnKonfigDobavljaca);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(593, 684);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(593, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(354, 44);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(517, 74);
             this.flowLayoutPanel1.TabIndex = 15;
             // 
             // btnKonfigDobavljaca
             // 
             this.btnKonfigDobavljaca.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnKonfigDobavljaca.Location = new System.Drawing.Point(5, 5);
-            this.btnKonfigDobavljaca.Margin = new System.Windows.Forms.Padding(5);
+            this.btnKonfigDobavljaca.Location = new System.Drawing.Point(20, 20);
+            this.btnKonfigDobavljaca.Margin = new System.Windows.Forms.Padding(20);
             this.btnKonfigDobavljaca.Name = "btnKonfigDobavljaca";
             this.btnKonfigDobavljaca.Size = new System.Drawing.Size(236, 30);
             this.btnKonfigDobavljaca.TabIndex = 4;
-            this.btnKonfigDobavljaca.Text = "Konfiguracija dobavljača";
+            this.btnKonfigDobavljaca.Text = "Konfiguracije dobavljača";
             this.btnKonfigDobavljaca.UseVisualStyleBackColor = true;
             this.btnKonfigDobavljaca.Click += new System.EventHandler(this.btnKonfigDobavljaca_Click);
+            // 
+            // backgroundWorker1
+            // 
+            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.BackgroundWorker1_DoWork);
+            this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.BackgroundWorker1_ProgressChanged);
+            this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.BackgroundWorker1_RunWorkerCompleted);
             // 
             // frmMainB2B
             // 
