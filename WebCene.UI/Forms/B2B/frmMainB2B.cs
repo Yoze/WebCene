@@ -352,33 +352,37 @@ namespace WebCene.UI.Forms.B2B
 
         private void dgvStatus_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            int selectedRowsCount = dgvStatus.SelectedRows.Count;
-            int selectedSupplierId;
+            /** disabled because main functionality is moved to btnKonfigDobavljaca_Click */
 
-            if (selectedRowsCount == 1)
-            {
-                for (int i = 0; i < selectedRowsCount; i++)
-                {
-                    DataGridViewRow selectedRow = (DataGridViewRow)dgvStatus.SelectedRows[i];
+            //int selectedRowsCount = dgvStatus.SelectedRows.Count;
+            //int selectedSupplierId;
 
-                    // Id dobavljača
-                    selectedSupplierId = Convert.ToInt32(selectedRow.Cells["IdDobavljaca"].Value);
+            //if (selectedRowsCount == 1)
+            //{
+            //    for (int i = 0; i < selectedRowsCount; i++)
+            //    {
+            //        DataGridViewRow selectedRow = (DataGridViewRow)dgvStatus.SelectedRows[i];
 
-                    if (selectedSupplierId > 0)
-                    {
-                        // get KonfigDobavljaca
+            //        // Id dobavljača
+            //        selectedSupplierId = Convert.ToInt32(selectedRow.Cells["IdDobavljaca"].Value);
 
-                        KonfigDobavljaca supplierConfig = DBHelper.Instance.GetSingleSupplierConfiguration(selectedSupplierId);
+            //        if (selectedSupplierId > 0)
+            //        {
+            //            // get KonfigDobavljaca
 
-                        frmKonfigDobavljaca konfigDobavljaca = new frmKonfigDobavljaca(supplierConfig);
-                        konfigDobavljaca.ShowDialog();
-                    }
-                }
-            }
+            //            KonfigDobavljaca supplierConfig = DBHelper.Instance.GetSingleSupplierConfiguration(selectedSupplierId);
+
+            //            frmKonfigDobavljaca konfigDobavljaca = new frmKonfigDobavljaca(supplierConfig);
+            //            konfigDobavljaca.ShowDialog();
+            //        }
+            //    }
+            //}
         }
 
-
-
-
+        private void btnKonfigDobavljaca_Click(object sender, EventArgs e)
+        {
+            frmKonfigDobavljaca konfigDobavljaca = new frmKonfigDobavljaca();
+            konfigDobavljaca.ShowDialog();
+        }
     }
 }

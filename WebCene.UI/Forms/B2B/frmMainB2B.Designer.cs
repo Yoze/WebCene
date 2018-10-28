@@ -30,6 +30,13 @@
         {
             this.btnLoadXmls = new System.Windows.Forms.Button();
             this.dgvStatus = new System.Windows.Forms.DataGridView();
+            this.rbr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dobavljac = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isLoaded = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.numberOfRecords = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.statusDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataSource = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdDobavljaca = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvZbirniXml = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -47,13 +54,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.lblStopaPdv = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.rbr = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dobavljac = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.isLoaded = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.numberOfRecords = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.statusDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataSource = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IdDobavljaca = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnKonfigDobavljaca = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvZbirniXml)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
@@ -62,6 +64,7 @@
             this.flowLayoutPanel2.SuspendLayout();
             this.flowLayoutPanel3.SuspendLayout();
             this.flowLayoutPanel4.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnLoadXmls
@@ -108,6 +111,62 @@
             this.dgvStatus.TabIndex = 5;
             this.dgvStatus.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvStatus_CellMouseDoubleClick);
             // 
+            // rbr
+            // 
+            this.rbr.HeaderText = "RB";
+            this.rbr.Name = "rbr";
+            this.rbr.ReadOnly = true;
+            this.rbr.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.rbr.Width = 40;
+            // 
+            // dobavljac
+            // 
+            this.dobavljac.HeaderText = "Dobavljač";
+            this.dobavljac.Name = "dobavljac";
+            this.dobavljac.ReadOnly = true;
+            this.dobavljac.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dobavljac.Width = 120;
+            // 
+            // isLoaded
+            // 
+            this.isLoaded.HeaderText = "Deserialized";
+            this.isLoaded.Name = "isLoaded";
+            this.isLoaded.ReadOnly = true;
+            this.isLoaded.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.isLoaded.Width = 80;
+            // 
+            // numberOfRecords
+            // 
+            this.numberOfRecords.HeaderText = "Uk.Zapisa";
+            this.numberOfRecords.Name = "numberOfRecords";
+            this.numberOfRecords.ReadOnly = true;
+            this.numberOfRecords.Width = 80;
+            // 
+            // statusDesc
+            // 
+            this.statusDesc.HeaderText = "Opis statusa";
+            this.statusDesc.MinimumWidth = 50;
+            this.statusDesc.Name = "statusDesc";
+            this.statusDesc.ReadOnly = true;
+            this.statusDesc.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.statusDesc.Width = 160;
+            // 
+            // dataSource
+            // 
+            this.dataSource.HeaderText = "Izvor";
+            this.dataSource.Name = "dataSource";
+            this.dataSource.ReadOnly = true;
+            this.dataSource.Width = 80;
+            // 
+            // IdDobavljaca
+            // 
+            this.IdDobavljaca.HeaderText = "IdDobavljaca";
+            this.IdDobavljaca.Name = "IdDobavljaca";
+            this.IdDobavljaca.ReadOnly = true;
+            this.IdDobavljaca.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.IdDobavljaca.Visible = false;
+            this.IdDobavljaca.Width = 5;
+            // 
             // dgvZbirniXml
             // 
             this.dgvZbirniXml.AllowUserToAddRows = false;
@@ -139,7 +198,8 @@
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel2, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel3, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel4, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel4, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 1, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -292,10 +352,10 @@
             this.flowLayoutPanel4.Controls.Add(this.lblStopaPdv);
             this.flowLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel4.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel4.Location = new System.Drawing.Point(593, 684);
+            this.flowLayoutPanel4.Location = new System.Drawing.Point(1116, 3);
             this.flowLayoutPanel4.Name = "flowLayoutPanel4";
             this.flowLayoutPanel4.Padding = new System.Windows.Forms.Padding(5);
-            this.flowLayoutPanel4.Size = new System.Drawing.Size(517, 44);
+            this.flowLayoutPanel4.Size = new System.Drawing.Size(134, 74);
             this.flowLayoutPanel4.TabIndex = 14;
             // 
             // label4
@@ -324,61 +384,25 @@
             this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.BackgroundWorker1_ProgressChanged);
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.BackgroundWorker1_RunWorkerCompleted);
             // 
-            // rbr
+            // flowLayoutPanel1
             // 
-            this.rbr.HeaderText = "RB";
-            this.rbr.Name = "rbr";
-            this.rbr.ReadOnly = true;
-            this.rbr.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.rbr.Width = 40;
+            this.flowLayoutPanel1.Controls.Add(this.btnKonfigDobavljaca);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(593, 684);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(354, 44);
+            this.flowLayoutPanel1.TabIndex = 15;
             // 
-            // dobavljac
+            // btnKonfigDobavljaca
             // 
-            this.dobavljac.HeaderText = "Dobavljač";
-            this.dobavljac.Name = "dobavljac";
-            this.dobavljac.ReadOnly = true;
-            this.dobavljac.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dobavljac.Width = 120;
-            // 
-            // isLoaded
-            // 
-            this.isLoaded.HeaderText = "Deserialized";
-            this.isLoaded.Name = "isLoaded";
-            this.isLoaded.ReadOnly = true;
-            this.isLoaded.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.isLoaded.Width = 80;
-            // 
-            // numberOfRecords
-            // 
-            this.numberOfRecords.HeaderText = "Uk.Zapisa";
-            this.numberOfRecords.Name = "numberOfRecords";
-            this.numberOfRecords.ReadOnly = true;
-            this.numberOfRecords.Width = 80;
-            // 
-            // statusDesc
-            // 
-            this.statusDesc.HeaderText = "Opis statusa";
-            this.statusDesc.MinimumWidth = 50;
-            this.statusDesc.Name = "statusDesc";
-            this.statusDesc.ReadOnly = true;
-            this.statusDesc.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.statusDesc.Width = 160;
-            // 
-            // dataSource
-            // 
-            this.dataSource.HeaderText = "Izvor";
-            this.dataSource.Name = "dataSource";
-            this.dataSource.ReadOnly = true;
-            this.dataSource.Width = 80;
-            // 
-            // IdDobavljaca
-            // 
-            this.IdDobavljaca.HeaderText = "IdDobavljaca";
-            this.IdDobavljaca.Name = "IdDobavljaca";
-            this.IdDobavljaca.ReadOnly = true;
-            this.IdDobavljaca.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.IdDobavljaca.Visible = false;
-            this.IdDobavljaca.Width = 5;
+            this.btnKonfigDobavljaca.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnKonfigDobavljaca.Location = new System.Drawing.Point(5, 5);
+            this.btnKonfigDobavljaca.Margin = new System.Windows.Forms.Padding(5);
+            this.btnKonfigDobavljaca.Name = "btnKonfigDobavljaca";
+            this.btnKonfigDobavljaca.Size = new System.Drawing.Size(236, 30);
+            this.btnKonfigDobavljaca.TabIndex = 4;
+            this.btnKonfigDobavljaca.Text = "Konfiguracija dobavljača";
+            this.btnKonfigDobavljaca.UseVisualStyleBackColor = true;
+            this.btnKonfigDobavljaca.Click += new System.EventHandler(this.btnKonfigDobavljaca_Click);
             // 
             // frmMainB2B
             // 
@@ -405,6 +429,7 @@
             this.flowLayoutPanel3.PerformLayout();
             this.flowLayoutPanel4.ResumeLayout(false);
             this.flowLayoutPanel4.PerformLayout();
+            this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -436,5 +461,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn statusDesc;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdDobavljaca;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Button btnKonfigDobavljaca;
     }
 }

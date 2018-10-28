@@ -30,7 +30,7 @@ namespace WebCene.Helper
 
 
         /** Public methods */
-        public KonfigDobavljaca GetSingleSupplierConfiguration(int supplierId)
+        public KonfigDobavljaca GetSingleSupplierConfigurationById(int supplierId)
         {
             KonfigDobavljaca konfiguracijaDobavljaca = new KonfigDobavljaca();
 
@@ -49,8 +49,33 @@ namespace WebCene.Helper
             }
 
             return konfiguracijaDobavljaca;
-        } 
-           
+        }
+
+
+        public KonfigDobavljaca GetSingleSupplierConfigurationByName(string supplierName)
+        {
+            KonfigDobavljaca konfiguracijaDobavljaca = new KonfigDobavljaca();
+
+            if (string.IsNullOrEmpty(supplierName)) return null;            
+
+            try
+            {
+                using (KrolerContext db = new KrolerContext())
+                {
+                    konfiguracijaDobavljaca = db.KonfigDobavljaca
+                        .Where(d => d.Naziv.Equals(supplierName))
+                        .FirstOrDefault();
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Greška: GetKonfigDobavljaca()\r\n" + e.Message);
+            }
+
+            return konfiguracijaDobavljaca;
+        }
+
+
 
         public List<KonfigDobavljaca> GetAllSupplierConfigurations()
         {
@@ -75,6 +100,30 @@ namespace WebCene.Helper
         }
 
 
+        public bool SaveSupplierConfigs(KonfigDobavljaca konfigDobavljaca)
+        {
+            if (konfigDobavljaca != null)
+            {
+
+                using (KrolerContext db = new KrolerContext())
+                {
+                    try
+                    {
+                        db.Entry(konfigDobavljaca).State = System.Data.Entity.EntityState.Modified;
+                        db.SaveChanges();
+
+                        return true;
+                    }
+                    catch (Exception)
+                    {
+                        return false;
+                    }               
+                }
+            }
+
+            else return false;
+
+        }
 
     }
 }
