@@ -42,6 +42,8 @@ namespace WebCene.Model.B2B
 
         public decimal KursEvra { get; set; }
 
+        public bool Manualno { get; set; }
+
         public virtual ICollection<MarzeDobavljaca> MarzeDobavljaca { get; set; }
 
     }
