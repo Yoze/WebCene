@@ -36,6 +36,7 @@
             this.colNncDonjiLimit = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colNncGornjiLimit = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colMarzaProc = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnDodajMarzu = new System.Windows.Forms.Button();
             this.btnIzmeniMarzu = new System.Windows.Forms.Button();
@@ -64,8 +65,9 @@
             this.lvDobavljaci = new System.Windows.Forms.ListView();
             this.colNaziv = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lblNaziv = new System.Windows.Forms.Label();
+            this.checkIsManualno = new System.Windows.Forms.CheckBox();
             this.marzeDobavljacaBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.colId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colRabatProc = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
             this.flowLayoutPanel4.SuspendLayout();
@@ -106,6 +108,7 @@
             // 
             // flowLayoutPanel2
             // 
+            this.tableLayoutPanel1.SetColumnSpan(this.flowLayoutPanel2, 2);
             this.flowLayoutPanel2.Controls.Add(this.label1);
             this.flowLayoutPanel2.Controls.Add(this.lvMarzeDobavljaca);
             this.flowLayoutPanel2.Controls.Add(this.flowLayoutPanel4);
@@ -114,7 +117,7 @@
             this.flowLayoutPanel2.Location = new System.Drawing.Point(253, 353);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
             this.flowLayoutPanel2.Padding = new System.Windows.Forms.Padding(5);
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(454, 244);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(914, 244);
             this.flowLayoutPanel2.TabIndex = 8;
             // 
             // label1
@@ -135,12 +138,13 @@
             this.colNncDonjiLimit,
             this.colNncGornjiLimit,
             this.colMarzaProc,
+            this.colRabatProc,
             this.colId});
             this.lvMarzeDobavljaca.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvMarzeDobavljaca.Location = new System.Drawing.Point(8, 35);
             this.lvMarzeDobavljaca.MultiSelect = false;
             this.lvMarzeDobavljaca.Name = "lvMarzeDobavljaca";
-            this.lvMarzeDobavljaca.Size = new System.Drawing.Size(439, 155);
+            this.lvMarzeDobavljaca.Size = new System.Drawing.Size(568, 155);
             this.lvMarzeDobavljaca.TabIndex = 4;
             this.lvMarzeDobavljaca.UseCompatibleStateImageBehavior = false;
             this.lvMarzeDobavljaca.ItemActivate += new System.EventHandler(this.lvMarzeDobavljaca_ItemActivate);
@@ -162,6 +166,12 @@
             this.colMarzaProc.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.colMarzaProc.Width = 90;
             // 
+            // colId
+            // 
+            this.colId.DisplayIndex = 3;
+            this.colId.Text = "Id";
+            this.colId.Width = 0;
+            // 
             // flowLayoutPanel4
             // 
             this.flowLayoutPanel4.Controls.Add(this.btnDodajMarzu);
@@ -169,7 +179,7 @@
             this.flowLayoutPanel4.Controls.Add(this.btniObrisiMarzu);
             this.flowLayoutPanel4.Location = new System.Drawing.Point(8, 196);
             this.flowLayoutPanel4.Name = "flowLayoutPanel4";
-            this.flowLayoutPanel4.Size = new System.Drawing.Size(439, 38);
+            this.flowLayoutPanel4.Size = new System.Drawing.Size(568, 38);
             this.flowLayoutPanel4.TabIndex = 3;
             // 
             // btnDodajMarzu
@@ -329,6 +339,7 @@
             this.flowLayoutPanelRebateDetails.Controls.Add(this.txtKursEvra);
             this.flowLayoutPanelRebateDetails.Controls.Add(this.label5);
             this.flowLayoutPanelRebateDetails.Controls.Add(this.txtkoeficijentMarze);
+            this.flowLayoutPanelRebateDetails.Controls.Add(this.checkIsManualno);
             this.flowLayoutPanelRebateDetails.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanelRebateDetails.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanelRebateDetails.Location = new System.Drawing.Point(713, 63);
@@ -478,14 +489,26 @@
             this.lblNaziv.TabIndex = 0;
             this.lblNaziv.Text = "Naziv";
             // 
+            // checkIsManualno
+            // 
+            this.checkIsManualno.AutoSize = true;
+            this.checkIsManualno.Location = new System.Drawing.Point(8, 133);
+            this.checkIsManualno.Name = "checkIsManualno";
+            this.checkIsManualno.Size = new System.Drawing.Size(349, 38);
+            this.checkIsManualno.TabIndex = 10;
+            this.checkIsManualno.Text = "Manualno (ako je TRUE)\r\nFajlovi su spremni u Office-u i NNC je već pripremljena.";
+            this.checkIsManualno.UseVisualStyleBackColor = true;
+            // 
             // marzeDobavljacaBindingSource
             // 
             this.marzeDobavljacaBindingSource.DataSource = typeof(WebCene.Model.B2B.MarzeDobavljaca);
             // 
-            // colId
+            // colRabatProc
             // 
-            this.colId.Text = "Id";
-            this.colId.Width = 0;
+            this.colRabatProc.DisplayIndex = 4;
+            this.colRabatProc.Text = "Rabat (%)";
+            this.colRabatProc.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.colRabatProc.Width = 90;
             // 
             // frmKonfigDobavljaca
             // 
@@ -558,5 +581,7 @@
         private System.Windows.Forms.ColumnHeader colNncGornjiLimit;
         private System.Windows.Forms.ColumnHeader colMarzaProc;
         private System.Windows.Forms.ColumnHeader colId;
+        private System.Windows.Forms.CheckBox checkIsManualno;
+        private System.Windows.Forms.ColumnHeader colRabatProc;
     }
 }

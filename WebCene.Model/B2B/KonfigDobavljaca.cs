@@ -9,6 +9,11 @@ namespace WebCene.Model.B2B
     [Table("KonfigDobavljaca")]
     public partial class KonfigDobavljaca
     {
+        public KonfigDobavljaca()
+        {
+            MarzeDobavljaca = new HashSet<MarzeDobavljaca>();
+        }
+
         public int Id { get; set; }
 
         [StringLength(50)]

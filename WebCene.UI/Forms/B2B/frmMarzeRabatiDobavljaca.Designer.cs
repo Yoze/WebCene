@@ -1,6 +1,6 @@
 ﻿namespace WebCene.UI.Forms.B2B
 {
-    partial class frmMarzaDobavljaca
+    partial class frmMarzeRabatiDobavljaca
     {
         /// <summary>
         /// Required designer variable.
@@ -38,6 +38,10 @@
             this.txtMarzaProc = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.lblNaziv = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtRabatProc = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.comboBrend = new System.Windows.Forms.ComboBox();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -129,9 +133,13 @@
             this.flowLayoutPanel1.Controls.Add(this.txtNncGornji);
             this.flowLayoutPanel1.Controls.Add(this.label2);
             this.flowLayoutPanel1.Controls.Add(this.txtMarzaProc);
+            this.flowLayoutPanel1.Controls.Add(this.label3);
+            this.flowLayoutPanel1.Controls.Add(this.txtRabatProc);
+            this.flowLayoutPanel1.Controls.Add(this.label4);
+            this.flowLayoutPanel1.Controls.Add(this.comboBrend);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(41, 40);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(598, 31);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1011, 31);
             this.flowLayoutPanel1.TabIndex = 13;
             // 
             // lblNaziv
@@ -147,11 +155,49 @@
             this.lblNaziv.TabIndex = 14;
             this.lblNaziv.Text = "Marža";
             // 
-            // frmMarzaDobavljaca
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(595, 7);
+            this.label3.Margin = new System.Windows.Forms.Padding(3, 7, 3, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(55, 13);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "Rabat (%)";
+            // 
+            // txtRabatProc
+            // 
+            this.txtRabatProc.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtRabatProc.Location = new System.Drawing.Point(656, 3);
+            this.txtRabatProc.Name = "txtRabatProc";
+            this.txtRabatProc.Size = new System.Drawing.Size(108, 23);
+            this.txtRabatProc.TabIndex = 13;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(770, 7);
+            this.label4.Margin = new System.Windows.Forms.Padding(3, 7, 3, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(38, 13);
+            this.label4.TabIndex = 14;
+            this.label4.Text = "Brend";
+            // 
+            // comboBrend
+            // 
+            this.comboBrend.FormattingEnabled = true;
+            this.comboBrend.Location = new System.Drawing.Point(814, 3);
+            this.comboBrend.Name = "comboBrend";
+            this.comboBrend.Size = new System.Drawing.Size(168, 23);
+            this.comboBrend.TabIndex = 15;
+            // 
+            // frmMarzeRabatiDobavljaca
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(664, 133);
+            this.ClientSize = new System.Drawing.Size(1064, 133);
             this.ControlBox = false;
             this.Controls.Add(this.lblNaziv);
             this.Controls.Add(this.btnSnimiMarzu);
@@ -159,14 +205,14 @@
             this.Controls.Add(this.btnOdustani);
             this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(680, 172);
+            this.MaximumSize = new System.Drawing.Size(1080, 172);
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(680, 172);
-            this.Name = "frmMarzaDobavljaca";
+            this.Name = "frmMarzeRabatiDobavljaca";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Marža dobavljača";
+            this.Text = "Marže i rabati dobavljača";
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
@@ -186,5 +232,9 @@
         private System.Windows.Forms.TextBox txtMarzaProc;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Label lblNaziv;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtRabatProc;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox comboBrend;
     }
 }

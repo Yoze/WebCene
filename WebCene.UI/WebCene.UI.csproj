@@ -59,16 +59,16 @@
     <ApplicationIcon>Resources\faviconCodeSpace.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>FD2B0479B235794475BB8E880BFB7D39CF5900CC</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>A131933D36E5880AB1DA53C6F385281A77397878</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>WebCene.UI_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>WebCene.UI_1_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -111,11 +111,11 @@
     <Compile Include="Forms\B2B\frmMainB2B.Designer.cs">
       <DependentUpon>frmMainB2B.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\B2B\frmMarzaDobavljaca.cs">
+    <Compile Include="Forms\B2B\frmMarzeRabatiDobavljaca.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\B2B\frmMarzaDobavljaca.Designer.cs">
-      <DependentUpon>frmMarzaDobavljaca.cs</DependentUpon>
+    <Compile Include="Forms\B2B\frmMarzeRabatiDobavljaca.Designer.cs">
+      <DependentUpon>frmMarzeRabatiDobavljaca.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\B2B\tempPwd.cs">
       <SubType>Form</SubType>
@@ -191,14 +191,20 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="RezultatKrolaZaPrikaz.cs" />
+    <Compile Include="tmp\testForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="tmp\testForm.Designer.cs">
+      <DependentUpon>testForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Forms\B2B\frmKonfigDobavljaca.resx">
       <DependentUpon>frmKonfigDobavljaca.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\B2B\frmMainB2B.resx">
       <DependentUpon>frmMainB2B.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\B2B\frmMarzaDobavljaca.resx">
-      <DependentUpon>frmMarzaDobavljaca.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\B2B\frmMarzeRabatiDobavljaca.resx">
+      <DependentUpon>frmMarzeRabatiDobavljaca.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\B2B\tempPwd.resx">
       <DependentUpon>tempPwd.cs</DependentUpon>
@@ -238,6 +244,9 @@
     <EmbeddedResource Include="Forms\Kroler\frmStartKrol.resx">
       <DependentUpon>frmStartKrol.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="tmp\testForm.resx">
+      <DependentUpon>testForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\WebCene.Model.B2B.MarzeDobavljaca.datasource" />
@@ -251,6 +260,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="WebCene.UI_1_TemporaryKey.pfx" />
     <None Include="WebCene.UI_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>

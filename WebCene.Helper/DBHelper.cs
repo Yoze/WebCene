@@ -29,7 +29,7 @@ namespace WebCene.Helper
 
 
 
-        /** Konfiguracije dobavljača */
+        /** dbo.KonfigDobavljaca */
         public KonfigDobavljaca GetSingleSupplierConfigurationById(int supplierId)
         {
             KonfigDobavljaca konfiguracijaDobavljaca = new KonfigDobavljaca();
@@ -113,7 +113,7 @@ namespace WebCene.Helper
         }
 
 
-        /** Marže dobavaljača */
+        /** dbo.MarzeDobavljaca */
         public List<MarzeDobavljaca> GetSupplierMarginsBySupplierId(int supplierId)
         {
             List<MarzeDobavljaca> marzeDobavljaca = new List<MarzeDobavljaca>();
@@ -269,6 +269,10 @@ namespace WebCene.Helper
             }
             return false;
         }
+
+
+        /** dbo.Brendovi */
+
 
 
         /** DARTIKLI */

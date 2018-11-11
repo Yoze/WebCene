@@ -13,32 +13,36 @@ using WebCene.Model.Kroler;
 
 namespace WebCene.UI.Forms.B2B
 {
-    public partial class frmMarzaDobavljaca : Form
+    public partial class frmMarzeRabatiDobavljaca : Form
     {
         private int IdOdabraneMarze { get; set; }
-        MarzeDobavljaca MarzaDobavljacaProp { get; set; }
+        MarzeDobavljaca MarzaDobavljacaRabatProp { get; set; }
         KonfigDobavljaca KonfigDobavljacaProp { get; set; }
 
 
-        public frmMarzaDobavljaca(KonfigDobavljaca konfigDobavljaca)
+        public frmMarzeRabatiDobavljaca(KonfigDobavljaca konfigDobavljaca)
         {
+            /** Dodavanje novog rabata i marže */
+
             InitializeComponent();
 
             KonfigDobavljacaProp = konfigDobavljaca;
-            MarzaDobavljacaProp = null;
+            MarzaDobavljacaRabatProp = null;
         }
 
 
-        public frmMarzaDobavljaca(KonfigDobavljaca konfigDobavljaca, int idOdabraneMarze)
+        public frmMarzeRabatiDobavljaca(KonfigDobavljaca konfigDobavljaca, int idOdabraneMarze)
         {
+            /** Izmena postojećeg rabata i marže */
+
             InitializeComponent();
 
             IdOdabraneMarze = idOdabraneMarze;
 
             KonfigDobavljacaProp = konfigDobavljaca;
 
-            MarzaDobavljacaProp = new MarzeDobavljaca();
-            MarzaDobavljacaProp = DBHelper.Instance.GetSingleSupplierMarginByMarginId(idOdabraneMarze);
+            MarzaDobavljacaRabatProp = new MarzeDobavljaca();
+            MarzaDobavljacaRabatProp = DBHelper.Instance.GetSingleSupplierMarginByMarginId(idOdabraneMarze);
 
             MapPropsToControls();
         }
@@ -46,24 +50,34 @@ namespace WebCene.UI.Forms.B2B
 
         private void MapPropsToControls()
         {
-            txtNncDonji.Text = MarzaDobavljacaProp.NncDonjiLimit.ToString();
-            txtNncGornji.Text = MarzaDobavljacaProp.NncGornjiLimit.ToString();
-            txtMarzaProc.Text = MarzaDobavljacaProp.MarzaProc.ToString("F2");
+            txtNncDonji.Text = MarzaDobavljacaRabatProp.NncDonjiLimit.ToString();
+            txtNncGornji.Text = MarzaDobavljacaRabatProp.NncGornjiLimit.ToString();
+            txtMarzaProc.Text = MarzaDobavljacaRabatProp.MarzaProc.ToString("F2");
+            txtRabatProc.Text = MarzaDobavljacaRabatProp.RabatProc.ToString("F2");
         }
 
 
         private void MapControlsToProps()
         {
-            MarzaDobavljacaProp.NncDonjiLimit = Convert.ToInt32(txtNncDonji.Text);
-            MarzaDobavljacaProp.NncGornjiLimit = Convert.ToInt32(txtNncGornji.Text);
-            MarzaDobavljacaProp.MarzaProc = Convert.ToDecimal(txtMarzaProc.Text);
+            MarzaDobavljacaRabatProp.NncDonjiLimit = Convert.ToInt32(txtNncDonji.Text);
+            MarzaDobavljacaRabatProp.NncGornjiLimit = Convert.ToInt32(txtNncGornji.Text);
+            MarzaDobavljacaRabatProp.MarzaProc = Convert.ToDecimal(txtMarzaProc.Text);
+            MarzaDobavljacaRabatProp.RabatProc = Convert.ToDecimal(txtRabatProc.Text);
 
             // IdDobavljaca foreign key
             //MarzaDobavljacaProp.KonfigDobavljaca = KonfigDobavljacaProp;
-            MarzaDobavljacaProp.IdDobavljaca = KonfigDobavljacaProp.Id;
+            MarzaDobavljacaRabatProp.IdDobavljaca = KonfigDobavljacaProp.Id;
         }
 
 
+        private void LoadComboBrendovi()
+        {
+            using (KrolerContext db = new KrolerContext())
+            {
+
+            }
+
+        }
 
 
         public void ValidateDecimalInput(object sender, KeyPressEventArgs e)
@@ -96,12 +110,12 @@ namespace WebCene.UI.Forms.B2B
 
         private void btnSnimiMarzu_Click(object sender, EventArgs e)
         {
-            if (MarzaDobavljacaProp == null)
+            if (MarzaDobavljacaRabatProp == null)
             {
-                MarzaDobavljacaProp = new MarzeDobavljaca();
+                MarzaDobavljacaRabatProp = new MarzeDobavljaca();
                 MapControlsToProps();
 
-                if (DBHelper.Instance.CreateSupplierMargin(MarzaDobavljacaProp))
+                if (DBHelper.Instance.CreateSupplierMargin(MarzaDobavljacaRabatProp))
                 {
                     MessageBox.Show("Dodato u bazu.");
                     Close();
@@ -115,7 +129,7 @@ namespace WebCene.UI.Forms.B2B
             {
                 MapControlsToProps();
 
-                if (DBHelper.Instance.SaveSupplierMargin(MarzaDobavljacaProp))
+                if (DBHelper.Instance.SaveSupplierMargin(MarzaDobavljacaRabatProp))
                 {
                     MessageBox.Show("Snimljeno.");
                     Close();

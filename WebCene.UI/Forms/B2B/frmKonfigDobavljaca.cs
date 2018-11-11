@@ -52,6 +52,7 @@ namespace WebCene.UI.Forms.B2B
             txtWebProtokol.Text = KonfigDobavljacaProp.WebProtokol;
             txtkoeficijentMarze.Text = KonfigDobavljacaProp.KeoficijentMarze.ToString("F2");
             txtKursEvra.Text = KonfigDobavljacaProp.KursEvra.ToString("F2");
+            checkIsManualno.Checked = KonfigDobavljacaProp.Manualno;
 
         }
 
@@ -65,6 +66,7 @@ namespace WebCene.UI.Forms.B2B
             KonfigDobavljacaProp.WebProtokol = txtWebProtokol.Text;
             KonfigDobavljacaProp.KeoficijentMarze = Convert.ToDecimal(txtkoeficijentMarze.Text);
             KonfigDobavljacaProp.KursEvra = Convert.ToDecimal(txtKursEvra.Text);
+            KonfigDobavljacaProp.Manualno = checkIsManualno.Checked;
         }
 
 
@@ -199,6 +201,7 @@ namespace WebCene.UI.Forms.B2B
                             item.NncDonjiLimit.ToString(),
                             item.NncGornjiLimit.ToString(),
                             item.MarzaProc.ToString(),
+                            item.RabatProc.ToString(),
                             item.Id.ToString()
                         };
 
@@ -208,7 +211,7 @@ namespace WebCene.UI.Forms.B2B
                 }
 
                 // set Id column to invisible
-                lvMarzeDobavljaca.Columns[3].Width = 0;
+                lvMarzeDobavljaca.Columns[4].Width = 0;
             }
         }
 
@@ -216,7 +219,7 @@ namespace WebCene.UI.Forms.B2B
         private void btnDodajMarzu_Click(object sender, EventArgs e)
         {
 
-            frmMarzaDobavljaca frmMarza = new frmMarzaDobavljaca(KonfigDobavljacaProp);
+            frmMarzeRabatiDobavljaca frmMarza = new frmMarzeRabatiDobavljaca(KonfigDobavljacaProp);
             frmMarza.ShowDialog();
 
             DisplaySupplierMargins();
@@ -227,7 +230,7 @@ namespace WebCene.UI.Forms.B2B
         {
             if (IdOdabraneMarze == 0) return;
 
-            frmMarzaDobavljaca frmMarza = new frmMarzaDobavljaca(KonfigDobavljacaProp, IdOdabraneMarze);
+            frmMarzeRabatiDobavljaca frmMarza = new frmMarzeRabatiDobavljaca(KonfigDobavljacaProp, IdOdabraneMarze);
             frmMarza.ShowDialog();
 
             DisplaySupplierMargins();

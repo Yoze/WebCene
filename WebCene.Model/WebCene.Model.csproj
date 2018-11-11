@@ -110,6 +110,7 @@
     <Compile Include="Kroler\viewKrolStavke.cs" />
     <Compile Include="Kroler\KrolerContext.cs" />
     <Compile Include="B2B\DARTIKLI.cs" />
+    <Compile Include="B2B\Brendovi.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

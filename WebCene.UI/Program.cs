@@ -18,6 +18,9 @@ namespace WebCene.UI
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new frmMainWindow());
+
+
+            //Application.Run(new WebCene.UI.tmp.testForm());
         }
     }
 }
