@@ -600,6 +600,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.ClientSize = new System.Drawing.Size(1439, 763);
             this.Controls.Add(this.btnObrisiPodesavanjaKrola);
             this.Controls.Add(this.picFilter);

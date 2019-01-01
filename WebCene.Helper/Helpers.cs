@@ -5,6 +5,11 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using WebCene.Model;
+using WebCene.Model.B2B;
+using System.Configuration;
+
+
 
 namespace WebCene.Helper
 {
@@ -12,6 +17,7 @@ namespace WebCene.Helper
     {
 
         static readonly Helpers _instance = new Helpers();
+        //private double koeficijentRabata;
 
         public static Helpers Instance
         {
@@ -59,7 +65,26 @@ namespace WebCene.Helper
         }
 
 
-       
+        //public double CalculateNNC(double unnc, KonfigDobavljaca konfigDobavljaca)
+        //{
+        //    double calculatedNNC = 0;
+        //    double kursEvra = konfigDobavljaca.KursEvra;
+        //    double rabat = 1 + (konfigDobavljaca.RabatProc / 100);
+        //    string _stopaPdv = ConfigurationManager.AppSettings["stopaPDV"];
+
+        //    if (double.TryParse(_stopaPdv, out double koefPDV))
+        //    {
+        //        koefPDV = 1 + (koefPDV / 100);
+        //    }
+
+        //    calculatedNNC = Convert.ToDouble( unnc * rabat * koefPDV * kursEvra);
+        //    return calculatedNNC;
+        //}
 
     }
+
+
+   
+
+
 }

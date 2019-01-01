@@ -26,6 +26,9 @@ namespace WebCene.UI.Forms.B2B
 
             InitializeComponent();
 
+            // sprečava implicitnu validaciju kontrole kada izgubi fokus
+            AutoValidate = System.Windows.Forms.AutoValidate.Disable;
+
             KonfigDobavljacaProp = konfigDobavljaca;
             MarzaDobavljacaRabatProp = null;
         }
@@ -44,6 +47,10 @@ namespace WebCene.UI.Forms.B2B
             MarzaDobavljacaRabatProp = new MarzeDobavljaca();
             MarzaDobavljacaRabatProp = DBHelper.Instance.GetSingleSupplierMarginByMarginId(idOdabraneMarze);
 
+            if (MarzaDobavljacaRabatProp == null)
+            {
+                MessageBox.Show("Info" , "Odaberi podatak za izmenu." );
+            }
             MapPropsToControls();
         }
 
@@ -61,8 +68,8 @@ namespace WebCene.UI.Forms.B2B
         {
             MarzaDobavljacaRabatProp.NncDonjiLimit = Convert.ToInt32(txtNncDonji.Text);
             MarzaDobavljacaRabatProp.NncGornjiLimit = Convert.ToInt32(txtNncGornji.Text);
-            MarzaDobavljacaRabatProp.MarzaProc = Convert.ToDecimal(txtMarzaProc.Text);
-            MarzaDobavljacaRabatProp.RabatProc = Convert.ToDecimal(txtRabatProc.Text);
+            MarzaDobavljacaRabatProp.MarzaProc = Convert.ToDouble(txtMarzaProc.Text);
+            MarzaDobavljacaRabatProp.RabatProc = Convert.ToDouble(txtRabatProc.Text);
 
             // IdDobavljaca foreign key
             //MarzaDobavljacaProp.KonfigDobavljaca = KonfigDobavljacaProp;
@@ -110,40 +117,133 @@ namespace WebCene.UI.Forms.B2B
 
         private void btnSnimiMarzu_Click(object sender, EventArgs e)
         {
-            if (MarzaDobavljacaRabatProp == null)
+            if (ValidateChildren(ValidationConstraints.Enabled))
             {
-                MarzaDobavljacaRabatProp = new MarzeDobavljaca();
-                MapControlsToProps();
 
-                if (DBHelper.Instance.CreateSupplierMargin(MarzaDobavljacaRabatProp))
+
+                if (MarzaDobavljacaRabatProp == null)
                 {
-                    MessageBox.Show("Dodato u bazu.");
-                    Close();
+                    MarzaDobavljacaRabatProp = new MarzeDobavljaca();
+
+                    MapControlsToProps();
+
+                    if (DBHelper.Instance.CreateSupplierMargin(MarzaDobavljacaRabatProp))
+                    {
+                        MessageBox.Show("Dodato u bazu.");
+                        Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Greška.");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Greška.");
+                    MapControlsToProps();
+
+                    if (DBHelper.Instance.SaveSupplierMargin(MarzaDobavljacaRabatProp))
+                    {
+                        MessageBox.Show("Snimljeno.");
+                        Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Greška.");
+                    }
                 }
+            }
+        }
+
+        private void txtNncDonji_Validating(object sender, CancelEventArgs e)
+        {
+            bool cancel = false;
+
+            if (!(string.IsNullOrWhiteSpace(txtNncDonji.Text)))
+            {
+                // prolazi validaciju
+                cancel = false;
             }
             else
             {
-                MapControlsToProps();
-
-                if (DBHelper.Instance.SaveSupplierMargin(MarzaDobavljacaRabatProp))
-                {
-                    MessageBox.Show("Snimljeno.");
-                    Close();
-                }
-                else
-                {
-                    MessageBox.Show("Greška.");
-                }
-            }            
+                // ne prolazi validaciju
+                cancel = true;
+                errorProvider1.SetError(txtNncDonji, "Obavezan podatak.");
+            }
+            e.Cancel = cancel;
         }
 
+        private void txtNncDonji_Validated(object sender, EventArgs e)
+        {
+            errorProvider1.SetError(txtNncDonji, string.Empty);
+        }
 
+        private void txtNncGornji_Validating(object sender, CancelEventArgs e)
+        {
+            bool cancel = false;
 
+            if (!(string.IsNullOrWhiteSpace(txtNncGornji.Text)))
+            {
+                // prolazi validaciju
+                cancel = false;
+            }
+            else
+            {
+                // ne prolazi validaciju
+                cancel = true;
+                errorProvider1.SetError(txtNncGornji, "Obavezan podatak.");
+            }
+            e.Cancel = cancel;
+        }
 
+        private void txtNncGornji_Validated(object sender, EventArgs e)
+        {
+            errorProvider1.SetError(txtNncGornji, string.Empty);
+        }
 
+        private void txtMarzaProc_Validating(object sender, CancelEventArgs e)
+        {
+            bool cancel = false;
+
+            if (!(string.IsNullOrWhiteSpace(txtMarzaProc.Text)))
+            {
+                // prolazi validaciju
+                cancel = false;
+            }
+            else
+            {
+                // ne prolazi validaciju
+                cancel = true;
+                errorProvider1.SetError(txtMarzaProc, "Obavezan podatak.");
+            }
+            e.Cancel = cancel;
+        }
+
+        private void txtMarzaProc_Validated(object sender, EventArgs e)
+        {
+            errorProvider1.SetError(txtMarzaProc, string.Empty);
+        }
+
+        private void txtRabatProc_Validating(object sender, CancelEventArgs e)
+        {
+            bool cancel = false;
+
+            if (!(string.IsNullOrWhiteSpace(txtRabatProc.Text)))
+            {
+                // prolazi validaciju
+                cancel = false;
+            }
+            else
+            {
+                // ne prolazi validaciju
+                cancel = true;
+                errorProvider1.SetError(txtRabatProc, "Obavezan podatak.");
+            }
+            e.Cancel = cancel;
+        }
+
+        private void txtRabatProc_Validated(object sender, EventArgs e)
+        {
+            errorProvider1.SetError(txtRabatProc, string.Empty);
+        }
     }
 }

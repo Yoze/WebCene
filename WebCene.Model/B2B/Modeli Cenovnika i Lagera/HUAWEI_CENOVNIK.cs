@@ -46,7 +46,7 @@ namespace WebCene.Model.B2B.huawei
                     {
                         Barcode = item.barcode.ToString().TrimEnd(),
                         Kolicina = 0, // ne postoji u količina u xmlu
-                        NNC = item.NNC,
+                        NNC = Convert.ToDouble( item.NNC),
                         PMC = item.PMC,
                         DatumUlistavanja = DateTime.Today,
                         PrimarniDobavljac = konfigDobavljaca.Naziv,

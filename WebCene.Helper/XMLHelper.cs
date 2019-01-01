@@ -147,8 +147,8 @@ namespace WebCene.Helper
                                             {
                                                 Barcode = pinItems[i].ean,
                                                 Kolicina = (int)pinItems[i].stock,
-                                                NNC = (decimal)pinItems[i].price_with_discounts,
-                                                PMC = (decimal)pinItems[i].retail_price,
+                                                NNC = pinItems[i].price_with_discounts,
+                                                PMC = pinItems[i].retail_price,
                                                 DatumUlistavanja = DateTime.Today,
                                                 PrimarniDobavljac = konfigDobavljaca.Naziv
                                             };

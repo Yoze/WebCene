@@ -43,20 +43,18 @@ namespace WebCene.Model.B2B.orbico
             {
                 if (!(string.IsNullOrWhiteSpace(item.ean.ToString().TrimEnd())))
                 {
-                    // price rebate
-                    decimal priceRebate = decimal.Zero;
-                    bool isPriceRebate = decimal.TryParse(item.price_rebate, out priceRebate);
+                    //// price rebate
+                    //bool isPriceRebate = double.TryParse(item.price_rebate, out double priceRebate);
 
                     // price
-                    decimal price = decimal.Zero;
-                    bool isPrice = decimal.TryParse(item.price, out price);
+                    bool isPrice = double.TryParse(item.price, out double price);
 
                     B2B_Results_RowItem podatakZaPrikaz = new B2B_Results_RowItem()
                     {
                         Barcode = item.ean.ToString().TrimEnd(),
                         Kolicina = item.qty, 
-                        NNC = priceRebate,
-                        PMC = price,
+                        NNC = ModelHelper.Instance.CalculateNNC( price, konfigDobavljaca),
+                        PMC = 0, //TO DO: kalkulacija PMC 
                         DatumUlistavanja = DateTime.Today,
                         PrimarniDobavljac = konfigDobavljaca.Naziv,
                         CenovnikDatum = ucitaniXmlDocument.XmlLastModified

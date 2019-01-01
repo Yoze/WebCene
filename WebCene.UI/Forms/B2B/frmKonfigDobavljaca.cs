@@ -19,7 +19,7 @@ namespace WebCene.UI.Forms.B2B
         private List<KonfigDobavljaca> SveKonfiguracijeDobavljaca { get; set; }
         private string NazivOdabranogDobavljaca { get; set; }
         private int IdOdabraneMarze { get; set; }
-
+        
 
         public frmKonfigDobavljaca()
         {
@@ -50,8 +50,10 @@ namespace WebCene.UI.Forms.B2B
             txtLagerFilename.Text = KonfigDobavljacaProp.LagerFilename;
             txtUrl.Text = KonfigDobavljacaProp.URL;
             txtWebProtokol.Text = KonfigDobavljacaProp.WebProtokol;
-            txtkoeficijentMarze.Text = KonfigDobavljacaProp.KeoficijentMarze.ToString("F2");
+            //txtStopaPdvProc.Text = KonfigDobavljacaProp.StopaPDVProc.ToString("F2");
+            txtStopaPdvProc.Text = frmMainB2B.ParametriPDVa.Item1;
             txtKursEvra.Text = KonfigDobavljacaProp.KursEvra.ToString("F2");
+            txtRabatProc.Text = KonfigDobavljacaProp.RabatProc.ToString("F2");
             checkIsManualno.Checked = KonfigDobavljacaProp.Manualno;
 
         }
@@ -64,8 +66,9 @@ namespace WebCene.UI.Forms.B2B
             KonfigDobavljacaProp.LagerFilename = txtLagerFilename.Text;
             KonfigDobavljacaProp.URL = txtUrl.Text;
             KonfigDobavljacaProp.WebProtokol = txtWebProtokol.Text;
-            KonfigDobavljacaProp.KeoficijentMarze = Convert.ToDecimal(txtkoeficijentMarze.Text);
-            KonfigDobavljacaProp.KursEvra = Convert.ToDecimal(txtKursEvra.Text);
+            //KonfigDobavljacaProp.StopaPDVProc = Convert.ToDecimal(txtStopaPdvProc.Text);
+            KonfigDobavljacaProp.KursEvra = Convert.ToDouble(txtKursEvra.Text);
+            KonfigDobavljacaProp.RabatProc = Convert.ToDouble(txtRabatProc.Text);
             KonfigDobavljacaProp.Manualno = checkIsManualno.Checked;
         }
 
@@ -192,7 +195,7 @@ namespace WebCene.UI.Forms.B2B
             List<MarzeDobavljaca> marzeDobavljaca = new List<MarzeDobavljaca>();
             marzeDobavljaca = DBHelper.Instance.GetSupplierMarginsBySupplierName(NazivOdabranogDobavljaca);
 
-            if (marzeDobavljaca.Count > 0)
+            if (marzeDobavljaca != null && marzeDobavljaca.Count > 0)
             {
                 foreach (MarzeDobavljaca item in marzeDobavljaca)
                 {
@@ -258,7 +261,7 @@ namespace WebCene.UI.Forms.B2B
         {
             if (lvMarzeDobavljaca.SelectedItems.Count == 1)
             {
-                IdOdabraneMarze = Convert.ToInt32(lvMarzeDobavljaca.SelectedItems[0].SubItems[3].Text); // Id odabrane marže se nalazi u 3. koloni
+                IdOdabraneMarze = Convert.ToInt32(lvMarzeDobavljaca.SelectedItems[0].SubItems[4].Text); // Id odabrane marže se nalazi u 3. koloni
             }
         }
 
@@ -267,11 +270,24 @@ namespace WebCene.UI.Forms.B2B
         {
             if (lvMarzeDobavljaca.SelectedItems.Count == 1)
             {
-                IdOdabraneMarze = Convert.ToInt32(lvMarzeDobavljaca.SelectedItems[0].SubItems[3].Text); // Id odabrane marže se nalazi u 3. koloni
+                IdOdabraneMarze = Convert.ToInt32(lvMarzeDobavljaca.SelectedItems[0].SubItems[4].Text); // Id odabrane marže se nalazi u 3. koloni
             }
         }
 
-
-
+        private void checkIsManualno_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkIsManualno.Checked)
+            {
+                txtKursEvra.Enabled = false;
+                //txtStopaPdvProc.Enabled = false;
+                lblManuelnoDescription.Visible = true;
+            }
+            else
+            {
+                txtKursEvra.Enabled = true;
+                //txtStopaPdvProc.Enabled = true;
+                lblManuelnoDescription.Visible = false;
+            }
+        }
     }
 }

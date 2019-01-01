@@ -45,7 +45,7 @@ namespace WebCene.Model.B2B._220BCenovnik
                     {
                         Barcode = item.barcode.ToString().TrimEnd(),
                         Kolicina = 0, // postoji lager
-                        NNC = item.NNC,
+                        NNC = Convert.ToDouble( item.NNC),
                         PMC = item.PMC,
                         DatumUlistavanja = DateTime.Today,
                         PrimarniDobavljac = konfigDobavljaca.Naziv,

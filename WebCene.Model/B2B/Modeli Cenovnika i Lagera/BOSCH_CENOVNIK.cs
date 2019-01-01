@@ -38,25 +38,23 @@ namespace WebCene.Model.B2B.bosch
             {
                 if (! string.IsNullOrEmpty(item.ean.ToString()))
                 {
-                        /**
-                        cena     -> Vaša nabavna cena.
-                        ppc      -> Tako zvana cena za trgovaca. Cena koja je osnova za rabate. Nadam se da imate mogućnost koristiti ovo
-                        zaloga   -> Lager; stanje zalihe.
-                        davek    -> % poreza.
-                         */
+                    /**
+                    cena     -> Vaša nabavna cena.
+                    ppc      -> Tako zvana cena za trgovaca. Cena koja je osnova za rabate. Nadam se da imate mogućnost koristiti ovo
+                    zaloga   -> Lager; stanje zalihe.
+                    davek    -> % poreza.
+                     */
 
-                    decimal nabavnaCena = decimal.Zero;
-                    bool isnabavnaCena = decimal.TryParse(item.cena, out nabavnaCena);
+                    bool isnabavnaCena = double.TryParse(item.cena, out double nabavnaCena);
 
-                    decimal ppc = decimal.Zero;
-                    bool isPpc = decimal.TryParse(item.ppc, out ppc);
+                    bool isPpc = double.TryParse(item.ppc, out double ppc);
 
                     B2B_Results_RowItem podatakZaPrikaz = new B2B_Results_RowItem()
                     {
                         Barcode = item.ean.ToString().TrimEnd(),
                         Kolicina = item.zaloga,
-                        NNC = nabavnaCena * konfigDobavljaca.KeoficijentMarze, 
-                        PMC = ppc, 
+                        NNC = ModelHelper.Instance.CalculateNNC(ppc, konfigDobavljaca), 
+                        PMC = 0, //TO DO: kalkulacija PMC
                         DatumUlistavanja = DateTime.Today,
                         PrimarniDobavljac = konfigDobavljaca.Naziv,
                         CenovnikDatum = ucitaniXmlDocument.XmlLastModified,
@@ -67,9 +65,6 @@ namespace WebCene.Model.B2B.bosch
             }
             b2B_Results_RowItems = podaciZaPrikaz;
         }
-
-
-
     }
     
 

@@ -46,8 +46,8 @@ namespace WebCene.Model.B2B.acrmobile
                     {
                         Barcode = item.barcode.ToString().TrimEnd(),
                         Kolicina = item.kolicina,
-                        NNC = item.NNC,
-                        PMC = item.PMC,
+                        NNC = Convert.ToDouble( item.NNC),
+                        PMC = Convert.ToDouble(item.PMC),
                         DatumUlistavanja = DateTime.Today,
                         PrimarniDobavljac = konfigDobavljaca.Naziv,
                         CenovnikDatum = ucitaniXmlDocument.XmlLastModified,

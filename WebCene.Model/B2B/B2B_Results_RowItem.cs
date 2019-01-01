@@ -18,11 +18,11 @@ namespace WebCene.Model.B2B
 
         public DateTime LagerDatum { get; set; }
 
-        public decimal NNC { get; set; }
+        public double NNC { get; set; }
 
         public DateTime CenovnikDatum { get; set; }
 
-        public decimal PMC { get; set; }
+        public double PMC { get; set; }
 
         public DateTime DatumUlistavanja { get; set; }
 

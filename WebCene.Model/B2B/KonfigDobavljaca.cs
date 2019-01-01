@@ -43,9 +43,9 @@ namespace WebCene.Model.B2B
         [StringLength(50)]
         public string ModelLager { get; set; }
 
-        public decimal KeoficijentMarze { get; set; }
+        public double RabatProc { get; set; }
 
-        public decimal KursEvra { get; set; }
+        public double KursEvra { get; set; }
 
         public bool Manualno { get; set; }
 

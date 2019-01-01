@@ -46,8 +46,8 @@ namespace WebCene.Model.B2B.mkaCenovnik
                     {
                         Barcode = item.BarKod.ToString().TrimEnd(),
                         Kolicina = (int)item.Kolicina,
-                        NNC = item.CenaVP, // pomnožiti VP cenu sa kursom evra 
-                        PMC = item.CenaMP,
+                        NNC = ModelHelper.Instance.CalculateNNC( Convert.ToDouble(item.CenaVP), konfigDobavljaca), 
+                        PMC = Convert.ToDouble( item.CenaMP),
                         DatumUlistavanja = DateTime.Today,
                         PrimarniDobavljac = konfigDobavljaca.Naziv,
                         CenovnikDatum = ucitaniXmlDocument.XmlLastModified,

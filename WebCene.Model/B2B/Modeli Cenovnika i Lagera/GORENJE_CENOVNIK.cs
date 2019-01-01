@@ -47,7 +47,7 @@ namespace WebCene.Model.B2B.gorenje
                     {
                         Barcode = item.barcode.ToString().TrimEnd(),
                         Kolicina = kolicina,
-                        NNC = item.NNC,
+                        NNC = Convert.ToDouble( item.NNC),
                         PMC = item.PMC,
                         DatumUlistavanja = DateTime.Today,
                         PrimarniDobavljac = konfigDobavljaca.Naziv,

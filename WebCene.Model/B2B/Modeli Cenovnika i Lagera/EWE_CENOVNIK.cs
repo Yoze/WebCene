@@ -57,22 +57,20 @@ namespace WebCene.Model.B2B.ewe
                     int kolicina = 1;
 
                     // NNC
-                    decimal nnc = decimal.Zero;
-                    bool isCena = decimal.TryParse(item.price_rebate, System.Globalization.NumberStyles.Any, new CultureInfo("en-US"), out nnc);
+                    bool isCena = double.TryParse(item.price_rebate, System.Globalization.NumberStyles.Any, new CultureInfo("en-US"), out  double nnc);
 
 
                     // PMC
-                    decimal pmc = decimal.Zero;
-                    bool isPmc = decimal.TryParse(item.recommended_retail_price, out pmc);
-                    pmc = ( isPmc && pmc > 0 ) ? pmc : nnc * decimal.Multiply( 1.2m, konfigDobavljaca.KeoficijentMarze );
+                    bool isPmc = double.TryParse(item.recommended_retail_price, out double pmc);
+                    //pmc = ( isPmc && pmc > 0 ) ? pmc : nnc * decimal.Multiply( 1.2m, konfigDobavljaca.KeoficijentMarze );
 
 
                     B2B_Results_RowItem podatakZaPrikaz = new B2B_Results_RowItem()
                     {
                         Barcode = item.ean,
                         Kolicina = kolicina,
-                        NNC = nnc,
-                        PMC = pmc,
+                        NNC = ModelHelper.Instance.CalculateNNC(nnc, konfigDobavljaca),
+                        PMC = 0, //TO DO: kalkulacija PMC
                         DatumUlistavanja = DateTime.Today,
                         PrimarniDobavljac = konfigDobavljaca.Naziv,
                         CenovnikDatum = ucitaniXmlDocument.XmlLastModified,

@@ -40,6 +40,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -96,6 +97,7 @@
     <Compile Include="Kroler\Prodavci.cs" />
     <Compile Include="Kroler\Proizvod.cs" />
     <Compile Include="B2B\Modeli Cenovnika i Lagera\ORBICO_CENOVNIK.cs" />
+    <Compile Include="ModelHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Kroler\BRAND.cs" />
     <Compile Include="Kroler\C099_pravi.cs" />
@@ -110,7 +112,6 @@
     <Compile Include="Kroler\viewKrolStavke.cs" />
     <Compile Include="Kroler\KrolerContext.cs" />
     <Compile Include="B2B\DARTIKLI.cs" />
-    <Compile Include="B2B\Brendovi.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

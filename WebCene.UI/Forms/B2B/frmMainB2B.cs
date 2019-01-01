@@ -29,8 +29,10 @@ namespace WebCene.UI.Forms.B2B
         // podaci koji se prikazuju u datagrid-u
         private List<B2B_Results_RowItem> B2B_Results_Rows_AllSuppliers;
         private double stopaPdv = 0;
-        public static double koefPdv = 0;
-
+        public static double koeficijentPdv = 1;
+        public static double koeficijentMarze = 1;
+        public static double kursEvra = 1;
+        public static Tuple<string, double> ParametriPDVa { get; set; }
 
         public frmMainB2B()
         {
@@ -44,10 +46,10 @@ namespace WebCene.UI.Forms.B2B
             B2B_Results_Rows_AllSuppliers = new List<B2B_Results_RowItem>();
             SetXmlLoadingStatusMessage("", true);
 
-            UcitajStopuPDV();
+            ParametriPDVa = UcitajStopuPDV();
         }
 
-        private void UcitajStopuPDV()
+        private Tuple<string, double> UcitajStopuPDV()
         {
             string _stopaPdv = ConfigurationManager.AppSettings["stopaPDV"];
 
@@ -55,13 +57,14 @@ namespace WebCene.UI.Forms.B2B
             {
                 lblStopaPdv.Text = stopaPdv.ToString("F2");
 
-                koefPdv = 1 + (stopaPdv / 100);
+                koeficijentPdv = 1 + (stopaPdv / 100);
 
-                return;
+                return ( Tuple.Create(_stopaPdv, koeficijentPdv));
             }
 
             // PDV nije konfigurisan u app.config
             lblStopaPdv.Text = "NaN";
+            return (Tuple.Create(_stopaPdv, koeficijentPdv));
         }
 
         private void btnLoadXmls_Click(object sender, EventArgs e)

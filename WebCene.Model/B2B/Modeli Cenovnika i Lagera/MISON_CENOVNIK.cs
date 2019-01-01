@@ -46,7 +46,7 @@ namespace WebCene.Model.B2B.mison
                     {
                         Barcode = item.barcod.ToString().TrimEnd(),
                         Kolicina = item.kolicina,
-                        NNC = item.VP__Cena_u_DIN,
+                        NNC = ModelHelper.Instance.CalculateNNC( Convert.ToDouble( item.VP__Cena_u_DIN), konfigDobavljaca),
                         PMC = item.PREPORU_ENA_MP_CENA,
                         DatumUlistavanja = DateTime.Today,
                         PrimarniDobavljac = konfigDobavljaca.Naziv,

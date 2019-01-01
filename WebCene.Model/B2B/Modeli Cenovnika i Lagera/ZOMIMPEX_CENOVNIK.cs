@@ -8,6 +8,7 @@ using System.Xml;
 using System.Xml.Serialization;
 using extNS = WebCene.Model.B2B;
 
+
 namespace WebCene.Model.B2B.zomimpex
 {
 
@@ -51,24 +52,25 @@ namespace WebCene.Model.B2B.zomimpex
                     kolicina = (isKolicina && kolicina > 0) ? kolicina : 5;
 
                     // Akcijska cena
-                    decimal akcijskaCena = decimal.Zero;
-                    bool isAkcijska = decimal.TryParse(item.AkcijskaCena, out akcijskaCena);
+                    double akcijskaCena = 0;
+                    bool isAkcijska = double.TryParse(item.AkcijskaCena, out akcijskaCena);
 
                     // NNC
-                    decimal nnc = decimal.Zero;
-                    nnc = (isAkcijska && akcijskaCena > 0) ? akcijskaCena : item.Cena; 
+                    double nnc = 0;
+                    nnc = (isAkcijska && akcijskaCena > 0) ? akcijskaCena : Convert.ToDouble(item.Cena); 
 
                     // PMC
-                    decimal pmc = decimal.Zero;
-                    pmc =  nnc * decimal.Multiply( 1.2m, konfigDobavljaca.KeoficijentMarze);
+                    double pmc = 0;
+                    //pmc =  nnc * decimal.Multiply( 1.2m, konfigDobavljaca.KeoficijentMarze);
 
+                    
 
                     B2B_Results_RowItem podatakZaPrikaz = new B2B_Results_RowItem()
                     {
                         Barcode = item.Bar_kod,
                         Kolicina = kolicina,
-                        NNC = nnc,
-                        PMC = pmc,
+                        NNC = ModelHelper.Instance.CalculateNNC(nnc, konfigDobavljaca),
+                        PMC = 0, //TO DO: kalkulacija PMC
                         DatumUlistavanja = DateTime.Today,
                         PrimarniDobavljac = konfigDobavljaca.Naziv,
                         CenovnikDatum = ucitaniXmlDocument.XmlLastModified,

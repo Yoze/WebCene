@@ -8,6 +8,7 @@ using System.Xml;
 using System.Xml.Serialization;
 using extNS = WebCene.Model.B2B;
 
+
 namespace WebCene.Model.B2B.erg
 {
 
@@ -42,14 +43,14 @@ namespace WebCene.Model.B2B.erg
                 if (!(string.IsNullOrWhiteSpace(item.barcode)))
                 {
 
-                    int kolicina = 0;
-                    bool isKolicina = Int32.TryParse(item.stock, out kolicina);
+                    //int kolicina = 0;
+                    bool isKolicina = Int32.TryParse(item.stock, out int kolicina);
 
                     B2B_Results_RowItem podatakZaPrikaz = new B2B_Results_RowItem()
                     {
                         Barcode = item.barcode.TrimEnd(),
                         Kolicina = kolicina,
-                        NNC = item.price * konfigDobavljaca.KeoficijentMarze, // da li je ovo nabavna cena ?
+                        NNC = Convert.ToDouble( item.price), 
                         PMC = 0, //TO DO: kalkulacija PMC
                         DatumUlistavanja = DateTime.Today,
                         PrimarniDobavljac = konfigDobavljaca.Naziv,

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btnSnimiMarzu = new System.Windows.Forms.Button();
             this.btnOdustani = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
@@ -37,12 +38,14 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtMarzaProc = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.lblNaziv = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.txtRabatProc = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.comboBrend = new System.Windows.Forms.ComboBox();
+            this.lblNaziv = new System.Windows.Forms.Label();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.flowLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnSnimiMarzu
@@ -84,6 +87,8 @@
             this.txtNncDonji.Size = new System.Drawing.Size(108, 23);
             this.txtNncDonji.TabIndex = 0;
             this.txtNncDonji.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValidateDecimalInput);
+            this.txtNncDonji.Validating += new System.ComponentModel.CancelEventHandler(this.txtNncDonji_Validating);
+            this.txtNncDonji.Validated += new System.EventHandler(this.txtNncDonji_Validated);
             // 
             // label1
             // 
@@ -104,6 +109,8 @@
             this.txtNncGornji.Size = new System.Drawing.Size(108, 23);
             this.txtNncGornji.TabIndex = 1;
             this.txtNncGornji.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValidateDecimalInput);
+            this.txtNncGornji.Validating += new System.ComponentModel.CancelEventHandler(this.txtNncGornji_Validating);
+            this.txtNncGornji.Validated += new System.EventHandler(this.txtNncGornji_Validated);
             // 
             // label2
             // 
@@ -124,6 +131,8 @@
             this.txtMarzaProc.Size = new System.Drawing.Size(108, 23);
             this.txtMarzaProc.TabIndex = 2;
             this.txtMarzaProc.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValidateDecimalInput);
+            this.txtMarzaProc.Validating += new System.ComponentModel.CancelEventHandler(this.txtMarzaProc_Validating);
+            this.txtMarzaProc.Validated += new System.EventHandler(this.txtMarzaProc_Validated);
             // 
             // flowLayoutPanel1
             // 
@@ -141,19 +150,6 @@
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(1011, 31);
             this.flowLayoutPanel1.TabIndex = 13;
-            // 
-            // lblNaziv
-            // 
-            this.lblNaziv.AutoSize = true;
-            this.lblNaziv.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lblNaziv.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNaziv.ForeColor = System.Drawing.Color.DarkOrchid;
-            this.lblNaziv.Location = new System.Drawing.Point(20, 8);
-            this.lblNaziv.Margin = new System.Windows.Forms.Padding(5);
-            this.lblNaziv.Name = "lblNaziv";
-            this.lblNaziv.Size = new System.Drawing.Size(57, 21);
-            this.lblNaziv.TabIndex = 14;
-            this.lblNaziv.Text = "Marža";
             // 
             // label3
             // 
@@ -173,6 +169,8 @@
             this.txtRabatProc.Name = "txtRabatProc";
             this.txtRabatProc.Size = new System.Drawing.Size(108, 23);
             this.txtRabatProc.TabIndex = 13;
+            this.txtRabatProc.Validating += new System.ComponentModel.CancelEventHandler(this.txtRabatProc_Validating);
+            this.txtRabatProc.Validated += new System.EventHandler(this.txtRabatProc_Validated);
             // 
             // label4
             // 
@@ -192,6 +190,23 @@
             this.comboBrend.Name = "comboBrend";
             this.comboBrend.Size = new System.Drawing.Size(168, 23);
             this.comboBrend.TabIndex = 15;
+            // 
+            // lblNaziv
+            // 
+            this.lblNaziv.AutoSize = true;
+            this.lblNaziv.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblNaziv.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNaziv.ForeColor = System.Drawing.Color.DarkOrchid;
+            this.lblNaziv.Location = new System.Drawing.Point(20, 8);
+            this.lblNaziv.Margin = new System.Windows.Forms.Padding(5);
+            this.lblNaziv.Name = "lblNaziv";
+            this.lblNaziv.Size = new System.Drawing.Size(110, 21);
+            this.lblNaziv.TabIndex = 14;
+            this.lblNaziv.Text = "Marža i rabat";
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
             // 
             // frmMarzeRabatiDobavljaca
             // 
@@ -215,6 +230,7 @@
             this.Text = "Marže i rabati dobavljača";
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -236,5 +252,6 @@
         private System.Windows.Forms.TextBox txtRabatProc;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox comboBrend;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

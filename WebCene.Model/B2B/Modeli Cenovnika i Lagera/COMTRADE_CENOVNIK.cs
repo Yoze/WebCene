@@ -37,24 +37,21 @@ namespace WebCene.Model.B2B.comtrade
             foreach (var item in comtrade.CTPRODUCT)
             {
                 if (!string.IsNullOrEmpty(item.BARCODE.ToString()))
-                {                   
+                {
 
-                    decimal nabavnaCena = decimal.Zero;
-                    bool isnabavnaCena = decimal.TryParse(item.PRICE, out nabavnaCena);
+                    bool isnabavnaCena = double.TryParse(item.PRICE, out double nabavnaCena);
 
-                    decimal ppc = decimal.Zero;
-                    bool isPpc = decimal.TryParse(item.RETAILPRICE, out ppc);
+                    bool isPpc = double.TryParse(item.RETAILPRICE, out double ppc);
 
-                    decimal exchangeRate = decimal.Zero;
-                    bool isExchangeRate = decimal.TryParse(item.EUR_ExchangeRate, out exchangeRate);
+                    bool isExchangeRate = double.TryParse(item.EUR_ExchangeRate, out double exchangeRate);
 
 
                     B2B_Results_RowItem podatakZaPrikaz = new B2B_Results_RowItem()
                     {
                         Barcode = item.BARCODE.ToString().TrimEnd(),
                         Kolicina = item.QTTYINSTOCK,
-                        NNC = nabavnaCena * exchangeRate * 1.2m,
-                        PMC = ppc * exchangeRate * konfigDobavljaca.KeoficijentMarze,
+                        NNC = nabavnaCena * exchangeRate,
+                        PMC = 0,
                         DatumUlistavanja = DateTime.Today,
                         PrimarniDobavljac = konfigDobavljaca.Naziv,
                         CenovnikDatum = ucitaniXmlDocument.XmlLastModified,

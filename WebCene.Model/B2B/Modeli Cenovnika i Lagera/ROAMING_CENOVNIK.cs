@@ -47,7 +47,7 @@ namespace WebCene.Model.B2B.roaming
                     {
                         Barcode = item.barcode.ToString().TrimEnd(),
                         Kolicina = (int)item.kolicina,
-                        NNC = item.NNC,
+                        NNC = Convert.ToDouble( item.NNC),
                         PMC = item.PMC,
                         DatumUlistavanja = DateTime.Today,
                         PrimarniDobavljac = konfigDobavljaca.Naziv,
