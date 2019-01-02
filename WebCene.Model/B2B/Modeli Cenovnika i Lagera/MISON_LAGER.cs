@@ -7,14 +7,15 @@ using System.Xml;
 using System.Xml.Serialization;
 using extNS = WebCene.Model.B2B;
 
-namespace WebCene.Model.B2B._220BLager
+namespace WebCene.Model.B2B.misonLager
 {
-    public class _220B_LAGER
+
+    public class MISON_LAGER
     {
 
         public List<B2B_Results_RowItem> b2B_Results_RowItems { get; set; }
 
-        public _220B_LAGER(KonfigDobavljaca konfigDobavljaca, LoadedXmlDocument ucitaniXmlDocument)
+        public MISON_LAGER(KonfigDobavljaca konfigDobavljaca, LoadedXmlDocument ucitaniXmlDocument)
         {
             b2B_Results_RowItems = new List<B2B_Results_RowItem>();
 
@@ -26,17 +27,17 @@ namespace WebCene.Model.B2B._220BLager
         {
             List<B2B_Results_RowItem> podaciZaPrikaz = new List<B2B_Results_RowItem>();
 
-            extNS._220BLager.Root _220BLager = new Root();
+            extNS.misonLager.Root misonLager = new Root();
 
 
-            var serializer = new XmlSerializer(typeof(extNS._220BLager.Root));
+            var serializer = new XmlSerializer(typeof(extNS.misonLager.Root));
             using (XmlReader reader = new XmlNodeReader(ucitaniXmlDocument.LoadedXmlDocumentItem))
             {
-                _220BLager = (Root)serializer.Deserialize(reader);
+                misonLager = (Root)serializer.Deserialize(reader);
             }
 
 
-            foreach (var item in _220BLager.Row)
+            foreach (var item in misonLager.Row)
             {
                 if (ModelHelper.Instance.IsValidBarcode(item.barcode.ToString().TrimEnd()))
                 {
@@ -45,10 +46,11 @@ namespace WebCene.Model.B2B._220BLager
                     {
                         Barcode = item.barcode.ToString().TrimEnd(),
                         Kolicina = item.kolicina,
-                        NNC = 0, // postoji cenovnik
-                        PMC = 0, // postoji cenonvnik
+                        NNC = 0,
+                        PMC = 0,
                         DatumUlistavanja = DateTime.Today,
                         PrimarniDobavljac = konfigDobavljaca.Naziv,
+                        CenovnikDatum = ucitaniXmlDocument.XmlLastModified,
                         LagerDatum = ucitaniXmlDocument.XmlLastModified
                     };
                     podaciZaPrikaz.Add(podatakZaPrikaz);
@@ -62,6 +64,9 @@ namespace WebCene.Model.B2B._220BLager
 
 
 
+
+    // NOTE: Generated code may require at least .NET Framework 4.5 or .NET Core/Standard 2.0.
+    /// <remarks/>
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
@@ -69,24 +74,24 @@ namespace WebCene.Model.B2B._220BLager
     public partial class Root
     {
 
+        /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("Row")]
         public RootRow[] Row { get; set; }
     }
 
-
+    /// <remarks/>
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
     public partial class RootRow
     {
 
+        /// <remarks/>
         public ulong barcode { get; set; }
 
-        public ushort kolicina { get; set; }
+        /// <remarks/>
+        public byte kolicina { get; set; }
     }
-
-
-    
 
 
 

@@ -14,6 +14,7 @@ using System.Xml.Schema;
 using WebCene.Model.PIN_ServiceReference;
 using WebCene.Model.CT_ServiceReference;
 using extNS = WebCene.Model.B2B;
+using WebCene.Model;
 
 namespace WebCene.Helper
 {
@@ -139,20 +140,21 @@ namespace WebCene.Helper
                                     {
                                         for (int i = 0; i < pinItems.Count; i++)
                                         {
-
-                                            // skip empty ean rows
-                                            if (string.IsNullOrEmpty(pinItems[i].ean)) continue;                                            
-
-                                            B2B_Results_RowItem xmlRezultat = new B2B_Results_RowItem()
+                                            if (ModelHelper.Instance.IsValidBarcode(pinItems[i].ean))
                                             {
-                                                Barcode = pinItems[i].ean,
-                                                Kolicina = (int)pinItems[i].stock,
-                                                NNC = pinItems[i].price_with_discounts,
-                                                PMC = pinItems[i].retail_price,
-                                                DatumUlistavanja = DateTime.Today,
-                                                PrimarniDobavljac = konfigDobavljaca.Naziv
-                                            };
-                                            b2B_Results_RowItems.Add(xmlRezultat);
+                                                B2B_Results_RowItem xmlRezultat = new B2B_Results_RowItem()
+                                                {
+                                                    Barcode = pinItems[i].ean,
+                                                    Kolicina = (int)pinItems[i].stock,
+                                                    NNC = pinItems[i].price_with_discounts,
+                                                    PMC = pinItems[i].retail_price,
+                                                    DatumUlistavanja = DateTime.Now,
+                                                    PrimarniDobavljac = konfigDobavljaca.Naziv,
+                                                    CenovnikDatum = DateTime.Now,
+                                                    LagerDatum = DateTime.Now
+                                                };
+                                                b2B_Results_RowItems.Add(xmlRezultat);
+                                            }       
                                         }
                                         return b2B_Results_RowItems;
                                     }
@@ -251,6 +253,10 @@ namespace WebCene.Helper
                 case "MISON_CENOVNIK":
                     extNS.mison.MISON_CENOVNIK misonCenovnik = new extNS.mison.MISON_CENOVNIK(konfigDobavljaca, ucitaniXmlDocument);
                     return b2B_Results_RowItems = misonCenovnik.b2B_Results_RowItems;
+
+                case "MISON_LAGER":
+                    extNS.misonLager.MISON_LAGER misonLager = new extNS.misonLager.MISON_LAGER(konfigDobavljaca, ucitaniXmlDocument);
+                    return b2B_Results_RowItems = misonLager.b2B_Results_RowItems;
 
                 case "HUAWEI_CENOVNIK":
                     extNS.huawei.HUAWEI_CENOVNIK huaweiCenovnik = new extNS.huawei.HUAWEI_CENOVNIK(konfigDobavljaca, ucitaniXmlDocument);

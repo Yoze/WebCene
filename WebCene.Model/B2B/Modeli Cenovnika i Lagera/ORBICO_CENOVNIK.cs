@@ -55,9 +55,10 @@ namespace WebCene.Model.B2B.orbico
                         Kolicina = item.qty, 
                         NNC = ModelHelper.Instance.CalculateNNC( price, konfigDobavljaca),
                         PMC = 0, //TO DO: kalkulacija PMC 
-                        DatumUlistavanja = DateTime.Today,
+                        DatumUlistavanja = DateTime.Now,
                         PrimarniDobavljac = konfigDobavljaca.Naziv,
-                        CenovnikDatum = ucitaniXmlDocument.XmlLastModified
+                        CenovnikDatum = ucitaniXmlDocument.XmlLastModified,
+                        LagerDatum = ucitaniXmlDocument.XmlLastModified
                     };
                     podaciZaPrikaz.Add(podatakZaPrikaz);
                 }

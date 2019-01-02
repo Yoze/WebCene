@@ -71,11 +71,11 @@ namespace WebCene.Model.B2B.ewe
                         Kolicina = kolicina,
                         NNC = ModelHelper.Instance.CalculateNNC(nnc, konfigDobavljaca),
                         PMC = 0, //TO DO: kalkulacija PMC
-                        DatumUlistavanja = DateTime.Today,
+                        DatumUlistavanja = DateTime.Now,
                         PrimarniDobavljac = konfigDobavljaca.Naziv,
-                        CenovnikDatum = ucitaniXmlDocument.XmlLastModified,
-                        LagerDatum = ucitaniXmlDocument.XmlLastModified
-                        
+                        CenovnikDatum = DateTime.Now,
+                        LagerDatum = DateTime.Now
+
                     };
                     podaciZaPrikaz.Add(podatakZaPrikaz);
                 }

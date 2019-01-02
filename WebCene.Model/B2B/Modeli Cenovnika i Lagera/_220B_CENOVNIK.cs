@@ -88,11 +88,12 @@ namespace WebCene.Model.B2B._220BCenovnik
         public ulong barcode { get; set; }
 
         /// <remarks/>
-        public decimal NNC { get; set; }
+        public ushort NNC { get; set; }
 
         /// <remarks/>
         public uint PMC { get; set; }
     }
+
 
 
 

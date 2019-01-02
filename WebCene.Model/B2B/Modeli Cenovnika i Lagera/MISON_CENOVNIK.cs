@@ -39,15 +39,15 @@ namespace WebCene.Model.B2B.mison
 
             foreach (var item in misonCenovnik.Row)
             {
-                if (ModelHelper.Instance.IsValidBarcode(item.barcod.ToString().TrimEnd()))
+                if (ModelHelper.Instance.IsValidBarcode(item.barcode.ToString().TrimEnd()))
                 {
 
                     B2B_Results_RowItem podatakZaPrikaz = new B2B_Results_RowItem()
                     {
-                        Barcode = item.barcod.ToString().TrimEnd(),
+                        Barcode = item.barcode.ToString().TrimEnd(),
                         Kolicina = item.kolicina,
-                        NNC = ModelHelper.Instance.CalculateNNC( Convert.ToDouble( item.VP__Cena_u_DIN), konfigDobavljaca),
-                        PMC = item.PREPORU_ENA_MP_CENA,
+                        NNC = ModelHelper.Instance.CalculateNNC( Convert.ToDouble( item.NNC), konfigDobavljaca),
+                        PMC = item.PMC,
                         DatumUlistavanja = DateTime.Today,
                         PrimarniDobavljac = konfigDobavljaca.Naziv,
                         CenovnikDatum = ucitaniXmlDocument.XmlLastModified,
@@ -81,19 +81,14 @@ namespace WebCene.Model.B2B.mison
     public partial class RootRow
     {
 
-        public ulong barcod { get; set; }
+        public ulong barcode { get; set; }
 
         public byte kolicina { get; set; }
 
-        public decimal VP__Cena_u_DIN { get; set; }
+        public decimal NNC { get; set; }
 
-        public uint PREPORU_ENA_MP_CENA { get; set; }
+        public uint PMC { get; set; }
     }
-
-
-
-
-
 
 
 }
