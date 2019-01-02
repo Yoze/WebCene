@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using WebCene.Model.B2B;
 
@@ -34,6 +35,26 @@ namespace WebCene.Model
             return calculatedNNC;
         }
 
+
+        public bool IsValidBarcode(string barcode)
+        {
+            bool isValid = true;
+
+            // ako je barcode = null - preskoči
+            if (string.IsNullOrEmpty(barcode))  return isValid = false;
+
+            // ako je barcode = 0 - preskoči    
+            if (barcode.Equals("0")) return isValid = false;
+
+            // ako je barcode.Length < 8 - preskoči ga
+            if (barcode.Length < 8) return isValid = false;
+
+            // barkod mora da se sastoji samo od brojeva
+            Regex onlyNumbers = new Regex(@"^\d+$");
+            if (!onlyNumbers.IsMatch(barcode)) return isValid = false;
+
+            return isValid;
+        }
 
     }
 }

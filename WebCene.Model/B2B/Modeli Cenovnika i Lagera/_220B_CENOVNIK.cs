@@ -38,7 +38,7 @@ namespace WebCene.Model.B2B._220BCenovnik
 
             foreach (var item in _220bCenovnik.Row)
             {
-                if (!(string.IsNullOrWhiteSpace(item.barcode.ToString().TrimEnd())))
+                if (ModelHelper.Instance.IsValidBarcode(item.barcode.ToString().TrimEnd()))
                 {
 
                     B2B_Results_RowItem podatakZaPrikaz = new B2B_Results_RowItem()

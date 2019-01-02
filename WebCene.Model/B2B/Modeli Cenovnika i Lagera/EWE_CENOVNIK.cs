@@ -39,7 +39,7 @@ namespace WebCene.Model.B2B.ewe
 
             foreach (var item in ewe.product)
             {
-                if (!(string.IsNullOrWhiteSpace(item.ean)))
+                if (ModelHelper.Instance.IsValidBarcode(item.ean))
                 {
                     /*
                      4. EWE

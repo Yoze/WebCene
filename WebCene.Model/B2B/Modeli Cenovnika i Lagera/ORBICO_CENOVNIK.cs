@@ -41,7 +41,7 @@ namespace WebCene.Model.B2B.orbico
 
             foreach (var item in orbicoCenovnik.Item)
             {
-                if (!(string.IsNullOrWhiteSpace(item.ean.ToString().TrimEnd())))
+                if (ModelHelper.Instance.IsValidBarcode(item.ean.ToString().TrimEnd()))
                 {
                     //// price rebate
                     //bool isPriceRebate = double.TryParse(item.price_rebate, out double priceRebate);

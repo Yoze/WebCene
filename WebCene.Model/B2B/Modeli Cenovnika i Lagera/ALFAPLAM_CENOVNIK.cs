@@ -39,7 +39,7 @@ namespace WebCene.Model.B2B.AlfaPlamCenovnik
 
             foreach (var item in alfaPlamCenovnik.Row)
             {
-                if (!(string.IsNullOrWhiteSpace(item.BARCODE.ToString().TrimEnd())))
+                if (ModelHelper.Instance.IsValidBarcode(item.BARCODE.ToString().TrimEnd()))
                 {
 
                     B2B_Results_RowItem podatakZaPrikaz = new B2B_Results_RowItem()

@@ -39,7 +39,7 @@ namespace WebCene.Model.B2B.gorenjeLager
 
             foreach (var item in gorenjeLager.Row)
             {
-                if (!(string.IsNullOrWhiteSpace(item.barcode.ToString())))
+                if (ModelHelper.Instance.IsValidBarcode(item.barcode.ToString()))
                 {
 
                     B2B_Results_RowItem podatakZaPrikaz = new B2B_Results_RowItem()

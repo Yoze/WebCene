@@ -38,7 +38,7 @@ namespace WebCene.Model.B2B.zomimpex
 
             foreach (var item in zomImpex.InformacijeArtikla)
             {
-                if (!(string.IsNullOrWhiteSpace(item.Bar_kod)))
+                if (ModelHelper.Instance.IsValidBarcode(item.Bar_kod))
                 {
                     /*
                         ZOM - ako je inStock TRue -> kolicina = 5

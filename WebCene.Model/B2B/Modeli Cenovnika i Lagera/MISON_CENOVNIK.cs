@@ -39,7 +39,7 @@ namespace WebCene.Model.B2B.mison
 
             foreach (var item in misonCenovnik.Row)
             {
-                if (!(string.IsNullOrWhiteSpace(item.barcod.ToString().TrimEnd())))
+                if (ModelHelper.Instance.IsValidBarcode(item.barcod.ToString().TrimEnd()))
                 {
 
                     B2B_Results_RowItem podatakZaPrikaz = new B2B_Results_RowItem()

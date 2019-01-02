@@ -39,7 +39,7 @@ namespace WebCene.Model.B2B.mkaCenovnik
 
             foreach (var item in mkaCenovnik.Stavke)
             {
-                if (!(string.IsNullOrWhiteSpace(item.BarKod.ToString().TrimEnd())))
+                if (ModelHelper.Instance.IsValidBarcode(item.BarKod.ToString().TrimEnd()))
                 {
 
                     B2B_Results_RowItem podatakZaPrikaz = new B2B_Results_RowItem()

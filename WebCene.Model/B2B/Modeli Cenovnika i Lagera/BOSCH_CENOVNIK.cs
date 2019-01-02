@@ -36,7 +36,7 @@ namespace WebCene.Model.B2B.bosch
 
             foreach (var item in bosch.izdelek)
             {
-                if (! string.IsNullOrEmpty(item.ean.ToString()))
+                if (ModelHelper.Instance.IsValidBarcode(item.ean.ToString()))
                 {
                     /**
                     cena     -> Vaša nabavna cena.

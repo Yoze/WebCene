@@ -40,7 +40,7 @@ namespace WebCene.Model.B2B.erg
 
             foreach (var item in erg.ITEM)
             {
-                if (!(string.IsNullOrWhiteSpace(item.barcode)))
+                if (ModelHelper.Instance.IsValidBarcode(item.barcode))
                 {
 
                     //int kolicina = 0;

@@ -36,7 +36,7 @@ namespace WebCene.Model.B2B.comtrade
 
             foreach (var item in comtrade.CTPRODUCT)
             {
-                if (!string.IsNullOrEmpty(item.BARCODE.ToString()))
+                if (ModelHelper.Instance.IsValidBarcode(item.BARCODE.ToString()))
                 {
 
                     bool isnabavnaCena = double.TryParse(item.PRICE, out double nabavnaCena);

@@ -38,7 +38,7 @@ namespace WebCene.Model.B2B.gorenje
 
             foreach (var item in gorenjeCenovnik.Row)
             {
-                if (!(string.IsNullOrWhiteSpace(item.barcode.ToString())))
+                if (ModelHelper.Instance.IsValidBarcode(item.barcode.ToString()))
                 {
 
                     int kolicina = 0;                   
