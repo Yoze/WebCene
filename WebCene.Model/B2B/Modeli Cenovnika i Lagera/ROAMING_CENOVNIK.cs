@@ -79,17 +79,16 @@ namespace WebCene.Model.B2B.roaming
     public partial class RootRow
     {
 
-        public ulong barcode { get; set; }
+        public string barcode { get; set; }
 
         public decimal NNC { get; set; }
 
         public uint PMC { get; set; }
 
-        public decimal kolicina { get; set; }
+        public byte kolicina { get; set; }
     }
 
-
-
+    
 
 
 }

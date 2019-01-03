@@ -78,10 +78,11 @@ namespace WebCene.Model.B2B.whirlpoolLager
     public partial class RootRow
     {
 
-        public string barcode { get; set; }
+        public ulong barcode { get; set; }
 
-        public byte kolicina { get; set; }
+        public ushort kolicina { get; set; }
     }
+
 
 
 
