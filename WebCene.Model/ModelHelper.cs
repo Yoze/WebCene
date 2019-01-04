@@ -23,7 +23,7 @@ namespace WebCene.Model
         {
             double calculatedNNC = 0;
             double kursEvra = konfigDobavljaca.KursEvra;
-            double rabat = 1 + (konfigDobavljaca.RabatProc / 100);
+            double rabat = 1 - (konfigDobavljaca.RabatProc / 100);
             string _stopaPdv = ConfigurationManager.AppSettings["stopaPDV"];
 
             if (double.TryParse(_stopaPdv, out double koefPDV))

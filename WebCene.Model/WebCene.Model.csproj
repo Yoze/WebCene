@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="B2B\Modeli Cenovnika i Lagera\ALCA_LAGER.cs" />
     <Compile Include="B2B\Modeli Cenovnika i Lagera\COMTRADE_CENOVNIK.cs" />
     <Compile Include="B2B\Modeli Cenovnika i Lagera\MISON_LAGER.cs" />
     <Compile Include="B2B\Modeli Cenovnika i Lagera\ROAMING_CENOVNIK.cs" />
