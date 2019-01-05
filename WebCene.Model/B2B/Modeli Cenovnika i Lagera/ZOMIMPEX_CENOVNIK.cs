@@ -63,6 +63,10 @@ namespace WebCene.Model.B2B.zomimpex
                     double pmc = 0;
                     //pmc =  nnc * decimal.Multiply( 1.2m, konfigDobavljaca.KeoficijentMarze);
 
+                    if (!konfigDobavljaca.Manualno)
+                    {
+                        // TODO: kalkulacija NNC i PMC, kako?
+                    }
                     
 
                     B2B_Results_RowItem podatakZaPrikaz = new B2B_Results_RowItem()

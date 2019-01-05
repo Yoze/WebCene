@@ -6,6 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using WebCene.Model.B2B;
+using WebCene.Model.Kroler;
 
 namespace WebCene.Model
 {
@@ -54,6 +55,29 @@ namespace WebCene.Model
             if (!onlyNumbers.IsMatch(barcode)) return isValid = false;
 
             return isValid;
+        }
+
+        public bool SaveSupplierConfigs(KonfigDobavljaca konfigDobavljaca)
+        {
+            if (konfigDobavljaca != null)
+            {
+
+                using (KrolerContext db = new KrolerContext())
+                {
+                    try
+                    {
+                        db.Entry(konfigDobavljaca).State = System.Data.Entity.EntityState.Modified;
+                        db.SaveChanges();
+
+                        return true;
+                    }
+                    catch (Exception)
+                    {
+                        return false;
+                    }
+                }
+            }
+            return false;
         }
 
     }

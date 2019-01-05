@@ -53,12 +53,15 @@ namespace WebCene.Model.B2B.ewe
 	                    Ewe.koefMarze = 1.1;
                      */
 
-                    //  Kolicina
+                    //  Kolicina - xml ne sadrži podatke o količini, podrazumeva se da su u xml-u izlistani samo artikli koji su raspoloživi
                     int kolicina = 1;
 
                     // NNC
                     bool isCena = double.TryParse(item.price_rebate, System.Globalization.NumberStyles.Any, new CultureInfo("en-US"), out  double nnc);
-
+                    if (!konfigDobavljaca.Manualno)
+                    {
+                        nnc = ModelHelper.Instance.CalculateNNC(nnc, konfigDobavljaca);
+                    }
 
                     // PMC
                     bool isPmc = double.TryParse(item.recommended_retail_price, out double pmc);
@@ -69,7 +72,7 @@ namespace WebCene.Model.B2B.ewe
                     {
                         Barcode = item.ean,
                         Kolicina = kolicina,
-                        NNC = ModelHelper.Instance.CalculateNNC(nnc, konfigDobavljaca),
+                        NNC = nnc,
                         PMC = 0, //TO DO: kalkulacija PMC
                         DatumUlistavanja = DateTime.Now,
                         PrimarniDobavljac = konfigDobavljaca.Naziv,

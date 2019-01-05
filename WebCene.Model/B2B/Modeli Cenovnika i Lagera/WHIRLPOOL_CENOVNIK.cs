@@ -38,22 +38,23 @@ namespace WebCene.Model.B2B.whirlpoolCenovnik
             }
 
             foreach (var item in whirlpoolCenovnik.Row)
-            {
-
-                //if (item == null)
-                //{
-                //    continue;
-                //}
-
+            {               
 
                 if (ModelHelper.Instance.IsValidBarcode(item.barcode.ToString().TrimEnd()))
                 {
+                    // NNC
+                    double nnc = item.NNC;
+                    if (!konfigDobavljaca.Manualno)
+                    {
+                        nnc = ModelHelper.Instance.CalculateNNC(nnc, konfigDobavljaca);
+                    }
+
 
                     B2B_Results_RowItem podatakZaPrikaz = new B2B_Results_RowItem()
                     {
                         Barcode = item.barcode.ToString().TrimEnd(),
                         Kolicina = 0, // xml ne sadrži količine
-                        NNC = item.NNC,
+                        NNC = nnc,
                         PMC = item.PMC,
                         DatumUlistavanja = DateTime.Today,
                         PrimarniDobavljac = konfigDobavljaca.Naziv,

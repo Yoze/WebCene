@@ -41,12 +41,17 @@ namespace WebCene.Model.B2B.mison
             {
                 if (ModelHelper.Instance.IsValidBarcode(item.barcode.ToString().TrimEnd()))
                 {
+                    double nnc = Convert.ToDouble(item.NNC);
+                    if (!konfigDobavljaca.Manualno)
+                    {
+                        nnc = ModelHelper.Instance.CalculateNNC(Convert.ToDouble(item.NNC), konfigDobavljaca);
+                    }
 
                     B2B_Results_RowItem podatakZaPrikaz = new B2B_Results_RowItem()
                     {
                         Barcode = item.barcode.ToString().TrimEnd(),
                         Kolicina = item.kolicina,
-                        NNC = ModelHelper.Instance.CalculateNNC( Convert.ToDouble( item.NNC), konfigDobavljaca),
+                        NNC = nnc,
                         PMC = item.PMC,
                         DatumUlistavanja = DateTime.Today,
                         PrimarniDobavljac = konfigDobavljaca.Naziv,

@@ -34,24 +34,35 @@ namespace WebCene.Model.B2B.comtrade
                 comtrade = (extNS.comtrade.ArrayOfCTPRODUCT)serializer.Deserialize(reader);
             }
 
+            double kursEvra = 1;
+
             foreach (var item in comtrade.CTPRODUCT)
             {
                 if (ModelHelper.Instance.IsValidBarcode(item.BARCODE.ToString()))
                 {
 
-                    bool isnabavnaCena = double.TryParse(item.PRICE, out double nabavnaCena);
+                    bool isNnc = double.TryParse(item.PRICE, out double nnc);
 
-                    bool isPpc = double.TryParse(item.RETAILPRICE, out double ppc);
+                    bool isPmc = double.TryParse(item.RETAILPRICE, out double pmc);
 
                     bool isExchangeRate = double.TryParse(item.EUR_ExchangeRate, out double exchangeRate);
 
+                    if (isExchangeRate && kursEvra != exchangeRate)
+                    {
+                        kursEvra = exchangeRate;
+                    }
+
+                    if (!konfigDobavljaca.Manualno)
+                    {
+                        nnc = ModelHelper.Instance.CalculateNNC(nnc, konfigDobavljaca);
+                    }
 
                     B2B_Results_RowItem podatakZaPrikaz = new B2B_Results_RowItem()
                     {
                         Barcode = item.BARCODE.ToString().TrimEnd(),
                         Kolicina = item.QTTYINSTOCK,
-                        NNC = nabavnaCena * exchangeRate,
-                        PMC = 0,
+                        NNC = nnc,
+                        PMC = pmc,
                         DatumUlistavanja = DateTime.Today,
                         PrimarniDobavljac = konfigDobavljaca.Naziv,
                         CenovnikDatum = ucitaniXmlDocument.XmlLastModified,
@@ -61,6 +72,14 @@ namespace WebCene.Model.B2B.comtrade
                 }
             }
             b2B_Results_RowItems = podaciZaPrikaz;
+
+            // postavi kurs evra za dobavljača:
+            konfigDobavljaca.KursEvra = kursEvra;
+            if (!ModelHelper.Instance.SaveSupplierConfigs(konfigDobavljaca))
+            {
+                throw new Exception($"Kurs evra za {konfigDobavljaca.Naziv} nije snimljen!");
+            }
+
         }
 
     }

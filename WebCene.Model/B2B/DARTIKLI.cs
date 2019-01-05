@@ -59,5 +59,13 @@ namespace WebCene.Model.B2B
 
         [StringLength(30)]
         public string PRIMARNIDOBAVLJAC { get; set; }
+
+        public double? SNC { get; set; }
+
+        [Column(TypeName = "date")]
+        public DateTime? SNPOCETAK { get; set; }
+
+        [Column(TypeName = "date")]
+        public DateTime? SNKARJ { get; set; }
     }
 }

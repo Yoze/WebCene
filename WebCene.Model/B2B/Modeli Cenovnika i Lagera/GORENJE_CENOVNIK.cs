@@ -40,14 +40,21 @@ namespace WebCene.Model.B2B.gorenje
             {
                 if (ModelHelper.Instance.IsValidBarcode(item.barcode.ToString()))
                 {
+                    // Količina = 0, postoji xml sa lagerom
+                    int kolicina = 0;
 
-                    int kolicina = 0;                   
+                    // NNC 
+                    double nnc = Convert.ToDouble(item.NNC);
+                    if (!konfigDobavljaca.Manualno)
+                    {
+                        nnc = ModelHelper.Instance.CalculateNNC(nnc, konfigDobavljaca);
+                    }
 
                     B2B_Results_RowItem podatakZaPrikaz = new B2B_Results_RowItem()
                     {
                         Barcode = item.barcode.ToString().TrimEnd(),
                         Kolicina = kolicina,
-                        NNC = Convert.ToDouble( item.NNC),
+                        NNC = nnc,
                         PMC = item.PMC,
                         DatumUlistavanja = DateTime.Today,
                         PrimarniDobavljac = konfigDobavljaca.Naziv,

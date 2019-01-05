@@ -42,6 +42,13 @@ namespace WebCene.Model.B2B.erg
             {
                 if (ModelHelper.Instance.IsValidBarcode(item.barcode))
                 {
+                    // NNC
+                    double nnc = Convert.ToDouble(item.price);
+                    if (!konfigDobavljaca.Manualno)
+                    {
+                        nnc = ModelHelper.Instance.CalculateNNC(nnc, konfigDobavljaca);
+                    }
+
 
                     //int kolicina = 0;
                     bool isKolicina = Int32.TryParse(item.stock, out int kolicina);
@@ -50,7 +57,7 @@ namespace WebCene.Model.B2B.erg
                     {
                         Barcode = item.barcode.TrimEnd(),
                         Kolicina = kolicina,
-                        NNC = Convert.ToDouble( item.price), 
+                        NNC = nnc, 
                         PMC = 0, //TO DO: kalkulacija PMC
                         DatumUlistavanja = DateTime.Today,
                         PrimarniDobavljac = konfigDobavljaca.Naziv,
