@@ -28,7 +28,7 @@
     <PublisherName>Elbraco</PublisherName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>WebKroler.htm</WebPage>
-    <ApplicationRevision>18</ApplicationRevision>
+    <ApplicationRevision>20</ApplicationRevision>
     <ApplicationVersion>1.6.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
