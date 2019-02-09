@@ -614,7 +614,7 @@ namespace WebCene.UI.Forms.Kroler
             decimal CENAMALO = decimal.Zero;
             decimal multiplier = 0.9M;
 
-            using (SqlConnection elbsConn = new SqlConnection(Properties.Settings.Default.ELBS_2018_ConnString))
+            using (SqlConnection elbsConn = new SqlConnection(Properties.Settings.Default.ELBS_2019_ConnString))
             {
                 elbsConn.Open();
                 if (elbsConn.State == System.Data.ConnectionState.Open)
@@ -656,7 +656,7 @@ namespace WebCene.UI.Forms.Kroler
             string sifra = string.Empty;
 
 
-            using (SqlConnection elbsConn = new SqlConnection(Properties.Settings.Default.ELBS_2018_ConnString))
+            using (SqlConnection elbsConn = new SqlConnection(Properties.Settings.Default.ELBS_2019_ConnString))
             {
                 elbsConn.Open();
                 if (elbsConn.State == System.Data.ConnectionState.Open)
@@ -699,7 +699,7 @@ namespace WebCene.UI.Forms.Kroler
             decimal cenaM = decimal.Zero;
             string sifra = string.Empty;
 
-            using (SqlConnection elbsConn = new SqlConnection(Properties.Settings.Default.ELBS_2018_ConnString))
+            using (SqlConnection elbsConn = new SqlConnection(Properties.Settings.Default.ELBS_2019_ConnString))
             {
                 elbsConn.Open();
                 if (elbsConn.State == System.Data.ConnectionState.Open)

@@ -38,7 +38,7 @@ namespace WebCene.UI.Forms.Kroler
 
         private DataTable UcitajArtikle()
         {
-            string connString = ConfigurationManager.ConnectionStrings["ELBS_2018ADOConn"].ConnectionString;
+            string connString = ConfigurationManager.ConnectionStrings["ELBS_2019ADOConn"].ConnectionString;
 
             using (SqlConnection connELBS_2018  = new SqlConnection(connString))
             {
