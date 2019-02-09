@@ -41,12 +41,17 @@ namespace WebCene.Model.B2B.AlfaPlamCenovnik
             {
                 if (ModelHelper.Instance.IsValidBarcode(item.BARCODE.ToString().TrimEnd()))
                 {
+                    double nnc = item.NNC;
+                    if (!konfigDobavljaca.Manualno)
+                    {
+                        nnc = ModelHelper.Instance.CalculateNNC(nnc, konfigDobavljaca);
+                    }
 
                     B2B_Results_RowItem podatakZaPrikaz = new B2B_Results_RowItem()
                     {
                         Barcode = item.BARCODE.ToString().TrimEnd(),
                         Kolicina = item.KOLICINA,
-                        NNC = item.NNC,
+                        NNC = nnc,
                         PMC = item.PMC,
                         DatumUlistavanja = DateTime.Today,
                         PrimarniDobavljac = konfigDobavljaca.Naziv,

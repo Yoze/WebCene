@@ -38,22 +38,23 @@ namespace WebCene.Model.B2B.whirlpoolCenovnik
             }
 
             foreach (var item in whirlpoolCenovnik.Row)
-            {
-
-                //if (item == null)
-                //{
-                //    continue;
-                //}
-
+            {               
 
                 if (ModelHelper.Instance.IsValidBarcode(item.barcode.ToString().TrimEnd()))
                 {
+                    // NNC
+                    double nnc = item.NNC;
+                    if (!konfigDobavljaca.Manualno)
+                    {
+                        nnc = ModelHelper.Instance.CalculateNNC(nnc, konfigDobavljaca);
+                    }
+
 
                     B2B_Results_RowItem podatakZaPrikaz = new B2B_Results_RowItem()
                     {
                         Barcode = item.barcode.ToString().TrimEnd(),
                         Kolicina = 0, // xml ne sadrži količine
-                        NNC = item.NNC,
+                        NNC = nnc,
                         PMC = item.PMC,
                         DatumUlistavanja = DateTime.Today,
                         PrimarniDobavljac = konfigDobavljaca.Naziv,
@@ -67,40 +68,6 @@ namespace WebCene.Model.B2B.whirlpoolCenovnik
         }
 
     }
-
-
-    //[System.SerializableAttribute()]
-    //[System.ComponentModel.DesignerCategoryAttribute("code")]
-    //[System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    //[System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
-    //public partial class Root
-    //{
-    //    [System.Xml.Serialization.XmlElementAttribute("Row")]
-    //    public RootRow[] Row { get; set; }
-    //}
-
-
-    //[System.SerializableAttribute()]
-    //[System.ComponentModel.DesignerCategoryAttribute("code")]
-    //[System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    //public partial class RootRow
-    //{
-
-    //    public string barcod { get; set; }
-
-    //    public ushort VP_CENA { get; set; }
-
-    //    public uint PMC { get; set; }
-
-    //    public decimal Osnovni_rabat { get; set; }
-
-    //    public decimal Dodatni_rabat { get; set; }
-
-    //    [System.Xml.Serialization.XmlIgnoreAttribute()]
-    //    public bool Dodatni_rabatSpecified { get; set; }
-
-    //    public decimal NNC { get; set; }
-    //}
 
 
 
@@ -126,7 +93,7 @@ namespace WebCene.Model.B2B.whirlpoolCenovnik
     {
 
         /// <remarks/>
-        public string barcode { get; set; }
+        public ulong barcode { get; set; }
 
         /// <remarks/>
         public ushort NNC { get; set; }
@@ -137,6 +104,7 @@ namespace WebCene.Model.B2B.whirlpoolCenovnik
 
 
 
+   
 
 
 

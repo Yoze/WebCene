@@ -7,15 +7,14 @@ using System.Xml;
 using System.Xml.Serialization;
 using extNS = WebCene.Model.B2B;
 
-namespace WebCene.Model.B2B.mison
+namespace WebCene.Model.B2B.alcaLager
 {
 
-    public class MISON_CENOVNIK
+    public class ALCA_LAGER
     {
-
         public List<B2B_Results_RowItem> b2B_Results_RowItems { get; set; }
 
-        public MISON_CENOVNIK(KonfigDobavljaca konfigDobavljaca, LoadedXmlDocument ucitaniXmlDocument)
+        public ALCA_LAGER(KonfigDobavljaca konfigDobavljaca, LoadedXmlDocument ucitaniXmlDocument)
         {
             b2B_Results_RowItems = new List<B2B_Results_RowItem>();
 
@@ -27,32 +26,34 @@ namespace WebCene.Model.B2B.mison
         {
             List<B2B_Results_RowItem> podaciZaPrikaz = new List<B2B_Results_RowItem>();
 
-            extNS.mison.Root misonCenovnik = new Root();
+            extNS.alcaLager.Root alcaLager = new Root();
 
 
-            var serializer = new XmlSerializer(typeof(extNS.mison.Root));
+            var serializer = new XmlSerializer(typeof(extNS.alcaLager.Root));
             using (XmlReader reader = new XmlNodeReader(ucitaniXmlDocument.LoadedXmlDocumentItem))
             {
-                misonCenovnik = (Root)serializer.Deserialize(reader);
+                alcaLager = (Root)serializer.Deserialize(reader);
             }
 
 
-            foreach (var item in misonCenovnik.Row)
+            foreach (var item in alcaLager.Row)
             {
                 if (ModelHelper.Instance.IsValidBarcode(item.barcode.ToString().TrimEnd()))
                 {
-                    double nnc = Convert.ToDouble(item.NNC);
-                    if (!konfigDobavljaca.Manualno)
-                    {
-                        nnc = ModelHelper.Instance.CalculateNNC(Convert.ToDouble(item.NNC), konfigDobavljaca);
-                    }
+
+                    // NNC - nije potrebna, učitava se samo lager
+                    //double nnc = Convert.ToDouble(item.NNC);
+                    //if (!konfigDobavljaca.Manualno)
+                    //{
+                    //    nnc = ModelHelper.Instance.CalculateNNC(nnc, konfigDobavljaca);
+                    //}
 
                     B2B_Results_RowItem podatakZaPrikaz = new B2B_Results_RowItem()
                     {
                         Barcode = item.barcode.ToString().TrimEnd(),
                         Kolicina = item.kolicina,
-                        NNC = nnc,
-                        PMC = item.PMC,
+                        NNC = 0,
+                        PMC = 0,
                         DatumUlistavanja = DateTime.Today,
                         PrimarniDobavljac = konfigDobavljaca.Naziv,
                         CenovnikDatum = ucitaniXmlDocument.XmlLastModified,
@@ -63,8 +64,6 @@ namespace WebCene.Model.B2B.mison
             }
             b2B_Results_RowItems = podaciZaPrikaz;
         }
-
-
     }
 
 
@@ -89,11 +88,13 @@ namespace WebCene.Model.B2B.mison
         public ulong barcode { get; set; }
 
         public byte kolicina { get; set; }
-
-        public decimal NNC { get; set; }
-
-        public uint PMC { get; set; }
     }
+
+
+
+
+
+
 
 
 }

@@ -49,11 +49,16 @@ namespace WebCene.Model.B2B.bosch
 
                     bool isPpc = double.TryParse(item.ppc, out double ppc);
 
+                    if (!konfigDobavljaca.Manualno)
+                    {
+                        ppc = ModelHelper.Instance.CalculateNNC(ppc, konfigDobavljaca);
+                    }
+
                     B2B_Results_RowItem podatakZaPrikaz = new B2B_Results_RowItem()
                     {
                         Barcode = item.ean.ToString().TrimEnd(),
                         Kolicina = item.zaloga,
-                        NNC = ModelHelper.Instance.CalculateNNC(ppc, konfigDobavljaca), 
+                        NNC = ppc, 
                         PMC = 0, //TO DO: kalkulacija PMC
                         DatumUlistavanja = DateTime.Today,
                         PrimarniDobavljac = konfigDobavljaca.Naziv,

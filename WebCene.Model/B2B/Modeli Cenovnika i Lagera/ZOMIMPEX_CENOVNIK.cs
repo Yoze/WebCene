@@ -63,6 +63,10 @@ namespace WebCene.Model.B2B.zomimpex
                     double pmc = 0;
                     //pmc =  nnc * decimal.Multiply( 1.2m, konfigDobavljaca.KeoficijentMarze);
 
+                    if (!konfigDobavljaca.Manualno)
+                    {
+                        // TODO: kalkulacija NNC i PMC, kako?
+                    }
                     
 
                     B2B_Results_RowItem podatakZaPrikaz = new B2B_Results_RowItem()
@@ -70,7 +74,7 @@ namespace WebCene.Model.B2B.zomimpex
                         Barcode = item.Bar_kod,
                         Kolicina = kolicina,
                         NNC = ModelHelper.Instance.CalculateNNC(nnc, konfigDobavljaca),
-                        PMC = 0, //TO DO: kalkulacija PMC
+                        PMC = pmc, //TO DO: kalkulacija PMC
                         DatumUlistavanja = DateTime.Now,
                         PrimarniDobavljac = konfigDobavljaca.Naziv,
                         CenovnikDatum = DateTime.Now,
